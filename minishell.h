@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/11 21:45:32 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:00:07 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include "signal.h"
 # include <sys/types.h>
+# include <stdlib.h>
 
 # include "./libft/libft.h"
 
@@ -43,13 +44,19 @@ typedef struct s_prompt
 
 
 /*
-	**full_command; argv
+	**full_command;
 
-	*full_path; If not a builtin, first available path for the executable denoted by argv[0] from the PATH variable
+	*full_path;
+		If not a builtin, first available path for the
+		executable denoted by argv[0] from the PATH variable
 
-	infile; Which file descriptor to read from when running a command (defaults to stdin)
+	infile;
+		Which file descriptor to read from when running
+		a command (defaults to stdin)
 
-	outfile; Which file descriptor to write to when running a command (defaults to stdout
+	outfile;
+		Which file descriptor to write to when running a
+		command (defaults to stdout
 */
 typedef struct s_cmmnds
 {
@@ -61,5 +68,17 @@ typedef struct s_cmmnds
 	//int			broken;
 }	t_cmmnds;
 
+/*	main	*/
+void	launch_minishell(t_prompt prompt);
+
+/*	init	*/
+t_prompt	init_prompt_struct(t_prompt *prompt, char **envp);
+int	init_env(t_prompt *prompt, char **env);
+
+/*	signal_handler	*/
+void	sigint_handler(int signum);
+
+/*	utils.c	*/
+size_t	get_len_arr(char **array);
 
 #endif

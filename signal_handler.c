@@ -1,46 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/12 17:08:33 by ecarlier         ###   ########.fr       */
+/*   Created: 2024/03/12 16:55:10 by ecarlier          #+#    #+#             */
+/*   Updated: 2024/03/12 16:56:04 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 
-
-/*
-	ARGC MUST BE 1
-*/
-int	main(int argc, char *argv[], char **envp)
+void	sigint_handler(int signum)
 {
-	t_prompt	*prompt;
-
-	(void)argv;
-
-	if (argc == 1)
-	{
-		init_prompt_struct(prompt, envp);
-	}
-
-
-	launch_minishell(&prompt);
-	return (0);
+	printf("\n Signal SIGINT received\n");
 }
-
-
-void	launch_minishell(t_prompt *prompt)
-{
-	siganl(SIGINT, sigint_handler);
-	while (1)
-	{
-		pause;
-	}
-}
-
 
