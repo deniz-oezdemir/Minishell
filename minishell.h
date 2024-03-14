@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/12 17:00:07 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/14 10:54:38 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 
 # include "./libft/libft.h"
 
+extern int	exitcode;
 
+//@Leo: each nodes content in cmd_list must be of type t_cmmnds
 /*
 	*input_string :
 	**commands :
@@ -43,8 +45,10 @@ typedef struct s_prompt
 }	t_prompt;
 
 
+//@Leo: rename to t_cmddat as each node stores a single command's data?
 /*
 	**full_command;
+		Array containing command's parts
 
 	*full_path;
 		If not a builtin, first available path for the
@@ -58,6 +62,7 @@ typedef struct s_prompt
 		Which file descriptor to write to when running a
 		command (defaults to stdout
 */
+
 typedef struct s_cmmnds
 {
 	char		**full_command;
@@ -77,6 +82,7 @@ int	init_env(t_prompt *prompt, char **env);
 
 /*	signal_handler	*/
 void	sigint_handler(int signum);
+void	handle_sig_quit(int n);
 
 /*	utils.c	*/
 size_t	get_len_arr(char **array);
