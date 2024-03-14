@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/14 10:54:38 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:06:08 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "signal.h"
 # include <sys/types.h>
 # include <stdlib.h>
+# include <readline/readline.h>
 
 # include "./libft/libft.h"
 
@@ -46,6 +47,7 @@ typedef struct s_prompt
 
 
 //@Leo: rename to t_cmddat as each node stores a single command's data?
+//done V
 /*
 	**full_command;
 		Array containing command's parts
@@ -63,7 +65,7 @@ typedef struct s_prompt
 		command (defaults to stdout
 */
 
-typedef struct s_cmmnds
+typedef struct s_cmddat
 {
 	char		**full_command;
 	char		*full_path;
@@ -71,13 +73,13 @@ typedef struct s_cmmnds
 	int			outfile;
 	//t_uni		*uni;
 	//int			broken;
-}	t_cmmnds;
+}	t_cmddat;
 
 /*	main	*/
-void	launch_minishell(t_prompt prompt);
+void	launch_minishell(t_prompt *prompt);
 
 /*	init	*/
-t_prompt	init_prompt_struct(t_prompt *prompt, char **envp);
+void	init_prompt_struct(t_prompt *prompt, char **envp);
 int	init_env(t_prompt *prompt, char **env);
 
 /*	signal_handler	*/
@@ -87,4 +89,6 @@ void	handle_sig_quit(int n);
 /*	utils.c	*/
 size_t	get_len_arr(char **array);
 
+
+void	lexer(t_prompt *prompt);
 #endif

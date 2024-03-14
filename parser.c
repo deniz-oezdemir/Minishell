@@ -1,48 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/14 15:05:02 by ecarlier         ###   ########.fr       */
+/*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
+/*   Updated: 2024/03/14 16:38:58 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 
-
-/*
-	ARGC MUST BE 1
-*/
-int	main(int argc, char *argv[], char **envp)
+void	parser(t_prompt *prompt)
 {
-	t_prompt	*prompt;
+	prompt->commands = split_input(prompt->input_string);
 
-	(void)argv;
-
-	if (argc == 1)
-	{
-		prompt = ft_calloc(1, sizeof(t_prompt));
-		init_prompt_struct(prompt, envp);
-	}
-
-	launch_minishell(prompt);
-	return (0);
 }
-
-
-void	launch_minishell(t_prompt *prompt)
-{
-	signal(SIGINT, &sigint_handler);
-	while (1)
-	{
-		lexer(prompt);
-		//parser(&prompt);
-		//pause;
-	}
-}
-
-

@@ -1,48 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   split_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/14 15:05:02 by ecarlier         ###   ########.fr       */
+/*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
+/*   Updated: 2024/03/14 18:58:31 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 
+/*exemple input = "ls -l | grep 'file.txt'" */
 
-/*
-	ARGC MUST BE 1
-*/
-int	main(int argc, char *argv[], char **envp)
+char **split_input(char *str)
 {
-	t_prompt	*prompt;
-
-	(void)argv;
-
-	if (argc == 1)
+	while (*str)
 	{
-		prompt = ft_calloc(1, sizeof(t_prompt));
-		init_prompt_struct(prompt, envp);
-	}
+		if (*str == 32) //ft_isspace
+			str++;
+		else if (*str == "<" || *str == ">" || *str == "|" )
 
-	launch_minishell(prompt);
-	return (0);
-}
-
-
-void	launch_minishell(t_prompt *prompt)
-{
-	signal(SIGINT, &sigint_handler);
-	while (1)
-	{
-		lexer(prompt);
-		//parser(&prompt);
-		//pause;
 	}
 }
 
 
+
+ft_count_words(char *str)
+{
+
+}
