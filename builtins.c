@@ -6,11 +6,11 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 10:34:24 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/14 11:26:00 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:22:36 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
 int	get_builtin_nbr(t_cmmnds *cmd)
 {
@@ -33,14 +33,14 @@ int	get_builtin_nbr(t_cmmnds *cmd)
 	return (0);
 }
 
-int	execute_builtin(t_cmmnds cmd, int n, int forked)
+int	execute_builtin(t_cmmnds *cmd, int n, int forked)
 {
 	int	val;
 
 	if (n == 1)
-		val = cstm_echo(cmd); //write all cstm_... functions
-	else if (n == 2)
-		val = cstm_cd(cmd);
+		val = cstm_echo(cmd); //test cstm_echo
+	/*else if (n == 2)
+		val = cstm_cd(cmd); //write all below cstm_... functions
 	else if (n == 3)
 		val = cstm_pwd(cmd);
 	else if (n == 4)
@@ -50,13 +50,13 @@ int	execute_builtin(t_cmmnds cmd, int n, int forked)
 	else if (n == 6)
 		val = cstm_env(cmd);
 	else if (n == 7)
-		val = cstm_exit(cmd);
+		val = cstm_exit(cmd);*/
 	else
 		val = 127; //127: command to execute could not be found
-	if (forked)
+	/*if (forked)
 	{
 		ft_lstiter(...);
 		exit(...);
-	}
+	}*/
 	return (val);
 }

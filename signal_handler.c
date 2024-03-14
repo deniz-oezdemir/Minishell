@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:55:10 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/14 10:23:45 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:43:51 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	sigint_handler(int signum)
 
 void	handle_sig_quit(int n)
 {
-	if (n == SIGQUIT)
-		exitcode = 131; //131: termination by signal
+	//if (n == SIGQUIT)
+		//exitcode = 131; //131: termination by signal
 }
 

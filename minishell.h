@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/14 10:54:38 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:17:58 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,19 @@ void	handle_sig_quit(int n);
 
 /*	utils.c	*/
 size_t	get_len_arr(char **array);
+int	strcmp(const char *s1, const char *s2);
+
+/*	exec.c	*/
+int	execute_cmds(t_prompt *prompt);
+
+/*	builtins.c	*/
+int	get_builtin_nbr(t_cmmnds *cmd);
+int	execute_builtin(t_cmmnds *cmd, int n, int forked);
+
+/*	cstm_echo.c	*/
+int	cstm_echo(t_cmmnds *cmd);
+
+/*	exec.c	*/
+int	execute_cmds(t_prompt *prompt);
 
 #endif

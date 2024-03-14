@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 20:12:21 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/12 17:14:22 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:19:15 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+/*
 t_prompt	init_prompt_struct(t_prompt *prompt, char **envp)
 {
 	//t_prompt *prompt;
@@ -43,3 +43,4 @@ int	init_env(t_prompt *prompt, char **env)
 	//return succes
 	return (1);
 }
+*/
