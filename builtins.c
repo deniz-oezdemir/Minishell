@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 10:34:24 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/15 09:42:35 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:06:14 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	execute_builtin(t_cmmnds *cmd, int n, int forked)
 	/*if (forked)
 	{
 		ft_lstiter(...);
-		exit(...);
+		exit_ms(...);
 	}*/
 	return (val);
 }

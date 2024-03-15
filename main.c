@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/15 10:35:19 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:22:38 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,17 @@ int main()
 	cmd = malloc(sizeof(t_cmmnds));
 	prompt->cmd_list = malloc(sizeof(t_list));
 	prompt->cmd_list->content = cmd;
-	cmd->full_command = malloc(sizeof((char*[]){"echo", /*"-n",*/ /*"hello world",*/ NULL})); //correct new lines
-	cmd->full_command = (char*[]){"echo", /*"-n",*/ /*"hello world",*/ NULL};
+	cmd->prompt = prompt;
 
+	//example echo
+	//cmd->full_command = malloc(sizeof((char*[]){"echo", /*"-n",*/ /*"hello world",*/ NULL})); //correct new lines
+	//cmd->full_command = (char*[]){"echo", /*"-n",*/ /*"hello world",*/ NULL};
+
+	//example ls
+	cmd->full_command = malloc(sizeof((char*[]){"ls", "-l", NULL}));
+	cmd->full_command = (char*[]){"ls", "-l", NULL};
+	cmd->full_path = malloc(sizeof((char *)("/usr/bin/ls")));
+	cmd->full_path = (char *)("/usr/bin/ls");
 	execute_cmds(prompt);
 
 	return (0);
