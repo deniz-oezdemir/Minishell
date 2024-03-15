@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 10:34:24 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/14 17:39:37 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/15 09:42:35 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	get_builtin_nbr(t_cmmnds *cmd)
 		return (0);
 	else if (!strcmp(cmd->full_command[0], "echo"))
 		return (1);
-	else if (!strcmp(cmd->full_command[0], "cd"))
+	else if (!strcmp(cmd->full_command[0], "cd")) //use chdir function
 		return (2);
-	if (!strcmp(cmd->full_command[0], "pwd"))
+	if (!strcmp(cmd->full_command[0], "pwd")) //make getdir function, print output
 		return (3);
 	else if (!strcmp(cmd->full_command[0], "export"))
 		return (4);

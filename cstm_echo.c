@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:50:56 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/14 15:41:03 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/15 10:34:15 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	cstm_echo(t_cmmnds *cmd)
 	int	nl;
 	int	i;
 
-	nl = 0;
+	nl = 1;
 	i = 1;
 	if (cmd == NULL)
 		return (1);
@@ -25,7 +25,7 @@ int	cstm_echo(t_cmmnds *cmd)
 		return (ft_putstr_fd("\n", cmd->outfile), 1);
 	if (!strcmp(cmd->full_command[1], "-n")) //different
 	{
-		nl = 1;
+		nl = 0;
 		i += 1;
 	}
 	while (cmd->full_command[i])
