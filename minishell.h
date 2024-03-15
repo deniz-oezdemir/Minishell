@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/15 10:12:42 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/15 11:20:49 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,33 @@
 # include "./libft/libft.h"
 
 extern int	exitcode;
+
+// typedef enum e_type
+// {
+// 	OPERAND,
+
+
+// }	t_type;
+
+typedef enum e_type
+{
+	COMMAND,
+	ARG,
+	REDIR,
+	PIPE,
+	VARIABLE,
+	SGL,
+	DBL,
+}	t_type;
+
+
+typedef struct s_token
+{
+	t_type			type;
+	char			*value;
+	struct s_token	*prev;
+	struct s_token	*next;
+}	t_token;
 
 //@Leo: each nodes content in cmd_list must be of type t_cmmnds
 /*
@@ -62,7 +89,7 @@ typedef struct s_prompt
 
 	outfile;
 		Which file descriptor to write to when running a
-		command (defaults to stdout
+		command (defaults to stdout)
 */
 
 typedef struct s_cmddat
