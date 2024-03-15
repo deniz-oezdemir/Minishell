@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/15 13:15:14 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:07:32 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,38 @@
 int	run_cmd(t_cmmnds *cmd_data)
 {
 	//test not-builtin -> make new example in main, comment out old one
-	execve(cmd_data->full_path, cmd_data->full_command, cmd_data->prompt->envp);
+	//execve(cmd_data->full_path, cmd_data->full_command, cmd_data->prompt->envp);
 
 	/*if (cmd_data->prompt->stop)
 		return (0);*/
 	/*if (!is_executable(cmd_data, get_builtin_nbr(cmd_data)))
 		return (0);*/
-	/*cmd_data->prompt->pid = fork();
+	printf("c1\n");
+	cmd_data->prompt->pid = fork();
+	printf("c2\n");
 	if (cmd_data->prompt->pid == -1) //fork error
 		return (1);
-	else if (cmd_data->prompt->pid == 0) //fork success
+	printf("c3\n");
+	if (cmd_data->prompt->pid == 0) //fork success
 	{
-		if (get_builtin_nbr(cmd_data))
-			execute_builtin(cmd_data, get_builtin_nbr(cmd_data), 1);*/
-		/*dup2(cmd_data->infile, 0);
-		dup2(cmd_data->outfile, 1);*/
+		//if (get_builtin_nbr(cmd_data))
+		//	execute_builtin(cmd_data, get_builtin_nbr(cmd_data), 1);
+		dup2(cmd_data->infile, 0);
+		dup2(cmd_data->outfile, 1);
 		/*ft_lstiter...*/
-		//execve(cmd_data->full_path, cmd_data->full_command, cmd_data->prompt->envp);
-		/*close(0);
+		execve(cmd_data->full_path, cmd_data->full_command, cmd_data->prompt->envp);
+		close(0);
 		close(1);
-		exit_ms(...);*/
-	//}
+		//exit_ms(...);
+	}
+	printf("c4\n");
 	return (0);
 }
 
 int	execute_cmds(t_prompt *prompt)
 {
 	t_cmmnds	*cmd_data;
+	t_cmmnds	*cmd2_data = prompt->cmd_list->next->content;
 
 	if (!prompt->cmd_list)
 		return (0);
@@ -57,6 +62,10 @@ int	execute_cmds(t_prompt *prompt)
 	else //for now only not-builtin, expand later to execute multiple commands
 	{
 		run_cmd(cmd_data); //different
+		waitpid(prompt->pid, NULL, 0);
+		//printf("%s\n", cmd_data->full_path);
+		//printf("%s\n", cmd2_data->full_path);
+		run_cmd(cmd2_data);
 	}
 	return 0;
 }

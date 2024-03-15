@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/15 13:14:08 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/15 14:42:28 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include "signal.h"
 # include <sys/types.h>
+# include <sys/wait.h>
 # include <stdlib.h>
 
 # include "./libft/libft.h"

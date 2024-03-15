@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/15 13:22:38 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:09:41 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@ int main()
 {
 	t_prompt *prompt;
 	t_cmmnds *cmd;
+	t_cmmnds *cmd2;
 
 	prompt = malloc(sizeof(t_prompt));
 	cmd = malloc(sizeof(t_cmmnds));
-	prompt->cmd_list = malloc(sizeof(t_list));
-	prompt->cmd_list->content = cmd;
+	cmd2 = malloc(sizeof(t_cmmnds));
+	prompt->cmd_list = ft_lstnew(cmd);
+	ft_lstadd_back(&prompt->cmd_list, ft_lstnew(cmd2));
 	cmd->prompt = prompt;
+	cmd2->prompt = prompt;
 
 	//example echo
 	//cmd->full_command = malloc(sizeof((char*[]){"echo", /*"-n",*/ /*"hello world",*/ NULL})); //correct new lines
@@ -31,9 +34,20 @@ int main()
 
 	//example ls
 	cmd->full_command = malloc(sizeof((char*[]){"ls", "-l", NULL}));
-	cmd->full_command = (char*[]){"ls", "-l", NULL};
 	cmd->full_path = malloc(sizeof((char *)("/usr/bin/ls")));
+	cmd->full_command = (char*[]){"ls", "-l", NULL};
 	cmd->full_path = (char *)("/usr/bin/ls");
+
+	//example ls -l | wc -l (with above example ls)
+	cmd2->full_command = malloc(sizeof((char*[]){"wc", "-l", NULL}));
+	cmd2->full_path = malloc(sizeof((char *)("/usr/bin/wc")));
+	cmd2->full_command = (char*[]){"wc", "-l", NULL};
+	cmd2->full_path = (char *)("/usr/bin/wc");
+	cmd->infile = 0;
+	cmd->outfile = 1;
+	cmd2->infile = 0;
+	cmd2->outfile = 1;
+
 	execute_cmds(prompt);
 
 	return (0);
