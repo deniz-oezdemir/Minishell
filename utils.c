@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:31:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/14 11:12:06 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/15 08:43:26 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,22 @@ size_t	get_len_arr(char **array)
 	size_t	i;
 
 	i = 0;
-	while(array[i])
+	while (array[i])
 	{
 		i++;
 	}
 	return (i);
 }
 
+int	ft_isspace(int c)
+{
+	return (c == ' ' || c == '\t' || c == '\n'
+		|| c == '\v' || c == '\f' || c == '\r');
+}
+
+
+
+/*@deniz do you use this ? you need to add ft_ otherise you use the original one and not sure we can ???*/
 int	strcmp(const char *s1, const char *s2)
 {
 	size_t	i;

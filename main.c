@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/14 15:05:02 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/15 09:01:15 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char *argv[], char **envp)
 
 void	launch_minishell(t_prompt *prompt)
 {
-	signal(SIGINT, &sigint_handler);
+	// signal(SIGINT, &sigint_handler);
 	while (1)
 	{
 		lexer(prompt);

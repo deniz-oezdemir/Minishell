@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/14 15:06:08 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/15 09:01:37 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,13 @@ void	handle_sig_quit(int n);
 
 /*	utils.c	*/
 size_t	get_len_arr(char **array);
+int	strcmp(const char *s1, const char *s2);
+int	ft_isspace(int c);
 
-
+/*	lexer.c*/
 void	lexer(t_prompt *prompt);
+
+
+/* split*/
+char	**split_input(char *str);
 #endif
