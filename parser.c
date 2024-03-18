@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/14 16:38:58 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:37:28 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 void	parser(t_prompt *prompt)
 {
-	prompt->commands = split_input(prompt->input_string);
-
+	//
 }

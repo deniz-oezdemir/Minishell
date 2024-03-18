@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/18 17:21:01 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/18 18:26:42 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,6 @@
 #include <stdio.h>
 /*exemple input = "ls -l | grep 'file.txt'" */
 
-/*
-	Ceci est une phrase de test
-	Ceci est "une phrase avec" des guillemets
-	Mot1|Mot2|Mot3
-*/
-
-
-static void print_char_array(const char arr[]) {
-    printf("[");
-    for (int i = 0; arr[i] != '\0'; i++) {
-        printf("%c", arr[i]);
-    }
-    printf("]\n");
-}
-
-void print_str_array(char **arr) {
-    printf("[\n");
-    for (int i = 0; arr[i] != NULL; i++) {
-        printf("\"%s\",\n", arr[i]);
-    }
-    printf("]\n");
-}
 
 static int	ft_count_words(const char *str, char *sep)
 {
@@ -111,13 +89,16 @@ char	**split_input(char *str)
 		str++;
 	word_count = ft_count_words(str, " ");
 	if (word_count == -1)
+	{
+		printf("Quote not properly closed\n");
 		return (NULL);
+	}
 	arr = (char **)malloc(sizeof(char *) * (word_count + 1));
 	if (!arr)
 		return (NULL);
 	arr = ft_create_substrs(arr, str, " ");
 	arr[word_count] = NULL;
-	print_str_array(arr);
+	//print_str_array(arr);
 	return (arr);
 
 }

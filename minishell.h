@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/15 11:20:49 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:55:34 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,10 @@ typedef struct s_cmddat
 	//t_uni		*uni;
 	//int			broken;
 }	t_cmddat;
+
+/* debug utils*/
+void print_char_array(const char arr[]);
+void print_str_array(char **arr);
 
 /*	main	*/
 void	launch_minishell(t_prompt *prompt);

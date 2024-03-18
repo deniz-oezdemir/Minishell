@@ -1,38 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   intern_split.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 14:22:52 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/18 18:31:29 by ecarlier         ###   ########.fr       */
+/*   Created: 2024/03/18 18:01:05 by ecarlier          #+#    #+#             */
+/*   Updated: 2024/03/18 18:38:39 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*take an input sequence of characters and divide them into "tokens*/
+/*separates with <, |, or >, if outside of quotes */
 
-/*
-	Ceci est une phrase de test
-	Ceci est "une phrase avec" des guillemets
-	Mot1|Mot2|Mot3
-*/
-
-/* */
-void	lexer(t_prompt *prompt)
+char	**intern_split(char **split)
 {
-	char **arr;
-	prompt->input_string = readline("minishell> ");
-
-	// if (!prompt->input_string)
-	// 	exit_minishelll
-
-	arr = split_input(prompt->input_string);
-	print_str_array(arr);
-	intern_split(arr);
-
 
 
 }
