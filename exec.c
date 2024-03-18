@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/18 14:29:38 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:40:08 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	execute_cmds(t_prompt *prompt)
 	cmd_data = prompt->cmd_list->content;
 	if(/*ft_lstsize(prompt->cmd_list) == 1 &&*/ get_builtin_nbr(cmd_data))
 	{
-		/*exitcode =*/ execute_builtin(cmd_data, get_builtin_nbr(cmd_data), 0); //@Deniz: continue writing execute_builtin
+		/*exitstatus =*/ execute_builtin(cmd_data, get_builtin_nbr(cmd_data), 0); //@Deniz: continue writing execute_builtin
 		//ft_lstiter(prompt->cmd_list, close_fds()); //write close_fds
 	}
 	else //for now only not-builtin, expand later to execute multiple commands

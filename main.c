@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/18 14:29:54 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:44:41 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int main()
 	cmd->full_command = (char*[]){"pwd", NULL};
 */
 
+/*
 	//example env
 	cmd->full_command = malloc(sizeof((char*[]){"env", NULL}));
 	cmd->full_command = (char*[]){"env", NULL};
@@ -65,6 +66,15 @@ int main()
 	cmd->prompt->envp[1] = "LANGUAGE=en";
 	cmd->prompt->envp[2] = "test without equal";
 	cmd->prompt->envp[3] = "USER=denizozd";
+*/
+
+/*don't really know how to test it -> @Deniz: test when Leo is done with parsing
+	//example exit
+	cmd->full_command = malloc(sizeof((char*[]){"ls", "-l", "1", NULL}));
+	cmd->full_path = malloc(sizeof((char *)("/usr/bin/ls")));
+	cmd->full_command = (char*[]){"ls", "-l", "1", NULL};
+	cmd->full_path = (char *)("/usr/bin/ls");
+*/
 
 	execute_cmds(prompt);
 

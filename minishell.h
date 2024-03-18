@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/18 14:10:47 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:40:08 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 # include "./libft/libft.h"
 
-extern int	exitcode;
+extern int	exitstatus;
 
 //@Leo: each nodes content in cmd_list must be of type t_cmmnds
 /*
@@ -88,6 +88,7 @@ void	handle_sig_quit(int n);
 /*	utils.c	*/
 size_t	get_len_arr(char **array);
 int	strcmp(const char *s1, const char *s2);
+void	print_err_msg(char *cmd, char *msg);
 
 /*	builtins.c	*/
 int	get_builtin_nbr(t_cmmnds *cmd);

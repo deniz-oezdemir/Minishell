@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal_handler.c                                   :+:      :+:    :+:   */
+/*   end.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/12 16:55:10 by ecarlier          #+#    #+#             */
+/*   Created: 2024/03/18 17:38:15 by denizozd          #+#    #+#             */
 /*   Updated: 2024/03/18 17:40:08 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	sigint_handler(int signum)
+void	exit_ms(int exitstatus, t_prompt *prompt)
 {
-	printf("\n Signal SIGINT received\n");
+	free_all(prompt); //write
+	exit(exitstatus);
 }
-
-void	handle_sig_quit(int n)
-{
-	//if (n == SIGQUIT)
-		//exitstatus = 131; //131: termination by signal
-}
-
