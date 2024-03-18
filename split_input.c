@@ -6,13 +6,93 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/18 18:26:42 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/18 20:07:08 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
+
 /*exemple input = "ls -l | grep 'file.txt'" */
+
+static char *add_space(char *str)
+{
+	int i;
+	int j;
+	int len_str;
+	char *new_str;
+
+	i = 0;
+	j = 0;
+	len_str = ft_strlen(str) + special_len(str) + 1;
+	new_str = (char *)malloc(sizeof(char) * len_str);
+	if (!new_str)
+		return (NULL);
+
+    while (str[i])
+    {
+        new_str[j++] = str[i];
+        if (str[i] == '>' && str[i + 1] == '>')
+        {
+            if (i == 0 || str[i - 1] != ' ')
+                new_str[j++] = ' ';
+            new_str[j++] = '>';
+            new_str[j++] = '>';
+            i++;
+        }
+        else if (str[i] == '<' && str[i + 1] == '<')
+        {
+            if (i == 0 || str[i - 1] != ' ')
+                new_str[j++] = ' ';
+            new_str[j++] = '<';
+            new_str[j++] = '<';
+            i++;
+        }
+        else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i + 1] != ' ')
+        {
+            if (i == 0 || str[i - 1] != ' ')
+                new_str[j++] = ' ';
+            new_str[j++] = str[i];
+        }
+        else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i + 1] == ' ')
+        {
+            new_str[j++] = str[i];
+            i++;
+        }
+        else
+        {
+            new_str[j++] = str[i];
+        }
+        i++;
+    }
+    new_str[j] = '\0';
+    return (new_str);
+}
+}
+
+/*Parcourt la chaine et compte le nombre de char speciaux (> >> < << |) qui sont attaches*/
+static int special_len(char *str)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (str[i]) {
+		if ((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<'))
+		{
+			if (str[i - 1] != ' ' || str[i + 2] != ' ')
+				count++;
+			i += 2;
+		}
+		if (str[i] == '>' || str[i] == '<' || str[i] == '|')
+		{
+			if (str[i - 1] != ' ' || str[i + 1] != ' ')
+				count++;
+		}
+		i++;
+	}
+	return (count);
+}
 
 
 static int	ft_count_words(const char *str, char *sep)
@@ -84,7 +164,6 @@ char	**split_input(char *str)
 
 	if (!str)
 		return (NULL);
-
 	if (ft_isspace(*str))
 		str++;
 	word_count = ft_count_words(str, " ");
