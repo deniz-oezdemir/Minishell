@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/18 20:07:08 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/18 20:18:56 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,45 +28,28 @@ static char *add_space(char *str)
 	if (!new_str)
 		return (NULL);
 
-    while (str[i])
-    {
-        new_str[j++] = str[i];
-        if (str[i] == '>' && str[i + 1] == '>')
-        {
-            if (i == 0 || str[i - 1] != ' ')
-                new_str[j++] = ' ';
-            new_str[j++] = '>';
-            new_str[j++] = '>';
-            i++;
-        }
-        else if (str[i] == '<' && str[i + 1] == '<')
-        {
-            if (i == 0 || str[i - 1] != ' ')
-                new_str[j++] = ' ';
-            new_str[j++] = '<';
-            new_str[j++] = '<';
-            i++;
-        }
-        else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i + 1] != ' ')
-        {
-            if (i == 0 || str[i - 1] != ' ')
-                new_str[j++] = ' ';
-            new_str[j++] = str[i];
-        }
-        else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i + 1] == ' ')
-        {
-            new_str[j++] = str[i];
-            i++;
-        }
-        else
-        {
-            new_str[j++] = str[i];
-        }
-        i++;
-    }
-    new_str[j] = '\0';
-    return (new_str);
-}
+	while (str[i])
+	{
+		if ((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<'))
+		{
+			if (i == 0 || str[i - 1] != ' ')
+				new_str[j++] = ' ';
+			new_str[j++] = str[i++];
+			new_str[j++] = str[i++];
+		}
+		else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i + 1] == ' ')
+			new_str[j++] = str[i++];
+		else if (str[i] == '>' || str[i] == '<' || str[i] == '|')
+		{
+			if (i == 0 || str[i - 1] != ' ')
+				new_str[j++] = ' ';
+			new_str[j++] = str[i++];
+		}
+		else
+			new_str[j++] = str[i++];
+	}
+	new_str[j] = '\0'; // Terminer la nouvelle chaîne avec un caractère nul
+	return new_str;
 }
 
 /*Parcourt la chaine et compte le nombre de char speciaux (> >> < << |) qui sont attaches*/

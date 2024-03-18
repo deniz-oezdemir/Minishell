@@ -2,6 +2,20 @@
 #include <stdlib.h>
 #include <string.h>
 
+
+
+/*
+commande <<sortie.txt
+commande sortie.txt >>
+commande <<sortie.txt >>
+commande <sortie.txt
+commande sortie.txt >
+commande |sortie.txt
+commande| sortie.txt
+*/
+
+
+
 # include "./libft/libft.h"
 #define SPECIAL_CHARS "|><"
 /*Parcourt la chaine et compte le nombre de char speciaux (> >> < << |) qui sont attaches*/
@@ -42,26 +56,28 @@ char *add_space(char *str)
 	if (!new_str)
 		return (NULL);
 
-    while (str[i]) {
-        if ((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<')) {
-            if (i == 0 || str[i - 1] != ' ')
-                new_str[j++] = ' ';
-            new_str[j++] = str[i++];
-            new_str[j++] = str[i++];
-        } else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i + 1] == ' ') {
-            new_str[j++] = str[i++];
-        } else if (str[i] == '>' || str[i] == '<' || str[i] == '|') {
-            if (i == 0 || str[i - 1] != ' ')
-                new_str[j++] = ' ';
-            new_str[j++] = str[i++];
-        } else {
-            new_str[j++] = str[i++];
-        }
-    }
-
-    new_str[j] = '\0'; // Terminer la nouvelle chaîne avec un caractère nul
-
-    return new_str;
+	while (str[i])
+	{
+		if ((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<'))
+		{
+			if (i == 0 || str[i - 1] != ' ')
+				new_str[j++] = ' ';
+			new_str[j++] = str[i++];
+			new_str[j++] = str[i++];
+		}
+		else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i + 1] == ' ')
+			new_str[j++] = str[i++];
+		else if (str[i] == '>' || str[i] == '<' || str[i] == '|')
+		{
+			if (i == 0 || str[i - 1] != ' ')
+				new_str[j++] = ' ';
+			new_str[j++] = str[i++];
+		}
+		else
+			new_str[j++] = str[i++];
+	}
+	new_str[j] = '\0'; // Terminer la nouvelle chaîne avec un caractère nul
+	return new_str;
 }
 
 
