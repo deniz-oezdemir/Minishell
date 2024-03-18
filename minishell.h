@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/18 13:37:32 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:10:47 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,9 @@ int	cstm_echo(t_cmmnds *cmd);
 
 /*	cstm_pwd.c	*/
 int	cstm_pwd(t_cmmnds *cmd_data);
+
+/*	cstm_env.c	*/
+int	cstm_env(t_cmmnds *cmd_data);
 
 /*	exec.c	*/
 int	execute_cmds(t_prompt *prompt);
