@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 10:34:24 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/18 14:27:50 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:47:11 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ int	execute_builtin(t_cmmnds *cmd, int n, int forked)
 		val = cstm_unset(cmd);*/
 	else if (n == 6)
 		val = cstm_env(cmd);
-	/*else if (n == 7)
-		val = cstm_exit(cmd);*/
-	else
-		val = 127; //127: command to execute could not be found
+	else if (n == 7)
+		val = cstm_exit(cmd);
+	/*else
+		val = 127; //127: command to execute could not be found*/
 	/*if (forked)
 	{
 		ft_lstiter(...);

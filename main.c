@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/18 17:44:41 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:54:23 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,9 @@ int main()
 	cmd->prompt->envp[3] = "USER=denizozd";
 */
 
-/*don't really know how to test it -> @Deniz: test when Leo is done with parsing
 	//example exit
-	cmd->full_command = malloc(sizeof((char*[]){"ls", "-l", "1", NULL}));
-	cmd->full_path = malloc(sizeof((char *)("/usr/bin/ls")));
-	cmd->full_command = (char*[]){"ls", "-l", "1", NULL};
-	cmd->full_path = (char *)("/usr/bin/ls");
-*/
+	cmd->full_command = malloc(sizeof((char*[]){"exit", "1", NULL}));
+	cmd->full_command = (char*[]){"exit", "1", NULL};
 
 	execute_cmds(prompt);
 
