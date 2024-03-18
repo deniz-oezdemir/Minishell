@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/15 15:09:41 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:44:18 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int main()
 	cmd->full_command = (char*[]){"ls", "-l", NULL};
 	cmd->full_path = (char *)("/usr/bin/ls");
 
+	/*not working: wc: 'standard input': Input/output error
 	//example ls -l | wc -l (with above example ls)
 	cmd2->full_command = malloc(sizeof((char*[]){"wc", "-l", NULL}));
 	cmd2->full_path = malloc(sizeof((char *)("/usr/bin/wc")));
@@ -46,7 +47,12 @@ int main()
 	cmd->infile = 0;
 	cmd->outfile = 1;
 	cmd2->infile = 0;
-	cmd2->outfile = 1;
+	cmd2->outfile = 1;*/
+
+	//example pwd
+	cmd->full_command = malloc(sizeof((char*[]){"pwd", NULL}));
+	cmd->full_command = (char*[]){"pwd", NULL};
+
 
 	execute_cmds(prompt);
 
