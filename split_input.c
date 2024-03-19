@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/19 16:04:39 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:32:34 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,30 @@
 /*exemple input = "ls -l | grep 'file.txt'" */
 
 
+/*Parcourt la chaine et compte le nombre de char speciaux (> >> < << |) qui sont attaches*/
+static int special_len(char *str)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (str[i]) {
+		if ((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<'))
+		{
+			if (str[i - 1] != ' ' || str[i + 2] != ' ')
+				count++;
+			i += 2;
+		}
+		if (str[i] == '>' || str[i] == '<' || str[i] == '|')
+		{
+			if (str[i - 1] != ' ' || str[i + 1] != ' ')
+				count++;
+		}
+		i++;
+	}
+	return (count);
+}
 /*
     char str2[] = "commande sortie.txt>>"; // commande sortie.txt >>
 	char str4[] = "commande <sortie.txt"; // commande < sortie.txt
@@ -22,7 +46,7 @@
 	char str6[] = "commande |sortie.txt"; // commande | sortie.txt
     char str7[] = "commande| sortie.txt"; // commande | sortie.txt
     char str1[] = "commande <<sortie.txt"; // commande << sortie.txt
-    char str3[] = "commande <<sortie.txt>>"; // commande << sortie.tx t>>
+    char str3[] = "commande <<sortie.txt>>"; // commande << sortie.txt>>
 */
 char *add_space(char *str)
 {
@@ -71,32 +95,6 @@ char *add_space(char *str)
 	new_str[j] = '\0';
 	return (new_str);
 }
-
-/*Parcourt la chaine et compte le nombre de char speciaux (> >> < << |) qui sont attaches*/
-static int special_len(char *str)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (str[i]) {
-		if ((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<'))
-		{
-			if (str[i - 1] != ' ' || str[i + 2] != ' ')
-				count++;
-			i += 2;
-		}
-		if (str[i] == '>' || str[i] == '<' || str[i] == '|')
-		{
-			if (str[i - 1] != ' ' || str[i + 1] != ' ')
-				count++;
-		}
-		i++;
-	}
-	return (count);
-}
-
 
 static int	ft_count_words(const char *str, char *sep)
 {

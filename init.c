@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 20:12:21 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/14 14:56:04 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:36:39 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 void	init_prompt_struct(t_prompt *prompt, char **envp)
 {
-	//t_prompt *prompt;
-
 	prompt->input_string = NULL;
 	prompt->commands = NULL;
 	prompt->cmd_list = NULL;
 	prompt->pid = -1;
-	//prompt->envp = get_env(envp); //todo
 	init_env(prompt, envp);
 }
 

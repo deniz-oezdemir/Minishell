@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/18 17:55:34 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:54:55 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,32 +23,32 @@
 
 extern int	exitcode;
 
+
+/*Standard file descriptors.
+STDIN_FILENO	0	 Standard input.
+STDOUT_FILENO	1	 Standard output.
+STDERR_FILENO	2	 Standard error output.
+*/
+
 // typedef enum e_type
 // {
-// 	OPERAND,
-
-
+// 	COMMAND,
+// 	ARG,
+// 	REDIR,
+// 	PIPE,
+// 	VARIABLE,
+// 	SGL,
+// 	DBL,
 // }	t_type;
 
-typedef enum e_type
-{
-	COMMAND,
-	ARG,
-	REDIR,
-	PIPE,
-	VARIABLE,
-	SGL,
-	DBL,
-}	t_type;
 
-
-typedef struct s_token
-{
-	t_type			type;
-	char			*value;
-	struct s_token	*prev;
-	struct s_token	*next;
-}	t_token;
+// typedef struct s_token
+// {
+// 	t_type			type;
+// 	char			*value;
+// 	struct s_token	*prev;
+// 	struct s_token	*next;
+// }	t_token;
 
 //@Leo: each nodes content in cmd_list must be of type t_cmmnds
 /*
@@ -129,4 +129,5 @@ void	lexer(t_prompt *prompt);
 /* split*/
 char	**split_input(char *str);
 char	**ft_split(char const *s, char c);
+char *add_space(char *str);
 #endif
