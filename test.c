@@ -42,6 +42,7 @@ int special_len(char *str)
 	}
 	return (count);
 }
+
 char *add_space(char *str)
 {
 	int i;
@@ -55,29 +56,39 @@ char *add_space(char *str)
 	new_str = (char *)malloc(sizeof(char) * len_str);
 	if (!new_str)
 		return (NULL);
-
 	while (str[i])
 	{
 		if ((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<'))
 		{
 			if (i == 0 || str[i - 1] != ' ')
+			{
 				new_str[j++] = ' ';
-			new_str[j++] = str[i++];
+				new_str[j++] = str[i++];
+				new_str[j++] = str[i++];
+			}
+			else if(str[i + 2] != ' ')
+			{
+				new_str[j++] = str[i++];
+				new_str[j++] = str[i++];
+				new_str[j++] = ' ';
+			}
+		}
+		else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i - 1] != ' ')
+		{
+			new_str[j++] = ' ';
 			new_str[j++] = str[i++];
 		}
-		else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i + 1] == ' ')
-			new_str[j++] = str[i++];
-		else if (str[i] == '>' || str[i] == '<' || str[i] == '|')
+		else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i + 1] != ' ')
 		{
-			if (i == 0 || str[i - 1] != ' ')
-				new_str[j++] = ' ';
 			new_str[j++] = str[i++];
+			new_str[j++] = ' ';
+
 		}
 		else
 			new_str[j++] = str[i++];
 	}
-	new_str[j] = '\0'; // Terminer la nouvelle chaîne avec un caractère nul
-	return new_str;
+	new_str[j] = '\0';
+	return (new_str);
 }
 
 

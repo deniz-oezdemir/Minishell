@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/18 20:18:56 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:04:39 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,17 @@
 
 /*exemple input = "ls -l | grep 'file.txt'" */
 
-static char *add_space(char *str)
+
+/*
+    char str2[] = "commande sortie.txt>>"; // commande sortie.txt >>
+	char str4[] = "commande <sortie.txt"; // commande < sortie.txt
+	char str5[] = "commande sortie.txt>"; // commande sortie.txt >
+	char str6[] = "commande |sortie.txt"; // commande | sortie.txt
+    char str7[] = "commande| sortie.txt"; // commande | sortie.txt
+    char str1[] = "commande <<sortie.txt"; // commande << sortie.txt
+    char str3[] = "commande <<sortie.txt>>"; // commande << sortie.tx t>>
+*/
+char *add_space(char *str)
 {
 	int i;
 	int j;
@@ -27,29 +37,39 @@ static char *add_space(char *str)
 	new_str = (char *)malloc(sizeof(char) * len_str);
 	if (!new_str)
 		return (NULL);
-
 	while (str[i])
 	{
 		if ((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<'))
 		{
 			if (i == 0 || str[i - 1] != ' ')
+			{
 				new_str[j++] = ' ';
-			new_str[j++] = str[i++];
+				new_str[j++] = str[i++];
+				new_str[j++] = str[i++];
+			}
+			else if(str[i + 2] != ' ')
+			{
+				new_str[j++] = str[i++];
+				new_str[j++] = str[i++];
+				new_str[j++] = ' ';
+			}
+		}
+		else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i - 1] != ' ')
+		{
+			new_str[j++] = ' ';
 			new_str[j++] = str[i++];
 		}
-		else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i + 1] == ' ')
-			new_str[j++] = str[i++];
-		else if (str[i] == '>' || str[i] == '<' || str[i] == '|')
+		else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i + 1] != ' ')
 		{
-			if (i == 0 || str[i - 1] != ' ')
-				new_str[j++] = ' ';
 			new_str[j++] = str[i++];
+			new_str[j++] = ' ';
+
 		}
 		else
 			new_str[j++] = str[i++];
 	}
-	new_str[j] = '\0'; // Terminer la nouvelle chaîne avec un caractère nul
-	return new_str;
+	new_str[j] = '\0';
+	return (new_str);
 }
 
 /*Parcourt la chaine et compte le nombre de char speciaux (> >> < << |) qui sont attaches*/
