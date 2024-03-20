@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/20 20:29:08 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/20 20:31:33 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ static t_cmddat	*init_struct_cmd(void)
 	return (ptr);
 }
 
+// t_cmddat	fill_cmd(t_cmddat *ptr, int count, char **arr, int i)
+// {
+
+
+// }
+
 void	parser(t_prompt *prompt)
 {
 	t_cmddat	*ptr;
@@ -64,9 +70,12 @@ void	parser(t_prompt *prompt)
 		print_char_array(prompt->commands[i]);
 		if (i == 0 || prompt->commands[i][0] == '|')
 		{
-			// printf("New node\n");
-			// if (i != 0)
-				// count = 0;
+			printf("New node\n");
+			if (i != 0)
+			{
+				//fill_command(ptr, count, prompt->commands, i);
+				count = 0;
+			}
 			ptr = init_struct_cmd();
 			if (!ptr)
 				return ;
@@ -75,76 +84,11 @@ void	parser(t_prompt *prompt)
 		else
 		{
 			count++;
+			printf("Count %d\n", count);
 		}
-
-			//printf("Count %d\n", count);
 		i++;
+		printf("Taille de cmd_list : %d", ft_listsize(prompt->cmd_list));
 	}
-	printf("Taille de cmd_list : %d\n", ft_listsize(prompt->cmd_list));
-	print_command_list(prompt->cmd_list);
 }
-
-
-
-// t_cmddat	fill_cmd(t_cmddat *ptr, int count, char **arr, int i)
-// {
-
-
-// }
-// #define MAX_COMMANDS 1000
-
-// void	parser(t_prompt *prompt)
-// {
-// 	t_cmddat	*ptr;
-// 	int	j;
-// 	int	i;
-// 	int count;
-// 	char *cmd_seq[MAX_COMMANDS];
-
-// 	ft_memset(cmd_seq, 0, sizeof(cmd_seq));
-// 	//count = 1;
-// 	i = 0;
-
-// 	while (prompt->commands[i])
-// 	{
-// 		print_char_array(prompt->commands[i]);
-// 		if (i == 0 || prompt->commands[i][0] == '|')
-// 		{
-// 			// printf("New node\n");
-// 			// if (i != 0)
-// 				// count = 0;
-// 			ptr = init_struct_cmd();
-// 			if (!ptr)
-// 				return ;
-// 			j = 0;
-// 			while (j < i)
-// 			{
-// 				ptr->full_command[j] = ft_strdup(cmd_seq[j]);
-// 				j++;
-// 			}
-// 			ptr->full_command[j] = NULL;
-// 			add_node_to_list(&(prompt->cmd_list), ptr);
-// 			ft_memset(cmd_seq, 0, sizeof(cmd_seq));
-// 		}
-// 		else
-// 			cmd_seq[i] = ft_strdup(prompt->commands[i]);
-// 			// count++;
-// 			//printf("Count %d\n", count);
-// 		i++;
-
-// 	}
-// 	if (ptr)
-// 	{
-// 		j = 0;
-// 		while (j < i)
-// 		{
-// 			ptr->full_command[j] = ft_strdup(cmd_seq[j]);
-// 			j++;
-// 		}
-// 		ptr->full_command[j] = NULL;
-// 	}
-// 	printf("Taille de cmd_list : %d\n", ft_listsize(prompt->cmd_list));
-// 	print_command_list(prompt->cmd_list);
-// }
 
 
