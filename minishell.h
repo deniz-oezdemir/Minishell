@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/20 20:11:30 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/20 21:06:57 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ char *add_space(char *str);
 
 /*	parser*/
 void	parser(t_prompt *prompt);
-
+char	**fill_arr(char **prompt, int i, int len);
 /* list_utils */
 void	add_node_to_list(t_node **head, t_cmddat *data);
 int	ft_listsize(t_node *lst);
