@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/19 16:34:54 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:29:26 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	launch_minishell(t_prompt *prompt)
 	while (1)
 	{
 		lexer(prompt);
-		//parser(prompt);
+		parser(prompt);
 	}
 }
 
