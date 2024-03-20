@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/20 21:15:43 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/20 21:23:33 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,40 +57,25 @@ char	**fill_arr(char **prompt, int i, int len)
 	int j;
 	j = 0;
 
-
 	temp = malloc((sizeof(char *) * len + 1));
 	if (!temp)
 		return (NULL);
-	while(len > 0)
+	while (len > 0)
 	{
 		temp[j] = ft_strdup(prompt[i]);
-		//print_char_array(prompt[i]);
-		// if (!temp[j])
-        // {
-        //     while (j--)
-        //         free(temp[j]);
-        //     free(temp);
-        //     return NULL;
-        // }
 		i++;
 		j++;
 		len--;
 	}
 	temp[j] = NULL;
-
-	printf("temp :");
 	print_str_array(temp);
 	return (temp);
 }
 
-
+/*
+Le tableau de commande est cree, mtn il faut le mettre dans la struct en tant que full cmd? */
 void	parser(t_prompt *prompt)
 {
-	//int count;
-	//temp_cmds[0] = NULL;
-	//count = 1;
-	//t_node	*temp_cmds[2];
-
 	t_cmddat	*ptr;
 	char **temp;
 	int	i;
@@ -106,60 +91,19 @@ void	parser(t_prompt *prompt)
  			if (!ptr)
 				return ;
  			add_node_to_list(&(prompt->cmd_list), ptr);
-
-
 			if (i != 0)
 			{
 				fill_arr(prompt->commands, i - j, j);
 				j = 0;
 			}
-
 		}
 		else
-		{
-			//print_char_array(prompt->commands[i]);
 			j++;
-			printf("Current index = %d -- indx start_comnd = %d \n", i, j);
-		}
-
 		i++;
-
+	}
+	if (ptr)
+	{
+		fill_arr(prompt->commands, i - j, j);
 	}
 }
-
-// void	parser(t_prompt *prompt)
-// {
-// 	t_cmddat	*ptr;
-// 	int	i;
-// 	int count;
-
-// 	count = 1;
-// 	i = 0;
-
-// 	while (prompt->commands[i])
-// 	{
-// 		print_char_array(prompt->commands[i]);
-// 		if (i == 0 || prompt->commands[i][0] == '|')
-// 		{
-// 			printf("New node\n");
-// 			if (i != 0)
-// 			{
-// 				//fill_command(ptr, count, prompt->commands, i);
-// 				count = 0;
-// 			}
-// 			ptr = init_struct_cmd();
-// 			if (!ptr)
-// 				return ;
-// 			add_node_to_list(&(prompt->cmd_list), ptr);
-// 		}
-// 		else
-// 		{
-// 			count++;
-// 			printf("Count %d\n", count);
-// 		}
-// 		i++;
-// 		printf("Taille de cmd_list : %d", ft_listsize(prompt->cmd_list));
-// 	}
-// }
-
 
