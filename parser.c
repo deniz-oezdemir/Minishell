@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/20 21:23:33 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:05:11 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static t_cmddat	*init_struct_cmd(void)
 	ptr->full_path = NULL;
 	ptr->infile = STDIN_FILENO;
 	ptr->outfile = STDOUT_FILENO;
-	printf("New_node created\n");
+	//printf("New_node created\n");
 	return (ptr);
 }
 
@@ -68,7 +68,7 @@ char	**fill_arr(char **prompt, int i, int len)
 		len--;
 	}
 	temp[j] = NULL;
-	print_str_array(temp);
+	//print_str_array(ptr->full_command);
 	return (temp);
 }
 
@@ -93,7 +93,8 @@ void	parser(t_prompt *prompt)
  			add_node_to_list(&(prompt->cmd_list), ptr);
 			if (i != 0)
 			{
-				fill_arr(prompt->commands, i - j, j);
+				ptr->full_command = fill_arr(prompt->commands, i - j, j);
+				//prompt->cmd_list->data->full_command = fill_arr(prompt->commands, i - j, j);
 				j = 0;
 			}
 		}
@@ -103,7 +104,8 @@ void	parser(t_prompt *prompt)
 	}
 	if (ptr)
 	{
-		fill_arr(prompt->commands, i - j, j);
+		ptr->full_command = fill_arr(prompt->commands, i - j, j);
 	}
+	print_cmd_list(prompt->cmd_list);
 }
 
