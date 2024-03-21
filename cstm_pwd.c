@@ -1,44 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cstm_pwd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 17:31:07 by denizozd         ###   ########.fr       */
+/*   Created: 2024/03/18 13:32:03 by denizozd          #+#    #+#             */
+/*   Updated: 2024/03/18 13:37:04 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 
-/*
-	ARGC MUST BE 1
-*/
-
-int	main(int argc, char *argv[], char **envp)
+int	cstm_pwd(t_cmmnds *cmd_data)
 {
-	t_prompt	*prompt;
+	char *cwd;
 
-	(void)argv;
-
-	if (argc == 1)
-	{
-		prompt = ft_calloc(1, sizeof(t_prompt));
-		init_prompt_struct(prompt, envp);
-	}
-
-	launch_minishell(&prompt);
+	cwd = getcwd(NULL, 0);
+	if (!cwd)
+		return (1);
+	ft_putstr_fd(cwd, 1); //instead of stdout (1) replace with cmd_data->outfile
+	ft_putstr_fd("\n", 1); //instead of stdout (1) replace with cmd_data->outfile
+	free(cwd);
 	return (0);
-}
-
-void	launch_minishell(t_prompt *prompt)
-{
-	// signal(SIGINT, &sigint_handler);
-	while (1)
-	{
-		lexer(prompt);
-		parser(prompt);
-	}
 }

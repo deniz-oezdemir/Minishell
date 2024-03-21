@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 16:12:17 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:29:52 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 # include <stdio.h>
 # include "signal.h"
 # include <sys/types.h>
+# include <sys/wait.h>
 # include <stdlib.h>
 # include <readline/readline.h>
 
 # include "./libft/libft.h"
 
-extern int	exitcode;
+extern int	exitstatus;
 
 
 /*Standard file descriptors.
@@ -32,7 +33,8 @@ STDERR_FILENO	2	 Standard error output.
 typedef struct s_node t_node;
 typedef struct s_prompt t_prompt;
 typedef struct s_cmddat t_cmddat;
-//@Leo: each nodes content in cmd_list must be of type t_cmmnds
+
+//@Leo: each nodes content in cmd_list must be of type t_prompt
 /*
 	*input_string :
 	**commands :
@@ -54,11 +56,6 @@ typedef struct s_prompt
 	//int			stop;
 }	t_prompt;
 
-typedef struct s_node
-{
-	t_cmddat	*data;
-	struct s_node	*next;
-}	t_node;
 
 /*
 	**full_command;
@@ -83,7 +80,7 @@ typedef struct s_cmddat
 	char		*full_path;
 	int			infile;
 	int			outfile;
-	//t_uni		*uni;
+	t_prompt		*prompt;
 	//int			broken;
 }	t_cmddat;
 
@@ -107,6 +104,35 @@ void	handle_sig_quit(int n);
 
 /*	utils.c	*/
 size_t	get_len_arr(char **array);
+int	strcmp(const char *s1, const char *s2);
+void	print_err_msg(char *cmd, char *msg);
+
+/*	builtins.c	*/
+int	get_builtin_nbr(t_prompt *cmd);
+int	execute_builtin(t_prompt *cmd, int n, int forked);
+
+/*	cstm_echo.c	*/
+int	cstm_echo(t_prompt *cmd);
+
+/*	cstm_pwd.c	*/
+int	cstm_pwd(t_prompt *cmd_data);
+
+/*	cstm_env.c	*/
+int	cstm_env(t_prompt *cmd_data);
+
+/*	cstm_exit	*/
+int	cstm_exit(t_prompt *cmd_data);
+int	is_only_digits(char *s);
+
+/*	cstm_unset	*/
+int	cstm_unset(t_prompt *cmd_data);
+size_t get_len_env(const char *s);
+
+/*	end.c	*/
+void	exit_ms(int exitstatus, t_prompt *prompt);
+
+/*	exec.c	*/
+int	execute_cmds(t_prompt *prompt);
 int	strcmp(const char *s1, const char *s2);
 int	ft_isspace(int c);
 

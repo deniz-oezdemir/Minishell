@@ -1,44 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   end.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 17:31:07 by denizozd         ###   ########.fr       */
+/*   Created: 2024/03/18 17:38:15 by denizozd          #+#    #+#             */
+/*   Updated: 2024/03/18 17:51:58 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 
-/*
-	ARGC MUST BE 1
-*/
-
-int	main(int argc, char *argv[], char **envp)
+void	exit_ms(int exitstatus, t_prompt *prompt)
 {
-	t_prompt	*prompt;
-
-	(void)argv;
-
-	if (argc == 1)
-	{
-		prompt = ft_calloc(1, sizeof(t_prompt));
-		init_prompt_struct(prompt, envp);
-	}
-
-	launch_minishell(&prompt);
-	return (0);
-}
-
-void	launch_minishell(t_prompt *prompt)
-{
-	// signal(SIGINT, &sigint_handler);
-	while (1)
-	{
-		lexer(prompt);
-		parser(prompt);
-	}
+	//free_all(prompt); //write
+	exit(exitstatus);
 }

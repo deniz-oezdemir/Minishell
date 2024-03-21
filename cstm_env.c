@@ -1,44 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cstm_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 17:31:07 by denizozd         ###   ########.fr       */
+/*   Created: 2024/03/18 13:51:04 by denizozd          #+#    #+#             */
+/*   Updated: 2024/03/18 14:09:19 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 
-/*
-	ARGC MUST BE 1
-*/
-
-int	main(int argc, char *argv[], char **envp)
+int	cstm_env(t_cmmnds *cmd_data)
 {
-	t_prompt	*prompt;
+	int	i;
 
-	(void)argv;
-
-	if (argc == 1)
+	i = -1;
+	if(cmd_data->prompt->envp == NULL) //@Leo: check here necessary or already checked somewhere else?
+		return (1);
+	while (cmd_data->prompt->envp[++i]) //iterating different //why do we need to check for =?
 	{
-		prompt = ft_calloc(1, sizeof(t_prompt));
-		init_prompt_struct(prompt, envp);
+		if (ft_strchr(cmd_data->prompt->envp[i], '='))
+		{
+			ft_putstr_fd(cmd_data->prompt->envp[i], 1); //change 1 to outfile
+			ft_putstr_fd("\n", 1); //change 1 to outfile
+		}
 	}
-
-	launch_minishell(&prompt);
 	return (0);
-}
-
-void	launch_minishell(t_prompt *prompt)
-{
-	// signal(SIGINT, &sigint_handler);
-	while (1)
-	{
-		lexer(prompt);
-		parser(prompt);
-	}
 }
