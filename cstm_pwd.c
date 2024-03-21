@@ -6,13 +6,13 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:32:03 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/18 13:37:04 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:41:35 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	cstm_pwd(t_cmmnds *cmd_data)
+int	cstm_pwd(t_cmddat *cmd_data)
 {
 	char *cwd;
 

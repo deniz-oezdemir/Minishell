@@ -6,13 +6,13 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:50:56 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/15 10:34:15 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:41:35 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	cstm_echo(t_cmmnds *cmd)
+int	cstm_echo(t_cmddat *cmd)
 {
 	int	nl;
 	int	i;

@@ -6,13 +6,13 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 10:34:24 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/18 18:24:23 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:41:35 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	get_builtin_nbr(t_cmmnds *cmd)
+int	get_builtin_nbr(t_cmddat *cmd)
 {
 	if (cmd->full_command == NULL) //@Leo: initialize full_command to NULL before parsing
 		return (0);
@@ -33,7 +33,7 @@ int	get_builtin_nbr(t_cmmnds *cmd)
 	return (0);
 }
 
-int	execute_builtin(t_cmmnds *cmd, int n, int forked)
+int	execute_builtin(t_cmddat *cmd, int n, int forked)
 {
 	int	val;
 

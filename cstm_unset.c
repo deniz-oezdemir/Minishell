@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:25:12 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/21 16:19:09 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:41:35 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ size_t get_len_env(const char *s)
 }
 
 
-int	cstm_unset(t_cmmnds *cmd_data)
+int	cstm_unset(t_cmddat *cmd_data)
 {
 	int	i;
 	int	j;

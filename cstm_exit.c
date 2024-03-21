@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:16:10 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/18 18:23:28 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:41:35 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	is_only_digits(char *s)
 	return (0);
 }
 
-int	cstm_exit(t_cmmnds *cmd_data)
+int	cstm_exit(t_cmddat *cmd_data)
 {
 	int	exitstatus;
 

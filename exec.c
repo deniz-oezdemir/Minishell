@@ -6,13 +6,13 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/21 16:12:37 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:41:35 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	run_cmd(t_cmmnds *cmd_data)
+int	run_cmd(t_cmddat *cmd_data)
 {
 	//test not-builtin -> make new example in main, comment out old one
 	//execve(cmd_data->full_path, cmd_data->full_command, cmd_data->prompt->envp);
@@ -41,7 +41,7 @@ int	run_cmd(t_cmmnds *cmd_data)
 
 int	execute_cmds(t_prompt *prompt)
 {
-	t_cmmnds	*cmd_data;
+	t_cmddat	*cmd_data;
 
 	if (!prompt->cmd_list)
 		return (0);
