@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:54:02 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 15:00:17 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:02:02 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void print_char_array(const char arr[]) {
 void print_str_array(char **arr) {
     printf("[");
     for (int i = 0; arr[i] != NULL; i++) {
-        printf("\"%s\", ", arr[i]);
+        printf("%s, ", arr[i]);
     }
     printf("]\n");
 }
