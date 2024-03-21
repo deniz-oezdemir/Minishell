@@ -1,10 +1,12 @@
+/*@Leo: Deniz commented the whole file out because of compilation error
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 
 
-/*
+
 commande <<sortie.txt
 commande sortie.txt >>
 commande <<sortie.txt >>
@@ -12,13 +14,13 @@ commande <sortie.txt
 commande sortie.txt >
 commande |sortie.txt
 commande| sortie.txt
-*/
+
 
 
 
 # include "./libft/libft.h"
 #define SPECIAL_CHARS "|><"
-/*Parcourt la chaine et compte le nombre de char speciaux (> >> < << |) qui sont attaches*/
+//Parcourt la chaine et compte le nombre de char speciaux (> >> < << |) qui sont attaches
 int special_len(char *str)
 {
 	int	i;
@@ -94,7 +96,6 @@ char *add_space(char *str)
 
 
 
-
 int main() {
     char str1[] = "commande <<sortie.txt"; // commande << sortie.txt
     char str2[] = "commande sortie.txt>>"; // commande sortie.txt >>
@@ -115,5 +116,4 @@ int main() {
 
     return 0;
 }
-
-
+*/

@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 17:31:07 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:42:08 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 /*
 	ARGC MUST BE 1
 */
+
+int	exitstatus = 0; //somehow definition here needed, otherwise compile error-> read up on global variables
 
 int	main(int argc, char *argv[], char **envp)
 {
@@ -29,7 +31,7 @@ int	main(int argc, char *argv[], char **envp)
 		init_prompt_struct(prompt, envp);
 	}
 
-	launch_minishell(&prompt);
+	launch_minishell(prompt); //@Leo: Deniz deleted & in front of prompt as compilation warning
 	return (0);
 }
 

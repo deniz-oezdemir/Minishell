@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 17:48:59 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:49:48 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINISHELL_H
 
 # include <stdio.h>
-# include "signal.h"
+# include <signal.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <stdlib.h>
@@ -114,24 +114,24 @@ void	print_err_msg(char *cmd, char *msg);
 int	ft_isspace(int c);
 
 /*	builtins.c	*/
-int	get_builtin_nbr(t_prompt *cmd);
-int	execute_builtin(t_prompt *cmd, int n, int forked);
+int	get_builtin_nbr(t_cmddat *cmd);
+int	execute_builtin(t_cmddat *cmd, int n, int forked);
 
 /*	cstm_echo.c	*/
-int	cstm_echo(t_prompt *cmd);
+int	cstm_echo(t_cmddat *cmd_data);
 
 /*	cstm_pwd.c	*/
-int	cstm_pwd(t_prompt *cmd_data);
+int	cstm_pwd(t_cmddat *cmd_data);
 
 /*	cstm_env.c	*/
-int	cstm_env(t_prompt *cmd_data);
+int	cstm_env(t_cmddat *cmd_data);
 
 /*	cstm_exit	*/
-int	cstm_exit(t_prompt *cmd_data);
+int	cstm_exit(t_cmddat *cmd_data);
 int	is_only_digits(char *s);
 
 /*	cstm_unset	*/
-int	cstm_unset(t_prompt *cmd_data);
+int	cstm_unset(t_cmddat *cmd_data);
 size_t get_len_env(const char *s);
 
 /*	end.c	*/
@@ -143,7 +143,6 @@ int	strcmp(const char *s1, const char *s2);
 
 /*	lexer.c*/
 void	lexer(t_prompt *prompt);
-
 
 /* split*/
 char	**split_input(char *str);

@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/21 17:41:35 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:27:40 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	execute_cmds(t_prompt *prompt)
 	//signal(SIGQUIT, &handle_sig_quit);
 
 	//	build execute one command first to test
-	cmd_data = prompt->cmd_list->content;
-	if(ft_lstsize(prompt->cmd_list) == 1 && get_builtin_nbr(cmd_data))
+	cmd_data = prompt->cmd_list->data;
+	if(/*ft_lstsize(prompt->cmd_list) == 1 &&*/ get_builtin_nbr(cmd_data)) //change t_node to t_lst such that we can use libft functions
 	{
 		exitstatus = execute_builtin(cmd_data, get_builtin_nbr(cmd_data), 0); //@Deniz: continue writing execute_builtin
 		//ft_lstiter(prompt->cmd_list, close_fds()); //write close_fds

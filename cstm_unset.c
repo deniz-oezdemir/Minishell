@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:25:12 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/21 17:41:35 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:28:02 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ int	cstm_unset(t_cmddat *cmd_data)
 		}
 		i++;
 	}
+	return 0;
 }
