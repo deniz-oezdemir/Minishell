@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 17:29:52 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:48:59 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ typedef struct s_prompt
 	//int			stop;
 }	t_prompt;
 
+typedef struct s_node
+{
+	t_cmddat	*data;
+	struct s_node	*next;
+}	t_node;
 
 /*
 	**full_command;
@@ -106,6 +111,7 @@ void	handle_sig_quit(int n);
 size_t	get_len_arr(char **array);
 int	strcmp(const char *s1, const char *s2);
 void	print_err_msg(char *cmd, char *msg);
+int	ft_isspace(int c);
 
 /*	builtins.c	*/
 int	get_builtin_nbr(t_prompt *cmd);
@@ -134,7 +140,6 @@ void	exit_ms(int exitstatus, t_prompt *prompt);
 /*	exec.c	*/
 int	execute_cmds(t_prompt *prompt);
 int	strcmp(const char *s1, const char *s2);
-int	ft_isspace(int c);
 
 /*	lexer.c*/
 void	lexer(t_prompt *prompt);
