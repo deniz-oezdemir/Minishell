@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/12 17:08:33 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:29:26 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,22 @@ int	main(int argc, char *argv[], char **envp)
 
 	if (argc == 1)
 	{
+		prompt = ft_calloc(1, sizeof(t_prompt));
 		init_prompt_struct(prompt, envp);
 	}
 
-
-	launch_minishell(&prompt);
+	launch_minishell(prompt);
 	return (0);
 }
 
 
 void	launch_minishell(t_prompt *prompt)
 {
-	siganl(SIGINT, sigint_handler);
+	// signal(SIGINT, &sigint_handler);
 	while (1)
 	{
-		pause;
+		lexer(prompt);
+		parser(prompt);
 	}
 }
 

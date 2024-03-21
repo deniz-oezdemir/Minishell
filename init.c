@@ -6,21 +6,19 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 20:12:21 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/12 17:14:22 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:36:39 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_prompt	init_prompt_struct(t_prompt *prompt, char **envp)
+void	init_prompt_struct(t_prompt *prompt, char **envp)
 {
-	//t_prompt *prompt;
-
 	prompt->input_string = NULL;
 	prompt->commands = NULL;
 	prompt->cmd_list = NULL;
-	//prompt->envp = get_env(envp); //todo
-	//get_env(envp);
+	prompt->pid = -1;
+	init_env(prompt, envp);
 }
 
 int	init_env(t_prompt *prompt, char **env)
@@ -35,7 +33,7 @@ int	init_env(t_prompt *prompt, char **env)
 		if (!prompt->envp[i])
 		{
 			printf("Error env");
-			return (NULL); //return failure
+			return (0); //return failure
 		}
 		i++;
 	}
