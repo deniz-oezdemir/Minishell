@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/20 21:26:38 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:18:37 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	is_only_digits(char *s);
 
 /*	cstm_unset	*/
 int	cstm_unset(t_cmmnds *cmd_data);
-size_t get_env_len(const char *s);
+size_t get_len_env(const char *s);
 
 /*	end.c	*/
 void	exit_ms(int exitstatus, t_prompt *prompt);
