@@ -6,11 +6,13 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:54:02 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 16:02:02 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:12:39 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+
 
 void print_char_array(const char arr[]) {
     printf("[");

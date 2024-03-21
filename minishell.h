@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 14:52:36 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:12:17 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ typedef struct s_node
 	struct s_node	*next;
 }	t_node;
 
-//@Leo: rename to t_cmddat as each node stores a single command's data?
-//done V
 /*
 	**full_command;
 		Array containing command's parts
@@ -96,7 +94,6 @@ void print_str_array(char **arr);
 void print_command_list(t_node *head);
 void print_cmd_list(const t_node *head);
 
-
 /*	main	*/
 void	launch_minishell(t_prompt *prompt);
 
@@ -129,4 +126,5 @@ char	**fill_arr(char **prompt, int i, int len);
 /* list_utils */
 void	add_node_to_list(t_node **head, t_cmddat *data);
 int	ft_listsize(t_node *lst);
+
 #endif

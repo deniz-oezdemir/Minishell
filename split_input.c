@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 15:46:28 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:15:03 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ static int	ft_count_words(const char *str, char *sep)
 	return (count);
 }
 
+/*Create */
 static char	**ft_create_substrs(char **aux, char const *s, char *set)
 {
 	int		s_len;
@@ -157,7 +158,9 @@ static char	**ft_create_substrs(char **aux, char const *s, char *set)
 	aux[word_index] = NULL;
 	return (aux);
 }
-
+/* Split the input read from the readline and put it into
+	char		**commands; from the original prompt struct
+*/
 char	**split_input(char *str)
 {
 	char	**arr;
@@ -178,8 +181,8 @@ char	**split_input(char *str)
 		return (NULL);
 	arr = ft_create_substrs(arr, str, " ");
 	arr[word_count] = NULL;
-	printf("\narray : ");
-	print_str_array(arr);
+	//printf("\narray : ");
+	//print_str_array(arr);
 	return (arr);
 
 }
