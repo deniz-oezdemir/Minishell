@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/22 19:34:46 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/22 22:33:43 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	parser(t_prompt *prompt)
 		ptr->full_command = fill_arr(prompt->commands, i - j, j);
 		ptr->full_path = get_path_cmds(ptr, prompt->envp);
 
-	print_cmd_list(prompt->cmd_list);
+	//print_cmd_list(prompt->cmd_list);
 
 }
 

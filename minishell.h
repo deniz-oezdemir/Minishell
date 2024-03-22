@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/22 17:04:30 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/22 22:27:13 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,4 +162,14 @@ int	ft_listsize(t_node *lst);
 char	*get_path_cmds(t_cmddat *cmd, char **ev);
 char	*get_path(char *cmd, char **ev);
 void	free_split(char **strs);
+
+
+/* expander.c */
+char	**expander(char **str, char **ev);
+/*expand_var_utils.c */
+
+int	get_len_var(char *str, int i);
+//static char *get_substr_var(char *str, int len, char **env);
+char *expand_var(char *str);
+
 #endif

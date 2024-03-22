@@ -6,24 +6,27 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:43:45 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/22 21:59:02 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/22 22:53:07 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /*don't know what to do with the ? */
-/*Gets the lenght of the var to expand, starting from $*/
-int	get_len_var(char *str)
+/*
+Gets the lenght of the var to expand, starting from after the$
+i is the position of the string */
+int	get_len_var(char *str, int i)
 {
-	int i;
+	int	count;
 
-	i = 0;
+	count = 0;
 	while (str[i] && !ft_isspace(str[i]))
 	{
 		i++;
+		count++;
 	}
-	return (i - 1);
+	return (count);
 }
 
 /*
