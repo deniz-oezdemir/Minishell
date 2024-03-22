@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:54:02 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 16:12:39 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:37:12 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void print_command_list(t_node *head) {
         current = current->next;
     }
 }
-
 void print_cmddat(const t_cmddat *cmd) {
     printf("full_command:\n");
     if (cmd->full_command != NULL) {
@@ -58,7 +57,13 @@ void print_cmddat(const t_cmddat *cmd) {
     } else {
         printf("  (empty)\n");
     }
-    printf("full_path: %p\n", (void *)cmd->full_path);
+
+    if (cmd->full_path != NULL) {
+        printf("full_path: \"%s\"\n", cmd->full_path);
+    } else {
+        printf("full_path: (empty)\n");
+    }
+
     printf("infile: %d\n", cmd->infile);
     printf("outfile: %d\n", cmd->outfile);
     // Additional fields can be printed similarly

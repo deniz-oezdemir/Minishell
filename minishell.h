@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 18:49:48 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:04:30 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,4 +157,9 @@ char	**fill_arr(char **prompt, int i, int len);
 void	add_node_to_list(t_node **head, t_cmddat *data);
 int	ft_listsize(t_node *lst);
 
+
+/* envp_utils.c*/
+char	*get_path_cmds(t_cmddat *cmd, char **ev);
+char	*get_path(char *cmd, char **ev);
+void	free_split(char **strs);
 #endif

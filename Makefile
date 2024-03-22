@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
+#    By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 20:35:04 by denizozd          #+#    #+#              #
-#    Updated: 2024/03/21 21:42:56 by denizozd         ###   ########.fr        #
+#    Updated: 2024/03/22 17:01:23 by ecarlier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ CPPFLAGS	= -I/Users/$(USER)/.brew/opt/readline/include
 SRCS = 	cstm_exit.c end.c signal_handler.c builtins.c \
 		cstm_pwd.c exec.c lists_utils.c split_input.c \
 		cstm_echo.c cstm_unset.c init.c main.c parser.c \
-		test.c cstm_env.c debug_utils.c lexer.c utils.c\
+		test.c cstm_env.c debug_utils.c lexer.c utils.c envp_utils.c\
 
 OBJS = $(SRCS:.c=.o)
 
