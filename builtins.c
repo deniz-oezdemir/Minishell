@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 10:34:24 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/21 20:50:42 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:06:50 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ int	get_builtin_nbr(t_cmddat *cmd)
 {
 	if (cmd->full_command == NULL) //@Leo: initialize full_command to NULL before parsing
 		return (0);
-	else if (!strcmp(cmd->full_command[0], "echo"))
+	else if (!ft_strcmp(cmd->full_command[0], "echo"))
 		return (1);
-	else if (!strcmp(cmd->full_command[0], "cd")) //use chdir function
+	else if (!ft_strcmp(cmd->full_command[0], "cd")) //use chdir function
 		return (2);
-	if (!strcmp(cmd->full_command[0], "pwd"))
+	if (!ft_strcmp(cmd->full_command[0], "pwd"))
 		return (3);
-	else if (!strcmp(cmd->full_command[0], "export"))
+	else if (!ft_strcmp(cmd->full_command[0], "export"))
 		return (4);
-	else if (!strcmp(cmd->full_command[0], "unset"))
+	else if (!ft_strcmp(cmd->full_command[0], "unset"))
 		return (5);
-	else if (!strcmp(cmd->full_command[0], "env"))
+	else if (!ft_strcmp(cmd->full_command[0], "env"))
 		return (6);
-	else if (!strcmp(cmd->full_command[0], "exit"))
+	else if (!ft_strcmp(cmd->full_command[0], "exit"))
 		return (7);
 	return (0);
 }

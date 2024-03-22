@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 18:49:48 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:11:56 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sys/wait.h>
 # include <stdlib.h>
 # include <readline/readline.h>
+# include <dirent.h>
 
 # include "./libft/libft.h"
 
@@ -109,7 +110,7 @@ void	handle_sig_quit(int n);
 
 /*	utils.c	*/
 size_t	get_len_arr(char **array);
-int	strcmp(const char *s1, const char *s2);
+int	ft_strcmp(const char *s1, const char *s2);
 void	print_err_msg(char *cmd, char *msg);
 int	ft_isspace(int c);
 
@@ -139,7 +140,7 @@ void	exit_ms(int exitstatus, t_prompt *prompt);
 
 /*	exec.c	*/
 int	execute_cmds(t_prompt *prompt);
-int	strcmp(const char *s1, const char *s2);
+int	ft_strcmp(const char *s1, const char *s2);
 
 /*	lexer.c*/
 void	lexer(t_prompt *prompt);

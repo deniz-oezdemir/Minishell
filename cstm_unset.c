@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:25:12 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/21 18:28:02 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:06:50 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	cstm_unset(t_cmddat *cmd_data)
 	while (cmd_data->prompt->envp[i])
 	{
 		j = 1;
-		while(cmd_data->full_command[j] && strcmp(cmd_data->full_command[j], "_"))
+		while(cmd_data->full_command[j] && ft_strcmp(cmd_data->full_command[j], "_"))
 		{
 			if (!ft_strncmp(cmd_data->prompt->envp[i], cmd_data->full_command[j], get_len_env(cmd_data->prompt->envp[i])) &&
 					get_len_env(cmd_data->prompt->envp[i]) == ft_strlen(cmd_data->full_command[j]))

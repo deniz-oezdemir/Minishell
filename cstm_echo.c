@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:50:56 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/21 18:14:54 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:06:50 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	cstm_echo(t_cmddat *cmd_data)
 		return (1);
 	if (cmd_data->full_command[1] == NULL)
 		return (ft_putstr_fd("\n", cmd_data->outfile), 1);
-	if (!strcmp(cmd_data->full_command[1], "-n")) //different
+	if (!ft_strcmp(cmd_data->full_command[1], "-n")) //different
 	{
 		nl = 0;
 		i += 1;
