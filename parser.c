@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 15:05:11 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:59:01 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ char	**fill_arr(char **prompt, int i, int len)
 }
 
 /*
-Le tableau de commande est cree, mtn il faut le mettre dans la struct en tant que full cmd? */
+Before :
+After :
+ */
 void	parser(t_prompt *prompt)
 {
 	t_cmddat	*ptr;
