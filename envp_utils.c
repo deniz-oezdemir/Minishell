@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:45:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/22 17:32:13 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:39:35 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ char	*get_path_cmds(t_cmddat *cmd, char **ev)
 		return (NULL);
 	}
 	path = get_path(cmd->full_command[0], ev);
+	if (!path)
+	{
+		printf("Not a valid command\n");
+		//exit_ms
+	}
 	return (path);
 }
 
