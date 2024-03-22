@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:43:45 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/22 22:53:07 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/22 23:49:56 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ If it finds a potential match, it checks if the next char is =
 the returns A POINTER to the expanded variable or empty string if
 no match found
 */
-static char *get_substr_var(char *str, int len, char **env)
+static char *get_ptr_var(char *str, int len, char **env)
 {
 	while (**env)
 	{
@@ -55,4 +55,23 @@ static char *get_substr_var(char *str, int len, char **env)
 		}
 	}
 	return ("");
+}
+
+/*
+Concatenates the strings with the expanded var
+str : original str
+ptr : pointer to the expander variable
+i : pos where to start to expand
+*/
+void	create_sub_var(char *str, int i, char **ev)
+{
+	int	len;
+	char *s1;
+	char *s2;
+	char *s3;
+	char *expanded_str;
+
+	len = get_len_var(str, i + 1);
+	get_ptr_var(str + i, len, ev);
+	s1 = ft_substr(str, 0, i); //what is before the $
 }

@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/22 22:50:33 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/22 23:45:19 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**expander(char **str, char **ev)
 	//printf("Enters expander\n");
 	while (str[i])
 	{
-		expand_var(str[i]);
+		expand_var(str[i], ev);
 		i++;
 	}
 	return (str);
@@ -37,7 +37,7 @@ Check if inside single quote -> meaning does not need expanding
 1) Si le char actuel est ' et que dbq est 0 (pas de guillemets double ouvert)
 alors sgq est mis a 1 (sinon 0)
 */
-char *expand_var(char *str)
+char *expand_var(char *str, char **ev)
 {
 	int	sgq;
 	int	dbq;
@@ -62,7 +62,8 @@ char *expand_var(char *str)
 			// i +1 is after the $
 			len = get_len_var(str, i + 1);
 			printf("Lenght of the var to expand : %d\n", len);
-			//get_substr_var()
+			create_sub_var()
+			//get_ptr_var(str + i,len, ev);
 		}
 		i++;
 	}

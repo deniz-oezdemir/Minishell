@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/22 22:27:13 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/22 23:28:13 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,6 @@ char	**expander(char **str, char **ev);
 
 int	get_len_var(char *str, int i);
 //static char *get_substr_var(char *str, int len, char **env);
-char *expand_var(char *str);
+char *expand_var(char *str, char **ev);
 
 #endif
