@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/22 23:45:19 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/23 13:08:27 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,15 @@ char *expand_var(char *str, char **ev)
 		//printf("sgq  = %d \n dbq = %d \n", sgq, dbq);
 		if (!sgq && str[i] == '$' && str[i + 1]) //si aucune single quote est ouverte
 		{
-			printf("here\n");
-			//i is the position of the var to expand
-			// i +1 is after the $
+			//printf("i = %d", i);
+			//printf("str[0] = %c", str[0]);
 			len = get_len_var(str, i + 1);
-			printf("Lenght of the var to expand : %d\n", len);
-			create_sub_var()
+			create_sub_var(str, i, ev, len);
+			//i is the position of the var to expand
+			// i + 1 is after the $
+
+			//printf("Lenght of the var to expand : %d\n", len);
+			//create_sub_var()
 			//get_ptr_var(str + i,len, ev);
 		}
 		i++;

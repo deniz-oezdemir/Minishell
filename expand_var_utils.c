@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:43:45 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/22 23:49:56 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/23 13:09:38 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 /*
 Gets the lenght of the var to expand, starting from after the$
 i is the position of the string */
-int	get_len_var(char *str, int i)
+ssize_t	get_len_var(char *str, int i)
 {
-	int	count;
-
-	count = 0;
-	while (str[i] && !ft_isspace(str[i]))
+	ssize_t	count;
+	printf("eneters \n");
+	count = -1;
+	while (*str && !ft_isspace(*str))
 	{
-		i++;
 		count++;
+		str++;
 	}
 	return (count);
 }
@@ -43,6 +43,7 @@ no match found
 */
 static char *get_ptr_var(char *str, int len, char **env)
 {
+	printf("eneters GET PTR \n");
 	while (**env)
 	{
 		if (!ft_strncmp(str + 1, *env, len))
@@ -63,15 +64,33 @@ str : original str
 ptr : pointer to the expander variable
 i : pos where to start to expand
 */
-void	create_sub_var(char *str, int i, char **ev)
+void	create_sub_var(char *str, size_t i, char **ev, ssize_t len )
 {
-	int	len;
-	char *s1;
-	char *s2;
-	char *s3;
-	char *expanded_str;
+	//ssize_t	len; //longueur de la variable a etendre
+	char *s1; //partie avant $
+	char *s2; // valeur de la variable a etendre
+	char *s3; // apres $
+	//char *expanded_str;
+	char *ptr;
 
-	len = get_len_var(str, i + 1);
-	get_ptr_var(str + i, len, ev);
-	s1 = ft_substr(str, 0, i); //what is before the $
+	printf("len %zd", len);
+	printf("Enters create_sub\n");
+	//ptr = get_ptr_var(str + *i, len, ev);
+	//s1 = ft_substr(str, 0, *i);
+	//s3 = ft_substr(str, *i + len + 1, ft_strlen(str) - *i - len);
+	//s2 = ft_strdup(ptr);
+
+   // printf("s1: %s\n", s1);
+    //printf("s2: %s\n", s2);
+   // printf("s3: %s\n", s3);
+
+	//expanded_str = ft_strjoin(s1, s2);
+	//expanded_str = ft_strjoin(expanded_str, s3);
+
+	//printf("expanded_str: %s\n", expanded_str);
+
+	//free(s1);
+	//free(s2);
+	//free(s3);
+	//free(expanded_str);
 }

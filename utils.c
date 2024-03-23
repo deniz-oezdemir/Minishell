@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:31:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 17:33:04 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/23 13:00:19 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,19 @@ size_t	get_len_arr(char **array)
 
 int	ft_isspace(int c)
 {
-	return (c == ' ' || c == '\t' || c == '\n'
-		|| c == '\v' || c == '\f' || c == '\r');
+	//printf("enters ft_isspace");
+	if (c == ' ' || (c >= 9 && c <= 13))
+	{
+		//printf("LE char est '%c' \n et la valeur retournee 1", c);
+		return (1);
+	}
+
+	else
+	{
+		//printf("LE char est '%c' \n et la valeur retournee 0", c);
+		return (0);
+	}
+
 }
 
 
