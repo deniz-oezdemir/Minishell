@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:43:45 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/23 15:24:46 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/23 15:42:39 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,36 +42,38 @@ the returns A POINTER to the expanded variable or empty string if
 no match found
 */
 
-// static char	*get_ptr_var(char *str, size_t var_exp_len, char **env)
-// {
-// 	while (*env)
-// 	{
-// 		if (!ft_strncmp(str + 1, *env, var_exp_len)
-// 			&& *(*env + var_exp_len) == '=')
-// 			return (*env + var_exp_len + 1);
-// 		env++;
-// 	}
-// 	return ("");
-// }
-static char *get_ptr_var(char *str, size_t len, char **env)
+static char	*get_ptr_var(char *str, size_t var_exp_len, char **env)
 {
-	printf("eneters GET PTR \n");
+	//printf("eneters GET PTR \n");
+	//printf("str inside get ptr %s", str);
 	while (*env)
 	{
-		//printf("inside if\n");
-		if (!ft_strncmp(str + 1, *env, len))
-		{
-			//printf("inside if\n");
-			if (*(*env + len) == '=')
-			{
-				printf("here");
-				return (*env + len + 1);
-			}
-		}
+		if (!ft_strncmp(str, *env, var_exp_len)
+			&& *(*env + var_exp_len) == '=')
+			return (*env + var_exp_len + 1);
 		env++;
 	}
 	return ("");
 }
+// static char *get_ptr_var(char *str, size_t len, char **env)
+// {
+// 	printf("eneters GET PTR \n");
+// 	while (*env)
+// 	{
+// 		//printf("inside if\n");
+// 		if (!ft_strncmp(str + 1, *env, len))
+// 		{
+// 			//printf("inside if\n");
+// 			if (*(*env + len) == '=')
+// 			{
+// 				printf("here");
+// 				return (*env + len + 1);
+// 			}
+// 		}
+// 		env++;
+// 	}
+// 	return ("");
+// }
 
 /*
 Concatenates the strings with the expanded var
@@ -86,16 +88,15 @@ void	create_sub_var(char *str, size_t i, char **ev, ssize_t len )
 	char *s2; // valeur de la variable a etendre
 	char *s3; // apres $
 	char *expanded_str;
-	char *ptr;
+	//char *ptr;
 
 	printf("len %zd\n", len);
 	//printf("Enters create_sub\n");
 
 	printf("i = %zd\n", i);
-	ptr = get_ptr_var(str + i, len, ev);
 	s1 = ft_substr(str, 0, i);
 	s3 = ft_substr(str, i + len + 1, ft_strlen(str) - i - len);
-	s2 = ft_strdup(ptr);
+	s2 = ft_strdup(get_ptr_var(str + 1, len, ev));
 
 	printf("s1: %s\n", s1);
 	printf("s2: %s\n", s2);
