@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:43:45 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/23 15:42:39 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/23 16:16:37 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ i is the position of the string */
 ssize_t	get_len_var(char *str, int i)
 {
 	ssize_t	count;
-	printf("eneters \n");
 	count = -1;
-	while (*str && !ft_isspace(*str))
+	while (*str && !ft_isspace(*str) && *str == '\"')
 	{
+		printf("str %c\n", *str);
 		count++;
 		str++;
 	}
@@ -91,9 +91,15 @@ void	create_sub_var(char *str, size_t i, char **ev, ssize_t len )
 	//char *ptr;
 
 	printf("len %zd\n", len);
-	//printf("Enters create_sub\n");
-
 	printf("i = %zd\n", i);
+
+	// if (i > 0 && ft_isspace(str[i - 1])) {
+	// 	i--;
+	// 	//len--;
+	// }
+	printf("len %zd\n", len);
+	printf("i = %zd\n", i);
+
 	s1 = ft_substr(str, 0, i);
 	s3 = ft_substr(str, i + len + 1, ft_strlen(str) - i - len);
 	s2 = ft_strdup(get_ptr_var(str + 1, len, ev));
