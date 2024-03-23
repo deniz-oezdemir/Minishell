@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:04:02 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/23 12:58:14 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/23 14:22:22 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 	char	*dest;
 
-	printf("sub\n");
+	//printf("sub\n");
 	i = 0;
 	if (ft_strlen(s) < start)
 		return (ft_strdup(""));
