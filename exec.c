@@ -6,11 +6,16 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/25 17:24:49 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:33:13 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	is_executable(t_cmddat cmd_data)
+{
+	
+}
 
 void wait_update_exitstatus(t_prompt *prompt)
 {
@@ -58,7 +63,7 @@ void	run_cmd(void *content)
 
 	/*if (cmd_data->prompt->stop)
 		return ;*/
-	if (!is_executable(cmd_data, get_builtin_nbr(cmd_data)))
+	if (!is_executable(cmd_data, get_builtin_nbr(cmd_data))) //@Deniz: write is_executable
 		return ;
 	cmd_data->prompt->pid = fork();
 	if (cmd_data->prompt->pid == -1) //fork error

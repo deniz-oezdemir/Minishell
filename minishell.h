@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/25 17:19:34 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:50:47 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,8 @@ void	exit_ms(int exitstatus, t_prompt *prompt);
 int	execute_cmds(t_prompt *prompt);
 void	cls_fds(void *content);
 void	run_cmd(void *content);
+void	wait_update_exitstatus(t_prompt *prompt);
+int	is_executable(t_cmddat cmd_data);
 
 /*	lexer.c*/
 void	lexer(t_prompt *prompt);
