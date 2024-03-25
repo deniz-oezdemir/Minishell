@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/22 15:11:56 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:18:42 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <readline/readline.h>
 # include <dirent.h>
+# include <unistd.h>
 
 # include "./libft/libft.h"
 
@@ -112,6 +113,7 @@ void	handle_sig_quit(int n);
 size_t	get_len_arr(char **array);
 int	ft_strcmp(const char *s1, const char *s2);
 void	print_err_msg(char *cmd, char *msg);
+int print_err_msg_lng(char *cmd, char *msg, char *arg);
 int	ft_isspace(int c);
 
 /*	builtins.c	*/
@@ -134,6 +136,14 @@ int	is_only_digits(char *s);
 /*	cstm_unset	*/
 int	cstm_unset(t_cmddat *cmd_data);
 size_t get_len_env(const char *s);
+
+/*	cstm_cd	*/
+int cstm_cd(t_cmddat *cmd_data);
+int	go_home_dir(t_prompt *prompt);
+int go_back_dir(t_prompt *prompt);
+void modify_envp(t_prompt *prompt, char *name, char *insert, int f_free_name);
+char *get_envp(t_prompt *prompt, char *name);
+
 
 /*	end.c	*/
 void	exit_ms(int exitstatus, t_prompt *prompt);

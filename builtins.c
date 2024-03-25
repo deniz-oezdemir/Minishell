@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 10:34:24 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/22 15:06:50 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:15:22 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	execute_builtin(t_cmddat *cmd, int n, int forked)
 	int	val;
 
 	if (n == 1)
-		val = cstm_echo(cmd); //test cstm_echo
-	/*else if (n == 2)
-		val = cstm_cd(cmd); //write all below cstm_... functions*/
+		val = cstm_echo(cmd);
+	else if (n == 2)
+		val = cstm_cd(cmd);
 	else if (n == 3)
 		val = cstm_pwd(cmd);
 	/*else if (n == 4)

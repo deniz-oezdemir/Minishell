@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:31:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/22 15:06:53 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:01:33 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-void	print_err_msg(char *cmd, char *msg)
+void	print_err_msg(char *cmd, char *msg) //replace with below print_err_msg_lng if possible
 {
 	if (!msg)
 		return ;
-	ft_putstr_fd("ms: ", 2);
+	ft_putstr_fd("mish: ", 2);
 	if (cmd)
 	{
 		ft_putstr_fd(cmd, 2);
@@ -54,4 +54,24 @@ void	print_err_msg(char *cmd, char *msg)
 	}
 	ft_putstr_fd(msg, 2);
 	ft_putstr_fd("\n", 2);
+}
+
+int print_err_msg_lng(char *cmd, char *msg, char *arg) //different -> compare all err msgs with bash
+{
+	//check arg, msg, cmd != NULL necessary?
+	ft_putstr_fd("mish: ", 2);
+	if (cmd)
+		ft_putstr_fd(cmd, 2);
+	if (msg)
+	{
+		ft_putstr_fd(": ", 2);
+		ft_putstr_fd(msg, 2);
+	}
+	if (arg)
+	{
+		ft_putstr_fd(": ", 2);
+		ft_putstr_fd(arg, 2);
+	}
+	ft_putstr_fd("\n", 2);
+	return (1);
 }

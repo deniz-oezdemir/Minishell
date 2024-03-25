@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:35:29 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/25 12:11:44 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:23:05 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void modify_envp(t_prompt *prompt, char *name, char *insert, int f_free_name)
 
 	i = 0;
 	if (!prompt->envp || !insert || !name) //different
-		return NULL;
+		return ;
 	str = ft_strjoin(name, "="); //different
 	if (!str)
 		return ;
@@ -77,15 +77,26 @@ int	go_home_dir(t_prompt *prompt)
 
 	home_dir = get_envp(prompt, "HOME");
 	if (!home_dir)
-		//add print long err
+		return(print_err_msg_lng("cd", "not set", "HOME"));
 	chdir(home_dir);
-	modify_envp(prompt, "PWD", getcwd(NULL, 0), 0);
+	modify_envp(prompt, "PWD", (char *)getcwd(NULL, 0), 0);
 	free(home_dir);
+	return (0);
 }
 
 int go_back_dir(t_prompt *prompt)
 {
+	char	*old_dir;
 
+	old_dir = get_envp(prompt, "OLDPWD");
+	if (!old_dir)
+		return(print_err_msg_lng("cd", "not set", "OLDPWD"));
+	ft_printf("%s\n", old_dir);
+	chdir(old_dir);
+	modify_envp(prompt, "PWD", (char *)getcwd(NULL, 0), 0);
+	if (old_dir)
+		free(old_dir);
+	return (0);
 }
 
 int cstm_cd(t_cmddat *cmd_data)
@@ -97,15 +108,15 @@ int cstm_cd(t_cmddat *cmd_data)
 		if (!cmd_data->full_command[1])
 			return(go_home_dir(cmd_data->prompt));
 		else if(ft_strcmp(cmd_data->full_command[1], "-"))
-			return(go_back_dir()); //write
+			return(go_back_dir(cmd_data->prompt));
 	}
-	cmd_data->prompt->envp = modify_envp(); //write
+	modify_envp(cmd_data->prompt, "OLDPWD", (char *)getcwd(NULL, 0), 0);
 	dir_user = opendir(cmd_data->full_command[1]);
 	if (!dir_user)
-		return(print_err_msg_lng()); //write -> check bash err msg
+		return(print_err_msg_lng(cmd_data->full_command[0], "No such file or directory", cmd_data->full_command[1])); //compare bash err msg
 	if (chdir(cmd_data->full_command[1]) == -1)
-		return(print_err_msg_lng()); //write -> check bash err msg
+		return(print_err_msg_lng(cmd_data->full_command[0], "No such file or directory", cmd_data->full_command[1])); //compare bash err msg
 	closedir(dir_user);
-	cmd_data->prompt->envp = modify_envp(); //write
+	modify_envp(cmd_data->prompt, "PWD", (char *)getcwd(NULL, 0), 0);
 	return (0);
 }
