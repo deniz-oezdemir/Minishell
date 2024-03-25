@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:22:52 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/25 18:35:09 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:02:44 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	lexer(t_prompt *prompt)
 	prompt->input_string = add_space(prompt->input_string);
 	prompt->commands = split_input(prompt->input_string);
 	//verifier avant expander que les quotes soient bien fermees
-	print_str_array(prompt->commands);
+	//print_str_array(prompt->commands);
 	prompt->commands = expander(prompt->commands, prompt->envp);
-	print_str_array(prompt->commands);
+	//print_str_array(prompt->commands);
 
 
 }

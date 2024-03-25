@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/25 18:33:07 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:03:27 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char *expand_var(char *str, char **ev)
 			len = get_len_var(str, i + 1);
 			//printf("len %i \n", len);
 			sub_str = create_sub_var(str, i, ev, len);
-			printf("sub %s\n", str);
+			//printf("sub %s\n", str);
 			free(str);
 			str = sub_str;
 			//printf("str %s\n", str);
