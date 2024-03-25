@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:43:45 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/25 15:22:45 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:38:52 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ ssize_t	get_len_var(char *str, int i)
 
 	while (str[i] && !ft_isspace(str[i]) && str[i] != '\"')
 	{
-		printf("str[%d] %c\n", i, str[i]);
+		//printf("str[%d] %c\n", i, str[i]);
 		count++;
 		i++;
 	}
@@ -58,7 +58,7 @@ no match found
 static char	*get_ptr_var(char *str, size_t var_exp_len, char **env)
 {
 	//printf("eneters GET PTR \n");
-	printf("str inside get ptr %s\n", str);
+	//printf("str inside get ptr %s\n", str);
 	while (*env)
 	{
 		if (!ft_strncmp(str, *env, var_exp_len)
@@ -94,7 +94,7 @@ str : original str
 ptr : pointer to the expander variable
 i : pos where to start to expand
 */
-void	create_sub_var(char *str, size_t i, char **ev, ssize_t len )
+char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len )
 {
 	//ssize_t	len; //longueur de la variable a etendre
 	char *s1; //partie avant $
@@ -106,20 +106,16 @@ void	create_sub_var(char *str, size_t i, char **ev, ssize_t len )
 	//printf("len %zd\n", len);
 	//printf("i = %zd\n", i);
 
-	// if (i > 0 && ft_isspace(str[i - 1])) {
-	// 	i--;
-	// 	//len--;
-	// }
-	printf("len %zd\n", len);
-	printf("i = %zd\n", i);
+	//printf("len %zd\n", len);
+	//printf("i = %zd\n", i);
 
 	s1 = ft_substr(str, 0, i);
 	s3 = ft_substr(str, i + len + 1, ft_strlen(str) - i - len);
 	s2 = ft_strdup(get_ptr_var(&str[i + 1], len, ev));
 
-	printf("s1: %s\n", s1);
-	printf("s2: %s\n", s2);
-	printf("s3: %s\n", s3);
+	// printf("s1: %s\n", s1);
+	// printf("s2: %s\n", s2);
+	// printf("s3: %s\n", s3);
 
 	expanded_str = ft_strjoin(s1, s2);
 	expanded_str = ft_strjoin(expanded_str, s3);
@@ -129,5 +125,6 @@ void	create_sub_var(char *str, size_t i, char **ev, ssize_t len )
 	free(s1);
 	free(s2);
 	free(s3);
-	free(expanded_str);
+	//free(expanded_str);
+	return (expanded_str);
 }

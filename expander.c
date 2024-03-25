@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/25 15:22:26 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:38:15 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,16 @@ A l'interieur de single quote : ne pas traiter $
 char	**expander(char **str, char **ev)
 {
 	int	i;
+	char *temp;
 
 	i = 0;
 	//printf("Enters expander\n");
 	while (str[i])
 	{
-		expand_var(str[i], ev);
+		temp = expand_var(str[i], ev);
 		i++;
 	}
+	printf("tmp %s\n", temp);
 	return (str);
 }
 /*
@@ -56,15 +58,15 @@ char *expand_var(char *str, char **ev)
 		//printf("sgq  = %d \n dbq = %d \n", sgq, dbq);
 		if (!sgq && str[i] == '$' && str[i + 1]) //si aucune single quote est ouverte
 		{
-			printf("i %d in expander\n", i);
+			//printf("i %d in expander\n", i);
 			len = get_len_var(str, i + 1);
 			//i += len;
 			// if (dbq)
 			//  	len = len - 2;
-			create_sub_var(str, i, ev, len);
+			sub_str = create_sub_var(str, i, ev, len);
 			//printf("Lenght of the var to expand : %d\n", len);
 		}
 		i++;
 	}
-	return (str);
+	return (sub_str);
 }
