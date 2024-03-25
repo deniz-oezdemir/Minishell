@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/23 16:09:41 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:22:26 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ char *expand_var(char *str, char **ev)
 		//printf("sgq  = %d \n dbq = %d \n", sgq, dbq);
 		if (!sgq && str[i] == '$' && str[i + 1]) //si aucune single quote est ouverte
 		{
-			printf("i %d", i);
+			printf("i %d in expander\n", i);
 			len = get_len_var(str, i + 1);
+			//i += len;
 			// if (dbq)
 			//  	len = len - 2;
 			create_sub_var(str, i, ev, len);

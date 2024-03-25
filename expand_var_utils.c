@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:43:45 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/23 16:16:37 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:22:45 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,26 @@ Gets the lenght of the var to expand, starting from after the$
 i is the position of the string */
 ssize_t	get_len_var(char *str, int i)
 {
+	//printf("i %d in get len\n", i);
+	//printf("str %c\n", *str);
+	//printf("str dans get len %s\n", str);
 	ssize_t	count;
-	count = -1;
-	while (*str && !ft_isspace(*str) && *str == '\"')
+	count = 0;
+
+		//while (*str && !ft_isspace(*str) && *str != '\"')
+	// while (*str && !ft_isspace(*str) && *str != '\"' )
+	// {
+	// 	printf("str %c\n", *str);
+	// 	count++;
+	// 	str++;
+	// }
+	// return (count);
+
+	while (str[i] && !ft_isspace(str[i]) && str[i] != '\"')
 	{
-		printf("str %c\n", *str);
+		printf("str[%d] %c\n", i, str[i]);
 		count++;
-		str++;
+		i++;
 	}
 	return (count);
 }
@@ -45,7 +58,7 @@ no match found
 static char	*get_ptr_var(char *str, size_t var_exp_len, char **env)
 {
 	//printf("eneters GET PTR \n");
-	//printf("str inside get ptr %s", str);
+	printf("str inside get ptr %s\n", str);
 	while (*env)
 	{
 		if (!ft_strncmp(str, *env, var_exp_len)
@@ -90,8 +103,8 @@ void	create_sub_var(char *str, size_t i, char **ev, ssize_t len )
 	char *expanded_str;
 	//char *ptr;
 
-	printf("len %zd\n", len);
-	printf("i = %zd\n", i);
+	//printf("len %zd\n", len);
+	//printf("i = %zd\n", i);
 
 	// if (i > 0 && ft_isspace(str[i - 1])) {
 	// 	i--;
@@ -102,7 +115,7 @@ void	create_sub_var(char *str, size_t i, char **ev, ssize_t len )
 
 	s1 = ft_substr(str, 0, i);
 	s3 = ft_substr(str, i + len + 1, ft_strlen(str) - i - len);
-	s2 = ft_strdup(get_ptr_var(str + 1, len, ev));
+	s2 = ft_strdup(get_ptr_var(&str[i + 1], len, ev));
 
 	printf("s1: %s\n", s1);
 	printf("s2: %s\n", s2);
