@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:43:45 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/25 15:38:52 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:32:39 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ ssize_t	get_len_var(char *str, int i)
 	// }
 	// return (count);
 
-	while (str[i] && !ft_isspace(str[i]) && str[i] != '\"')
+	while (str[i] && !ft_isspace(str[i]) && str[i] != '\"' && str[i] != '\'' )
 	{
 		//printf("str[%d] %c\n", i, str[i]);
 		count++;
@@ -120,7 +120,7 @@ char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len )
 	expanded_str = ft_strjoin(s1, s2);
 	expanded_str = ft_strjoin(expanded_str, s3);
 
-	printf("expanded_str: %s\n", expanded_str);
+	//printf("expanded_str: %s\n", expanded_str);
 
 	free(s1);
 	free(s2);

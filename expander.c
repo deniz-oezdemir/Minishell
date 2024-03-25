@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/25 15:38:15 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:33:07 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,21 @@ A l'interieur de single quote : ne pas traiter $
 */
 char	**expander(char **str, char **ev)
 {
-	int	i;
-	char *temp;
+	int		i;
+	char	**temp;
 
+	temp = malloc(sizeof(char **) * get_len_arr(str) + 1);
+	if (!temp)
+		return (NULL);
 	i = 0;
-	//printf("Enters expander\n");
 	while (str[i])
 	{
-		temp = expand_var(str[i], ev);
+		temp[i] = expand_var(str[i], ev);
 		i++;
 	}
-	printf("tmp %s\n", temp);
-	return (str);
+	temp[i] = NULL;
+	//printf("tmp %s\n", temp[i]);
+	return (temp);
 }
 /*
 Check if inside single quote -> meaning does not need expanding
@@ -41,32 +44,34 @@ alors sgq est mis a 1 (sinon 0)
 */
 char *expand_var(char *str, char **ev)
 {
-	int	sgq;
-	int	dbq;
-	int	i;
-	int len;
+	int		sgq;
+	int		dbq;
+	int		i;
+	int		len;
 	char	*sub_str;
 
-
+	sub_str = NULL;
 	sgq = 0;
 	dbq = 0;
 	i = 0;
 	while (str[i])
 	{
-		sgq = (sgq + (!dbq && str[i] == '\'')) % 2; //1)
+		sgq = (sgq + (!dbq && str[i] == '\'')) % 2;
 		dbq = (dbq + (!sgq && str[i] == '\"')) % 2;
-		//printf("sgq  = %d \n dbq = %d \n", sgq, dbq);
-		if (!sgq && str[i] == '$' && str[i + 1]) //si aucune single quote est ouverte
+		if (!sgq && str[i] == '$' && str[i + 1])
 		{
-			//printf("i %d in expander\n", i);
 			len = get_len_var(str, i + 1);
-			//i += len;
-			// if (dbq)
-			//  	len = len - 2;
+			//printf("len %i \n", len);
 			sub_str = create_sub_var(str, i, ev, len);
-			//printf("Lenght of the var to expand : %d\n", len);
+			printf("sub %s\n", str);
+			free(str);
+			str = sub_str;
+			//printf("str %s\n", str);
 		}
 		i++;
 	}
-	return (sub_str);
+	if (sub_str)
+		return (sub_str);
+	else
+		return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/25 15:34:56 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:42:05 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ void	free_split(char **strs);
 char	**expander(char **str, char **ev);
 /*expand_var_utils.c */
 
-char	*create_sub_var(char *str, size_t i, char **ev,ssize_t len );
+char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len );
 ssize_t	get_len_var(char *str, int i);
 //static char *get_substr_var(char *str, int len, char **env);
 char *expand_var(char *str, char **ev);
