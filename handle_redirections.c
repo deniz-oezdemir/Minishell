@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/27 17:50:21 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:14:20 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ t_node	fill_redir(t_node *current, int type, int i)
 	if (type == 1)
 	{
 		infile = get_infile(current, i);
-		//printf("infile : %s\n", infile);
+		printf("infile : %s\n", infile);
 	}
 	// else if (type == 2)
 	// 	printf("start here_doc\n");
@@ -106,7 +106,7 @@ t_node	fill_redir(t_node *current, int type, int i)
 
 	// }
 
-	current->data->infile = infile;
+	//current->data->infile = infile;
 
 	//free
 	return (*current);

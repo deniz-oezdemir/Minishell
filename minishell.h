@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/27 17:39:51 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:20:13 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sys/wait.h>
 # include <stdlib.h>
 # include <readline/readline.h>
+#	include <readline/history.h>
 
 # include "./libft/libft.h"
 
