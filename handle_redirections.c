@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/27 15:37:00 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:36:41 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	handle_redir(t_prompt *ptr)
 			while(cmd_data->full_command[i])
 			{
 				get_type(cmd_data->full_command[i]);
-
 				i++;
 			}
 		}

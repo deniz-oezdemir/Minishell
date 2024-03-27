@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/27 15:13:40 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:36:42 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	parser(t_prompt *prompt)
 
 
 
-	print_cmd_list(prompt->cmd_list);
+	//print_cmd_list(prompt->cmd_list);
 	handle_redir(prompt);
 
 }
