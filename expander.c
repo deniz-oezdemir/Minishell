@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/25 19:03:27 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:58:19 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,19 @@ ne pas traiter les metachar
 A l'interieur de double quote : doit traiter $
 A l'interieur de single quote : ne pas traiter $
 */
+
+/*
+  Expands environment variables in the array of strings `str` using the environment variables `ev`.
+  It creates a new array with expanded strings and returns it.
+
+  Parameters:
+    - str: Array of strings to be expanded.
+    - ev:  Array of strings representing environment variables.
+
+  Returns:
+    - A new array of strings with expanded environment variables.
+*/
+
 char	**expander(char **str, char **ev)
 {
 	int		i;
@@ -41,6 +54,18 @@ char	**expander(char **str, char **ev)
 Check if inside single quote -> meaning does not need expanding
 1) Si le char actuel est ' et que dbq est 0 (pas de guillemets double ouvert)
 alors sgq est mis a 1 (sinon 0)
+*/
+
+/*
+  Expands environment variables in the string `str` using the environment variables `ev`.
+  It modifies the original string in-place and returns it.
+
+  Parameters:
+    - str: Pointer to the string to be expanded.
+    - ev:  Array of strings representing environment variables.
+
+  Returns:
+    - Pointer to the modified string with expanded environment variables.
 */
 char *expand_var(char *str, char **ev)
 {

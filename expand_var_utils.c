@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:43:45 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/25 18:32:39 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/27 19:00:53 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,20 @@ the returns A POINTER to the expanded variable or empty string if
 no match found
 */
 
+/*
+  Searches for the value of the environment variable
+  specified by the string `str` within the array of environment variables `env`.
+  It returns a pointer to the value of the environment variable.
+
+  Parameters:
+    - str:          Pointer to the string representing the environment variable.
+    - var_exp_len:  Length of the environment variable to search for.
+    - env:          Array of strings representing environment variables.
+
+  Returns:
+    - Pointer to the value of the environment variable if found.
+    - Pointer to an empty string if the environment variable is not found.
+*/
 static char	*get_ptr_var(char *str, size_t var_exp_len, char **env)
 {
 	//printf("eneters GET PTR \n");
@@ -68,31 +82,29 @@ static char	*get_ptr_var(char *str, size_t var_exp_len, char **env)
 	}
 	return ("");
 }
-// static char *get_ptr_var(char *str, size_t len, char **env)
-// {
-// 	printf("eneters GET PTR \n");
-// 	while (*env)
-// 	{
-// 		//printf("inside if\n");
-// 		if (!ft_strncmp(str + 1, *env, len))
-// 		{
-// 			//printf("inside if\n");
-// 			if (*(*env + len) == '=')
-// 			{
-// 				printf("here");
-// 				return (*env + len + 1);
-// 			}
-// 		}
-// 		env++;
-// 	}
-// 	return ("");
-// }
+
 
 /*
 Concatenates the strings with the expanded var
 str : original str
 ptr : pointer to the expander variable
 i : pos where to start to expand
+*/
+
+/*
+  Creates a substring by expanding the environment variable specified by
+  the substring in the string `str`.
+  It constructs and returns a new string with the
+   expanded environment variable.
+
+  Parameters:
+    - str: Pointer to the string containing the environment variable to be expanded.
+    - i:   Index of the starting character of the environment variable substring.
+    - ev:  Array of strings representing environment variables.
+    - len: Length of the environment variable substring to expand.
+
+  Returns:
+    - Pointer to the newly created string with the expanded environment variable.
 */
 char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len )
 {

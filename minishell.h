@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/27 18:33:32 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:44:45 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	handle_sig_quit(int n);
 
 /*	utils.c	*/
 size_t	get_len_arr(char **array);
-int	ft_strcmp(const char *s1, const char *s2);
+//int	ft_strcmp(const char *s1, const char *s2);
 void	print_err_msg(char *cmd, char *msg);
 int print_err_msg_lng(char *cmd, char *msg, char *arg);
 int	ft_isspace(int c);
@@ -151,7 +151,7 @@ void	exit_ms(int exitstatus, t_prompt *prompt);
 
 /*	exec.c	*/
 int	execute_cmds(t_prompt *prompt);
-int	ft_strcmp(const char *s1, const char *s2);
+//int	ft_strcmp(const char *s1, const char *s2);
 
 /*	lexer.c*/
 void	lexer(t_prompt *prompt);

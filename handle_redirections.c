@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/27 18:14:20 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:56:41 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,20 @@
 /*cat < input.txt | grep "pattern" >> output.txt*/
 
 /*
-1 = infile-redirection
-2 = here_doc-redirection
-3 = write to outfile
-4 = append to outfile
+  Determines the type of redirection for the given string `str`
+  and returns the corresponding type value.
+
+  Parameters:
+    - str: Pointer to the string representing a command or redirection.
+
+  Returns:
+    - 1 if the redirection is an infile-redirection ('<').
+    - 2 if the redirection is a here_doc-redirection ('<<').
+    - 3 if the redirection is a write to outfile ('>').
+    - 4 if the redirection is an append to outfile ('>>').
+    - 0 if no redirection type is detected.
 */
+
 int	get_type(char *str)
 {
 	int	type;
@@ -48,6 +57,15 @@ int	get_type(char *str)
 	return (type);
 }
 
+/*
+  Handles redirections within the commands stored in the prompt structure `ptr`.
+  It iterates through the command list and processes each command to identify and handle redirections.
+
+  Parameters:
+    - ptr: Pointer to the prompt structure containing the command list.
+
+  Returns: None
+*/
 void	handle_redir(t_prompt *ptr)
 {
 

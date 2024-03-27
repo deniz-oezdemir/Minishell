@@ -3,15 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 20:12:21 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 17:35:49 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:48:52 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
+Initializes the prompt structure `prompt` with the
+provided environment variables `envp`.
+
+Parameters:
+- prompt: Pointer to the prompt structure to initialize.
+- envp:   Array of strings representing the environment variables.
+
+Note: This function also initializes the environment
+within the prompt structure using the `init_env` function.
+
+Returns: None
+*/
 void	init_prompt_struct(t_prompt *prompt, char **envp)
 {
 	prompt->input_string = NULL;
@@ -20,7 +33,18 @@ void	init_prompt_struct(t_prompt *prompt, char **envp)
 	prompt->pid = -1;
 	init_env(prompt, envp);
 }
+/*
+Initializes the environment for the minishell by copying the provided
+environment variables `env` into the `prompt->envp` array.
 
+Parameters:
+- prompt: Pointer to the prompt structure containing environment information.
+- env:    Array of strings representing the environment variables.
+
+Returns:
+  - 1 if the initialization is successful.
+  - 0 if an error occurs during memory allocation or copying.
+*/
 int	init_env(t_prompt *prompt, char **env)
 {
 	int	i;

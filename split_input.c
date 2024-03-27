@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/27 18:23:29 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:55:06 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,20 @@
 
 
 /*Parcourt la chaine et compte le nombre de char speciaux (> >> < << |) qui sont attaches*/
-static int special_len(char *str)
+
+/*
+  Calculates and returns the special length of the string `str`,
+  which represents the number of special characters that are not
+  preceded or followed by a space.
+
+  Parameters:
+    - str: Pointer to the string to calculate the special length for.
+
+  Returns:
+    - The number of special characters that are not preceded or followed
+	by a space in the string.
+*/
+static int	special_len(char *str)
 {
 	int	i;
 	int	count;
