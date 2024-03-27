@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/27 15:26:32 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:39:51 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,8 +174,11 @@ ssize_t	get_len_var(char *str, int i);
 char *expand_var(char *str, char **ev);
 
 /* handle_redirections.c */
-int	get_type(char *str);
 
+int	get_type(char *str);
 void	handle_redir(t_prompt *ptr);
+t_node	fill_redir(t_node *current, int type, int i);
+char	*get_infile(t_node *current, int i);
+
 
 #endif
