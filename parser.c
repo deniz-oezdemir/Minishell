@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 15:05:11 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:44:26 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ char	**fill_arr(char **prompt, int i, int len)
 }
 
 /*
-Le tableau de commande est cree, mtn il faut le mettre dans la struct en tant que full cmd? */
+Before :
+After :
+ */
 void	parser(t_prompt *prompt)
 {
 	t_cmddat	*ptr;
@@ -82,6 +84,8 @@ void	parser(t_prompt *prompt)
 	int	j;
 	j = 1;
 	i = 0;
+
+	//get_type(prompt);
 
 	while (prompt->commands[i])
 	{
@@ -94,7 +98,8 @@ void	parser(t_prompt *prompt)
 			if (i != 0)
 			{
 				ptr->full_command = fill_arr(prompt->commands, i - j, j);
-				//prompt->cmd_list->data->full_command = fill_arr(prompt->commands, i - j, j);
+				ptr->full_path = get_path_cmds(ptr, prompt->envp);
+				prompt->cmd_list->data->full_command = fill_arr(prompt->commands, i - j, j);
 				j = 0;
 			}
 		}
@@ -103,9 +108,11 @@ void	parser(t_prompt *prompt)
 		i++;
 	}
 	if (ptr)
-	{
 		ptr->full_command = fill_arr(prompt->commands, i - j, j);
-	}
+		ptr->full_path = get_path_cmds(ptr, prompt->envp);
+
+
+	handle_redir(prompt);
 	print_cmd_list(prompt->cmd_list);
 }
 

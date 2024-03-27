@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 20:20:06 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:18:56 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ void	launch_minishell(t_prompt *prompt)
 	while (1)
 	{
 		lexer(prompt);
+		if (prompt->commands == NULL)
+			continue;
+		if (prompt->commands)
+			add_history(prompt->input_string);
 		parser(prompt);
-		execute_cmds(prompt);
+		//execute_cmds(prompt);
 	}
 }

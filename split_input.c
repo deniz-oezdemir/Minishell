@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/21 16:15:03 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:23:29 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,12 @@ char *add_space(char *str)
 				new_str[j++] = str[i++];
 				new_str[j++] = ' ';
 			}
+			else
+			{
+				new_str[j++] = str[i++];
+				new_str[j++] = str[i++];
+			}
+
 		}
 		else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i - 1] != ' ')
 		{
@@ -93,9 +99,15 @@ char *add_space(char *str)
 			new_str[j++] = str[i++];
 	}
 	new_str[j] = '\0';
+	free(str);
 	return (new_str);
 }
 
+/*
+Counts the number of words in the given string `str`, considering a set of separators defined by `sep`.
+It handles cases where words might be enclosed within single or double quotes, ensuring they are not counted separately.
+If there's a mismatch in quotes, it returns -1 to indicate an error.
+*/
 static int	ft_count_words(const char *str, char *sep)
 {
 	int count = 0;
@@ -173,7 +185,7 @@ char	**split_input(char *str)
 	word_count = ft_count_words(str, " ");
 	if (word_count == -1)
 	{
-		printf("Quote not properly closed\n");
+		printf("Syntax error: unclosed quote in argument\n");
 		return (NULL);
 	}
 	arr = (char **)malloc(sizeof(char *) * (word_count + 1));

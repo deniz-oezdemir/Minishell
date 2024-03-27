@@ -1,3 +1,50 @@
+#include "minishell.h"
+int	ft_isspace(int c)
+{
+	return (c == ' ' || c == '\t' || c == '\n'
+		|| c == '\v' || c == '\f' || c == '\r');
+}
+int	get_len_var(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] && !ft_isspace(str[i]))
+	{
+		i++;
+	}
+	return (i - 1);
+}
+
+
+
+int main(void)
+{
+	char *test = "$";
+	printf("%d\n", get_len_var(test));
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*@Leo: Deniz commented the whole file out because of compilation error
 
 #include <stdio.h>

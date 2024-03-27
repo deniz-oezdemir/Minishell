@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/25 14:18:42 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:33:32 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <readline/readline.h>
 # include <dirent.h>
 # include <unistd.h>
+# include <readline/history.h>
 
 # include "./libft/libft.h"
 
@@ -167,5 +168,29 @@ char	**fill_arr(char **prompt, int i, int len);
 /* list_utils */
 void	add_node_to_list(t_node **head, t_cmddat *data);
 int	ft_listsize(t_node *lst);
+
+
+/* envp_utils.c*/
+char	*get_path_cmds(t_cmddat *cmd, char **ev);
+char	*get_path(char *cmd, char **ev);
+void	free_split(char **strs);
+
+
+/* expander.c */
+char	**expander(char **str, char **ev);
+/*expand_var_utils.c */
+
+char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len );
+ssize_t	get_len_var(char *str, int i);
+//static char *get_substr_var(char *str, int len, char **env);
+char *expand_var(char *str, char **ev);
+
+/* handle_redirections.c */
+
+int	get_type(char *str);
+void	handle_redir(t_prompt *ptr);
+t_node	fill_redir(t_node *current, int type, int i);
+char	*get_infile(t_node *current, int i);
+
 
 #endif

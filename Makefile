@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
+#    By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 20:35:04 by denizozd          #+#    #+#              #
-#    Updated: 2024/03/25 14:15:53 by denizozd         ###   ########.fr        #
+#    Updated: 2024/03/27 18:40:35 by ecarlier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,11 +25,13 @@ LIBFT = ./libft/libft.a
 LDFLAGS		= -L/Users/$(USER)/.brew/opt/readline/lib
 CPPFLAGS	= -I/Users/$(USER)/.brew/opt/readline/include
 
-SRCS = 	cstm_exit.c end.c signal_handler.c builtins.c \
+SRCS = cstm_exit.c end.c signal_handler.c builtins.c \
 		cstm_pwd.c exec.c lists_utils.c split_input.c \
 		cstm_echo.c cstm_unset.c init.c main.c parser.c \
-		test.c cstm_env.c debug_utils.c lexer.c utils.c \
-		cstm_cd.c \
+		cstm_env.c debug_utils.c lexer.c utils.c \
+		cstm_cd.c  envp_utils.c \
+		expand_var_utils.c expander.c handle_redirections.c
+
 
 OBJS = $(SRCS:.c=.o)
 
