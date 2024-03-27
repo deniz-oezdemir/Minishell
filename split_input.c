@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/22 15:26:06 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:17:21 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,12 @@ char *add_space(char *str)
 				new_str[j++] = str[i++];
 				new_str[j++] = ' ';
 			}
+			else
+			{
+				new_str[j++] = str[i++];
+				new_str[j++] = str[i++];
+			}
+
 		}
 		else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i - 1] != ' ')
 		{
@@ -173,7 +179,7 @@ char	**split_input(char *str)
 	word_count = ft_count_words(str, " ");
 	if (word_count == -1)
 	{
-		printf("Quote not properly closed\n");
+		printf("Syntax error: unclosed quote in argument\n");
 		return (NULL);
 	}
 	arr = (char **)malloc(sizeof(char *) * (word_count + 1));

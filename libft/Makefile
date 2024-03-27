@@ -48,7 +48,8 @@ SRC =	./ft_isalnum.c		\
 	./print_int.c 		\
 	./print_hexa.c 		\
 	./print_pointeur.c 	\
-	
+	./ft_strcmp.c		\
+
 OBJS = $(SRC:.c=.o)
 
 HDRS = libft.h
@@ -58,7 +59,7 @@ all: $(NAME)
 $(NAME):
 	cc -c -Wall -Wextra -Werror -I $(HDRS) $(SRC)
 	ar rc $(NAME) $(OBJS)
-	ranlib $(NAME) 
+	ranlib $(NAME)
 
 clean:
 	/bin/rm -f $(OBJS)

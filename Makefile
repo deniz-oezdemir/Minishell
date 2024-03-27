@@ -6,7 +6,7 @@
 #    By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 20:35:04 by denizozd          #+#    #+#              #
-#    Updated: 2024/03/22 22:30:23 by ecarlier         ###   ########.fr        #
+#    Updated: 2024/03/27 13:41:00 by ecarlier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRCS = cstm_exit.c end.c signal_handler.c builtins.c \
 		cstm_pwd.c exec.c lists_utils.c split_input.c \
 		cstm_echo.c cstm_unset.c init.c main.c parser.c \
 		cstm_env.c debug_utils.c lexer.c utils.c envp_utils.c \
-		expand_var_utils.c expander.c
+		expand_var_utils.c expander.c handle_redirections.c
 
 
 OBJS = $(SRCS:.c=.o)

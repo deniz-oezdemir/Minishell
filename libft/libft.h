@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:35:49 by ecarlier          #+#    #+#             */
-/*   Updated: 2023/11/08 18:44:41 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/27 13:43:11 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_itoa(int n);
+int		ft_strcmp(char *s1, char *s2);
 int		ft_lstsize(t_list *lst);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
