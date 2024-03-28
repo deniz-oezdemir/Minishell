@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/28 14:48:56 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:03:41 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	run_cmd(void *content)
 		close(1);
 		exit_ms(2, cmd_data->prompt); //why exitstatus 2?
 	}
-	return (0);
+	return ;
 }
 
 int	execute_cmds(t_prompt *prompt)
