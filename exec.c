@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/28 14:46:29 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:48:56 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	is_executable(t_cmddat *cmd_data)
 {
-
 	int builtin;
 
 	builtin = get_builtin_nbr(cmd_data);
@@ -72,7 +71,7 @@ void	cls_fds(void *content)
 	t_cmddat	*cmd_data;
 
 	cmd_data = (t_cmddat *)content;
-	if (cmd_data->infile != -1 && cmd_data->infile != 0) //verify what else then -1, 0, 1 in- and outfile can be
+	if (cmd_data->infile != -1 && cmd_data->infile != 0) //verify what else other than -1, 0, 1 in- and outfile can be @Leo: parsing
 		close(cmd_data->infile);
 	if (cmd_data->outfile != -1 && cmd_data->outfile != 1)
 		close(cmd_data->outfile);
@@ -83,7 +82,6 @@ void	run_cmd(void *content)
 	t_cmddat *cmd_data;
 
 	cmd_data = (t_cmddat *)content;
-
 	/*if (cmd_data->prompt->stop)
 		return ;*/
 	if (!is_executable(cmd_data)) //@Deniz: write is_executable //different
