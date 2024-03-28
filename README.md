@@ -1,4 +1,5 @@
 # 42-Minishell
 
 
-what's up 
+- waitpid, WIFEXITED: https://linux.die.net/man/3/waitpid
+

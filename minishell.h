@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/27 18:44:45 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:00:45 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct s_cmddat t_cmddat;
 	pid : Process ID of the minishell instance
 
 */
+
+//@Leo: we need stop, but i don't know how it's initialized, etc.
 /*modif t_list with t_node*/
 typedef struct s_prompt
 {
@@ -56,7 +58,7 @@ typedef struct s_prompt
 	t_node		*cmd_list;
 	char		**envp;
 	pid_t		pid;
-	//int			stop;
+	int			stop;
 }	t_prompt;
 
 typedef struct s_node
@@ -82,6 +84,7 @@ typedef struct s_node
 		command (defaults to stdout)
 */
 
+//@Leo: we need broken, and i think it should be initialized to 0
 typedef struct s_cmddat
 {
 	char		**full_command;
@@ -89,7 +92,7 @@ typedef struct s_cmddat
 	int			infile;
 	int			outfile;
 	t_prompt		*prompt;
-	//int			broken;
+	int			broken;
 }	t_cmddat;
 
 
@@ -151,7 +154,10 @@ void	exit_ms(int exitstatus, t_prompt *prompt);
 
 /*	exec.c	*/
 int	execute_cmds(t_prompt *prompt);
-//int	ft_strcmp(const char *s1, const char *s2);
+void	cls_fds(void *content);
+void	run_cmd(void *content);
+void	wait_update_exitstatus(t_prompt *prompt);
+int	is_executable(t_cmddat cmd_data);
 
 /*	lexer.c*/
 void	lexer(t_prompt *prompt);
