@@ -6,15 +6,15 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/25 17:33:13 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:45:20 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	is_executable(t_cmddat cmd_data)
+int	is_executable(t_cmddat *cmd_data)
 {
-	
+
 }
 
 void wait_update_exitstatus(t_prompt *prompt)
