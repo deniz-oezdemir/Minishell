@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/28 14:45:20 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:46:29 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,29 @@
 int	is_executable(t_cmddat *cmd_data)
 {
 
+	int builtin;
+
+	builtin = get_builtin_nbr(cmd_data);
+	if (cmd_data->broken > 0) //different
+	{
+		exitstatus = cmd_data->broken;
+		return (0);
+	}
+	if (!builtin && !cmd_data->full_path) //different
+	{
+		if (cmd_data->full_command[0]) //understand why only for this case print
+			print_err_msg_lng(cmd_data->full_command[0], "command not found", NULL); //different
+		exitstatus = 127;
+		return (0);
+	}
+	else if (!builtin && cmd_data->full_path && (!access(cmd_data->full_path, F_OK) && access(cmd_data->full_path, X_OK) == -1))
+	{
+		if(cmd_data->full_command[0]) //different
+			print_err_msg_lng(cmd_data->full_command[0], "permission denied", NULL);
+		exitstatus = 126;
+		return (0);
+	}
+	return (1);
 }
 
 void wait_update_exitstatus(t_prompt *prompt)
@@ -63,7 +86,7 @@ void	run_cmd(void *content)
 
 	/*if (cmd_data->prompt->stop)
 		return ;*/
-	if (!is_executable(cmd_data, get_builtin_nbr(cmd_data))) //@Deniz: write is_executable
+	if (!is_executable(cmd_data)) //@Deniz: write is_executable //different
 		return ;
 	cmd_data->prompt->pid = fork();
 	if (cmd_data->prompt->pid == -1) //fork error
