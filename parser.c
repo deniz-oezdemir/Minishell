@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/27 17:44:26 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:42:01 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,11 @@ void	parser(t_prompt *prompt)
 	i = 0;
 
 	//get_type(prompt);
+	get_rid_quotes(prompt);
 
 	while (prompt->commands[i])
 	{
-		if (i == 0 || prompt->commands[i][0] == '|' && prompt->commands[i+1] && prompt->commands[i][0])
+		if (i == 0 || prompt->commands[i][0] == '|' && prompt->commands[i + 1] && prompt->commands[i][0])
 		{
 			ptr = init_struct_cmd();
  			if (!ptr)

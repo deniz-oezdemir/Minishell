@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:45:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/22 22:33:18 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:33:06 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@ char	*get_path_cmds(t_cmddat *cmd, char **ev)
 {
 	char	*path;
 	if (get_builtin_nbr(cmd) != 0)
-	{
-		printf("IS A BUILTIN\n");
 		return (NULL);
-	}
 	path = get_path(cmd->full_command[0], ev);
 	// if (!path)
 	// {

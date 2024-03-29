@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/28 15:02:05 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:41:19 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,5 +198,7 @@ void	handle_redir(t_prompt *ptr);
 t_node	fill_redir(t_node *current, int type, int i);
 char	*get_infile(t_node *current, int i);
 
+/* quotes_utils.c */
+void	get_rid_quotes(t_prompt	*prompt);
 
 #endif
