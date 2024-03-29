@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/27 18:58:19 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:25:39 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	**expander(char **str, char **ev)
 		i++;
 	}
 	temp[i] = NULL;
-	//printf("tmp %s\n", temp[i]);
+	free(str);
 	return (temp);
 }
 /*
@@ -57,7 +57,8 @@ alors sgq est mis a 1 (sinon 0)
 */
 
 /*
-  Expands environment variables in the string `str` using the environment variables `ev`.
+  Expands environment variables in the string `str` using
+  the environment variables `ev`.
   It modifies the original string in-place and returns it.
 
   Parameters:
@@ -86,12 +87,9 @@ char *expand_var(char *str, char **ev)
 		if (!sgq && str[i] == '$' && str[i + 1])
 		{
 			len = get_len_var(str, i + 1);
-			//printf("len %i \n", len);
 			sub_str = create_sub_var(str, i, ev, len);
-			//printf("sub %s\n", str);
 			free(str);
 			str = sub_str;
-			//printf("str %s\n", str);
 		}
 		i++;
 	}
