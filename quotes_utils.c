@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:39:46 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/29 13:54:57 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:12:14 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,45 @@ ft_strtrim_all*/
 
 void	get_rid_quotes(t_prompt	*prompt)
 {
-	int	squote;
-	int	dquote;
+	char **temp;
+	char *trim_cmd;
+	int	i;
+	int len_arr;
 
-	squote = 0;
-	dquote = 0;
+
+	len_arr = get_len_arr(prompt->commands);
+	temp = malloc(sizeof(char *) * (len_arr + 1));
+	if (!temp)
+		return ;
+	i = 0;
+	//print_str_array(prompt->commands);
+	while (prompt->commands[i])
+	{
+		trim_cmd = get_trimmed(prompt->commands[i], 0, 0);
+		temp[i] = trim_cmd;
+		i++;
+	}
+	temp[i] = NULL;
+	free(prompt->commands);
+	prompt->commands = temp;
+	print_str_array(prompt->commands);
+	//print_char_array(temp);
+
 }
 
 char	*get_trimmed(char *str, int squote, int dquote)
 {
-	int	len;
+	int	len_s;
 	char	*trimmed;
 	int	i; //parcourt la chaine str
 	int j; //suivre la nouvelle chaine
 
-
-	len = malloc_len(str);
-	if (!str || len == -1)
+	i = 0;
+	j = -1;
+	len_s = malloc_len(str);
+	if (!str || len_s == -1)
 		return (NULL);
-	trimmed = malloc(sizeof(char *) * len + 1);
+	trimmed = malloc(sizeof(char) * (len_s + 1));
 	if (!trimmed)
 		return (NULL);
 	while (str[i])
@@ -49,9 +69,10 @@ char	*get_trimmed(char *str, int squote, int dquote)
 	}
 	j++;
 	trimmed[j] = '\0';
+	return (trimmed);
 }
 
-static int	malloc_len(char const *str)
+int	malloc_len(char const *str)
 {
 	int	count;
 	int	squote;
@@ -62,8 +83,7 @@ static int	malloc_len(char const *str)
 	squote = 0;
 	dquote = 0;
 	i = 0;
-
-	while (str && str[i])
+	while (str[i])
 	{
 		squote = (squote + (!dquote && str[i] == '\'')) % 2;
 		dquote = (dquote + (!squote && str[i] == '\"')) % 2;

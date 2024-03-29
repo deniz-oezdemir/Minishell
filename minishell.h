@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/29 11:41:19 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/29 15:44:23 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,5 +200,10 @@ char	*get_infile(t_node *current, int i);
 
 /* quotes_utils.c */
 void	get_rid_quotes(t_prompt	*prompt);
+char	*get_trimmed(char *str, int squote, int dquote);
+int	malloc_len(char const *str);
 
+
+/* free_utils*/
+void	free_char_array(char **array);
 #endif
