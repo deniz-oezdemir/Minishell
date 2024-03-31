@@ -6,16 +6,11 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/29 16:13:31 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/31 19:31:42 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
-
-/*
-	ARGC MUST BE 1
-*/
 
 int	exitstatus = 0; //somehow definition here needed, otherwise compile error-> read up on global variables
 
@@ -46,6 +41,6 @@ void	launch_minishell(t_prompt *prompt)
 		if (prompt->commands)
 			add_history(prompt->input_string);
 		parser(prompt);
-		execute_cmds(prompt);
+		//execute_cmds(prompt);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/29 11:42:01 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/31 19:41:28 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,20 @@ Check that the file descriptor that has been opened is valid (!= -1) and continu
 If a pipe is found, add a new node to the list of commands
 In all other cases add whatever words are found to the argument list (argv) we call full_cmd
 */
-/*
- typedef struct s_cmddat
-{
-	char		**full_command;
-	char		*full_path;
-	int			infile;
-	int			outfile;
-	//t_uni		*uni;
-	//int			broken;
-}	t_cmddat;
-*/
+
 /*
 prompt->commands
 ["ls", "-l", "|", "grep", "'file.txt'", ]
 */
 
 
+/*
+  Initializes a new structure t_cmddat with default values.
+  Allocates memory for the structure and returns a pointer to it.
+
+  Returns:
+    - Pointer to the newly initialized t_cmddat structure.
+*/
 static t_cmddat	*init_struct_cmd(void)
 {
 	t_cmddat	*ptr;
@@ -47,10 +44,23 @@ static t_cmddat	*init_struct_cmd(void)
 	ptr->full_path = NULL;
 	ptr->infile = STDIN_FILENO;
 	ptr->outfile = STDOUT_FILENO;
-	//printf("New_node created\n");
+	ptr->file_open_error = 0;
 	return (ptr);
 }
 
+/*
+  Creates and fills a new array of strings from the `prompt` array.
+  It starts filling from index `i` and fills `len` number of elements.
+  Memory is dynamically allocated for the new array.
+
+  Parameters:
+    - prompt: Pointer to the original array of strings.
+    - i:      Starting index to begin filling from.
+    - len:    Number of elements to fill in the new array.
+
+  Returns:
+    - Pointer to the newly created array of strings.
+*/
 char	**fill_arr(char **prompt, int i, int len)
 {
 	char **temp;
@@ -73,9 +83,14 @@ char	**fill_arr(char **prompt, int i, int len)
 }
 
 /*
-Before :
-After :
- */
+  Parses the input commands stored in the prompt structure.
+  It constructs a list of commands with their arguments and other details.
+  Also handles redirections and pipes.
+
+  Parameters:
+    - prompt: Pointer to the prompt structure containing input commands.
+*/
+
 void	parser(t_prompt *prompt)
 {
 	t_cmddat	*ptr;
@@ -85,9 +100,7 @@ void	parser(t_prompt *prompt)
 	j = 1;
 	i = 0;
 
-	//get_type(prompt);
 	get_rid_quotes(prompt);
-
 	while (prompt->commands[i])
 	{
 		if (i == 0 || prompt->commands[i][0] == '|' && prompt->commands[i + 1] && prompt->commands[i][0])
@@ -109,9 +122,10 @@ void	parser(t_prompt *prompt)
 		i++;
 	}
 	if (ptr)
+	{
 		ptr->full_command = fill_arr(prompt->commands, i - j, j);
 		ptr->full_path = get_path_cmds(ptr, prompt->envp);
-
+	}
 
 	handle_redir(prompt);
 	print_cmd_list(prompt->cmd_list);

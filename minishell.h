@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/29 15:44:23 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/31 18:52:09 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <dirent.h>
 # include <unistd.h>
 # include <readline/history.h>
+# include <fcntl.h>
 
 # include "./libft/libft.h"
 
@@ -85,14 +86,15 @@ typedef struct s_node
 */
 
 //@Leo: we need broken, and i think it should be initialized to 0
+//@deniz changed broken for file_open_error
 typedef struct s_cmddat
 {
 	char		**full_command;
 	char		*full_path;
 	int			infile;
 	int			outfile;
-	t_prompt		*prompt;
-	int			broken;
+	t_prompt	*prompt;
+	int			file_open_error;
 }	t_cmddat;
 
 

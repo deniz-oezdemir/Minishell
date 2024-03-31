@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/27 18:56:41 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/31 19:31:10 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ int	get_type(char *str)
 	if (type == 1 && str[i + 1] && str[i + 1] == '<')
 	{
 		type = 2;
-		//printf("here_doc-redirection\n");
+		printf("here_doc-redirection\n");
 	}
-	if (type == 0 &&  str[i] == '>')
+	if (type == 0 && str[i] == '>')
 	{
 		type = 3;
-		//printf("write to outfile\n");
+		printf("write to outfile\n");
 	}
 	if (type == 3 && str[i + 1] && str[i + 1] == '>')
 		{
@@ -68,7 +68,6 @@ int	get_type(char *str)
 */
 void	handle_redir(t_prompt *ptr)
 {
-
 	int i;
 	int type;
 	t_node *current_node;
@@ -84,8 +83,6 @@ void	handle_redir(t_prompt *ptr)
 			while (cmd_data->full_command[i])
 			{
 				type = get_type(cmd_data->full_command[i]);
-				if (type >= 1 && type <= 4)
-						fill_redir(current_node , type, i);
 				i++;
 			}
 		}
@@ -95,54 +92,151 @@ void	handle_redir(t_prompt *ptr)
 }
 
 /*
-current :
-type : between 1 and 4
-i : points to the redirection token (<, >, <<, >>)
+if save_fd > 1 , it means that it's already open and we need to close it
 */
-t_node	fill_redir(t_node *current, int type, int i)
-{
-	char *infile;
-	char *outfile;
 
+int open_file(char **cmds, int i, int *save_fd, int i_flags, int o_flags )
+{
+	if (*save_fd > 1)
+	{
+		if (close(*save_fd) == -1)
+			printf("Error while attempting to close a file");
+	}
+	if (cmds[i + 1] && cmds[i + 1][0] != '>' && cmds[i + 1][0] != '<')
+	{
+		if (o_flags != 0)
+			*save_fd = open(cmds[i + 1], i_flags, o_flags);
+		else
+			*save_fd = open(cmds[i + 1], i_flags);
+		if (*save_fd == -1)
+		{
+			printf("%s No such file or directory\n", cmds[i + 1]);
+			return (1);
+		}
+	}
+	return (0);
+}
+
+/*
+Indicates that the file should be...
+O_RDONLY: opened in read-only mode.
+O_WRONLY: opened in write-only mode.
+O_CREAT: created if it does not exist.
+O_TRUNC: truncated (emptied) if it already exists.
+
+O_APPEND: Indicates that data should be appended to the end of the file during writing.
+00644: octal value used to specify the file permissions when creating it.
+In this case, 00644 grants read and write permissions to the file owner, and read permissions to other users.
+*/
+
+int	get_flags(int type, int file_access_type)
+{
+	if (file_access_type == 0)
+	{
+		if (type == 1 || type == 2)
+			return (O_RDONLY);
+		if (type == 3)
+			return (O_WRONLY | O_CREAT | O_TRUNC);
+		if (type == 4)
+			return (O_WRONLY | O_CREAT | O_APPEND);
+	}
+	else if (file_access_type == 1)
+	{
+		if (type == 1 || type == 2)
+			return (0);
+		if (type == 3 || type == 4)
+			return (00644);
+	}
+	return (0);
+}
+
+
+int	open_fd_redir(t_prompt *prompt, t_cmddat *cmd_struct, int i, int type)
+{
+	int	input_flags;
+	int	output_flags;
+
+	input_flags = get_flags(type, 0);
+	output_flags = get_flags(type, 1);
 	if (type == 1)
-	{
-		infile = get_infile(current, i);
-		printf("infile : %s\n", infile);
-	}
-	// else if (type == 2)
-	// 	printf("start here_doc\n");
-	// else if (type == 3)
-	// {
-
-	// }
-	// else if (type == 3)
-	// {
-
-	// }
-	// else if (type == 4)
-	// {
-
-	// }
-
-	//current->data->infile = infile;
-
-	//free
-	return (*current);
-}
-
-
-char	*get_infile(t_node *current, int i)
-{
-	char	*infile;
-
-	if (current->data->full_command[i + 1])
-	{
-		infile = ft_strdup(current->data->full_command[i + 1]);
-	}
+		cmd_struct->file_open_error = open_file(prompt->commands, i, &cmd_struct->infile, input_flags, output_flags);
+	else if (type == 2)
+		printf("to do : start here_doc\n ");
+	else if (type == 3)
+		cmd_struct->file_open_error = open_file(prompt->commands, i, &cmd_struct->outfile, input_flags, output_flags);
 	else
-	{
-		printf("syntax error near unexpected token `newline'\n");
-	}
-	return (infile);
-
+		cmd_struct->file_open_error = open_file(prompt->commands, i + 1, &cmd_struct->outfile, input_flags, output_flags);
+	if (type == 2 || type == 4)
+		return (3);
+	else
+		return (2);
 }
+// char	*get_infile(t_node *current, int i)
+// {
+// 	char	*infile;
+
+// 	if (current->data->full_command[i + 1])
+// 	{
+// 		infile = ft_strdup(current->data->full_command[i + 1]);
+// 	}
+// 	else
+// 	{
+// 		printf("syntax error near unexpected token `newline'\n");
+// 	}
+// 	return (infile);
+
+// }
+
+// current :
+// type : between 1 and 4
+// i : points to the redirection token (<, >, <<, >>)
+// */
+// t_node	fill_redir(t_node *current, int type, int i)
+// {
+// 	char *infile;
+// 	char *outfile;
+
+// 	if (type == 1)
+// 	{
+// 		infile = get_infile(current, i);
+// 		printf("infile : %s\n", infile);
+// 	}
+// 	// else if (type == 2)
+// 	// 	printf("start here_doc\n");
+// 	// else if (type == 3)
+// 	// {
+
+// 	// }
+// 	// else if (type == 3)
+// 	// {
+
+// 	// }
+// 	// else if (type == 4)
+// 	// {
+
+// 	// }
+
+// 	//current->data->infile = infile;
+
+// 	//free
+// 	return (*current);
+// }
+
+
+// int	get_flags(int type)
+// {
+
+// 	if (type == 1 || type == 2)
+// 		return (O_RDONLY);
+// 	if (type == 3)
+// 		return (O_WRONLY | O_CREAT | O_TRUNC);
+// 	if (type == 4)
+// 		return (O_WRONLY | O_CREAT | O_APPEND);
+
+// 	// if (type == 1 || type == 2)
+// 	// 	return (0);
+// 	// if (type == 3 || type == 4)
+// 	// 	return (00644);
+
+// 	return (0);
+// }
