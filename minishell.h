@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/31 18:52:09 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/31 20:31:41 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,8 +197,11 @@ char *expand_var(char *str, char **ev);
 
 int	get_type(char *str);
 void	handle_redir(t_prompt *ptr);
-t_node	fill_redir(t_node *current, int type, int i);
-char	*get_infile(t_node *current, int i);
+int open_file(char **cmds, int i, int *save_fd, int i_flags, int o_flags );
+int	get_flags(int type, int file_access_type);
+int	open_fd_redir(t_prompt *prompt, t_cmddat *cmd_struct, int i, int type);
+//t_node	fill_redir(t_node *current, int type, int i);
+//char	*get_infile(t_node *current, int i);
 
 /* quotes_utils.c */
 void	get_rid_quotes(t_prompt	*prompt);
