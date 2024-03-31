@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:31:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/27 18:44:07 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/31 22:45:35 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,64 @@ int	ft_isspace(int c)
 
 }
 
+/*
+delete a str from a string array
+pos : position of the first str to del
+count : how many str to delete
 
+
+*/
+char	**del_str_from_array(char **array, int pos, int count)
+{
+	int	i;
+	int	buff;
+
+	//printf("enters del\n");
+	i = 0;
+	while (i++ < count)
+	{
+		buff = pos;
+		free(array[buff]);
+		while (array[++buff])
+			array[buff - 1] = array[buff];
+		array[buff - 1] = NULL;
+	}
+	return (array);
+}
+
+// char **del_str_from_array(char **array, int pos, int count)
+// {
+// 	int	new_size;
+// 	int	i;
+// 	int	j;
+// 	char	**temp;
+
+// 	j = 0;
+// 	i = 0;
+// 	new_size = 0;
+// 	new_size = get_len_arr(array) - count;
+// 	temp = (char **)malloc((new_size + 1) * sizeof(char *));
+// 	if (temp == NULL)
+// 		return (NULL);
+// 	while (array[i])
+// 	{
+// 		if (i < pos || i >= pos + count)
+// 		{
+// 			temp[j] = array[i];
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	temp[j] = NULL;
+// 	free(array);
+// 	return (temp);
+// }
 
 void	print_err_msg(char *cmd, char *msg) //replace with below print_err_msg_lng if possible
 {
 	if (!msg)
 		return ;
-	ft_putstr_fd("mish: ", 2);
+	ft_putstr_fd("minishell: ", 2);
 	if (cmd)
 	{
 		ft_putstr_fd(cmd, 2);
@@ -61,7 +112,7 @@ void	print_err_msg(char *cmd, char *msg) //replace with below print_err_msg_lng 
 int print_err_msg_lng(char *cmd, char *msg, char *arg) //different -> compare all err msgs with bash
 {
 	//check arg, msg, cmd != NULL necessary?
-	ft_putstr_fd("mish: ", 2);
+	ft_putstr_fd("minishell: ", 2);
 	if (cmd)
 		ft_putstr_fd(cmd, 2);
 	if (msg)

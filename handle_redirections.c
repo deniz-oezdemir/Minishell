@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/31 20:47:29 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/31 22:49:42 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,18 @@ void	handle_redir(t_prompt *ptr)
 			i = 0;
 			while (cmd_data->full_command[i])
 			{
-				printf("%s \n", cmd_data->full_command[i]);
 				type = get_type(cmd_data->full_command[i]);
 				if (type < 5 && type > 0)
+				{
 					open_fd_redir(ptr, cmd_data, i, type);
+					// del_str_from_array(cmd_data->full_command, i, 2);
+					// i -= 2;
+				}
 				i++;
 			}
-
 		}
 		current_node = current_node->next;
 	}
-
 }
 
 /*
@@ -171,6 +172,10 @@ int	open_fd_redir(t_prompt *prompt, t_cmddat *cmd_struct, int i, int type)
 		cmd_struct->file_open_error = open_file(prompt->commands, i, &cmd_struct->outfile, input_flags, output_flags);
 	else
 		cmd_struct->file_open_error = open_file(prompt->commands, i + 1, &cmd_struct->outfile, input_flags, output_flags);
+
+	//prompt->commands = del_str_from_array(prompt->commands, i, 2);
+	//printf("after del \n");
+	//print_str_array(prompt->commands);
 	// if (type == 2 || type == 4)
 	// 	return (3);
 	// else

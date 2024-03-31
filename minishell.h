@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/31 20:31:41 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/31 22:06:14 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ size_t	get_len_arr(char **array);
 void	print_err_msg(char *cmd, char *msg);
 int print_err_msg_lng(char *cmd, char *msg, char *arg);
 int	ft_isspace(int c);
+char	**del_str_from_array(char **array, int pos, int count);
 
 /*	builtins.c	*/
 int	get_builtin_nbr(t_cmddat *cmd);

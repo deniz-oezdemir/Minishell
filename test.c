@@ -1,30 +1,86 @@
-#include "minishell.h"
-int	ft_isspace(int c)
-{
-	return (c == ' ' || c == '\t' || c == '\n'
-		|| c == '\v' || c == '\f' || c == '\r');
+#include <stdio.h>   // Pour printf
+#include <stdlib.h>
+
+void print_str_array(char **arr) {
+    printf("[");
+    for (int i = 0; arr[i] != NULL; i++) {
+        printf("%s, ", arr[i]);
+    }
+    printf("]\n");
 }
-int	get_len_var(char *str)
+size_t	get_len_arr(char **array)
 {
-	int i;
+	size_t	i;
 
 	i = 0;
-	while (str[i] && !ft_isspace(str[i]))
+	while (array[i])
 	{
 		i++;
 	}
-	return (i - 1);
+	return i;
 }
 
-
-
-int main(void)
+char **del_str_from_array(char **array, int pos, int count)
 {
-	char *test = "$";
-	printf("%d\n", get_len_var(test));
-	return 0;
+	int	new_size;
+	int	i;
+	int	j;
+	char	**temp;
+
+
+	j = 0;
+	i = 0;
+	new_size = get_len_arr(array) - count;
+	temp = (char **)malloc((new_size + 1) * sizeof(char *));
+	if (temp == NULL)
+		return (NULL);
+	while (array[i])
+	{
+		if (i < pos || i >= pos + count)
+		{
+			temp[j] = array[i];
+			j++;
+		}
+		i++;
+	}
+	temp[j] = NULL;
+	return (temp);
 }
 
+
+
+
+
+int main() {
+    // Tableau de chaînes de caractères de test
+    char *array[] = {"Bonjour", "mon", "ami", "comment", "vas-tu", "?"};
+    int pos = 2;  // Position de départ de la suppression
+    int count = 3;  // Nombre de chaînes de caractères à supprimer
+
+    // Affichage du tableau d'origine
+    printf("Tableau d'origine :\n");
+    print_str_array(array);
+    printf("\n");
+
+    // Appel de la fonction del_str_from_array pour supprimer les chaînes de caractères
+    char **newArray = del_str_from_array(array, pos, count);
+    if (newArray == NULL) {
+        printf("Erreur lors de la suppression des chaînes de caractères.\n");
+        return 1;
+    }
+
+    // Affichage du nouveau tableau
+    printf("Nouveau tableau :\n");
+    print_str_array(newArray);
+
+    // Libération de la mémoire du nouveau tableau
+    for (int i = 0; newArray[i] != NULL; ++i) {
+        free(newArray[i]);
+    }
+    free(newArray); // Libération de la mémoire allouée pour le nouveau tableau
+
+    return 0;
+}
 
 
 
