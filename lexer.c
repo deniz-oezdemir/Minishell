@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:22:52 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/01 19:35:25 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/01 19:40:34 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,5 @@ void	lexer(t_prompt *prompt)
 	if (prompt->stop != 1)
 		prompt->commands = expander(prompt->commands, prompt->envp);
 	// print_str_array(prompt->commands);
-
 
 }

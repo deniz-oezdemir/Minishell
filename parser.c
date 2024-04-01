@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/01 18:21:58 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/01 21:15:21 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,19 @@ char	**fill_arr(char **prompt, int i, int len)
     - prompt: Pointer to the prompt structure containing input commands.
 */
 
+static void	check_v_pipe(t_prompt *prompt)
+{
+	int	len_ar;
+
+	len_ar = get_len_arr(prompt->commands) - 1;
+
+	if (prompt->commands[len_ar][0] == '|')
+	{
+		prompt->stop = 1;
+		syntax_error(prompt, "|");
+	}
+}
+
 void	parser(t_prompt *prompt)
 {
 	t_cmddat	*ptr;
@@ -101,6 +114,8 @@ void	parser(t_prompt *prompt)
 	i = 0;
 
 	get_rid_quotes(prompt);
+	check_v_pipe(prompt);
+
 	while (prompt->commands[i] && prompt->stop == 0)
 	{
 		if (i == 0 || prompt->commands[i][0] == '|' && prompt->commands[i + 1] && prompt->commands[i][0])
@@ -121,13 +136,13 @@ void	parser(t_prompt *prompt)
 			j++;
 		i++;
 	}
-	if (ptr)
+	if (ptr && prompt->stop == 0)
 	{
 		ptr->full_command = fill_arr(prompt->commands, i - j, j);
 		ptr->full_path = get_path_cmds(ptr, prompt->envp);
 	}
-
 	handle_redir(prompt);
 	print_cmd_list(prompt->cmd_list);
 }
+
 

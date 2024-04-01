@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/01 18:09:03 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/01 20:11:23 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,14 +124,15 @@ int open_file(char **cmds, int i, int *save_fd, int io_flags[2] )
 	}
 	else
 	{
-		syntax_error(cmds[i + 1]);
+		syntax_error(NULL, cmds[i + 1]);
 	}
 	return (0);
 }
 
-int	syntax_error(char *token)
+int	syntax_error(t_prompt *prompt, char *token)
 {
-	//prompt->stop = 1;
+	if (prompt)
+		prompt->stop = 1;
 	if (!token)
 		print_err_msg(NULL, "syntax error near unexpected token `newline'");
 	else
