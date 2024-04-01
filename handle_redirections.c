@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/01 15:42:10 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:11:06 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ int	get_type(char *str)
 		printf("write to outfile\n");
 	}
 	if (type == 3 && str[i + 1] && str[i + 1] == '>')
-		{
-			type = 4;
-			printf("append to outfile\n");
-		}
+	{
+		type = 4;
+		printf("append to outfile\n");
+	}
 	return (type);
 }
 

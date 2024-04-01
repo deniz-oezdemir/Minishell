@@ -6,7 +6,7 @@
 #    By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 20:35:04 by denizozd          #+#    #+#              #
-#    Updated: 2024/04/01 16:00:59 by ecarlier         ###   ########.fr        #
+#    Updated: 2024/04/01 16:21:15 by ecarlier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,15 +36,20 @@ SRCS = cstm_exit.c exit_minishell.c signal_handler.c builtins.c \
 		expand_var_utils.c expander.c handle_redirections.c \
 		quotes_utils.c
 
-
-OBJS = $(SRCS:.c=.o)
+OBJDIR = obj
+OBJS =  $(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
 
 all: $(NAME)
 
-%.o: %.c
+
+$(OBJDIR):
+	@mkdir -p $(OBJDIR)
+
+$(OBJDIR)/%.o: %.c | $(OBJDIR)
 	@echo $(Y)Compiling$(X)
 	@$(CC) $(CFLAGS) -c -o $@ $<
 	@printf $(UP)$(CUT)
+
 
 $(LIBFT):
 	@echo $(Y)"Compiling	[libft]"$(X)
@@ -60,7 +65,7 @@ $(NAME): $(LIBFT) $(OBJS)
 
 clean:
 	@echo $(B)"Removing	objectfiles"$(X)
-	@rm -f $(OBJS)
+	@rm -rf $(OBJDIR)
 	@cd $(LIBFTPATH) && make clean > /dev/null
 	@echo $(G)"Removed		objectfiles"$(X)
 
