@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:22:52 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/31 16:25:33 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/01 15:47:21 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	lexer(t_prompt *prompt)
 
 	prompt->input_string = readline("minishell> ");
 
-	// if (!prompt->input_string)
-	// 	exit_minishelll
+	if (!prompt->input_string)
+		exit_ms(0, prompt);
 	prompt->input_string = add_space(prompt->input_string);
 	prompt->commands = split_input(prompt->input_string);
 	//verifier avant expander que les quotes soient bien fermees

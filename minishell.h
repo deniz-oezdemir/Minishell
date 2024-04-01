@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/31 22:06:14 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/01 15:38:15 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,12 @@ void print_str_array(char **arr);
 void print_command_list(t_node *head);
 void print_cmd_list(const t_node *head);
 
+/* exit_minishell*/
+void	free_char_array(char **array);
+void	free_node_list(t_node *head);
+void	free_all(t_prompt	*prompt);
+void	exit_ms(int exitstatus, t_prompt *prompt);
+
 /*	main	*/
 void	launch_minishell(t_prompt *prompt);
 
@@ -150,10 +156,6 @@ int	go_home_dir(t_prompt *prompt);
 int go_back_dir(t_prompt *prompt);
 void modify_envp(t_prompt *prompt, char *name, char *insert, int f_free_name);
 char *get_envp(t_prompt *prompt, char *name);
-
-
-/*	end.c	*/
-void	exit_ms(int exitstatus, t_prompt *prompt);
 
 /*	exec.c	*/
 int	execute_cmds(t_prompt *prompt);
@@ -210,6 +212,5 @@ char	*get_trimmed(char *str, int squote, int dquote);
 int	malloc_len(char const *str);
 
 
-/* free_utils*/
-void	free_char_array(char **array);
+
 #endif

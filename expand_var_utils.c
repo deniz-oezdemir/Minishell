@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:43:45 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/29 11:27:25 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/01 15:44:42 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len )
 	char *s1; //partie avant $
 	char *s2; // valeur de la variable a etendre
 	char *s3; // apres $
-	char *expanded_str;
+	char *expanded_str; //should be put to NULL?
 
 	s1 = ft_substr(str, 0, i);
 	s3 = ft_substr(str, i + len + 1, ft_strlen(str) - i - len);

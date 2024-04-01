@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cstm_pwd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:32:03 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/21 17:41:35 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/01 15:54:43 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	cstm_pwd(t_cmddat *cmd_data)
 {
 	char *cwd;
 
+	(void)cmd_data; //Added by Leo to silence warning
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 		return (1);

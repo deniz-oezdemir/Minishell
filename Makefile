@@ -6,7 +6,7 @@
 #    By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 20:35:04 by denizozd          #+#    #+#              #
-#    Updated: 2024/03/29 15:41:25 by ecarlier         ###   ########.fr        #
+#    Updated: 2024/04/01 16:00:59 by ecarlier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,18 +20,21 @@ CUT = "\033[K"
 NAME = minishell
 CC = cc
 #CFLAGS = -Wall -Werror -Wextra #commented out to not silence all unused vars
+#CFLAGS = -g -fsanitize=address
 LIBFTPATH = ./libft
 LIBFT = ./libft/libft.a
+
 LDFLAGS		= -L/Users/$(USER)/.brew/opt/readline/lib
 CPPFLAGS	= -I/Users/$(USER)/.brew/opt/readline/include
+#LDFLAGS += -fsanitize=address
 
-SRCS = cstm_exit.c end.c signal_handler.c builtins.c \
+SRCS = cstm_exit.c exit_minishell.c signal_handler.c builtins.c \
 		cstm_pwd.c exec.c lists_utils.c split_input.c \
 		cstm_echo.c cstm_unset.c init.c main.c parser.c \
 		cstm_env.c debug_utils.c lexer.c utils.c \
 		cstm_cd.c  envp_utils.c \
 		expand_var_utils.c expander.c handle_redirections.c \
-		quotes_utils.c free_utils.c
+		quotes_utils.c
 
 
 OBJS = $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/01 14:06:24 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/01 15:42:10 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,10 @@ void	handle_redir(t_prompt *ptr)
 			while (cmd_data->full_command[i])
 			{
 				type = get_type(cmd_data->full_command[i]);
-				//printf("i : %i -- %s %s\n", i,cmd_data->full_command[i], cmd_data->full_command[i+1]);
-				//print_str_array(cmd_data->full_command);
 				if (type < 5 && type > 0)
 				{
 					open_fd_redir(ptr, cmd_data, i, type);
-					// printf("avant : ");
-					// print_str_array(cmd_data->full_command);
 					cmd_data->full_command = del_str_from_array(cmd_data->full_command, i, 2);
-					// printf("apres : ");
-					// print_str_array(cmd_data->full_command);
 					i -= 1;
 				}
 				i++;
@@ -123,7 +117,8 @@ int open_file(char **cmds, int i, int *save_fd, int i_flags, int o_flags )
 		if (*save_fd == -1)
 		{
 			printf("%s No such file or directory\n", cmds[i + 1]);
-			return (1);
+			exitstatus = 1;
+			return (1); //command not found
 		}
 	}
 	return (0);
@@ -158,7 +153,7 @@ int	get_flags(int type, int file_access_type)
 		if (type == 1 || type == 2)
 			return (0);
 		if (type == 3 || type == 4)
-			return (00644);
+			return (0644);
 	}
 	return (0);
 }
