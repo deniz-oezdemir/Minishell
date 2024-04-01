@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/31 22:49:42 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:06:24 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,17 @@ void	handle_redir(t_prompt *ptr)
 			while (cmd_data->full_command[i])
 			{
 				type = get_type(cmd_data->full_command[i]);
+				//printf("i : %i -- %s %s\n", i,cmd_data->full_command[i], cmd_data->full_command[i+1]);
+				//print_str_array(cmd_data->full_command);
 				if (type < 5 && type > 0)
 				{
 					open_fd_redir(ptr, cmd_data, i, type);
-					// del_str_from_array(cmd_data->full_command, i, 2);
-					// i -= 2;
+					// printf("avant : ");
+					// print_str_array(cmd_data->full_command);
+					cmd_data->full_command = del_str_from_array(cmd_data->full_command, i, 2);
+					// printf("apres : ");
+					// print_str_array(cmd_data->full_command);
+					i -= 1;
 				}
 				i++;
 			}
@@ -102,7 +108,7 @@ if save_fd > 1 , it means that it's already open and we need to close it
 
 int open_file(char **cmds, int i, int *save_fd, int i_flags, int o_flags )
 {
-	//printf("enters open_file\n");
+	printf("enters open_file\n");
 	if (*save_fd > 1)
 	{
 		if (close(*save_fd) == -1)
@@ -129,10 +135,11 @@ O_RDONLY: opened in read-only mode.
 O_WRONLY: opened in write-only mode.
 O_CREAT: created if it does not exist.
 O_TRUNC: truncated (emptied) if it already exists.
-
-O_APPEND: Indicates that data should be appended to the end of the file during writing.
+O_APPEND: Indicates that data should be appended to the
+ end of the file during writing.
 00644: octal value used to specify the file permissions when creating it.
-In this case, 00644 grants read and write permissions to the file owner, and read permissions to other users.
+In this case, 00644 grants read and write permissions to
+the file owner, and read permissions to other users.
 */
 
 int	get_flags(int type, int file_access_type)
@@ -165,21 +172,13 @@ int	open_fd_redir(t_prompt *prompt, t_cmddat *cmd_struct, int i, int type)
 	input_flags = get_flags(type, 0);
 	output_flags = get_flags(type, 1);
 	if (type == 1)
-		cmd_struct->file_open_error = open_file(prompt->commands, i, &cmd_struct->infile, input_flags, output_flags);
+		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i, &cmd_struct->infile, input_flags, output_flags);
 	else if (type == 2)
 		printf("to do : start here_doc\n ");
 	else if (type == 3)
-		cmd_struct->file_open_error = open_file(prompt->commands, i, &cmd_struct->outfile, input_flags, output_flags);
+		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i, &cmd_struct->outfile, input_flags, output_flags);
 	else
-		cmd_struct->file_open_error = open_file(prompt->commands, i + 1, &cmd_struct->outfile, input_flags, output_flags);
-
-	//prompt->commands = del_str_from_array(prompt->commands, i, 2);
-	//printf("after del \n");
-	//print_str_array(prompt->commands);
-	// if (type == 2 || type == 4)
-	// 	return (3);
-	// else
-	// 	return (2);
+		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i + 1, &cmd_struct->outfile, input_flags, output_flags);
 	return 0;
 }
 
