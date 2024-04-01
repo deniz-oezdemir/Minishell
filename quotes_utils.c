@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:39:46 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/31 16:26:12 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/01 19:33:44 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	get_rid_quotes(t_prompt	*prompt)
 	if (!temp)
 		return ;
 	i = 0;
-	//print_str_array(prompt->commands);
 	while (prompt->commands[i])
 	{
 		trim_cmd = get_trimmed(prompt->commands[i], 0, 0);
@@ -35,9 +34,6 @@ void	get_rid_quotes(t_prompt	*prompt)
 	temp[i] = NULL;
 	free(prompt->commands);
 	prompt->commands = temp;
-	//print_str_array(prompt->commands);
-	//print_char_array(temp);
-
 }
 
 char	*get_trimmed(char *str, int squote, int dquote)
