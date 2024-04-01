@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/01 20:11:23 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/01 21:43:48 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,13 @@ void	handle_redir(t_prompt *ptr)
 				type = get_type(cmd_data->full_command[i]);
 				if (type < 5 && type > 0)
 				{
+					// if (cmd_data->full_command[i + 1] == NULL)
+					// {
+					// 	ptr->stop = 1;
+					// 	syntax_error(ptr, cmd_data->full_command[i]);
+					// 	//current_node = NULL;
+					// 	//break;
+					// }
 					open_fd_redir(ptr, cmd_data, i, type);
 					cmd_data->full_command = del_str_from_array(cmd_data->full_command, i, 2);
 					i -= 1;

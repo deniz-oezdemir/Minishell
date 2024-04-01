@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/01 21:15:21 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/01 22:27:59 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,17 +90,47 @@ char	**fill_arr(char **prompt, int i, int len)
   Parameters:
     - prompt: Pointer to the prompt structure containing input commands.
 */
-
-static void	check_v_pipe(t_prompt *prompt)
+/*
+check if the last char is | < > */
+static void	check_last_char(t_prompt *prompt)
 {
 	int	len_ar;
+	char last_char;
+
 
 	len_ar = get_len_arr(prompt->commands) - 1;
+	last_char = prompt->commands[len_ar][0] ;
 
-	if (prompt->commands[len_ar][0] == '|')
+	if (last_char == '|' || last_char == '<' || last_char == '>' )
 	{
 		prompt->stop = 1;
-		syntax_error(prompt, "|");
+		syntax_error(prompt, prompt->commands[len_ar]);
+	}
+}
+/*
+check pour chaque struct si le dernier char est < ou > */
+static void	check_token(t_prompt *prompt)
+{
+	t_node *current_node;
+	t_cmddat *cmd_data;
+	int	len_arr;
+	char	last_char;
+
+	current_node = prompt->cmd_list;
+	while (current_node != NULL)
+	{
+		cmd_data = current_node->data;
+		len_arr = get_len_arr(cmd_data->full_command) - 1 ;
+		last_char = cmd_data->full_command[len_arr][0];
+		if (last_char == '|' || last_char == '<' || last_char == '>' )
+		{
+			prompt->stop = 1;
+			syntax_error(prompt, cmd_data->full_command[len_arr]);
+			free_node_list(prompt->cmd_list);
+			prompt->cmd_list = NULL;
+			break;
+		}
+		current_node = current_node->next;
 	}
 }
 
@@ -114,7 +144,7 @@ void	parser(t_prompt *prompt)
 	i = 0;
 
 	get_rid_quotes(prompt);
-	check_v_pipe(prompt);
+	check_last_char(prompt);
 
 	while (prompt->commands[i] && prompt->stop == 0)
 	{
@@ -141,8 +171,12 @@ void	parser(t_prompt *prompt)
 		ptr->full_command = fill_arr(prompt->commands, i - j, j);
 		ptr->full_path = get_path_cmds(ptr, prompt->envp);
 	}
-	handle_redir(prompt);
-	print_cmd_list(prompt->cmd_list);
+	check_token(prompt);
+	if (prompt->stop == 0)
+	{
+		handle_redir(prompt);
+		print_cmd_list(prompt->cmd_list);
+	}
 }
 
 
