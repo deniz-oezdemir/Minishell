@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/27 18:55:06 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:33:12 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,7 @@ char	**split_input(char *str)
 		printf("Syntax error: unclosed quote in argument\n");
 		return (NULL);
 	}
+	printf("hre\n");
 	arr = (char **)malloc(sizeof(char *) * (word_count + 1));
 	if (!arr)
 		return (NULL);

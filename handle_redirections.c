@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/01 16:11:06 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:09:03 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	get_type(char *str)
 	if (type == 0 && str[i] == '>')
 	{
 		type = 3;
-		printf("write to outfile\n");
+		//printf("write to outfile\n");
 	}
 	if (type == 3 && str[i + 1] && str[i + 1] == '>')
 	{
@@ -100,20 +100,21 @@ void	handle_redir(t_prompt *ptr)
 if save_fd > 1 , it means that it's already open and we need to close it
 */
 
-int open_file(char **cmds, int i, int *save_fd, int i_flags, int o_flags )
+int open_file(char **cmds, int i, int *save_fd, int io_flags[2] )
 {
-	printf("enters open_file\n");
 	if (*save_fd > 1)
 	{
 		if (close(*save_fd) == -1)
 			printf("Error while attempting to close a file");
+			//perror("minishell");
 	}
-	if (cmds[i + 1] && cmds[i + 1][0] != '>' && cmds[i + 1][0] != '<')
+	//if (cmds[i + 1] && cmds[i + 1][0] != '>' && cmds[i + 1][0] != '<')
+	if (cmds[i + 1])
 	{
-		if (o_flags != 0)
-			*save_fd = open(cmds[i + 1], i_flags, o_flags);
+		if (io_flags[1] != 0)
+			*save_fd = open(cmds[i + 1], io_flags[0], io_flags[1]);
 		else
-			*save_fd = open(cmds[i + 1], i_flags);
+			*save_fd = open(cmds[i + 1], io_flags[0]);
 		if (*save_fd == -1)
 		{
 			printf("%s No such file or directory\n", cmds[i + 1]);
@@ -121,9 +122,26 @@ int open_file(char **cmds, int i, int *save_fd, int i_flags, int o_flags )
 			return (1); //command not found
 		}
 	}
+	else
+	{
+		syntax_error(cmds[i + 1]);
+	}
 	return (0);
 }
 
+int	syntax_error(char *token)
+{
+	//prompt->stop = 1;
+	if (!token)
+		print_err_msg(NULL, "syntax error near unexpected token `newline'");
+	else
+	{
+		ft_putstr_fd("minishell: syntax error near unexpected token `", 2);
+		ft_putstr_fd(token, 2);
+		ft_putstr_fd("'\n", 2);
+	}
+	return (0);
+}
 /*
 Indicates that the file should be...
 O_RDONLY: opened in read-only mode.
@@ -161,19 +179,25 @@ int	get_flags(int type, int file_access_type)
 
 int	open_fd_redir(t_prompt *prompt, t_cmddat *cmd_struct, int i, int type)
 {
-	int	input_flags;
-	int	output_flags;
+	int io_flags[2];
+	// int	input_flags;
+	// int	output_flags;
+	// input_flags = get_flags(type, 0);
+	// output_flags = get_flags(type, 1);
 
-	input_flags = get_flags(type, 0);
-	output_flags = get_flags(type, 1);
+	io_flags[0] = get_flags(type, 0);
+	io_flags[1] = get_flags(type, 1);
 	if (type == 1)
-		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i, &cmd_struct->infile, input_flags, output_flags);
+		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i, &cmd_struct->infile, io_flags);
 	else if (type == 2)
 		printf("to do : start here_doc\n ");
 	else if (type == 3)
-		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i, &cmd_struct->outfile, input_flags, output_flags);
+		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i, &cmd_struct->outfile, io_flags);
 	else
-		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i + 1, &cmd_struct->outfile, input_flags, output_flags);
+		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i, &cmd_struct->outfile, io_flags);
+
+	printf("file_open_error value : %i\n", cmd_struct->file_open_error);
+
 	return 0;
 }
 

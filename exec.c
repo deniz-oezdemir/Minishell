@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/31 20:51:36 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:39:11 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,10 @@ void	run_cmd(void *content)
 	t_cmddat *cmd_data;
 
 	cmd_data = (t_cmddat *)content;
-	/*if (cmd_data->prompt->stop)
-		return ;*/
+	//LEO uncommented because needed this
+	if (cmd_data->prompt->stop == 1)
+		return ;
+	//
 	if (!is_executable(cmd_data)) //@Deniz: write is_executable //different
 		return ;
 	cmd_data->prompt->pid = fork();

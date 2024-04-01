@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/31 19:41:28 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:21:58 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	parser(t_prompt *prompt)
 	i = 0;
 
 	get_rid_quotes(prompt);
-	while (prompt->commands[i])
+	while (prompt->commands[i] && prompt->stop == 0)
 	{
 		if (i == 0 || prompt->commands[i][0] == '|' && prompt->commands[i + 1] && prompt->commands[i][0])
 		{

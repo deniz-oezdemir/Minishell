@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/01 15:38:15 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:03:43 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,9 +200,11 @@ char *expand_var(char *str, char **ev);
 
 int	get_type(char *str);
 void	handle_redir(t_prompt *ptr);
-int open_file(char **cmds, int i, int *save_fd, int i_flags, int o_flags );
+int open_file(char **cmds, int i, int *save_fd, int io_flags[2]);
 int	get_flags(int type, int file_access_type);
 int	open_fd_redir(t_prompt *prompt, t_cmddat *cmd_struct, int i, int type);
+
+int	syntax_error(char *token);
 //t_node	fill_redir(t_node *current, int type, int i);
 //char	*get_infile(t_node *current, int i);
 
