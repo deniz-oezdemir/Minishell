@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/01 19:30:01 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:56:09 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ int	main(int argc, char *argv[], char **envp)
 		prompt = ft_calloc(1, sizeof(t_prompt));
 		init_prompt_struct(prompt, envp);
 	}
-
-	launch_minishell(prompt); //@Leo: Deniz deleted & in front of prompt as compilation warning
+	launch_minishell(prompt);
 	return (0);
 }
 

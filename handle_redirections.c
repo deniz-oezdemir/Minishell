@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/01 21:43:48 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:42:55 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,11 +187,7 @@ int	get_flags(int type, int file_access_type)
 
 int	open_fd_redir(t_prompt *prompt, t_cmddat *cmd_struct, int i, int type)
 {
-	int io_flags[2];
-	// int	input_flags;
-	// int	output_flags;
-	// input_flags = get_flags(type, 0);
-	// output_flags = get_flags(type, 1);
+	int	io_flags[2];
 
 	io_flags[0] = get_flags(type, 0);
 	io_flags[1] = get_flags(type, 1);
@@ -208,6 +204,3 @@ int	open_fd_redir(t_prompt *prompt, t_cmddat *cmd_struct, int i, int type)
 
 	return 0;
 }
-
-
-
