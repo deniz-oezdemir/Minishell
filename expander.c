@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/29 11:25:39 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/02 21:30:59 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	**expander(char **str, char **ev)
 	int		i;
 	char	**temp;
 
-	temp = malloc(sizeof(char **) * get_len_arr(str) + 1);
+	temp = malloc(sizeof(char *) * (get_len_arr(str) + 1));
 	if (!temp)
 		return (NULL);
 	i = 0;

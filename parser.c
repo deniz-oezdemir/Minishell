@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/01 22:27:59 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/02 21:32:05 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ char	**fill_arr(char **prompt, int i, int len)
 	int j;
 	j = 0;
 
-	temp = malloc((sizeof(char *) * len + 1));
+	//print_str_array(prompt);
+	temp = malloc(sizeof(char *) * (len + 1));
 	if (!temp)
 		return (NULL);
 	while (len > 0)
@@ -156,6 +157,7 @@ void	parser(t_prompt *prompt)
  			add_node_to_list(&(prompt->cmd_list), ptr);
 			if (i != 0)
 			{
+
 				ptr->full_command = fill_arr(prompt->commands, i - j, j);
 				ptr->full_path = get_path_cmds(ptr, prompt->envp);
 				prompt->cmd_list->data->full_command = fill_arr(prompt->commands, i - j, j);

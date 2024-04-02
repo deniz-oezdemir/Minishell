@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:39:46 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/01 19:33:44 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/02 21:30:41 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,35 +35,60 @@ void	get_rid_quotes(t_prompt	*prompt)
 	free(prompt->commands);
 	prompt->commands = temp;
 }
-
-char	*get_trimmed(char *str, int squote, int dquote)
+char	*get_trimmed(char const *s1, int squote, int dquote)
 {
-	int	len_s;
+	int		count;
+	int		i[2];
 	char	*trimmed;
-	int	i; //parcourt la chaine str
-	int j; //suivre la nouvelle chaine
 
-	i = 0;
-	j = -1;
-	len_s = malloc_len(str);
-	if (!str || len_s == -1)
+	i[1] = -1;
+	i[0] = 0;
+	count = malloc_len(s1);
+	if (!s1 || count == -1)
 		return (NULL);
-	trimmed = malloc(sizeof(char) * (len_s + 1));
+	trimmed = malloc(sizeof(char) * (ft_strlen(s1) - count + 1));
 	if (!trimmed)
 		return (NULL);
-	while (str[i])
+	while (s1[i[0]])
 	{
-		squote = (squote + (!dquote && str[i] == '\'')) % 2;
-		dquote = (dquote + (!squote && str[i] == '\"')) % 2;
-		if ((str[i] != '\"' || squote) && (str[i] != '\'' || dquote) \
-		&& ++j >= 0)
-			trimmed[j] = str[i];
-		i++;
+		squote = (squote + (!dquote && s1[i[0]] == '\'')) % 2;
+		dquote = (dquote + (!squote && s1[i[0]] == '\"')) % 2;
+		if ((s1[i[0]] != '\"' || squote) && (s1[i[0]] != '\'' || dquote) \
+			&& ++i[1] >= 0)
+			trimmed[i[1]] = s1[i[0]];
+		i[0]++;
 	}
-	j++;
-	trimmed[j] = '\0';
+	trimmed[++i[1]] = '\0';
 	return (trimmed);
 }
+// char	*get_trimmed(char *str, int squote, int dquote)
+// {
+// 	int	len_s;
+// 	char	*trimmed;
+// 	int	i; //parcourt la chaine str
+// 	int j; //suivre la nouvelle chaine
+
+// 	i = 0;
+// 	j = -1;
+// 	len_s = malloc_len(str);
+// 	if (!str || len_s == -1)
+// 		return (NULL);
+// 	trimmed = malloc(sizeof(char) * (len_s + 1));
+// 	if (!trimmed)
+// 		return (NULL);
+// 	while (str[i])
+// 	{
+// 		squote = (squote + (!dquote && str[i] == '\'')) % 2;
+// 		dquote = (dquote + (!squote && str[i] == '\"')) % 2;
+// 		if ((str[i] != '\"' || squote) && (str[i] != '\'' || dquote) \
+// 		&& ++j >= 0)
+// 			trimmed[j] = str[i];
+// 		i++;
+// 	}
+// 	j++;
+// 	trimmed[j] = '\0';
+// 	return (trimmed);
+// }
 
 int	malloc_len(char const *str)
 {
