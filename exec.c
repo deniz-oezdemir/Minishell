@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/04 15:16:12 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:46:15 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void wait_update_exitstatus(t_prompt *prompt)
 	t_cmddat *last;
 
 	tmp_exitstatus = -1;
-	last = ft_lstlast(prompt->cmd_list)->content;
+	last = cstm_lstlast(prompt->cmd_list)->content;
 	if (waitpid(prompt->pid, &child_status, 0) != -1 && WIFEXITED(child_status)) //Wait for first child process to terminate; if it exits normally (not by a signal), update temp_exitcode with the exit status of the child process.
 		tmp_exitstatus = WEXITSTATUS(child_status);
 	while(waitpid(-1, &child_status, 0) != -1) //wait for any child processes to terminate
@@ -97,7 +97,7 @@ void	run_cmd(void *content)
 			execute_builtin(cmd_data, get_builtin_nbr(cmd_data), 1);
 		dup2(cmd_data->infile, 0);
 		dup2(cmd_data->outfile, 1);
-		ft_lstiter(cmd_data->prompt->cmd_list, cls_fds); //why here also? because forked?
+		cstm_lstiter(cmd_data->prompt->cmd_list, cls_fds); //why here also? because forked?
 		execve(cmd_data->full_path, cmd_data->full_command, cmd_data->prompt->envp);
 		close(0);
 		close(1);
@@ -114,15 +114,15 @@ int	execute_cmds(t_prompt *prompt)
 		return (0);
 	//signal(SIGQUIT, &handle_sig_quit); @Leo: What does ths do?
 	cmd_data = prompt->cmd_list->data;
-	if(ft_lstsize(prompt->cmd_list) == 1 && get_builtin_nbr(cmd_data)) //change t_node to t_lst such that we can use libft functions
+	if(cstm_lstsize(prompt->cmd_list) == 1 && get_builtin_nbr(cmd_data)) //change t_node to t_lst such that we can use libft functions
 	{
 		exitstatus = execute_builtin(cmd_data, get_builtin_nbr(cmd_data), 0); //@Deniz: continue writing execute_builtin
-		ft_lstiter(prompt->cmd_list, cls_fds); //ft_lstiter necessary? if only one cmd, only cls_fds once should be enough
+		cstm_lstiter(prompt->cmd_list, cls_fds); //cstm_lstiter necessary? if only one cmd, only cls_fds once should be enough
 	}
 	else
 	{
-		ft_lstiter(prompt->cmd_list, run_cmd);
-		ft_lstiter(prompt->cmd_list, cls_fds);
+		cstm_lstiter(prompt->cmd_list, run_cmd);
+		cstm_lstiter(prompt->cmd_list, cls_fds);
 		wait_update_exitstatus(prompt);
 	}
 	return (0);

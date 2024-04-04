@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/01 21:21:27 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:41:42 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,9 @@ void	get_rid_quotes(t_prompt	*prompt);
 char	*get_trimmed(char *str, int squote, int dquote);
 int	malloc_len(char const *str);
 
-
+/*	list_functions.c */
+void	cstm_lstiter(t_node *lst, void (*f)(void *));
+t_node	*cstm_lstlast(t_node *lst);
+int	cstm_lstsize(t_node*lst);
 
 #endif
