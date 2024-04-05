@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/02 14:51:33 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/05 13:55:21 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ static char	**ft_create_substrs(char **aux, char const *s, char *set)
 			i++;
 		}
 		if (start_index >= s_len)
-			aux[word_index++] = "\0";
+			aux[word_index++] = NULL;
 		else
 			aux[word_index++] = ft_substr(s, start_index, i - start_index);
 	}

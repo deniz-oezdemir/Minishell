@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/02 21:32:05 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:07:37 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ char	**fill_arr(char **prompt, int i, int len)
 	int j;
 	j = 0;
 
+	temp = NULL;
 	//print_str_array(prompt);
 	temp = malloc(sizeof(char *) * (len + 1));
 	if (!temp)
@@ -100,6 +101,9 @@ static void	check_last_char(t_prompt *prompt)
 
 
 	len_ar = get_len_arr(prompt->commands) - 1;
+	if (len_ar < 0 || prompt->commands[len_ar] == NULL || prompt->commands[len_ar][0] == '\0')
+		return;
+
 	last_char = prompt->commands[len_ar][0] ;
 
 	if (last_char == '|' || last_char == '<' || last_char == '>' )
@@ -144,10 +148,12 @@ void	parser(t_prompt *prompt)
 	j = 1;
 	i = 0;
 
+	ptr = NULL;
+	temp = NULL;
 	get_rid_quotes(prompt);
 	check_last_char(prompt);
 
-	while (prompt->commands[i] && prompt->stop == 0)
+	while (prompt && prompt->commands && prompt->commands[i] && prompt->stop == 0)
 	{
 		if (i == 0 || prompt->commands[i][0] == '|' && prompt->commands[i + 1] && prompt->commands[i][0])
 		{

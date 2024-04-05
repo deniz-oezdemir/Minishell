@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:31:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/01 17:42:54 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:00:07 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ size_t	get_len_arr(char **array)
 	size_t	i;
 
 	i = 0;
+	if (array == NULL)
+		return (0);
 	while (array[i])
 	{
 		i++;

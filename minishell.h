@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/05 13:07:59 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/05 13:35:31 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,5 +218,6 @@ int	malloc_len(char const *str);
 void	cstm_lstiter(t_node *lst, void (*f)(void *));
 t_node	*cstm_lstlast(t_node *lst);
 int	cstm_lstsize(t_node*lst);
+void	cstm_lstclear(t_node **lst, void (*del)(void *));
 
 #endif

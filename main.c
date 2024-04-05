@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/02 14:56:09 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:53:33 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,15 @@ void	launch_minishell(t_prompt *prompt)
 	while (1)
 	{
 		lexer(prompt);
-		if (prompt->commands == NULL)
-			continue;
+		// if (prompt->commands == NULL)
+		// 	continue;
 		if (prompt->commands)
 			add_history(prompt->input_string);
 		parser(prompt);
 		execute_cmds(prompt);
-		//free between commands
+		if (prompt->commands)
+			free_char_array(prompt->commands);
+		cstm_lstclear(&prompt->cmd_list, (void (*)(void *))free_node_list);
+
 	}
 }

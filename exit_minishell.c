@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:19:36 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/01 15:50:36 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:52:52 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ void	free_char_array(char **array)
 		free(*array);
 		array++;
 	}
-	free(array);
+	//free(array);
 }

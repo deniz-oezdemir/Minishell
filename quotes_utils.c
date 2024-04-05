@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:39:46 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/02 21:30:41 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:01:28 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	get_rid_quotes(t_prompt	*prompt)
 	char	*trim_cmd;
 	int		i;
 	int		len_arr;
-
+	if (prompt->commands == NULL)
+		return ;
 	len_arr = get_len_arr(prompt->commands);
 	temp = malloc(sizeof(char *) * (len_arr + 1));
 	if (!temp)
