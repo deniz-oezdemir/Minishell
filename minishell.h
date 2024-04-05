@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/04 15:41:42 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/05 13:07:59 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,8 @@ int	syntax_error(t_prompt *prompt, char *token);
 
 /* quotes_utils.c */
 void	get_rid_quotes(t_prompt	*prompt);
-char	*get_trimmed(char *str, int squote, int dquote);
+char	*get_trimmed(char const *s1, int squote, int dquote);
+//char	*get_trimmed(char *str, int squote, int dquote);
 int	malloc_len(char const *str);
 
 /*	list_functions.c */
