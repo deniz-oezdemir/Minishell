@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/04 15:46:15 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/05 13:04:31 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void wait_update_exitstatus(t_prompt *prompt)
 	t_cmddat *last;
 
 	tmp_exitstatus = -1;
-	last = cstm_lstlast(prompt->cmd_list)->content;
+	last = cstm_lstlast(prompt->cmd_list)->data;
 	if (waitpid(prompt->pid, &child_status, 0) != -1 && WIFEXITED(child_status)) //Wait for first child process to terminate; if it exits normally (not by a signal), update temp_exitcode with the exit status of the child process.
 		tmp_exitstatus = WEXITSTATUS(child_status);
 	while(waitpid(-1, &child_status, 0) != -1) //wait for any child processes to terminate
