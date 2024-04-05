@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/02 14:42:55 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/05 17:21:12 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,13 +194,14 @@ int	open_fd_redir(t_prompt *prompt, t_cmddat *cmd_struct, int i, int type)
 	if (type == 1)
 		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i, &cmd_struct->infile, io_flags);
 	else if (type == 2)
+	{
 		printf("to do : start here_doc\n ");
+		//get_here_doc(prompt, cmd_struct, i);
+	}
+
 	else if (type == 3)
 		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i, &cmd_struct->outfile, io_flags);
 	else
 		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i, &cmd_struct->outfile, io_flags);
-
-	printf("file_open_error value : %i\n", cmd_struct->file_open_error);
-
-	return 0;
+	return (0);
 }

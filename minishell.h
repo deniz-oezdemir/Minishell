@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/05 13:35:31 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/05 17:33:03 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ int	init_env(t_prompt *prompt, char **env);
 /*	signal_handler	*/
 void	sigint_handler(int signum);
 void	handle_sig_quit(int n);
+void	signals_interactive(void);
+void	handle_sig_int(int n);
 
 /*	utils.c	*/
 size_t	get_len_arr(char **array);
@@ -220,4 +222,7 @@ t_node	*cstm_lstlast(t_node *lst);
 int	cstm_lstsize(t_node*lst);
 void	cstm_lstclear(t_node **lst, void (*del)(void *));
 
+
+/* here_doc */
+void	get_here_doc(t_prompt *prompt, t_cmddat *cmd_struct, int i);
 #endif
