@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/05 17:33:03 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:30:28 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void	sigint_handler(int signum);
 void	handle_sig_quit(int n);
 void	signals_interactive(void);
 void	handle_sig_int(int n);
+void	signals_non_interactive(void);
 
 /*	utils.c	*/
 size_t	get_len_arr(char **array);

@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:55:10 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/05 17:38:13 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:21:50 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ void	signals_interactive(void)
 	signal(SIGQUIT, SIG_IGN);
 }
 
+void	signals_non_interactive(void)
+{
+	signal(SIGINT, handle_sig_int);
+	signal(SIGQUIT, handle_sig_quit);
+}
 /*
  Ctrl+\
  131

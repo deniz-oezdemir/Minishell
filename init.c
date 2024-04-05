@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 20:12:21 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/01 18:19:45 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:39:31 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,17 @@ int	init_env(t_prompt *prompt, char **env)
 
 	i = 0;
 	prompt->envp = ft_calloc((get_len_arr(env) +1), sizeof(char *));
+	if (!prompt->envp)
+	{
+		printf("Error allocating memory for envp\n");
+		return (0); //return failure
+	}
 	while (env[i])
 	{
 		prompt->envp[i] = ft_strdup(env[i]);
 		if (!prompt->envp[i])
 		{
+			free_char_array(prompt->envp);
 			printf("Error env");
 			return (0); //return failure
 		}
