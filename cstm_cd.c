@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:35:29 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/25 14:31:09 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:28:39 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ int cstm_cd(t_cmddat *cmd_data)
 {
 	DIR *dir_user;
 
+	printf("c2.1\n");
+	print_cmddat(cmd_data);
 	if (cmd_data->full_command)
 	{
 		if (!cmd_data->full_command[1])
@@ -111,6 +113,7 @@ int cstm_cd(t_cmddat *cmd_data)
 		else if(ft_strcmp(cmd_data->full_command[1], "-"))
 			return(go_back_dir(cmd_data->prompt));
 	}
+		printf("c2.2\n");
 	modify_envp(cmd_data->prompt, "OLDPWD", (char *)getcwd(NULL, 0), 0);
 	dir_user = opendir(cmd_data->full_command[1]);
 	if (!dir_user)

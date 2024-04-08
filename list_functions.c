@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:08:23 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/04 15:45:44 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:15:33 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@ void	cstm_lstiter(t_node *lst, void (*f)(void *))
 {
 	if (!lst || !f)
 		return ;
+		printf("c3.1\n");
 	while (lst)
 	{
+		printf("c3.2\n");
 		f(lst->data); //data is of type cmd_dat
+		printf("c3.3\n");
 		lst = lst->next;
 	}
 }

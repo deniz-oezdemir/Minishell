@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/05 13:04:31 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:26:41 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,19 +82,26 @@ void	run_cmd(void *content)
 	t_cmddat *cmd_data;
 
 	cmd_data = (t_cmddat *)content;
+		printf("c3.2.1\n");
 	// //LEO uncommented because needed this
 	// if (cmd_data->prompt->stop == 1)
 	// 	return ;
 	//
 	if (!is_executable(cmd_data)) //@Deniz: write is_executable //different
 		return ;
-	cmd_data->prompt->pid = fork();
+		printf("c3.2.2\n");
+		print_cmddat(cmd_data);
+		printf("pid: %ld\n", cmd_data->prompt->pid);
+	cmd_data->prompt->pid = 0;//fork(); //seg fault: somehow can not assign anything to pid -> because *prompt is not initialized
+		printf("c3.2.3\n");
 	if (cmd_data->prompt->pid == -1) //fork error
 		return ;
+		printf("c3.2.4\n");
 	if (cmd_data->prompt->pid == 0) //fork success
 	{
 		if (get_builtin_nbr(cmd_data))
 			execute_builtin(cmd_data, get_builtin_nbr(cmd_data), 1);
+			printf("3.2.5\n");
 		dup2(cmd_data->infile, 0);
 		dup2(cmd_data->outfile, 1);
 		cstm_lstiter(cmd_data->prompt->cmd_list, cls_fds); //why here also? because forked?
@@ -114,14 +121,19 @@ int	execute_cmds(t_prompt *prompt)
 		return (0);
 	//signal(SIGQUIT, &handle_sig_quit); @Leo: What does ths do?
 	cmd_data = prompt->cmd_list->data;
+		printf("c1\n");
 	if(cstm_lstsize(prompt->cmd_list) == 1 && get_builtin_nbr(cmd_data)) //change t_node to t_lst such that we can use libft functions
 	{
+			printf("c2\n");
 		exitstatus = execute_builtin(cmd_data, get_builtin_nbr(cmd_data), 0); //@Deniz: continue writing execute_builtin
+			printf("c3\n");
 		cstm_lstiter(prompt->cmd_list, cls_fds); //cstm_lstiter necessary? if only one cmd, only cls_fds once should be enough
 	}
 	else
 	{
+			printf("c3\n");
 		cstm_lstiter(prompt->cmd_list, run_cmd);
+			printf("c4\n");
 		cstm_lstiter(prompt->cmd_list, cls_fds);
 		wait_update_exitstatus(prompt);
 	}
