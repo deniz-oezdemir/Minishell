@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:35:29 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/08 13:40:50 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/08 14:37:21 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,13 @@ int cstm_cd(t_cmddat *cmd_data)
 {
 	DIR *dir_user;
 
+	printf("test: -: %s\n", cmd_data->full_command[1]);
 	if (cmd_data->full_command)
 	{
 		if (!cmd_data->full_command[1])
-			return(go_home_dir(cmd_data->prompt));
-		else if(ft_strcmp(cmd_data->full_command[1], "-"))
-			return(go_back_dir(cmd_data->prompt));
+			return(go_home_dir(cmd_data->prompt)); //works
+		else if(!ft_strcmp(cmd_data->full_command[1], "-"))
+			return(go_back_dir(cmd_data->prompt)); //works
 	}
 	modify_envp(cmd_data->prompt, "OLDPWD", (char *)getcwd(NULL, 0), 0);
 	dir_user = opendir(cmd_data->full_command[1]);
@@ -121,3 +122,12 @@ int cstm_cd(t_cmddat *cmd_data)
 	modify_envp(cmd_data->prompt, "PWD", (char *)getcwd(NULL, 0), 0);
 	return (0);
 }
+
+/*debugging
+
+cd			works
+cd -		works
+cd path		works from home to 42-Minishell, but not from 42-Minishell to libft?
+cd ..
+cd .
+*/
