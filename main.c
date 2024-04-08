@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/08 13:02:07 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/08 13:37:08 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ void	launch_minishell(t_prompt *prompt)
 			add_history(prompt->input_string);
 		parser(prompt);
 		execute_cmds(prompt);
-		// if (prompt->commands)
-		// 	free_char_array(prompt->commands);
-		// cstm_lstclear(&prompt->cmd_list, (void (*)(void *))free_node_list);
+
+		if (prompt->commands)
+			free_char_array(prompt->commands);
+
+		cstm_lstclear(&prompt->cmd_list, clear_cmmdat_lst);
 
 	}
 }

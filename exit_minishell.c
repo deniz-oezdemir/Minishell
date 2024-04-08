@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:19:36 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/05 14:52:52 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/08 13:38:01 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,19 @@ void	free_all(t_prompt	*prompt)
 		free(prompt);
 }
 
+void	clear_cmmdat_lst(void *content)
+{
+	t_cmddat	*cmd_struct;
+
+	cmd_struct = (t_cmddat *)content;
+	if (cmd_struct->full_path)
+		free(cmd_struct->full_path);
+	if (cmd_struct->full_command)
+		free_char_array(cmd_struct->full_command);
+	free(cmd_struct);
+}
+
+
 void	free_node_list(t_node *head)
 {
 	t_node	*current;
@@ -44,15 +57,19 @@ void	free_node_list(t_node *head)
 	{
 		temp = current;
 		current = current->next;
-		if (temp->data)
+		if (temp && temp->data)
 		{
-			free(temp->data->full_command);
-			free(temp->data->full_path);
+			if (temp->data->full_command)
+				free(temp->data->full_command);
+			if (temp->data->full_path)
+				free(temp->data->full_path);
 			free(temp->data);
 		}
 		free(temp);
 	}
 }
+
+
 
 void	free_char_array(char **array)
 {

@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/05 18:30:28 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/08 13:37:25 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void	free_char_array(char **array);
 void	free_node_list(t_node *head);
 void	free_all(t_prompt	*prompt);
 void	exit_ms(int exitstatus, t_prompt *prompt);
+void	clear_cmmdat_lst(void *content);
 
 /*	main	*/
 void	launch_minishell(t_prompt *prompt);
@@ -222,6 +223,7 @@ void	cstm_lstiter(t_node *lst, void (*f)(void *));
 t_node	*cstm_lstlast(t_node *lst);
 int	cstm_lstsize(t_node*lst);
 void	cstm_lstclear(t_node **lst, void (*del)(void *));
+void	cstm_lstdelone(t_node *lst, void (*del)(void *));
 
 
 /* here_doc */

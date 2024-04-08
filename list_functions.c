@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:08:23 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/05 13:34:56 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/08 13:38:24 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	cstm_lstsize(t_node*lst)
 	}
 	return (i);
 }
-
 void	cstm_lstclear(t_node **lst, void (*del)(void *))
 {
 	t_node	*next;
@@ -54,8 +53,17 @@ void	cstm_lstclear(t_node **lst, void (*del)(void *))
 	while (*lst)
 	{
 		next = (*lst)->next;
-		del((*lst)->data);
-		free(*lst);
+		cstm_lstdelone(*lst, del);
 		*lst = next;
 	}
 }
+
+void	cstm_lstdelone(t_node *lst, void (*del)(void *))
+{
+	if (!lst || !del)
+		return ;
+	del(lst->data);
+	free(lst);
+}
+
+
