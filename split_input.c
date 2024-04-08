@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/05 13:55:21 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/08 13:49:17 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,7 @@ char	**split_input(char *str)
 	arr[word_count] = NULL;
 	//printf("\narray : ");
 	//print_str_array(arr);
+	// free(str);
 	return (arr);
 
 }
