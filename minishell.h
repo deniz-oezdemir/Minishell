@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/08 13:55:00 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:34:17 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void	clear_cmmdat_lst(void *content);
 
 /*	main	*/
 void	launch_minishell(t_prompt *prompt);
+void	pipe_infile_outfile(t_node *cmd_lst);
 
 /*	init	*/
 void	init_prompt_struct(t_prompt *prompt, char **envp);

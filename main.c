@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/08 13:55:40 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:53:19 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	launch_minishell(t_prompt *prompt)
 		if (prompt->commands)
 			add_history(prompt->input_string);
 		parser(prompt);
+		pipe_infile_outfile(prompt->cmd_list);
+		print_cmd_list(prompt->cmd_list);
 		execute_cmds(prompt);
 
 		if (prompt->commands)
@@ -51,4 +53,32 @@ void	launch_minishell(t_prompt *prompt)
 		cstm_lstclear(&prompt->cmd_list, clear_cmmdat_lst);
 
 	}
+}
+
+void	pipe_infile_outfile(t_node *cmd_lst)
+{
+	int *pip;
+
+	while (cmd_lst)
+	{
+		pip = ft_calloc(2, sizeof(int));
+		if (!pip)
+			return ;
+		if (pipe(pip) == -1)
+		{
+			free(pip);
+			return ;
+		}
+		if (cstm_lstsize(cmd_lst) != 1)
+		{
+			if (cmd_lst->data->outfile == 1)
+				cmd_lst->data->outfile = pip[1];
+			else
+				close(pip[1]);
+			cmd_lst->next->data->infile = pip[0];
+			cmd_lst=cmd_lst->next;
+		}
+		free(pip);
+	}
+	return ;
 }

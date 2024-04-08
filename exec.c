@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/08 13:00:56 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:01:15 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	run_cmd(void *content)
 	//
 	if (!is_executable(cmd_data)) //@Deniz: write is_executable //different
 		return ;
+	printf("c2\n");
 	cmd_data->prompt->pid = fork();
 	if (cmd_data->prompt->pid == -1) //fork error
 		return ;
@@ -124,6 +125,7 @@ int	execute_cmds(t_prompt *prompt)
 	}
 	else
 	{
+		printf("c1\n");
 		cstm_lstiter(prompt->cmd_list, run_cmd);
 		cstm_lstiter(prompt->cmd_list, cls_fds);
 		wait_update_exitstatus(prompt);
