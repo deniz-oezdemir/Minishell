@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 10:34:24 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/08 12:52:40 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/08 13:39:08 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	execute_builtin(t_cmddat *cmd, int n, int forked)
 		val = cstm_unset(cmd);
 	else if (n == 6)
 		val = cstm_env(cmd);
-	// else if (n == 7)
+	else if (n == 7)
 		val = cstm_exit(cmd);
 	/*else
 		val = 127; //127: command to execute could not be found*/

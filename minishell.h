@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/08 13:37:25 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/08 13:55:00 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void print_char_array(const char arr[]);
 void print_str_array(char **arr);
 void print_command_list(t_node *head);
 void print_cmd_list(const t_node *head);
+void print_cmddat(const t_cmddat *cmd);
 
 /* exit_minishell*/
 void	free_char_array(char **array);
