@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 10:34:24 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/04 15:42:25 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:52:40 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,18 @@ int	execute_builtin(t_cmddat *cmd, int n, int forked)
 	val = 0; //Leo added this to silence warning
 	if (n == 1)
 		val = cstm_echo(cmd);
-	// else if (n == 2)
-	// 	val = cstm_cd(cmd);
-	// else if (n == 3)
-	// 	val = cstm_pwd(cmd);
-	// /*else if (n == 4)
-	// 	val = cstm_export(cmd);*/
-	// else if (n == 5)
-	// 	val = cstm_unset(cmd);
-	// else if (n == 6)
-	// 	val = cstm_env(cmd);
-	// // else if (n == 7)
-	// 	val = cstm_exit(cmd);
+	else if (n == 2)
+		val = cstm_cd(cmd);
+	else if (n == 3)
+		val = cstm_pwd(cmd);
+	/*else if (n == 4)
+		val = cstm_export(cmd);*/
+	else if (n == 5)
+		val = cstm_unset(cmd);
+	else if (n == 6)
+		val = cstm_env(cmd);
+	// else if (n == 7)
+		val = cstm_exit(cmd);
 	/*else
 		val = 127; //127: command to execute could not be found*/
 	/*if (forked)

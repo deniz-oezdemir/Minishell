@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/05 15:48:09 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/08 13:00:56 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,13 @@ void wait_update_exitstatus(t_prompt *prompt)
 		continue ; //continue until all child processes are terminated
 	if (tmp_exitstatus != -1) //if exitstatus changed during wait
 		exitstatus = tmp_exitstatus;
+
 	if (exitstatus == 130)
 		ft_putstr_fd("\n", 2); //if program was terminated by a SIGINT signal //different
+
 	if (exitstatus == 131) //if program was terminated by a SIGQUIT signal -> maybe use SIGQUIT instead f 131
 		ft_putstr_fd("Quit\n", 2);
+
 	if (last->file_open_error != 0) //@Leo: initialized broken?
 		exitstatus = last->file_open_error; //@Leo: maybe we can rename broken to fail_exitstatus, or similar
 	else if (!last->full_path && !get_builtin_nbr(last))

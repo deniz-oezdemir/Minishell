@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/05 15:07:37 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/08 13:00:45 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ prompt->commands
   Returns:
     - Pointer to the newly initialized t_cmddat structure.
 */
-static t_cmddat	*init_struct_cmd(void)
+static t_cmddat	*init_struct_cmd(t_prompt *prompt)
 {
 	t_cmddat	*ptr;
 
@@ -44,6 +44,7 @@ static t_cmddat	*init_struct_cmd(void)
 	ptr->full_path = NULL;
 	ptr->infile = STDIN_FILENO;
 	ptr->outfile = STDOUT_FILENO;
+	ptr->prompt = prompt;
 	ptr->file_open_error = 0;
 	return (ptr);
 }
@@ -157,7 +158,7 @@ void	parser(t_prompt *prompt)
 	{
 		if (i == 0 || prompt->commands[i][0] == '|' && prompt->commands[i + 1] && prompt->commands[i][0])
 		{
-			ptr = init_struct_cmd();
+			ptr = init_struct_cmd(prompt);
  			if (!ptr)
 				return ;
  			add_node_to_list(&(prompt->cmd_list), ptr);
