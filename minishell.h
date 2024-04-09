@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/08 17:34:17 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:08:42 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,13 @@ int	go_home_dir(t_prompt *prompt);
 int go_back_dir(t_prompt *prompt);
 void modify_envp(t_prompt *prompt, char *name, char *insert, int f_free_name);
 char *get_envp(t_prompt *prompt, char *name);
+
+/*	cstm_export.c	*/
+int	cstm_export(t_cmddat *cmd);
+int	print_export(t_cmddat *cmd);
+void	print_line_export(t_cmddat *cmd, int i);
+int	get_len_id(char *str, int msg);
+
 
 /*	exec.c	*/
 int	execute_cmds(t_prompt *prompt);
