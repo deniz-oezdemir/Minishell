@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/09 20:13:17 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:35:37 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int	execute_cmds(t_prompt *prompt)
 	{
 		exitstatus = execute_builtin(cmd_data, get_builtin_nbr(cmd_data), 0);
 		cstm_lstiter(prompt->cmd_list, cls_fds);
-	} //CONTINUE HERE
+	}
 	else
 	{
 		cstm_lstiter(prompt->cmd_list, run_cmd);
