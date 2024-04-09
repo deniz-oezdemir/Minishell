@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:08:23 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/08 13:38:24 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:59:46 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	cstm_lstiter(t_node *lst, void (*f)(void *))
 		return ;
 	while (lst)
 	{
-		f(lst->data); //data is of type cmd_dat
+		f(lst->data);
 		lst = lst->next;
 	}
 }

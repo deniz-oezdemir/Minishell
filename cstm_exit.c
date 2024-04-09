@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:16:10 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/21 17:41:35 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:53:04 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,20 @@ int	cstm_exit(t_cmddat *cmd_data)
 
 	exitstatus = 0;
 
-	if (get_len_arr(cmd_data->full_command) >= 3 && is_only_digits(cmd_data->full_command[1])) //why is_only_digits? //test this case at the end
+	if (get_len_arr(cmd_data->full_command) >= 3 && is_only_digits(cmd_data->full_command[1])) //is_only_digits -> check shell's error msg
 	{
-		print_err_msg("exit", "too many arguments"); //check shell's error messages
+		print_err_msg("exit", "too many arguments");
 		return (1);
 	}
-	ft_putstr_fd("ms: exit\n", cmd_data->outfile); //test
+	ft_putstr_fd("exit\n", cmd_data->outfile);
 	if (get_len_arr(cmd_data->full_command) >= 2 && !is_only_digits(cmd_data->full_command[1]))
 	{
-		ft_putstr_fd("exit: ", 2); //different //check shell's error messages
+		ft_putstr_fd("ms: exit: ", 2);
 		ft_putstr_fd(cmd_data->full_command[1], 2);
-		ft_putstr_fd(": numeric argument required\n", 2); //check shell's error messages
+		ft_putstr_fd(": numeric argument required\n", 2);
 	}
 	if (cmd_data->full_command[1])
 		exitstatus = ft_atoi(cmd_data->full_command[1]);
-	exit_ms(exitstatus, cmd_data->prompt); //test
+	exit_ms(exitstatus, cmd_data->prompt);
 	return (0);
 }

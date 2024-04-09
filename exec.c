@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/08 16:01:15 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:13:17 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,10 @@ void	run_cmd(void *content)
 
 	cmd_data = (t_cmddat *)content;
 	// //LEO uncommented because needed this
-	// if (cmd_data->prompt->stop == 1)
-	// 	return ;
-	//
+	if (cmd_data->prompt->stop == 1)
+		return ;
 	if (!is_executable(cmd_data)) //@Deniz: write is_executable //different
 		return ;
-	printf("c2\n");
 	cmd_data->prompt->pid = fork();
 	if (cmd_data->prompt->pid == -1) //fork error
 		return ;
@@ -101,11 +99,11 @@ void	run_cmd(void *content)
 			execute_builtin(cmd_data, get_builtin_nbr(cmd_data), 1);
 		dup2(cmd_data->infile, 0);
 		dup2(cmd_data->outfile, 1);
-		cstm_lstiter(cmd_data->prompt->cmd_list, cls_fds); //why here also? because forked?
+		cstm_lstiter(cmd_data->prompt->cmd_list, cls_fds);
 		execve(cmd_data->full_path, cmd_data->full_command, cmd_data->prompt->envp);
 		close(0);
 		close(1);
-		exit_ms(2, cmd_data->prompt); //why exitstatus 2?
+		exit_ms(2, cmd_data->prompt); //exitstatus 2: e.g. ls: cannot access command-line argument
 	}
 	return ;
 }
@@ -116,16 +114,15 @@ int	execute_cmds(t_prompt *prompt)
 
 	if (!prompt->cmd_list)
 		return (0);
-	//signal(SIGQUIT, &handle_sig_quit); @Leo: What does ths do?
+	//signal(SIGQUIT, &handle_sig_quit); //@Leo: What does ths do?
 	cmd_data = prompt->cmd_list->data;
-	if(cstm_lstsize(prompt->cmd_list) == 1 && get_builtin_nbr(cmd_data)) //change t_node to t_lst such that we can use libft functions
+	if(cstm_lstsize(prompt->cmd_list) == 1 && get_builtin_nbr(cmd_data))
 	{
-		exitstatus = execute_builtin(cmd_data, get_builtin_nbr(cmd_data), 0); //@Deniz: continue writing execute_builtin
-		cstm_lstiter(prompt->cmd_list, cls_fds); //cstm_lstiter necessary? if only one cmd, only cls_fds once should be enough
-	}
+		exitstatus = execute_builtin(cmd_data, get_builtin_nbr(cmd_data), 0);
+		cstm_lstiter(prompt->cmd_list, cls_fds);
+	} //CONTINUE HERE
 	else
 	{
-		printf("c1\n");
 		cstm_lstiter(prompt->cmd_list, run_cmd);
 		cstm_lstiter(prompt->cmd_list, cls_fds);
 		wait_update_exitstatus(prompt);

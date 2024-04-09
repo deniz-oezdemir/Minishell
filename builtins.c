@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 10:34:24 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/09 13:06:31 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:12:22 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	get_builtin_nbr(t_cmddat *cmd)
 		return (0);
 	else if (!ft_strcmp(cmd->full_command[0], "echo"))
 		return (1);
-	else if (!ft_strcmp(cmd->full_command[0], "cd")) //use chdir function
+	else if (!ft_strcmp(cmd->full_command[0], "cd"))
 		return (2);
 	if (!ft_strcmp(cmd->full_command[0], "pwd"))
 		return (3);
@@ -32,33 +32,31 @@ int	get_builtin_nbr(t_cmddat *cmd)
 		return (7);
 	return (0);
 }
-
+/* exitstatus 127 when command to execute could not be found */
 int	execute_builtin(t_cmddat *cmd, int n, int forked)
 {
-	int	val;
+	int	r;
 
-	(void)forked;
-	val = 0; //Leo added this to silence warning
 	if (n == 1)
-		val = cstm_echo(cmd);
+		r = cstm_echo(cmd);
 	else if (n == 2)
-		val = cstm_cd(cmd);
+		r = cstm_cd(cmd);
 	else if (n == 3)
-		val = cstm_pwd(cmd);
+		r = cstm_pwd(cmd);
 	else if (n == 4)
-		val = cstm_export(cmd);
+		r = cstm_export(cmd);
 	else if (n == 5)
-		val = cstm_unset(cmd);
+		r = cstm_unset(cmd);
 	else if (n == 6)
-		val = cstm_env(cmd);
+		r = cstm_env(cmd);
 	else if (n == 7)
-		val = cstm_exit(cmd);
-	/*else
-		val = 127; //127: command to execute could not be found*/
-	/*if (forked)
+		r = cstm_exit(cmd);
+	else
+		r = 127;
+	if (forked)
 	{
-		cstm_lstiter(...);
-		exit_ms(...);
-	}*/
-	return (val);
+		cstm_lstiter(cmd->prompt->cmd_list, cls_fds);
+		exit_ms(r, cmd->prompt);
+	}
+	return (r);
 }

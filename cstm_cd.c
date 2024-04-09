@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:35:29 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/08 14:51:29 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:17:51 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int go_back_dir(t_prompt *prompt)
 	return (0);
 }
 
-/* @Deniz: test cd! */
 int cstm_cd(t_cmddat *cmd_data)
 {
 	DIR *dir_user;

@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:50:56 by denizozd          #+#    #+#             */
-/*   Updated: 2024/03/22 15:06:50 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:14:17 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	cstm_echo(t_cmddat *cmd_data)
 	{
 		ft_putstr_fd(cmd_data->full_command[i], cmd_data->outfile);
 		i += 1;
-		if (cmd_data->full_command[i] != NULL) //Necessity of space depends on how @Leo parses the input
+		if (cmd_data->full_command[i] != NULL)
 			ft_putstr_fd(" ", cmd_data->outfile);
 	}
 	if(nl)
