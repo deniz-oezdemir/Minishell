@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:08:21 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/09 12:11:29 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:04:00 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,42 @@ void	print_line_export(t_cmddat *cmd, int i)
 		ft_putstr_fd(cmd->prompt->envp[i] + l + 1, cmd->outfile);
 		ft_putstr_fd("\"", cmd->outfile);
 	}
-	else if (l) //export TEST
+	else if (l) //export TEST= ?
 		write (cmd->outfile, cmd->prompt->envp[i], l);
-	else
-		
+	else //export test (no id) ?
+		ft_putstr_fd(cmd->prompt->envp[i], cmd->outfile);
+	ft_putstr_fd("\n", cmd->outfile); //
 }
 
-int	get_len_id(cmd->full_command[i], 0)
+int	get_len_id(char *str, int msg)
 {
+	int	i;
+	int	e;
+	char *tmp;
 
+	i = 0;
+	e = 0;
+	while (str[i] && str[i] != '=')
+	{
+		if(ft_isdigit(str[0]))
+			e = 1;
+		if (!ft_isalnum(str[i]) && str[i] != '_')
+			e = 1;
+		i++;
+	}
+	if (e || !i)
+	{
+		if (msg)
+		{
+			tmp = ft_strjoin("`", str);
+			tmp = ft_strjoin(str, "'"); //different
+			print_err_msg_lng("export", tmp, "not a valid identifier");
+			if (tmp)
+				free(tmp);
+		}
+	//no i
+	}
+	return (i);
 }
 
 scan_envp(cmd, id_len)
