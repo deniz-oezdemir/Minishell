@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/09 16:44:26 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/09 17:07:23 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,9 +171,6 @@ void	print_line_export(t_cmddat *cmd, int i);
 int	get_len_id(char *str, int msg);
 int scan_envp(t_cmddat *cmd, char *str, int id_len);
 char	*add_to_str(char **str, char *add);
-int	print_sorted_export(t_cmddat *cmd);
-void	print_line_sort_export(char *str, t_cmddat *cmd);
-int	init_env_sort(char **env, char **env_sort);
 
 /*	exec.c	*/
 int	execute_cmds(t_prompt *prompt);
