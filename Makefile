@@ -6,7 +6,7 @@
 #    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 20:35:04 by denizozd          #+#    #+#              #
-#    Updated: 2024/04/04 15:40:57 by denizozd         ###   ########.fr        #
+#    Updated: 2024/04/09 13:09:48 by denizozd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRCS = cstm_exit.c exit_minishell.c signal_handler.c builtins.c \
 		cstm_pwd.c exec.c lists_utils.c split_input.c \
 		cstm_echo.c cstm_unset.c init.c main.c parser.c \
 		cstm_env.c debug_utils.c lexer.c utils.c \
-		cstm_cd.c  envp_utils.c \
+		cstm_cd.c cstm_export.c envp_utils.c \
 		expand_var_utils.c expander.c handle_redirections.c \
 		quotes_utils.c list_functions.c
 
