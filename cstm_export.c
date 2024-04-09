@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:08:21 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/09 13:14:55 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:30:36 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ int	cstm_export(t_cmddat *cmd)
 	id_len = 0;
 	if (get_len_arr(cmd->full_command) == 1) //no arguments
 		return (print_export(cmd));
-	/*if (!cmd->prompt->envp && get_len_arr(cmd->full_command) > 1 //uninitiaized envp - @Leo: is this even possible?
+	if (!cmd->prompt->envp && get_len_arr(cmd->full_command) > 1 //uninitiaized envp - @Leo: is this even possible?
 		&& get_len_id(cmd->full_command[i], 0))
-		cmd->prompt->envp = add_str_to_array(cmd->prompt->envp, cmd->full_command[i++]);
+		cmd->prompt->envp = add_str_to_arr(cmd->prompt->envp, cmd->full_command[i++]);
 	while(cmd->full_command[i])
 	{
 		id_len = get_len_id(cmd->full_command[i], 1);
 		if (id_len)
-			scan_envp(cmd, id_len);
+			scan_envp(cmd, cmd->full_command[i], id_len); //why i=1 not i=0?
 		else
 			r = 1;
 		i++;
-	}*/
+	}
 	return (r);
 }
 
@@ -65,9 +65,9 @@ void	print_line_export(t_cmddat *cmd, int i)
 		ft_putstr_fd(cmd->prompt->envp[i] + l + 1, cmd->outfile);
 		ft_putstr_fd("\"", cmd->outfile);
 	}
-	else if (l) //export TEST= ?
+	else if (l) //export test
 		write (cmd->outfile, cmd->prompt->envp[i], l);
-	else //export test (no id) ?
+	else //l=0 because of error or empty id
 		ft_putstr_fd(cmd->prompt->envp[i], cmd->outfile);
 	ft_putstr_fd("\n", cmd->outfile); //
 }
@@ -93,17 +93,56 @@ int	get_len_id(char *str, int msg)
 		if (msg)
 		{
 			tmp = ft_strjoin("`", str);
-			tmp = ft_strjoin(str, "'"); //different
+			tmp = add_to_str(&tmp, "'");
 			print_err_msg_lng("export", tmp, "not a valid identifier");
 			if (tmp)
 				free(tmp);
 		}
-	//no i
+		i = 0;
 	}
 	return (i);
 }
 
-/*scan_envp(cmd, id_len)
+int scan_envp(t_cmddat *cmd, char *str, int id_len)
 {
+	int i;
+	int envp_id_len;
 
-}*/
+	i = 0;
+	while (cmd->prompt->envp[i])
+	{
+		envp_id_len = get_len_id(cmd->prompt->envp[i], 0);
+		if (envp_id_len == id_len && !ft_strncmp(cmd->prompt->envp[i], str, id_len)) //if VAR exists, replace it
+		{
+			if (ft_strchr(str, '='))
+				modify_envp(cmd->prompt, ft_substr(cmd->prompt->envp[i], 0, envp_id_len + 1), ft_strdup(str + envp_id_len + 1), 1);
+			break ;
+		}
+		else if (i == get_len_arr(cmd->prompt->envp) - 1) //else if at end of envp, add it to the end
+		{
+			cmd->prompt->envp = add_str_to_arr(cmd->prompt->envp, str);
+			break ;
+		}
+		i++;
+	}
+	return (0);
+}
+
+char	*add_to_str(char **str, char *add)
+{
+	char	*new;
+
+	if (!add)
+	{
+		new = ft_strdup(*str);
+		return (new);
+	}
+	if (!str || !*str)
+	{
+		new = ft_strdup(add);
+		return (new);
+	}
+	new = ft_strjoin(*str, add);
+	free(*str);
+	return (new);
+}

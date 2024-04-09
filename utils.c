@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:31:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/05 15:00:07 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:18:37 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,26 @@ char	**del_str_from_array(char **array, int pos, int count)
 		array[buff - 1] = NULL;
 	}
 	return (array);
+}
+
+char	**add_str_to_arr(char **arr, char *str)
+{
+	char	**new;
+	int		l;
+
+	l = get_len_arr(arr);
+	new = ft_calloc(l + 2, sizeof(char *));
+	if (!new)
+		return (NULL);
+	new[l] = ft_strdup(str);
+	l--;
+	while (l >= 0)
+	{
+		new[l] = ft_strdup(arr[l]);
+		l--;
+	}
+	free_char_array(arr);
+	return (new);
 }
 
 // char **del_str_from_array(char **array, int pos, int count)

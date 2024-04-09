@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/09 13:08:42 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:27:01 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ void	print_err_msg(char *cmd, char *msg);
 int print_err_msg_lng(char *cmd, char *msg, char *arg);
 int	ft_isspace(int c);
 char	**del_str_from_array(char **array, int pos, int count);
+char	**add_str_to_arr(char **arr, char *str);
 
 /*	builtins.c	*/
 int	get_builtin_nbr(t_cmddat *cmd);
@@ -168,6 +169,8 @@ int	cstm_export(t_cmddat *cmd);
 int	print_export(t_cmddat *cmd);
 void	print_line_export(t_cmddat *cmd, int i);
 int	get_len_id(char *str, int msg);
+int scan_envp(t_cmddat *cmd, char *str, int id_len);
+char	*add_to_str(char **str, char *add);
 
 
 /*	exec.c	*/
