@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/08 13:55:40 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:38:51 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,18 @@ void	launch_minishell(t_prompt *prompt)
 		// 	continue;
 		if (prompt->commands)
 			add_history(prompt->input_string);
-		parser(prompt);
+		if (prompt->stop == 0)
+			parser(prompt);
 		execute_cmds(prompt);
 
-		if (prompt->commands)
+		printf("Avant : \n");
+		print_cmd_list(prompt->cmd_list);
+		if (prompt->commands != NULL)
 			free_char_array(prompt->commands);
-
 		cstm_lstclear(&prompt->cmd_list, clear_cmmdat_lst);
 
+		printf("Apres : \n");
+		print_cmd_list(prompt->cmd_list);
 	}
+
 }

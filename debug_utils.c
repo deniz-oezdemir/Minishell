@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:54:02 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/08 13:17:13 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:45:51 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void print_cmddat(const t_cmddat *cmd) {
             printf("  \"%s\"\n", cmd->full_command[i]);
         }
     } else {
-        printf("  (empty)\n");
+        printf(" (empty)\n");
     }
 
     if (cmd->full_path != NULL) {
