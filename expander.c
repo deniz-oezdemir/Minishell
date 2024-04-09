@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/02 21:30:59 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:08:05 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,15 @@ char	**expander(char **str, char **ev)
 		i++;
 	}
 	temp[i] = NULL;
-	free(str);
+	i = 0;
+	//free_char_array(str);
+
+	// while (str[i])
+	// {
+	// 	free(str[i]);
+	// 	i++;
+	// }
+	//free(str);
 	return (temp);
 }
 /*
