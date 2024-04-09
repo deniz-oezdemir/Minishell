@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/09 14:38:51 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:39:22 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	launch_minishell(t_prompt *prompt)
 	// signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
+		prompt->stop = 0;
 		lexer(prompt);
 		// if (prompt->commands == NULL)
 		// 	continue;
@@ -46,14 +47,14 @@ void	launch_minishell(t_prompt *prompt)
 			parser(prompt);
 		execute_cmds(prompt);
 
-		printf("Avant : \n");
-		print_cmd_list(prompt->cmd_list);
+		// printf("Avant : \n");
+		//print_cmd_list(prompt->cmd_list);
 		if (prompt->commands != NULL)
 			free_char_array(prompt->commands);
 		cstm_lstclear(&prompt->cmd_list, clear_cmmdat_lst);
 
-		printf("Apres : \n");
-		print_cmd_list(prompt->cmd_list);
+		// printf("Apres : \n");
+		// print_cmd_list(prompt->cmd_list);
 	}
 
 }
