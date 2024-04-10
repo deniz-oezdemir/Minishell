@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/09 18:39:22 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:29:00 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char *argv[], char **envp)
 
 void	launch_minishell(t_prompt *prompt)
 {
-	signals_interactive(); //theo
+	signals_interactive();
 
 	// signal(SIGINT, &sigint_handler);
 	// signal(SIGQUIT, SIG_IGN);
@@ -46,15 +46,9 @@ void	launch_minishell(t_prompt *prompt)
 		if (prompt->stop == 0)
 			parser(prompt);
 		execute_cmds(prompt);
-
-		// printf("Avant : \n");
-		//print_cmd_list(prompt->cmd_list);
 		if (prompt->commands != NULL)
 			free_char_array(prompt->commands);
 		cstm_lstclear(&prompt->cmd_list, clear_cmmdat_lst);
-
-		// printf("Apres : \n");
-		// print_cmd_list(prompt->cmd_list);
 	}
 
 }

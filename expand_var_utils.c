@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:43:45 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/10 18:14:45 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:29:12 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,6 @@ static char	*get_ptr_var(char *str, size_t var_exp_len, char **env)
 
 
 /*
-Concatenates the strings with the expanded var
-str : original str
-ptr : pointer to the expander variable
-i : pos where to start to expand
-*/
-
-/*
   Creates a substring by expanding the environment
    variable specified by the substring in the string
    `str`. It constructs and returns a new string with the
@@ -110,6 +103,7 @@ char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len )
 	//free(expanded_str);
 	return (expanded_str);
 }
+
 char	*create_sub(char *str, size_t i, char *nb, ssize_t len )
 {
 	char *s1; //partie avant $
