@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:45:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/09 20:09:11 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:32:40 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*get_path_cmds(t_cmddat *cmd, char **ev)
 	char	*path;
 	if (get_builtin_nbr(cmd) != 0)
 		return (NULL);
+	if (!access(cmd->full_command[0], 1))
+		return (ft_strdup(cmd->full_command[0]));
 	path = get_path(cmd->full_command[0], ev);
 	return (path);
 }

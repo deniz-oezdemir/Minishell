@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/09 17:07:23 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:32:28 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,7 @@ char	**expander(char **str, char **ev);
 
 char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len );
 ssize_t	get_len_var(char *str, int i);
+char	*create_sub(char *str, size_t i, char *nb, ssize_t len );
 //static char *get_substr_var(char *str, int len, char **env);
 char *expand_var(char *str, char **ev);
 

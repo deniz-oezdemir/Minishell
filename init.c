@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 20:12:21 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/05 18:39:31 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:32:16 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	init_env(t_prompt *prompt, char **env)
 		}
 		i++;
 	}
-	prompt->envp[i] = NULL; // or env[i] = NULL;??
+	prompt->envp[i] = NULL;
 	//return succes
 	return (1);
 }
