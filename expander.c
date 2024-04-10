@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/09 13:08:05 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:15:20 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,20 @@ char	**expander(char **str, char **ev)
 	//free(str);
 	return (temp);
 }
+
+
+// static handle_question_mark(char *str, int i)
+// {
+
+// 	char	*nb;
+// 	int	nb_len;
+
+// 	nb = ft_itoa(exitstatus);
+// 	if (!nb)
+// 		return ;
+
+
+// }
 /*
 Check if inside single quote -> meaning does not need expanding
 1) Si le char actuel est ' et que dbq est 0 (pas de guillemets double ouvert)
@@ -82,8 +96,10 @@ char *expand_var(char *str, char **ev)
 	int		dbq;
 	int		i;
 	int		len;
+	char	*nb;
 	char	*sub_str;
 
+	nb = 0;
 	sub_str = NULL;
 	sgq = 0;
 	dbq = 0;
@@ -94,8 +110,21 @@ char *expand_var(char *str, char **ev)
 		dbq = (dbq + (!sgq && str[i] == '\"')) % 2;
 		if (!sgq && str[i] == '$' && str[i + 1])
 		{
-			len = get_len_var(str, i + 1);
-			sub_str = create_sub_var(str, i, ev, len);
+			if (str[i + 1] == '?')
+			{
+					nb = ft_itoa(exitstatus);
+					if (!nb)
+						return NULL;
+					len = ft_strlen(nb);
+					sub_str = create_sub(str, i, nb, len);
+			}
+				//nb = handle_question_mark(str, i);
+			else
+			{
+				len = get_len_var(str, i + 1);
+				sub_str = create_sub_var(str, i, ev, len);
+			}
+
 			free(str);
 			str = sub_str;
 		}
