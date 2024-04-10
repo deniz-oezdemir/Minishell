@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cstm_export.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:08:21 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/09 18:21:20 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/10 16:51:56 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	cstm_export(t_cmddat *cmd)
 	if (get_len_arr(cmd->full_command) == 1) // no arguments
 		return (print_export(cmd));
 	if (!cmd->prompt->envp && get_len_arr(cmd->full_command) > 1
-		&& get_len_id(cmd->full_command[i], 0)) // uninitiaized envp - @Leo: is this even possible?
+		&& get_len_id(cmd->full_command[i], 0)) // uninitiaized envp - @Leo: is this even possible? @deniz is this comment still valid? 10/04
 		cmd->prompt->envp = add_str_to_arr(cmd->prompt->envp,
 				cmd->full_command[i++]);
 	while (cmd->full_command[i])
