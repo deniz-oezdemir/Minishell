@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/12 10:15:53 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/12 12:52:37 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	launch_minishell(t_prompt *prompt)
 		print_cmd_list(prompt->cmd_list);
 		execute_cmds(prompt);
 		if (prompt->commands != NULL)
-			free_char_array(prompt->commands);
+			clean_char_array(prompt->commands);
 		cstm_lstclear(&prompt->cmd_list, clear_cmmdat_lst);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/10 18:32:28 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/12 12:51:27 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void	free_node_list(t_node *head);
 void	free_all(t_prompt	*prompt);
 void	exit_ms(int exitstatus, t_prompt *prompt);
 void	clear_cmmdat_lst(void *content);
+void	clean_char_array(char ***array);
 
 /*	main	*/
 void	launch_minishell(t_prompt *prompt);

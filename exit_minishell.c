@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:19:36 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/09 14:23:27 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/12 12:52:42 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	free_node_list(t_node *head)
 //Leo, are we sure below does what it's supposed to do? pointer indexing is difficult
 void	free_char_array(char **array)
 {
+
 	if (array == NULL)
 		return ;
 	while (*array != NULL)
@@ -80,5 +81,21 @@ void	free_char_array(char **array)
 		free(*array);
 		array++;
 	}
-	//free(array);
+	*array = NULL;
+	//free(*array);
+	//print_str_array(array);
 }
+
+
+// void	clean_char_array(char ***array)
+// {
+// 	int	i;
+
+// 	i = -1;
+// 	if (!*array)
+// 		return ;
+// 	while ((*array)[++i])
+// 		free((*array)[i]);
+// 	free(*array);
+// 	*array = NULL;
+// }
