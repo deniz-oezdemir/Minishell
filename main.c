@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/12 10:15:53 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:04:01 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void	launch_minishell(t_prompt *prompt)
 			add_history(prompt->input_string);
 		if (prompt->stop == 0)
 			parser(prompt);
-		if (cstm_lstsize(prompt->cmd_list) != 1)
+		if (cstm_lstsize(prompt->cmd_list) != 1 && prompt->stop == 0)
 			pipe_infile_outfile(prompt->cmd_list);
 		print_cmd_list(prompt->cmd_list);
-		execute_cmds(prompt);
+		execute_cmds(prompt); //maybe add stop check
 		if (prompt->commands != NULL)
 			free_char_array(prompt->commands);
 		cstm_lstclear(&prompt->cmd_list, clear_cmmdat_lst);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:55:10 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/09 15:32:29 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:16:55 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	signals_interactive(void)
 
 void	signals_non_interactive(void)
 {
-	signal(SIGINT, handle_sig_int);
+	signal(SIGINT, handle_sig_quit);
 	signal(SIGQUIT, handle_sig_quit);
 }
 /*
