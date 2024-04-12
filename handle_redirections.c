@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redirections.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/12 12:14:21 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/12 13:05:22 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,15 @@ int	get_type(char *str)
 	int	type;
 	int	i;
 
+	printf("str : %s\n", str);
 	i = 0;
 	type = 0;
 	if (ft_strlen(str) == 1 && str[i] == '<' )
 		type = 1;
-	if (type == 1 && str[i + 1] && str[i + 1] == '<')
+	if (str[i] == '<' && str[i + 1] && str[i + 1] == '<')
 	{
 		type = 2;
-		printf("here_doc-redirection\n");
+		printf("here_doc-redirection\n\n");
 	}
 	if (type == 0 && str[i] == '>')
 	{
@@ -85,13 +86,7 @@ void	handle_redir(t_prompt *ptr)
 				type = get_type(cmd_data->full_command[i]);
 				if (type < 5 && type > 0)
 				{
-					// if (cmd_data->full_command[i + 1] == NULL)
-					// {
-					// 	ptr->stop = 1;
-					// 	syntax_error(ptr, cmd_data->full_command[i]);
-					// 	//current_node = NULL;
-					// 	//break;
-					// }
+
 					open_fd_redir(ptr, cmd_data, i, type);
 					cmd_data->full_command = del_str_from_array(cmd_data->full_command, i, 2);
 					i -= 1;
