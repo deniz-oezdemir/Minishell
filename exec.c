@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/10 20:51:22 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:25:59 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void wait_update_exitstatus(t_prompt *prompt)
 
 
 	/* LEO commented this */
-	if (exitstatus == 130)
-		ft_putstr_fd("\n", 2); //if program was terminated by a SIGINT signal //different
+	// if (exitstatus == 130)
+	// 	ft_putstr_fd("\n", 2); //if program was terminated by a SIGINT signal //different
 
 	// if (exitstatus == 131) //if program was terminated by a SIGQUIT signal -> maybe use SIGQUIT instead f 131
 	// 	ft_putstr_fd("Quit\n", 2);

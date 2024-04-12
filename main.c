@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/12 13:02:30 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:31:32 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	launch_minishell(t_prompt *prompt)
 	// signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
+		signals_interactive();
 		prompt->stop = 0;
 		lexer(prompt);
 		// if (prompt->commands == NULL)
@@ -49,8 +50,8 @@ void	launch_minishell(t_prompt *prompt)
 			pipe_infile_outfile(prompt->cmd_list);
 		print_cmd_list(prompt->cmd_list);
 		execute_cmds(prompt);
-		if (prompt->commands != NULL)
-			free_char_array(prompt->commands);
+		// if (prompt->commands != NULL) //@leo commented this to get rid of the double free
+		// 	free_char_array(prompt->commands);
 		cstm_lstclear(&prompt->cmd_list, clear_cmmdat_lst);
 	}
 }
