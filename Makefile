@@ -6,7 +6,7 @@
 #    By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 20:35:04 by denizozd          #+#    #+#              #
-#    Updated: 2024/04/10 18:36:14 by ecarlier         ###   ########.fr        #
+#    Updated: 2024/04/12 12:10:57 by ecarlier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,11 @@ CUT = "\033[K"
 NAME = minishell
 CC = cc
 #CFLAGS = -Wall -Werror -Wextra #commented out to not silence all unused vars
-#CFLAGS = -g -fsanitize=address
+CFLAGS = -g -fsanitize=address
 LIBFTPATH = ./libft
 LIBFT = ./libft/libft.a
 
-LDFLAGS		= -L/Users/$(USER)/.brew/opt/readline/lib
+LDFLAGS		= -L/Users/$(USER)/.brew/opt/readline/lib -lasan
 CPPFLAGS	= -I/Users/$(USER)/.brew/opt/readline/include
 #LDFLAGS += -fsanitize=address
 
