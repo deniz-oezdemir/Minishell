@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redirections.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/09 17:44:41 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/12 11:25:39 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,7 @@ int	open_fd_redir(t_prompt *prompt, t_cmddat *cmd_struct, int i, int type)
 	{
 
 		printf("to do : start here_doc\n ");
-		//get_here_doc(prompt, cmd_struct, i);
+		//launch_heredoc(prompt, cmd_struct, i); //changed by deniz //@Leo: what's i?
 	}
 
 	else if (type == 3)
