@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/10 18:35:26 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/12 10:15:53 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	launch_minishell(t_prompt *prompt)
 			add_history(prompt->input_string);
 		if (prompt->stop == 0)
 			parser(prompt);
-		pipe_infile_outfile(prompt->cmd_list);
+		if (cstm_lstsize(prompt->cmd_list) != 1)
+			pipe_infile_outfile(prompt->cmd_list);
 		print_cmd_list(prompt->cmd_list);
 		execute_cmds(prompt);
 		if (prompt->commands != NULL)
@@ -58,7 +59,7 @@ void	pipe_infile_outfile(t_node *cmd_lst)
 {
 	int *pip;
 
-	while (cmd_lst)
+	while (cmd_lst->next != NULL)
 	{
 		pip = ft_calloc(2, sizeof(int));
 		if (!pip)
@@ -68,15 +69,12 @@ void	pipe_infile_outfile(t_node *cmd_lst)
 			free(pip);
 			return ;
 		}
-		if (cstm_lstsize(cmd_lst) != 1)
-		{
-			if (cmd_lst->data->outfile == 1)
-				cmd_lst->data->outfile = pip[1];
-			else
-				close(pip[1]);
-			cmd_lst->next->data->infile = pip[0];
-			cmd_lst=cmd_lst->next;
-		}
+		if (cmd_lst->data->outfile == 1)
+			cmd_lst->data->outfile = pip[1]; //set outfile to write end of pipe
+		else
+			close(pip[1]);
+		cmd_lst->next->data->infile = pip[0]; //set infile to read end of pipe
+		cmd_lst=cmd_lst->next;
 		free(pip);
 	}
 	return ;
