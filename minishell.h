@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/10 18:32:28 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/12 12:15:28 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,5 +239,7 @@ void	cstm_lstdelone(t_node *lst, void (*del)(void *));
 
 
 /* here_doc */
-void	get_here_doc(t_prompt *prompt, t_cmddat *cmd_struct, int i);
+void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i);
+int	get_heredoc(t_prompt *prompt, char *lim);
+int	pipe_heredoc(t_prompt *prompt, char *content);
 #endif

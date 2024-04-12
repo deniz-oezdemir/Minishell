@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   here_doc.c                                         :+:      :+:    :+:   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/12 11:37:15 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/12 12:18:04 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i)
 {
 	char	*lim;
-	int		i;
 
-	i = 0;
 	lim = prompt->commands[i + 2]; //@Leo: what's i?
 	cmd->infile = get_heredoc(prompt, lim);
 }
@@ -38,7 +36,23 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 		content = add_to_str(&content, "\n");
 		free(line);
 	}
-	return (pipe_heredoc(prompt, content, line)); //@Deniz: CONTINUE writing pipe_heredoc
+	return (pipe_heredoc(prompt, content)); //@Deniz: CONTINUE writing pipe_heredoc
+}
+
+int	pipe_heredoc(t_prompt *prompt, char *content)
+{
+	int pip[2];
+	int i;
+
+	if (!pipe(pip))
+	{
+		write(pip[1], content, ft_strlen(content)); //replace with putstr
+		free(content);
+		close(pip[1]);
+		return(pip[0]);
+	}
+	free(content);
+	return (0);
 }
 
 /*need to use pipe and signals_interactive*

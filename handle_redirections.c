@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/12 11:25:39 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/12 12:14:21 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,7 @@ int	open_fd_redir(t_prompt *prompt, t_cmddat *cmd_struct, int i, int type)
 	{
 
 		printf("to do : start here_doc\n ");
-		//launch_heredoc(prompt, cmd_struct, i); //changed by deniz //@Leo: what's i?
+		launch_heredoc(prompt, cmd_struct, i); //changed by deniz //@Leo: what's i?
 	}
 
 	else if (type == 3)
