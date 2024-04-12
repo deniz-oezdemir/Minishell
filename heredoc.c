@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/12 16:24:14 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:38:43 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	pipe_heredoc(t_prompt *prompt, char *content)
 		free(content);
 		return (0);
 	}
-	//check for meta chars -> @Leo
+	//check for meta chars / expand env vars -> @Leo
 	if (!pipe(pip))
 	{
 		ft_putstr_fd(content, pip[1]);
