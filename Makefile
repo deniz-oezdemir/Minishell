@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+         #
+#    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 20:35:04 by denizozd          #+#    #+#              #
-#    Updated: 2024/04/12 12:10:57 by ecarlier         ###   ########.fr        #
+#    Updated: 2024/04/12 16:42:30 by denizozd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRCS = cstm_exit.c exit_minishell.c signal_handler.c builtins.c \
 		cstm_env.c debug_utils.c lexer.c utils.c \
 		cstm_cd.c cstm_export.c envp_utils.c \
 		expand_var_utils.c expander.c handle_redirections.c \
-		quotes_utils.c list_functions.c
+		quotes_utils.c list_functions.c heredoc.c\
 
 OBJDIR = obj
 OBJS =  $(addprefix $(OBJDIR)/,$(SRCS:.c=.o))

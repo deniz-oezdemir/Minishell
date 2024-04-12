@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/10 18:36:23 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/12 13:01:27 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,7 @@ void	parser(t_prompt *prompt)
 		ptr->full_path = get_path_cmds(ptr, prompt->envp);
 	}
 	check_token(prompt);
+
 	if (prompt->stop == 0)
 	{
 		handle_redir(prompt);
