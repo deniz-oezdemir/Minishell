@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/09 20:35:37 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/10 20:51:22 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,13 @@ void wait_update_exitstatus(t_prompt *prompt)
 	if (tmp_exitstatus != -1) //if exitstatus changed during wait
 		exitstatus = tmp_exitstatus;
 
+
+	/* LEO commented this */
 	if (exitstatus == 130)
 		ft_putstr_fd("\n", 2); //if program was terminated by a SIGINT signal //different
 
-	if (exitstatus == 131) //if program was terminated by a SIGQUIT signal -> maybe use SIGQUIT instead f 131
-		ft_putstr_fd("Quit\n", 2);
+	// if (exitstatus == 131) //if program was terminated by a SIGQUIT signal -> maybe use SIGQUIT instead f 131
+	// 	ft_putstr_fd("Quit\n", 2);
 
 	if (last->file_open_error != 0) //@Leo: initialized broken?
 		exitstatus = last->file_open_error; //@Leo: maybe we can rename broken to fail_exitstatus, or similar

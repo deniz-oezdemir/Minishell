@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 20:12:21 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/09 16:32:16 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/10 20:02:34 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	init_prompt_struct(t_prompt *prompt, char **envp)
 	prompt->stop = 0;
 	init_env(prompt, envp);
 }
+
 /*
 Initializes the environment for the minishell by copying the provided
 environment variables `env` into the `prompt->envp` array.
@@ -55,7 +56,7 @@ int	init_env(t_prompt *prompt, char **env)
 	if (!prompt->envp)
 	{
 		printf("Error allocating memory for envp\n");
-		return (0); //return failure
+		return (0);
 	}
 	while (env[i])
 	{
@@ -64,11 +65,10 @@ int	init_env(t_prompt *prompt, char **env)
 		{
 			free_char_array(prompt->envp);
 			printf("Error env");
-			return (0); //return failure
+			return (0);
 		}
 		i++;
 	}
 	prompt->envp[i] = NULL;
-	//return succes
 	return (1);
 }
