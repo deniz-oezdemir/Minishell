@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/12 12:18:04 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/12 14:09:38 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i)
 {
 	char	*lim;
 
-	lim = prompt->commands[i + 2]; //@Leo: what's i?
+	lim = prompt->commands[i + 1]; //is is position of <<
 	cmd->infile = get_heredoc(prompt, lim);
 }
 
@@ -36,7 +36,7 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 		content = add_to_str(&content, "\n");
 		free(line);
 	}
-	return (pipe_heredoc(prompt, content)); //@Deniz: CONTINUE writing pipe_heredoc
+	return (pipe_heredoc(prompt, content));
 }
 
 int	pipe_heredoc(t_prompt *prompt, char *content)
@@ -46,7 +46,8 @@ int	pipe_heredoc(t_prompt *prompt, char *content)
 
 	if (!pipe(pip))
 	{
-		write(pip[1], content, ft_strlen(content)); //replace with putstr
+		ft_putstr_fd(content, pip[1]);
+		//write(pip[1], content, ft_strlen(content)); //replaced with above putstr
 		free(content);
 		close(pip[1]);
 		return(pip[0]);
@@ -54,39 +55,3 @@ int	pipe_heredoc(t_prompt *prompt, char *content)
 	free(content);
 	return (0);
 }
-
-/*need to use pipe and signals_interactive*
-
-		signals_interactive();
-		line = readline(HERE_DOC_PROMPT);
-		signals_non_interactive();
-		/
-// */
-
-
-
-/*COMPLETLY LOST*/
-// void	get_here_doc(t_prompt *prompt, t_cmddat *cmd_struct, int i)
-// {
-
-// 	char *line;
-
-// 	line = NULL;
-// 	while (1)
-// 	{
-// 		signals_interactive();
-// 		line = readline("> ");
-// 		if (!line)
-// 			print_err_msg("warning", "here-document delimited by end-of-file");
-
-
-// 	}
-
-// }
-
-
-
-// void	start_here_doc(t_prompt *prompt, t_cmddat *cmd_strc, int i)
-// {
-
-// }
