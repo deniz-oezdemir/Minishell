@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/12 16:25:59 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/14 19:49:46 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,15 @@ void wait_update_exitstatus(t_prompt *prompt)
 	if (tmp_exitstatus != -1) //if exitstatus changed during wait
 		exitstatus = tmp_exitstatus;
 
-
+	//@Leo: Can we delete below as we are handling the printing of \n and Quit\n somewhere else?
 	/* LEO commented this */
 	// if (exitstatus == 130)
 	// 	ft_putstr_fd("\n", 2); //if program was terminated by a SIGINT signal //different
-
 	// if (exitstatus == 131) //if program was terminated by a SIGQUIT signal -> maybe use SIGQUIT instead f 131
 	// 	ft_putstr_fd("Quit\n", 2);
 
-	if (last->file_open_error != 0) //@Leo: initialized broken?
-		exitstatus = last->file_open_error; //@Leo: maybe we can rename broken to fail_exitstatus, or similar
+	if (last->file_open_error != 0)
+		exitstatus = last->file_open_error;
 	else if (!last->full_path && !get_builtin_nbr(last))
 		exitstatus = 127;
 	else if (last->full_path && !get_builtin_nbr(last) && (!access(last->full_path, F_OK) && access(last->full_path, X_OK < 0))) //F_OK checks that file exists, X_OK checks that file executable
@@ -76,26 +75,26 @@ void	cls_fds(void *content)
 	t_cmddat	*cmd_data;
 
 	cmd_data = (t_cmddat *)content;
-	if (cmd_data->infile != -1 && cmd_data->infile != 0) //verify what else other than -1, 0, 1 in- and outfile can be @Leo: parsing
+	if (cmd_data->infile != -1 && cmd_data->infile != 0)
 		close(cmd_data->infile);
 	if (cmd_data->outfile != -1 && cmd_data->outfile != 1)
 		close(cmd_data->outfile);
 }
 
+/* exitstatus is 2 when misuse of shell builtins -> e.g., ls: cannot access command-line argument */
 void	run_cmd(void *content)
 {
 	t_cmddat *cmd_data;
 
 	cmd_data = (t_cmddat *)content;
-	// //LEO uncommented because needed this
 	if (cmd_data->prompt->stop == 1)
 		return ;
 	if (!is_executable(cmd_data)) //@Deniz: write is_executable //different
 		return ;
 	cmd_data->prompt->pid = fork();
-	if (cmd_data->prompt->pid == -1) //fork error
+	if (cmd_data->prompt->pid == -1)
 		return ;
-	if (cmd_data->prompt->pid == 0) //fork success
+	if (cmd_data->prompt->pid == 0)
 	{
 		if (get_builtin_nbr(cmd_data))
 			execute_builtin(cmd_data, get_builtin_nbr(cmd_data), 1);
@@ -105,7 +104,7 @@ void	run_cmd(void *content)
 		execve(cmd_data->full_path, cmd_data->full_command, cmd_data->prompt->envp);
 		close(0);
 		close(1);
-		exit_ms(2, cmd_data->prompt); //exitstatus 2: e.g. ls: cannot access command-line argument
+		exit_ms(2, cmd_data->prompt);
 	}
 	return ;
 }
@@ -116,7 +115,6 @@ int	execute_cmds(t_prompt *prompt)
 
 	if (!prompt->cmd_list)
 		return (0);
-	//signal(SIGQUIT, &handle_sig_quit); //@Leo: What does ths do?
 	cmd_data = prompt->cmd_list->data;
 	if(cstm_lstsize(prompt->cmd_list) == 1 && get_builtin_nbr(cmd_data))
 	{

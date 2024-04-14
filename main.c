@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/14 15:50:17 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/14 19:35:42 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	launch_minishell(t_prompt *prompt)
 	}
 }
 
+/* set outfile to write end of pipe;
+set infile to read end of pipe */
 void	pipe_infile_outfile(t_node *cmd_lst)
 {
 	int *pip;
@@ -71,7 +73,7 @@ void	pipe_infile_outfile(t_node *cmd_lst)
 			return ;
 		}
 		if (cmd_lst->data->outfile == 1)
-			cmd_lst->data->outfile = pip[1]; //set outfile to write end of pipe
+			cmd_lst->data->outfile = pip[1];
 		else
 			close(pip[1]);
 		cmd_lst->next->data->infile = pip[0]; //set infile to read end of pipe

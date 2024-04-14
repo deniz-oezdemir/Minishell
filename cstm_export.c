@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cstm_export.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:08:21 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/10 16:51:56 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/14 20:00:46 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ int	cstm_export(t_cmddat *cmd)
 	r = 0;
 	i = 1;
 	id_len = 0;
-	if (get_len_arr(cmd->full_command) == 1) // no arguments
+	if (get_len_arr(cmd->full_command) == 1)
 		return (print_export(cmd));
 	if (!cmd->prompt->envp && get_len_arr(cmd->full_command) > 1
-		&& get_len_id(cmd->full_command[i], 0)) // uninitiaized envp - @Leo: is this even possible? @deniz is this comment still valid? 10/04
+		&& get_len_id(cmd->full_command[i], 0)) // uninitiaized envp - @Leo: is this even possible? @deniz is this comment still valid? 10/04 @Leo: yes
 		cmd->prompt->envp = add_str_to_arr(cmd->prompt->envp,
 				cmd->full_command[i++]);
 	while (cmd->full_command[i])
 	{
 		id_len = get_len_id(cmd->full_command[i], 1);
 		if (id_len)
-			scan_envp(cmd, cmd->full_command[i], id_len); // why i=1 not i=0?
+			scan_envp(cmd, cmd->full_command[i], id_len);
 		else
 			r = 1;
 		i++;
@@ -53,24 +53,27 @@ int	print_export(t_cmddat *cmd)
 	return (0);
 }
 
+/*	if			e.g. "TEST=hello"
+	else if		e.g., "export test"
+	else (l=0)	because of error or rmpty command */
 void	print_line_export(t_cmddat *cmd, int i)
 {
 	size_t	l;
 
 	l = get_len_id(cmd->prompt->envp[i], 0);
 	ft_putstr_fd("declare -x ", cmd->outfile);
-	if (l && l != ft_strlen(cmd->prompt->envp[i])) // export TEST=hello
+	if (l && l != ft_strlen(cmd->prompt->envp[i]))
 	{
 		write(cmd->outfile, cmd->prompt->envp[i], l);
 		ft_putstr_fd("=\"", cmd->outfile);
 		ft_putstr_fd(cmd->prompt->envp[i] + l + 1, cmd->outfile);
 		ft_putstr_fd("\"", cmd->outfile);
 	}
-	else if (l) // export test
+	else if (l)
 		write(cmd->outfile, cmd->prompt->envp[i], l);
-	else // l=0 because of error or empty id
+	else
 		ft_putstr_fd(cmd->prompt->envp[i], cmd->outfile);
-	ft_putstr_fd("\n", cmd->outfile); //
+	ft_putstr_fd("\n", cmd->outfile);
 }
 
 int	get_len_id(char *str, int msg)
@@ -104,6 +107,8 @@ int	get_len_id(char *str, int msg)
 	return (i);
 }
 
+/*	if VAR exists, replace VAR
+	else if end of envp, add VAR */
 int	scan_envp(t_cmddat *cmd, char *str, int id_len)
 {
 	int	i;
@@ -113,14 +118,14 @@ int	scan_envp(t_cmddat *cmd, char *str, int id_len)
 	while (cmd->prompt->envp[i])
 	{
 		envp_id_len = get_len_id(cmd->prompt->envp[i], 0);
-		if (envp_id_len == id_len && !ft_strncmp(cmd->prompt->envp[i], str, id_len)) // if VAR exists, replace it
+		if (envp_id_len == id_len && !ft_strncmp(cmd->prompt->envp[i], str, id_len)) //
 		{
 			if (ft_strchr(str, '='))
 				modify_envp(cmd->prompt, ft_substr(cmd->prompt->envp[i], 0,
 						envp_id_len + 1), ft_strdup(str + envp_id_len + 1), 1);
 			break ;
 		}
-		else if (i == get_len_arr(cmd->prompt->envp) - 1) // else if at end of envp, add it to the end
+		else if (i == get_len_arr(cmd->prompt->envp) - 1)
 		{
 			cmd->prompt->envp = add_str_to_arr(cmd->prompt->envp, str);
 			break ;

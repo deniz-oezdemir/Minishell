@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:16:10 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/09 19:53:04 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/14 20:04:20 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	cstm_exit(t_cmddat *cmd_data)
 
 	exitstatus = 0;
 
-	if (get_len_arr(cmd_data->full_command) >= 3 && is_only_digits(cmd_data->full_command[1])) //is_only_digits -> check shell's error msg
+	if (get_len_arr(cmd_data->full_command) >= 3 && is_only_digits(cmd_data->full_command[1]))
 	{
 		print_err_msg("exit", "too many arguments");
 		return (1);

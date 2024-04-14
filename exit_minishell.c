@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:19:36 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/14 16:07:47 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/14 20:05:20 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	free_node_list(t_node *head)
 }
 
 
-//Leo, are we sure below does what it's supposed to do? pointer indexing is difficult
 void	free_char_array(char **array)
 {
 	//@Leo: below fixed the leak in ft_calloc when ctrl+d and another one when exit
@@ -87,7 +86,7 @@ void	free_char_array(char **array)
 	return ;
 
 
-	/*
+	/* @Leo: delete below whenever you do need it anymore as reference
 	if (array == NULL)
 		return ;
 	while (*array != NULL)

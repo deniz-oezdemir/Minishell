@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 10:34:24 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/09 18:12:22 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/14 19:39:10 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	get_builtin_nbr(t_cmddat *cmd)
 {
-	if (cmd->full_command == NULL) //@Leo: initialize full_command to NULL before parsing
+	if (cmd->full_command == NULL)
 		return (0);
 	else if (!ft_strcmp(cmd->full_command[0], "echo"))
 		return (1);
