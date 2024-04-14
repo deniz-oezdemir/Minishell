@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:35:29 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/09 18:17:51 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/14 19:10:07 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ void modify_envp(t_prompt *prompt, char *name, char *insert, int f_free_name)
 		return ;
 	while (prompt->envp[i])
 	{
-		if (!ft_strncmp(prompt->envp[i], name, ft_strlen(name)))
+		if (!ft_strncmp(prompt->envp[i], str, ft_strlen(str)))
 		{
 			free(prompt->envp[i]);
-			prompt->envp[i] = ft_strjoin(name, insert);
+			prompt->envp[i] = ft_strjoin(str, insert);
 		}
 		i++;
 	}
@@ -78,6 +78,7 @@ int	go_home_dir(t_prompt *prompt)
 	home_dir = get_envp(prompt, "HOME");
 	if (!home_dir)
 		return(print_err_msg_lng("cd", "not set", "HOME"));
+	modify_envp(prompt, "OLDPWD", (char *)getcwd(NULL, 0), 0);
 	chdir(home_dir);
 	modify_envp(prompt, "PWD", (char *)getcwd(NULL, 0), 0);
 	free(home_dir);
@@ -92,6 +93,7 @@ int go_back_dir(t_prompt *prompt)
 	if (!old_dir)
 		return(print_err_msg_lng("cd", "not set", "OLDPWD"));
 	ft_printf("%s\n", old_dir);
+	modify_envp(prompt, "OLDPWD", (char *)getcwd(NULL, 0), 0);
 	chdir(old_dir);
 	modify_envp(prompt, "PWD", (char *)getcwd(NULL, 0), 0);
 	if (old_dir)
