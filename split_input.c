@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/08 13:49:17 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/14 16:37:41 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,7 +205,7 @@ char	**split_input(char *str)
 	if (!arr)
 		return (NULL);
 	arr = ft_create_substrs(arr, str, " ");
-	arr[word_count] = NULL;
+	arr[word_count] = NULL; //@Leo: how is this different from aux[word_index] = NULL above?
 	//printf("\narray : ");
 	//print_str_array(arr);
 	// free(str);

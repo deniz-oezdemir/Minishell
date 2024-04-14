@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:22:52 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/12 13:11:01 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/14 16:28:09 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	lexer(t_prompt *prompt)
 
 	prompt->input_string = readline("minishell> ");
 	signals_non_interactive();
-	if (prompt->input_string == NULL )
+	if (prompt->input_string == NULL)
 	{
 		prompt->stop = 1;
 		exit_ms(0, prompt);
@@ -47,6 +47,7 @@ void	lexer(t_prompt *prompt)
 			return ;
 	}
 	prompt->input_string = add_space(prompt->input_string);
+	printf("input string: %s\n", prompt->input_string);
 	prompt->commands = split_input(prompt->input_string);
 	if (prompt->commands == NULL)
 	{

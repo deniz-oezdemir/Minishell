@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/12 16:41:07 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/14 15:50:17 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char *argv[], char **envp)
 
 void	launch_minishell(t_prompt *prompt)
 {
-	signals_interactive();
+	signals_interactive(); //@Leo: is this needed here and in the while loop?
 
 	// signal(SIGINT, &sigint_handler);
 	// signal(SIGQUIT, SIG_IGN);

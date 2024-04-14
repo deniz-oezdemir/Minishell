@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:39:46 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/09 13:27:36 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/14 16:22:48 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	get_rid_quotes(t_prompt	*prompt)
 		i++;
 	}
 	temp[i] = NULL;
-	free(prompt->commands);
+	//free(prompt->commands);
+	free_char_array(prompt->commands); //@Leo: this fixed a leak when exit - please double check
 	prompt->commands = temp;
 }
 char	*get_trimmed(char const *s1, int squote, int dquote)
