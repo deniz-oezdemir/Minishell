@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/12 16:38:43 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/14 20:12:03 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,7 @@ void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i)
 	char	*lim;
 	int		j;
 
-	//signals_interactive(); //@Leo
 	lim = prompt->commands[i + 1]; //is is position of <<
-	/*Leo already checks for below before, so below can be deleted
-	if (!lim || lim[0] == '<')
-	{
-		printf("c1\n");
-		syntax_error(prompt, lim);
-		printf("c2\n");
-		return ;
-	}*/
 	j = 0;
 	while(ft_isalnum(lim[j]))
 		j++;
@@ -39,7 +30,6 @@ void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i)
 	cmd->infile = get_heredoc(prompt, lim);
 	if (exitstatus == 1)
 		prompt->stop = 1; //why?
-	//signals_non_interactive(); //@Leo
 }
 
 int	get_heredoc(t_prompt *prompt, char *lim)
@@ -52,9 +42,9 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 	exitstatus = 0; //why?
 	while (1)
 	{
-		signals_interactive(); //@Leo
+		signals_interactive();
 		line = readline("> ");
-		signals_non_interactive(); //@Leo
+		signals_non_interactive();
 		if (!line) //if e.g. Ctrl+D
 		{
 			print_err_msg("warning", "here-document delimited by end-of-file");

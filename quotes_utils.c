@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:39:46 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/14 16:22:48 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/14 20:12:58 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	get_rid_quotes(t_prompt	*prompt)
 		i++;
 	}
 	temp[i] = NULL;
-	//free(prompt->commands);
+	//free(prompt->commands); //@Leo: to be deleted if below works as intended
 	free_char_array(prompt->commands); //@Leo: this fixed a leak when exit - please double check
 	prompt->commands = temp;
 }
