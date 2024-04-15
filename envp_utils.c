@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:45:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/15 15:24:42 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/15 15:49:15 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*get_path(char *cmd, char **ev)
 		if (access(path, F_OK) == 0)
 		{
 			free_split(all_paths);
-			print_char_array(path);
+			//print_char_array(path);
 			return (path);
 		}
 		free(path);

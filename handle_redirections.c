@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/12 15:25:42 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/15 15:49:48 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	get_type(char *str)
 	int	type;
 	int	i;
 
-	printf("str : %s\n", str);
+	//printf("str: %s\n", str);
 	i = 0;
 	type = 0;
 	if (ft_strlen(str) == 1 && str[i] == '<' )
