@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/12 13:01:27 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/15 12:56:25 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,20 @@ void	parser(t_prompt *prompt)
 		handle_redir(prompt);
 		//print_cmd_list(prompt->cmd_list);
 	}
+
+	add_last_cmd_to_envp(prompt);
+}
+
+void	add_last_cmd_to_envp(t_prompt *prompt)
+{
+	int	l;
+
+	l = 0;
+	if (!prompt->cmd_list->data->full_command)
+		return ;
+	l = get_len_arr(prompt->cmd_list->data->full_command);
+	if (l)
+		modify_envp(prompt, "_", ft_strdup(prompt->cmd_list->data->full_command[l - 1]), 0);
 }
 
 

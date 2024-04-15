@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/12 12:15:28 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/15 12:56:25 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,7 @@ char *add_space(char *str);
 /*	parser*/
 void	parser(t_prompt *prompt);
 char	**fill_arr(char **prompt, int i, int len);
+void	add_last_cmd_to_envp(t_prompt *prompt);
 
 /* list_utils */
 void	add_node_to_list(t_node **head, t_cmddat *data);
