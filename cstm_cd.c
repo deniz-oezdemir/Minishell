@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:35:29 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/14 19:10:07 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/15 13:18:14 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void modify_envp(t_prompt *prompt, char *name, char *insert, int f_free_name)
 	if (!prompt->envp || !insert || !name) //different
 		return ;
 	str = ft_strjoin(name, "="); //different
+	printf("str: %s\n", str);
 	if (!str)
 		return ;
 	while (prompt->envp[i])
