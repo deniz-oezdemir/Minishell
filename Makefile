@@ -6,7 +6,7 @@
 #    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 20:35:04 by denizozd          #+#    #+#              #
-#    Updated: 2024/04/15 14:30:57 by denizozd         ###   ########.fr        #
+#    Updated: 2024/04/15 16:39:29 by denizozd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,12 @@ CUT = "\033[K"
 NAME = minishell
 CC = cc
 #CFLAGS = -Wall -Werror -Wextra #commented out to not silence all unused vars
-CFLAGS = -g #-fsanitize=address
+CFLAGS = #-g #-fsanitize=address
 LIBFTPATH = ./libft
 LIBFT = ./libft/libft.a
 
-LDFLAGS		= -L/Users/$(USER)/.brew/opt/readline/lib -lasan
-CPPFLAGS	= -I/Users/$(USER)/.brew/opt/readline/include
+#LDFLAGS		= -L/Users/$(USER)/.brew/opt/readline/lib -lasan
+#CPPFLAGS	= -I/Users/$(USER)/.brew/opt/readline/include
 #LDFLAGS += -fsanitize=address
 
 SRCS = cstm_exit.c exit_minishell.c signal_handler.c builtins.c \
