@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:45:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/10 18:32:40 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/15 15:24:42 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ char	*get_path(char *cmd, char **ev)
 	int		i;
 
 	i = 0;
-	while (ft_strnstr(ev[i], "PATH", 4) == 0)
+	while (ev[i] && ft_strnstr(ev[i], "PATH", 4) == 0) //PATH can not be found if unset PATH
 		i++;
+	if (i == get_len_arr(ev))
+		return (NULL);
 	all_paths = ft_split(ev[i] + 5, ':');
 	i = 0;
 	while (all_paths[i])
@@ -55,7 +57,7 @@ char	*get_path(char *cmd, char **ev)
 		i++;
 	}
 	free_split(all_paths);
-	return (0);
+	return (NULL);
 }
 
 /* Frees the memory allocated for an array of strings such as
