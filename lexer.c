@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:22:52 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 15:55:11 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/18 18:34:54 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	lexer(t_prompt *prompt)
 	}
 	prompt->input_string = add_space(prompt->input_string);
 	//printf("input string: %s\n", prompt->input_string);
-	prompt->commands = split_input(prompt->input_string);
+	prompt->commands = split_input(prompt->input_string, prompt);
 	if (prompt->commands == NULL)
 	{
 		prompt->stop = 1;

@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/14 16:37:41 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/18 19:04:40 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ static char	**ft_create_substrs(char **aux, char const *s, char *set)
 /* Split the input read from the readline and put it into
 	char		**commands; from the original prompt struct
 */
-char	**split_input(char *str)
+char	**split_input(char *str, t_prompt *prompt)
 {
 	char	**arr;
 	int		word_count;
@@ -201,7 +201,8 @@ char	**split_input(char *str)
 		printf("Syntax error: unclosed quote in argument\n");
 		return (NULL);
 	}
-	arr = (char **)malloc(sizeof(char *) * (word_count + 1));
+	//arr = (char **)malloc(sizeof(char *) * (word_count + 1));
+	arr = get_grbg(&(prompt->grbg_lst), word_count + 1, sizeof(char *));
 	if (!arr)
 		return (NULL);
 	arr = ft_create_substrs(arr, str, " ");

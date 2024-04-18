@@ -75,7 +75,7 @@ int main (int argc, char **argv)
 		free (line);
 		line = strdup("");
 		num_byte = read(fd_in, &buffer, 1);
-		line = ft_strjoin(line, strdup(buffer));	
+		line = ft_strjoin(line, strdup(buffer));
 	}
 
 	close(fd_in);

@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 17:51:30 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/18 19:05:40 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ STDERR_FILENO	2	 Standard error output.
 typedef struct s_node t_node;
 typedef struct s_prompt t_prompt;
 typedef struct s_cmddat t_cmddat;
+typedef struct s_grbg t_grbg;
 
 //@Leo: each nodes content in cmd_list must be of type t_prompt
 /*
@@ -190,7 +191,7 @@ int	is_executable(t_cmddat *cmd_data);
 void	lexer(t_prompt *prompt);
 
 /* split*/
-char	**split_input(char *str);
+char	**split_input(char *str, t_prompt *prompt);
 char	**ft_split(char const *s, char c);
 char *add_space(char *str);
 
@@ -252,7 +253,7 @@ int	get_heredoc(t_prompt *prompt, char *lim);
 int	pipe_heredoc(t_prompt *prompt, char *content);
 
 /*	garbage_collector	*/
-void	*get_grbg(t_grbg *head, size_t nmemb, size_t size);
+void	*get_grbg(t_grbg **head, size_t nmemb, size_t size);
 void	collect_grbg(t_grbg **head, void *new);
 void	free_grbg(t_grbg *head);
 

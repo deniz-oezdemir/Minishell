@@ -6,15 +6,15 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:50:33 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/18 17:53:07 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/18 19:04:29 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*	*head = address of head of garbage list
+/*	**head = address of head ptr of garbage list
 	nmemb and size of new memory space (same as for ft_calloc) */
-void	*get_grbg(t_grbg *head, size_t nmemb, size_t size)
+void	*get_grbg(t_grbg **head, size_t nmemb, size_t size)
 {
 	void *new;
 
@@ -23,12 +23,11 @@ void	*get_grbg(t_grbg *head, size_t nmemb, size_t size)
 	{
 		ft_putstr_fd("memory allocation error\n", 2);
 		//set exitstatus, free stuff
-		return ;
+		return (NULL);
 	}
-	collect_grbg(&head, new);
+	collect_grbg(head, new);
 	return (new);
 }
-
 
 void	collect_grbg(t_grbg **head, void *new)
 {
@@ -44,11 +43,14 @@ void	collect_grbg(t_grbg **head, void *new)
 	}
 	node->ptr = new;
 	node->next = NULL;
+	printf("before *head: %x\n", (*head));
 	if (!(*head)) //list is empty
 	{
 		*head = node;
+		printf("after *head: %x\n", (*head));
 		return ;
 	}
+	printf("after *head: %x\n", (*head));
 	tmp = *head;
 	while (tmp->next) //list is not empty
 		tmp = tmp->next; //go to last node
@@ -61,6 +63,7 @@ void	free_grbg(t_grbg *head)
 	t_grbg *curr;
 	t_grbg *prev;
 
+	printf("before free head: %x\n", head);
 	curr = head;
 	while (curr)
 	{
