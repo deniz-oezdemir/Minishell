@@ -1,13 +1,5 @@
 #include "minishell.h"
 
-//List that stores pointers to malloced memory that should be freed
-
-//Function that
-//	malloc/ft_callocs
-//	adds the pointer to above list
-//	returns the pointer
-
-
 typedef struct s_grbg
 {
 	void	*ptr;
@@ -27,13 +19,14 @@ void	*get_grbg(t_grbg *head, size_t nmemb, size_t size)
 		//set exitstatus, free stuff
 		return ;
 	}
-	collect_grbg(head, new);
+	collect_grbg(&head, new);
 	return (new);
 }
 
-void collect_grbg(t_grbg *head, void *new)
+void collect_grbg(t_grbg **head, void *new)
 {
 	t_grbg *node;
+	t_grbg *tmp;
 
 	node = ft_calloc(1, sizeof(t_grbg));
 	if (!node)
@@ -44,14 +37,15 @@ void collect_grbg(t_grbg *head, void *new)
 	}
 	node->ptr = new;
 	node->next = NULL;
-	if (!head) //list is empty
+	if (!(*head)) //list is empty
 	{
-		head = node;
+		*head = node;
 		return ;
 	}
-	while (head->next) //list is not empty
-		head = head->next; //go to last node
-	head->next = node; //add new at end
+	tmp = *head;
+	while (tmp->next) //list is not empty
+		tmp = tmp->next; //go to last node
+	tmp->next = node; //add new at end
 	return ;
 }
 
