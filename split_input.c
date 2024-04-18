@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/14 16:37:41 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/18 18:08:00 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,38 +78,47 @@ char *add_space(char *str)
 	{
 		if ((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<'))
 		{
-			if (i == 0 || str[i - 1] != ' ')
+			//printf("c2\n");
+			if (str[i + 2] != ' ' && i + 2 < ft_strlen(str))
 			{
-				new_str[j++] = ' ';
-				new_str[j++] = str[i++];
-				new_str[j++] = str[i++];
-			}
-			else if(str[i + 2] != ' ')
-			{
+				//printf("c4\n");
 				new_str[j++] = str[i++];
 				new_str[j++] = str[i++];
 				new_str[j++] = ' ';
 			}
-			else
+			else if (i == 0 || str[i - 1] != ' ')
 			{
+				//printf("c3\n");
+				new_str[j++] = ' ';
 				new_str[j++] = str[i++];
 				new_str[j++] = str[i++];
 			}
 
+			else
+			{
+				//printf("c5\n");
+				new_str[j++] = str[i++];
+				new_str[j++] = str[i++];
+			}
 		}
-		else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i - 1] != ' ')
+		else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i - 1] != ' ' && i != 0)
 		{
+			//printf("c6\n");
 			new_str[j++] = ' ';
 			new_str[j++] = str[i++];
 		}
 		else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i + 1] != ' ')
 		{
+			//printf("c7\n");
 			new_str[j++] = str[i++];
 			new_str[j++] = ' ';
-
 		}
 		else
+		{
+			//printf("c8\n");
 			new_str[j++] = str[i++];
+		}
+
 	}
 	new_str[j] = '\0';
 	free(str);
