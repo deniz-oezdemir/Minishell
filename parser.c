@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 14:34:23 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:51:11 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ void	parser(t_prompt *prompt)
 	t_cmddat	*ptr;
 	int	i;
 	int	j;
-	j = 1;
+	j = 0;
 	i = 0;
 
 	ptr = NULL;
@@ -160,11 +160,17 @@ void	parser(t_prompt *prompt)
 			return ;
 		add_node_to_list(&(prompt->cmd_list), ptr);
 		while (prompt->commands[i] && prompt->commands[i][0] != '|')
+		{
 			i++;
+			j++;
+		}
+		printf(" i = %d && j = %d\n", i,j);
 		ptr->full_command = fill_arr(prompt->commands, i - j, j);
 		ptr->full_path = get_path_cmds(ptr, prompt->envp);
 		i++;
+		j = 0;
 	}
+	print_cmd_list(prompt->cmd_list);
 	check_token(prompt);
 	if (prompt->stop == 0)
 		handle_redir(prompt);
