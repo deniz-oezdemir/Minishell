@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:50:33 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/18 21:25:30 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:38:08 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,20 @@ void	free_grbg(t_grbg *head)
 	while (curr)
 	{
 		if(curr->ptr)
+		{
+			printf("curr->ptr before free: %x\n", curr->ptr);
 			free(curr->ptr);
+		}
 		prev = curr;
 		if (curr->next)
 			curr = curr->next;
 		else
 		{
+			printf("curr before free: %x\n", curr);
 			free(curr);
 			return ;
 		}
+		printf("prev=curr before free: %x\n", prev);
 		free(prev);
 	}
 }
