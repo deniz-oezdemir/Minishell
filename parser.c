@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 15:51:11 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:45:54 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,28 +145,30 @@ static void	check_token(t_prompt *prompt)
 void	parser(t_prompt *prompt)
 {
 	t_cmddat	*ptr;
-	int	i;
-	int	j;
+	int			i;
+	int			j;
+
 	j = 0;
 	i = 0;
 
 	ptr = NULL;
 	get_rid_quotes(prompt);
 	check_last_char(prompt);
-	while (prompt && prompt->commands && prompt->commands[i] && prompt->stop == 0)
+	while (prompt && prompt->commands && prompt->commands[i] != NULL && prompt->stop == 0)
 	{
 		ptr = init_struct_cmd(prompt);
 		if (!ptr)
 			return ;
 		add_node_to_list(&(prompt->cmd_list), ptr);
-		while (prompt->commands[i] && prompt->commands[i][0] != '|')
+		while (prompt->commands[i] != NULL && prompt->commands[i][0] != '|')
 		{
 			i++;
 			j++;
 		}
-		printf(" i = %d && j = %d\n", i,j);
 		ptr->full_command = fill_arr(prompt->commands, i - j, j);
 		ptr->full_path = get_path_cmds(ptr, prompt->envp);
+		if (prompt->commands[i] == NULL)
+			break;
 		i++;
 		j = 0;
 	}
