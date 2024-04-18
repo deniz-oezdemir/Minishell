@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:50:33 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/18 19:04:29 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:25:30 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	*get_grbg(t_grbg **head, size_t nmemb, size_t size)
 		//set exitstatus, free stuff
 		return (NULL);
 	}
+	printf("allocated new: %x\n", new);
 	collect_grbg(head, new);
 	return (new);
 }
@@ -41,16 +42,15 @@ void	collect_grbg(t_grbg **head, void *new)
 		//set exitstatus, free stuff, exit
 		return ;
 	}
+	printf("allocated node: %x\n", node);
 	node->ptr = new;
+	printf("check: node->ptr: %x is equal to allocated new above?\n", node->ptr);
 	node->next = NULL;
-	printf("before *head: %x\n", (*head));
 	if (!(*head)) //list is empty
 	{
 		*head = node;
-		printf("after *head: %x\n", (*head));
 		return ;
 	}
-	printf("after *head: %x\n", (*head));
 	tmp = *head;
 	while (tmp->next) //list is not empty
 		tmp = tmp->next; //go to last node
@@ -63,7 +63,7 @@ void	free_grbg(t_grbg *head)
 	t_grbg *curr;
 	t_grbg *prev;
 
-	printf("before free head: %x\n", head);
+	printf("head before free: %x\n", head);
 	curr = head;
 	while (curr)
 	{

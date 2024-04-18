@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 16:45:54 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:14:10 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static t_cmddat	*init_struct_cmd(t_prompt *prompt)
   Returns:
     - Pointer to the newly created array of strings.
 */
-char	**fill_arr(char **prompt, int i, int len)
+char	**fill_arr(t_prompt *main_prompt, char **prompt, int i, int len)
 {
 	char **temp;
 	int j;
@@ -75,7 +75,8 @@ char	**fill_arr(char **prompt, int i, int len)
 		return (NULL);
 	while (len > 0)
 	{
-		temp[j] = ft_strdup(prompt[i]);
+		//temp[j] = ft_strdup(prompt[i]);
+		temp[j] = grbg_strdup(main_prompt, prompt[i]);
 		i++;
 		j++;
 		len--;
@@ -165,7 +166,7 @@ void	parser(t_prompt *prompt)
 			i++;
 			j++;
 		}
-		ptr->full_command = fill_arr(prompt->commands, i - j, j);
+		ptr->full_command = fill_arr(prompt, prompt->commands, i - j, j);
 		ptr->full_path = get_path_cmds(ptr, prompt->envp);
 		if (prompt->commands[i] == NULL)
 			break;

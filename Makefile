@@ -6,7 +6,7 @@
 #    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 20:35:04 by denizozd          #+#    #+#              #
-#    Updated: 2024/04/18 18:44:05 by denizozd         ###   ########.fr        #
+#    Updated: 2024/04/18 21:15:00 by denizozd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRCS = cstm_exit.c exit_minishell.c signal_handler.c builtins.c \
 		cstm_env.c debug_utils.c lexer.c utils.c \
 		cstm_cd.c cstm_export.c envp_utils.c \
 		expand_var_utils.c expander.c handle_redirections.c \
-		quotes_utils.c list_functions.c heredoc.c garbage_collector.c \
+		quotes_utils.c list_functions.c heredoc.c garbage_collector.c garbage_lib.c \
 
 OBJDIR = obj
 OBJS =  $(addprefix $(OBJDIR)/,$(SRCS:.c=.o))

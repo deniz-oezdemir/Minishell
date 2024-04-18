@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 19:05:40 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:12:53 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,7 @@ char *add_space(char *str);
 
 /*	parser*/
 void	parser(t_prompt *prompt);
-char	**fill_arr(char **prompt, int i, int len);
+char	**fill_arr(t_prompt *main_prompt, char **prompt, int i, int len);
 void	add_last_cmd_to_envp(t_prompt *prompt);
 
 /* list_utils */
@@ -256,5 +256,8 @@ int	pipe_heredoc(t_prompt *prompt, char *content);
 void	*get_grbg(t_grbg **head, size_t nmemb, size_t size);
 void	collect_grbg(t_grbg **head, void *new);
 void	free_grbg(t_grbg *head);
+
+/*	garbage_lib	*/
+char	*grbg_strdup(t_prompt *prompt, const char *s);
 
 #endif
