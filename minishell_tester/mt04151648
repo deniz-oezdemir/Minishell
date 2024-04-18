@@ -1,0 +1,533 @@
+[0;31m🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+                                                                                             
+ ██    ██ █ ██    █ █ █████ █   █ █████ █     █       ██████ █████ █████ ██████ █████ █████  
+ ███  ███ █ ███   █ █ █     █   █ █     █     █         ██   █     █       ██   █     █   ██ 
+ █ ████ █ █ █ ██  █ █ █████ █████ ████  █     █         ██   ████  █████   ██   ████  █████  
+ █  ██  █ █ █  ██ █ █     █ █   █ █     █     █         ██   █         █   ██   █     █   ██ 
+ █      █ █ █   ███ █ █████ █   █ █████ █████ █████     ██   █████ █████   ██   █████ █   ██ 
+                                                                                             
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+                                                                                              
+[0;31m———————————— builtins
+[0;33mTest   1: ✅[38;5;244m echo hello world 
+[0m[0;33mTest   2: ✅[38;5;244m echo "hello world" 
+[0m[0;33mTest   3: ✅[38;5;244m echo 'hello world' 
+[0m[0;33mTest   4: ✅[38;5;244m echo hello'world' 
+[0m[0;33mTest   5: ✅[38;5;244m echo hello""world 
+[0m[0;33mTest   6: ✅[38;5;244m echo '' 
+[0m[0;33mTest   7: ✅[38;5;244m echo "$PWD" 
+[0m[0;33mTest   8: ✅[38;5;244m echo '$PWD' 
+[0m[0;33mTest   9: ❌[38;5;244m echo "aspas ->'" 
+[0mmini output = (aspas - >')
+bash output = (aspas ->')
+[0;33mTest  10: ❌[38;5;244m echo "aspas -> ' " 
+[0mmini output = (aspas - > ' )
+bash output = (aspas -> ' )
+[0;33mTest  11: ❌[38;5;244m echo 'aspas ->"' 
+[0mmini output = (aspas - >")
+bash output = (aspas ->")
+[0;33mTest  12: ❌[38;5;244m echo 'aspas -> " ' 
+[0mmini output = (aspas - > " )
+bash output = (aspas -> " )
+[0;33mTest  13: ❌[38;5;244m echo "> >> < * ? [ ] | ; [ ] || && ( ) & # $  <<" 
+[0mmini output = ( > >> < bash_outfiles bash.supp bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles mt04151648 os_specific outfiles pipes README.md redirects syntax tester test_files wildcards ? [ ] | ; [ ] | | && ( ) & # << )
+bash output = (> >> < bash_outfiles bash.supp bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles mt04151648 os_specific outfiles pipes README.md redirects syntax tester test_files wildcards ? [ ] | ; [ ] || && ( ) & # $ <<)
+[0;33mTest  14: ❌[38;5;244m echo '> >> < * ? [ ] | ; [ ] || && ( ) & # $  <<' 
+[0mmini output = ( > >> < bash_outfiles bash.supp bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles mt04151648 os_specific outfiles pipes README.md redirects syntax tester test_files wildcards ? [ ] | ; [ ] | | && ( ) & # $ << )
+bash output = (> >> < bash_outfiles bash.supp bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles mt04151648 os_specific outfiles pipes README.md redirects syntax tester test_files wildcards ? [ ] | ; [ ] || && ( ) & # $ <<)
+[0;33mTest  15: ❌[38;5;244m echo "exit_code ->$? user ->$USER home -> $HOME" 
+[0mmini output = (exit_code - >0 user - >denizozd home - > /home/denizozd)
+bash output = (exit_code ->0 user ->denizozd home -> /home/denizozd)
+[0;33mTest  16: ❌[38;5;244m echo 'exit_code ->$? user ->$USER home -> $HOME' 
+[0mmini output = (exit_code - >$? user - >$USER home - > $HOME)
+bash output = (exit_code ->$? user ->$USER home -> $HOME)
+[0;33mTest  17: ❌[38;5;244m echo "$" 
+[0mmini output = ()
+bash output = ($)
+[0;33mTest  18: ✅[38;5;244m echo '$' 
+[0m[0;33mTest  19: ✅[38;5;244m echo $ 
+[0m[0;33mTest  20: ✅[38;5;244m echo $? 
+[0m[0;33mTest  21: ✅[38;5;244m echo $?HELLO 
+[0m[0;33mTest  22: ✅[38;5;244m pwd 
+[0m[0;33mTest  23: ✅[38;5;244m pwd oi 
+[0m[0;33mTest  24: ✅[38;5;244m export hello 
+[0m[0;33mTest  25: ✅[38;5;244m export HELLO=123 
+[0m[0;33mTest  26: ✅[38;5;244m export A- 
+[0m[0;33mTest  27: ✅[38;5;244m export HELLO=123 A 
+[0m[0;33mTest  28: ✅[38;5;244m export HELLO="123 A-" 
+[0m[0;33mTest  29: ✅[38;5;244m export hello world 
+[0m[0;33mTest  30: ✅[38;5;244m export HELLO-=123 
+[0m[0;33mTest  31: ✅[38;5;244m export = 
+[0m[0;33mTest  32: ✅[38;5;244m export 123 
+[0m[0;33mTest  33: ✅[38;5;244m unset 
+[0m[0;33mTest  34: ✅[38;5;244m unset HELLO 
+[0m[0;33mTest  35: ✅[38;5;244m unset HELLO1 HELLO2 
+[0m[0;33mTest  36: ✅[38;5;244m unset HOME 
+[0m[0;33mTest  37: ✅[38;5;244m unset PATH 
+[0m[0;33mTest  38: ✅[38;5;244m unset SHELL 
+[0m[0;33mTest  39: ✅[38;5;244m cd $PWD 
+[0m[0;33mTest  40: ❌[38;5;244m cd $PWD hi 
+[0mmini exit code = 0
+bash exit code = 1
+mini error = ()
+bash error = ( too many arguments)
+[0;33mTest  41: ✅⚠️ [38;5;244m cd 123123 
+[0mmini error = ( 123123)
+bash error = ( No such file or directory)
+[0;33mTest  42: ✅[38;5;244m exit 123 
+[0m[0;33mTest  43: ✅[38;5;244m exit 298 
+[0m[0;33mTest  44: ✅⚠️ [38;5;244m exit +100 
+[0mmini error = ( numeric argument required)
+bash error = ()
+[0;33mTest  45: ✅⚠️ [38;5;244m exit "+100" 
+[0mmini error = ( numeric argument required)
+bash error = ()
+[0;33mTest  46: ✅⚠️ [38;5;244m exit +"100" 
+[0mmini error = ( numeric argument required)
+bash error = ()
+[0;33mTest  47: ✅⚠️ [38;5;244m exit -100 
+[0mmini error = ( numeric argument required)
+bash error = ()
+[0;33mTest  48: ✅⚠️ [38;5;244m exit "-100" 
+[0mmini error = ( numeric argument required)
+bash error = ()
+[0;33mTest  49: ✅⚠️ [38;5;244m exit -"100" 
+[0mmini error = ( numeric argument required)
+bash error = ()
+[0;33mTest  50: ❌[38;5;244m exit hello 
+[0mmini exit code = 0
+bash exit code = 2
+[0;33mTest  51: ✅[38;5;244m exit 42 world 
+[0m[0;33mTest  52: ✅[38;5;244m  
+[0m[0;31m———————————— pipes
+[0;33mTest  53: ❌[38;5;244m env | sort | grep -v SHLVL | grep -v ^_ 
+[0mmini output = ()
+bash output = (COLORTERM=truecolor DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/101945/bus,guid=a7f85f289eac724b213e93f6661cf26e DBUS_STARTER_ADDRESS=unix:path=/run/user/101945/bus,guid=a7f85f289eac724b213e93f6661cf26e DBUS_STARTER_BUS_TYPE=session DESKTOP_SESSION=ubuntu DISPLAY=:0 DOCKER_HOST=unix:///run/user/101945/docker.sock GDMSESSION=ubuntu GNOME_DESKTOP_SESSION_ID=this-is-deprecated GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/cff6f24f_403e_4064_94c4_868dd73b4e87 GNOME_TERMINAL_SERVICE=:1.1564 GPG_AGENT_INFO=/run/user/101945/gnupg/S.gpg-agent:0:1 GTK_IM_MODULE=ibus GTK_MODULES=gail:atk-bridge HOME=/home/denizozd KRB5CCNAME=FILE:/tmp/krb5cc_101945_DlV1Cf LANG=en_US.UTF-8 LESS=-R LOGNAME=denizozd LSCOLORS=Gxfxcxdxbxegedabagacad LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36: MAIL=denizozd@student.42berlin.de OLDPWD=/home/denizozd/42-Minishell/minishell_tester PAGER=less PATH=/home/denizozd/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin PWD=/home/denizozd/42-Minishell/minishell_tester QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus SESSION_MANAGER=local/c4c5c2.42berlin.de:@/tmp/.ICE-unix/6600,unix/c4c5c2.42berlin.de:/tmp/.ICE-unix/6600 SHELL=/bin/zsh SSH_AGENT_LAUNCHER=gnome-keyring SSH_AUTH_SOCK=/run/user/101945/keyring/ssh SYSTEMD_EXEC_PID=6600 TERM=xterm-256color USER=denizozd VTE_VERSION=6800 XAUTHORITY=/home/denizozd/.Xauthority XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg XDG_CURRENT_DESKTOP=ubuntu:GNOME XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/home/denizozd/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/denizozd XDG_MENU_PREFIX=gnome- XDG_RUNTIME_DIR=/run/user/101945 XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0 XDG_SESSION_CLASS=user XDG_SESSION_DESKTOP=ubuntu XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0 XDG_SESSION_TYPE=x11 XMODIFIERS=@im=ibus ZSH=/home/denizozd/.oh-my-zsh)
+mini exit code =
+bash exit code = 0
+mini error = ( command not found)
+bash error = ()
+[0;33mTest  54: ✅[38;5;244m cat ./test_files/infile_big | grep oi 
+[0m[0;33mTest  55: ✅[38;5;244m cat minishell.h | grep ");"$ 
+[0m[0;33mTest  56: ✅[38;5;244m export GHOST=123 | env | grep GHOST 
+[0m[0;31m———————————— redirects
+[0;33mTest  57: ✅[38;5;244m grep hi <./test_files/infile 
+[0m[0;33mTest  58: ✅[38;5;244m grep hi "<infile" <         ./test_files/infile 
+[0m[0;33mTest  59: ✅[38;5;244m echo hi < ./test_files/infile bye bye 
+[0m[0;33mTest  60: ✅[38;5;244m grep hi <./test_files/infile_big <./test_files/infile 
+[0m[0;33mTest  61: ✅[38;5;244m echo <"./test_files/infile" "bonjour       42" 
+[0m[0;33mTest  62: ✅[38;5;244m cat <"./test_files/file name with spaces" 
+[0m[0;33mTest  63: ✅[38;5;244m cat <./test_files/infile_big ./test_files/infile 
+[0m[0;33mTest  64: ❌[38;5;244m cat <"1""2""3""4""5" 
+[0mmini output = (12345 No such file or directory)
+bash output = ()
+mini error = ()
+bash error = ( No such file or directory)
+[0;33mTest  65: ❌[38;5;244m echo <"./test_files/infile" <missing <"./test_files/infile" 
+[0mmini output = ( missing No such file or directory)
+bash output = ()
+mini error = ()
+bash error = ( No such file or directory)
+[0;33mTest  66: ❌[38;5;244m echo <missing <"./test_files/infile" <missing 
+[0mmini output = ( missing No such file or directory missing No such file or directory)
+bash output = ()
+mini error = ()
+bash error = ( No such file or directory)
+[0;33mTest  67: ✅[38;5;244m cat <"./test_files/infile" 
+[0m[0;33mTest  68: ❌[38;5;244m echo <"./test_files/infile_big" | cat <"./test_files/infile" 
+[0mmini output = ()
+bash output = (hi hello world 42)
+[0;33mTest  69: ✅[38;5;244m echo <"./test_files/infile_big" | cat "./test_files/infile" 
+[0m[0;33mTest  70: ❌[38;5;244m echo <"./test_files/infile_big" | echo <"./test_files/infile" 
+[0mmini exit code = 1
+bash exit code = 0
+[0;33mTest  71: ❌[38;5;244m echo hi | cat <"./test_files/infile" 
+[0mmini output = (hi)
+bash output = (hi hello world 42)
+[0;33mTest  72: ✅[38;5;244m echo hi | cat "./test_files/infile" 
+[0m[0;33mTest  73: ✅[38;5;244m cat <"./test_files/infile" | echo hi 
+[0m[0;33mTest  74: ✅[38;5;244m cat <"./test_files/infile" | grep hello 
+[0m[0;33mTest  75: ✅[38;5;244m cat <"./test_files/infile_big" | echo hi 
+[0m[0;33mTest  76: ❌[38;5;244m cat <missing 
+[0mmini output = (missing No such file or directory)
+bash output = ()
+mini error = ()
+bash error = ( No such file or directory)
+[0;33mTest  77: ❌[38;5;244m cat <missing | cat 
+[0mmini output = (missing No such file or directory)
+bash output = ()
+mini error = ()
+bash error = ( No such file or directory)
+[0;33mTest  78: ❌[38;5;244m cat <missing | echo oi 
+[0mmini output = (oi missing No such file or directory missing No such file or directory)
+bash output = (oi)
+mini error = ()
+bash error = ( No such file or directory)
+[0;33mTest  79: ❌[38;5;244m cat <missing | cat <"./test_files/infile" 
+[0mmini output = (missing No such file or directory)
+bash output = (hi hello world 42)
+mini error = ()
+bash error = ( No such file or directory)
+[0;33mTest  80: ❌[38;5;244m echo <123 <456 hi | echo 42 
+[0mmini output = (42 123 No such file or directory 456 No such file or directory 123 No such file or directory 456 No such file or directory)
+bash output = (42)
+mini error = ()
+bash error = ( No such file or directory)
+[0;33mTest  81: ✅[38;5;244m ls >./outfiles/outfile01 
+[0m[0;33mTest  82: ✅[38;5;244m ls >         ./outfiles/outfile01 
+[0m[0;33mTest  83: ✅[38;5;244m echo hi >         ./outfiles/outfile01 bye 
+[0m[0;33mTest  84: ✅[38;5;244m ls >./outfiles/outfile01 >./outfiles/outfile02 
+[0m[0;33mTest  85: ❌[38;5;244m ls >./outfiles/outfile01 >./test_files/invalid_permission 
+[0mmini output = (./test_files/invalid_permission No such file or directory)
+bash output = ()
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest  86: ✅[38;5;244m ls >"./outfiles/outfile with spaces" 
+[0m[0;33mTest  87: ✅[38;5;244m ls >"./outfiles/outfile""1""2""3""4""5" 
+[0m[0;33mTest  88: ❌[38;5;244m ls >"./outfiles/outfile01" >./test_files/invalid_permission >"./outfiles/outfile02" 
+[0mOnly in ./mini_outfiles: outfile02
+mini outfiles:
+bash_outfiles
+bash.supp
+bonus
+bonus_bonus
+builtins
+extras
+local.supp
+loop.out
+manual_tests
+mini_outfiles
+mt04151648
+os_specific
+outfiles
+pipes
+README.md
+redirects
+syntax
+tester
+test_files
+wildcards
+bash outfiles:
+mini output = (./test_files/invalid_permission No such file or directory)
+bash output = ()
+mini exit code = 0
+bash exit code = 1
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest  89: ❌[38;5;244m ls >./test_files/invalid_permission >"./outfiles/outfile01" >./test_files/invalid_permission 
+[0mOnly in ./mini_outfiles: outfile01
+mini outfiles:
+bash outfiles:
+mini output = (./test_files/invalid_permission No such file or directory ./test_files/invalid_permission No such file or directory)
+bash output = ()
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest  90: ✅[38;5;244m cat <"./test_files/infile" >"./outfiles/outfile01" 
+[0m[0;33mTest  91: ✅[38;5;244m echo hi >./outfiles/outfile01 | echo bye 
+[0m[0;33mTest  92: ✅[38;5;244m echo hi >./outfiles/outfile01 >./outfiles/outfile02 | echo bye 
+[0m[0;33mTest  93: ✅[38;5;244m echo hi | echo >./outfiles/outfile01 bye 
+[0m[0;33mTest  94: ✅[38;5;244m echo hi | echo bye >./outfiles/outfile01 >./outfiles/outfile02 
+[0m[0;33mTest  95: ✅[38;5;244m echo hi >./outfiles/outfile01 | echo bye >./outfiles/outfile02 
+[0m[0;33mTest  96: ❌[38;5;244m echo hi >./outfiles/outfile01 >./test_files/invalid_permission | echo bye 
+[0mmini output = (bye ./test_files/invalid_permission No such file or directory ./test_files/invalid_permission No such file or directory)
+bash output = (bye)
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest  97: ❌[38;5;244m echo hi >./test_files/invalid_permission | echo bye 
+[0mmini output = (bye ./test_files/invalid_permission No such file or directory ./test_files/invalid_permission No such file or directory)
+bash output = (bye)
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest  98: ❌[38;5;244m echo hi >./test_files/invalid_permission >./outfiles/outfile01 | echo bye 
+[0mOnly in ./mini_outfiles: outfile01
+mini outfiles:
+hi
+bash outfiles:
+mini output = (bye ./test_files/invalid_permission No such file or directory ./test_files/invalid_permission No such file or directory ./test_files/invalid_permission No such file or directory)
+bash output = (bye)
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest  99: ❌[38;5;244m echo hi | echo bye >./test_files/invalid_permission 
+[0mmini output = (./test_files/invalid_permission No such file or directory ./test_files/invalid_permission No such file or directory)
+bash output = ()
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest 100: ❌[38;5;244m echo hi | >./outfiles/outfile01 echo bye >./test_files/invalid_permission 
+[0mmini output = (./test_files/invalid_permission No such file or directory ./test_files/invalid_permission No such file or directory)
+bash output = ()
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest 101: ❌[38;5;244m echo hi | echo bye >./test_files/invalid_permission >./outfiles/outfile01 
+[0mOnly in ./mini_outfiles: outfile01
+mini outfiles:
+bye
+bash outfiles:
+mini output = (./test_files/invalid_permission No such file or directory ./test_files/invalid_permission No such file or directory ./test_files/invalid_permission No such file or directory)
+bash output = ()
+mini exit code = 0
+bash exit code = 1
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest 102: ❌[38;5;244m cat <"./test_files/infile" >./test_files/invalid_permission 
+[0mmini output = (./test_files/invalid_permission No such file or directory)
+bash output = ()
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest 103: ❌[38;5;244m cat >./test_files/invalid_permission <"./test_files/infile" 
+[0mmini output = (hi hello world 42 ./test_files/invalid_permission No such file or directory)
+bash output = ()
+mini exit code = 0
+bash exit code = 1
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest 104: ❌[38;5;244m cat <missing >./outfiles/outfile01 
+[0mOnly in ./mini_outfiles: outfile01
+mini outfiles:
+bash outfiles:
+mini output = (missing No such file or directory)
+bash output = ()
+mini exit code = missing No such file or directory
+bash exit code = 1
+mini error = ()
+bash error = ( No such file or directory)
+[0;33mTest 105: ❌[38;5;244m cat >./outfiles/outfile01 <missing 
+[0mmini output = (missing No such file or directory)
+bash output = ()
+mini error = ()
+bash error = ( No such file or directory)
+[0;33mTest 106: ❌[38;5;244m cat <missing >./test_files/invalid_permission 
+[0mmini output = (missing No such file or directory ./test_files/invalid_permission No such file or directory)
+bash output = ()
+mini error = ()
+bash error = ( No such file or directory)
+[0;33mTest 107: ❌[38;5;244m cat >./test_files/invalid_permission <missing 
+[0mmini output = (./test_files/invalid_permission No such file or directory missing No such file or directory)
+bash output = ()
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest 108: ❌[38;5;244m cat >./outfiles/outfile01 <missing >./test_files/invalid_permission 
+[0mmini output = (missing No such file or directory ./test_files/invalid_permission No such file or directory)
+bash output = ()
+mini error = ()
+bash error = ( No such file or directory)
+[0;33mTest 109: ❌[38;5;244m ls >>./outfiles/outfile01 
+[0mmini output = (append to outfile)
+bash output = ()
+[0;33mTest 110: ❌[38;5;244m ls >>      ./outfiles/outfile01 
+[0mmini output = (append to outfile)
+bash output = ()
+[0;33mTest 111: ❌[38;5;244m ls >>./outfiles/outfile01 >./outfiles/outfile01 
+[0mmini output = (append to outfile)
+bash output = ()
+[0;33mTest 112: ❌[38;5;244m ls >./outfiles/outfile01 >>./outfiles/outfile01 
+[0mmini output = (append to outfile)
+bash output = ()
+[0;33mTest 113: ❌[38;5;244m ls >./outfiles/outfile01 >>./outfiles/outfile01 >./outfiles/outfile02 
+[0mmini output = (append to outfile)
+bash output = ()
+[0;33mTest 114: ❌[38;5;244m ls >>./outfiles/outfile01 >>./outfiles/outfile02 
+[0mmini output = (append to outfile append to outfile)
+bash output = ()
+[0;33mTest 115: ❌[38;5;244m ls >>./test_files/invalid_permission 
+[0mmini output = (append to outfile ./test_files/invalid_permission No such file or directory)
+bash output = ()
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest 116: ❌[38;5;244m ls >>./test_files/invalid_permission >>./outfiles/outfile01 
+[0mOnly in ./mini_outfiles: outfile01
+mini outfiles:
+bash_outfiles
+bash.supp
+bonus
+bonus_bonus
+builtins
+extras
+local.supp
+loop.out
+manual_tests
+mini_outfiles
+mt04151648
+os_specific
+outfiles
+pipes
+README.md
+redirects
+syntax
+tester
+test_files
+wildcards
+bash outfiles:
+mini output = (append to outfile ./test_files/invalid_permission No such file or directory append to outfile)
+bash output = ()
+mini exit code = 0
+bash exit code = 1
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest 117: ❌[38;5;244m ls >>./outfiles/outfile01 >>./test_files/invalid_permission 
+[0mmini output = (append to outfile append to outfile ./test_files/invalid_permission No such file or directory)
+bash output = ()
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest 118: ❌[38;5;244m ls >./outfiles/outfile01 >>./test_files/invalid_permission >>./outfiles/outfile02 
+[0mOnly in ./mini_outfiles: outfile02
+mini outfiles:
+bash_outfiles
+bash.supp
+bonus
+bonus_bonus
+builtins
+extras
+local.supp
+loop.out
+manual_tests
+mini_outfiles
+mt04151648
+os_specific
+outfiles
+pipes
+README.md
+redirects
+syntax
+tester
+test_files
+wildcards
+bash outfiles:
+mini output = (append to outfile ./test_files/invalid_permission No such file or directory append to outfile)
+bash output = ()
+mini exit code = 0
+bash exit code = 1
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest 119: ❌[38;5;244m ls <missing >>./test_files/invalid_permission >>./outfiles/outfile02 
+[0mOnly in ./mini_outfiles: outfile02
+mini outfiles:
+bash_outfiles
+bash.supp
+bonus
+bonus_bonus
+builtins
+extras
+local.supp
+loop.out
+manual_tests
+mini_outfiles
+mt04151648
+os_specific
+outfiles
+pipes
+README.md
+redirects
+syntax
+tester
+test_files
+wildcards
+bash outfiles:
+mini output = (missing No such file or directory append to outfile ./test_files/invalid_permission No such file or directory append to outfile)
+bash output = ()
+mini exit code = 0
+bash exit code = 1
+mini error = ()
+bash error = ( No such file or directory)
+[0;33mTest 120: ❌[38;5;244m ls >>./test_files/invalid_permission >>./outfiles/outfile02 <missing 
+[0mOnly in ./mini_outfiles: outfile02
+mini outfiles:
+bash outfiles:
+mini output = (append to outfile ./test_files/invalid_permission No such file or directory append to outfile missing No such file or directory)
+bash output = ()
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest 121: ❌[38;5;244m echo hi >>./outfiles/outfile01 | echo bye 
+[0mmini output = (bye append to outfile append to outfile append to outfile)
+bash output = (bye)
+[0;33mTest 122: ❌[38;5;244m echo hi >>./outfiles/outfile01 >>./outfiles/outfile02 | echo bye 
+[0mmini output = (bye append to outfile append to outfile append to outfile append to outfile append to outfile append to outfile)
+bash output = (bye)
+[0;33mTest 123: ❌[38;5;244m echo hi | echo >>./outfiles/outfile01 bye 
+[0mmini output = (append to outfile append to outfile append to outfile)
+bash output = ()
+[0;33mTest 124: ❌[38;5;244m echo hi | echo bye >>./outfiles/outfile01 >>./outfiles/outfile02 
+[0mmini output = (append to outfile append to outfile append to outfile append to outfile append to outfile append to outfile)
+bash output = ()
+[0;33mTest 125: ❌[38;5;244m echo hi >>./outfiles/outfile01 | echo bye >>./outfiles/outfile02 
+[0mmini output = (append to outfile append to outfile append to outfile append to outfile append to outfile append to outfile)
+bash output = ()
+[0;33mTest 126: ❌[38;5;244m echo hi >>./test_files/invalid_permission | echo bye 
+[0mmini output = (bye append to outfile ./test_files/invalid_permission No such file or directory append to outfile ./test_files/invalid_permission No such file or directory)
+bash output = (bye)
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest 127: ❌[38;5;244m echo hi >>./test_files/invalid_permission >./outfiles/outfile01 | echo bye 
+[0mOnly in ./mini_outfiles: outfile01
+mini outfiles:
+hi
+bash outfiles:
+mini output = (bye append to outfile ./test_files/invalid_permission No such file or directory append to outfile ./test_files/invalid_permission No such file or directory append to outfile ./test_files/invalid_permission No such file or directory)
+bash output = (bye)
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest 128: ❌[38;5;244m echo hi | echo bye >>./test_files/invalid_permission 
+[0mmini output = (append to outfile ./test_files/invalid_permission No such file or directory append to outfile ./test_files/invalid_permission No such file or directory)
+bash output = ()
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest 129: ❌[38;5;244m echo hi | echo >>./outfiles/outfile01 bye >./test_files/invalid_permission 
+[0mmini output = (append to outfile ./test_files/invalid_permission No such file or directory append to outfile ./test_files/invalid_permission No such file or directory)
+bash output = ()
+mini error = ()
+bash error = ( Permission denied)
+[0;33mTest 130: ❌[38;5;244m cat <minishell.h>./outfiles/outfile 
+[0mmini exit code = 139
+bash exit code = 1
+mini error = ( syntax error near unexpected token `>./outfiles/outfile')
+bash error = ( No such file or directory)
+[0;33mTest 131: ❌[38;5;244m cat <minishell.h|ls 
+[0mmini output = ()
+bash output = (bash_outfiles bash.supp bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles mt04151648 os_specific outfiles pipes README.md redirects syntax tester test_files wildcards)
+mini exit code = 139
+bash exit code = 0
+mini error = ( syntax error near unexpected token `|ls')
+bash error = ( No such file or directory)
+[0;31m———————————— extras
+[0;33mTest 132: ✅[38;5;244m  
+[0m[0;33mTest 133: ❌[38;5;244m $PWD 
+[0mmini exit code = 2
+bash exit code = 126
+mini error = ()
+bash error = ( Is a directory)
+[0;33mTest 134: ❌[38;5;244m $EMPTY 
+[0mmini exit code = 2
+bash exit code = 0
+[0;33mTest 135: ❌[38;5;244m $EMPTY echo hi 
+[0mmini output = ()
+bash output = (hi)
+mini exit code = 2
+bash exit code = 0
+[0;33mTest 136: ❌[38;5;244m ./test_files/invalid_permission 
+[0mmini exit code = 127
+bash exit code = 126
+mini error = ( command not found)
+bash error = ( Permission denied)
+[0;33mTest 137: ✅⚠️ [38;5;244m ./missing.out 
+[0mmini error = ( command not found)
+bash error = ( No such file or directory)
+[0;33mTest 138: ✅[38;5;244m missing.out 
+[0m[0;33mTest 139: ✅[38;5;244m "aaa" 
+[0m[0;33mTest 140: ❌[38;5;244m test_files 
+[0mmini exit code = 2
+bash exit code = 127
+mini error = ()
+bash error = ( command not found)
+[0;33mTest 141: ❌[38;5;244m ./test_files 
+[0mmini exit code = 2
+bash exit code = 126
+mini error = ()
+bash error = ( Is a directory)
+[0;33mTest 142: ✅⚠️ [38;5;244m /test_files 
+[0mmini error = ( command not found)
+bash error = ( No such file or directory)
+[0;33mTest 143: ✅[38;5;244m minishell.h 
+[0m[0;33mTest 144: ✅[38;5;244m $ 
+[0m[0;33mTest 145: ✅[38;5;244m $? 
+[0m[0;33mTest 146: ✅[38;5;244m README.md 
+[0m[0;35m[1m78/146
+[0m😭 😭 😭
