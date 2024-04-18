@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:22:52 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/15 15:48:18 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/18 11:24:40 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	lexer(t_prompt *prompt)
 		free(prompt->input_string);
 	}
 	//else
-	//	print_str_array(prompt->commands);
+	print_str_array(prompt->commands);
 	if (prompt->stop != 1)
 		prompt->commands = expander(prompt->commands, prompt->envp);
 }

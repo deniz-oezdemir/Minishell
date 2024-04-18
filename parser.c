@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/15 12:58:11 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:29:26 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,55 +141,111 @@ static void	check_token(t_prompt *prompt)
 	}
 }
 
+
 void	parser(t_prompt *prompt)
 {
 	t_cmddat	*ptr;
-	char **temp;
 	int	i;
 	int	j;
+	// int k;
+	// k = 0;
 	j = 1;
 	i = 0;
 
 	ptr = NULL;
-	temp = NULL;
 	get_rid_quotes(prompt);
 	check_last_char(prompt);
 
+
+	ptr = init_struct_cmd(prompt);
+	if (!ptr)
+		return ;
+	add_node_to_list(&(prompt->cmd_list), ptr);
+	while (prompt->commands[i] && prompt->commands[i][0] != '|')
+		i++;
+	ptr->full_command = fill_arr(prompt->commands, i - j, j);
+	prompt->cmd_list->data->full_path = get_path_cmds(ptr, prompt->envp);
+	prompt->cmd_list->data->full_command = fill_arr(prompt->commands, i - j, j);
+	printf("\n");
+	print_cmddat(prompt->cmd_list->data);
+	i++;
+	j = 1;
 	while (prompt && prompt->commands && prompt->commands[i] && prompt->stop == 0)
 	{
-		if (i == 0 || prompt->commands[i][0] == '|' && prompt->commands[i + 1] && prompt->commands[i][0])
-		{
-			ptr = init_struct_cmd(prompt);
- 			if (!ptr)
-				return ;
- 			add_node_to_list(&(prompt->cmd_list), ptr);
-			if (i != 0)
-			{
-				ptr->full_command = fill_arr(prompt->commands, i - j, j);
-				prompt->cmd_list->data->full_path = get_path_cmds(ptr, prompt->envp);
-				prompt->cmd_list->data->full_command = fill_arr(prompt->commands, i - j, j);
-				j = 0;
-			}
-		}
-		else
-			j++;
+		ptr = init_struct_cmd(prompt);
+		if (!ptr)
+			return ;
+		add_node_to_list(&(prompt->cmd_list), ptr);
+		while (prompt->commands[i] && prompt->commands[i][0] != '|')
+			i++;
+		ptr->full_command = fill_arr(prompt->commands, i - j, j);
+		prompt->cmd_list->data->full_path = get_path_cmds(ptr, prompt->envp);
+		prompt->cmd_list->data->full_command = fill_arr(prompt->commands, i - j, j);
+		printf("\n");
+		print_cmddat(prompt->cmd_list->data);
 		i++;
 	}
-	if (ptr && prompt->stop == 0)
-	{
-		ptr->full_command = fill_arr(prompt->commands, i - j, j);
-		ptr->full_path = get_path_cmds(ptr, prompt->envp);
-	}
 	check_token(prompt);
-
 	if (prompt->stop == 0)
 	{
 		handle_redir(prompt);
 		//print_cmd_list(prompt->cmd_list);
 	}
-
 	add_last_cmd_to_envp(prompt);
 }
+
+// void	parser(t_prompt *prompt)
+// {
+// 	t_cmddat	*ptr;
+// 	char **temp;
+// 	int	i;
+// 	int	j;
+// 	j = 1;
+// 	i = 0;
+
+// 	ptr = NULL;
+// 	temp = NULL;
+// 	get_rid_quotes(prompt);
+// 	check_last_char(prompt);
+
+// 	while (prompt && prompt->commands && prompt->commands[i] && prompt->stop == 0)
+// 	{
+// 		if (i == 0 || prompt->commands[i][0] == '|' && prompt->commands[i + 1] && prompt->commands[i][0])
+// 		{
+
+// 			ptr = init_struct_cmd(prompt);
+//  			if (!ptr)
+// 				return ;
+//  			add_node_to_list(&(prompt->cmd_list), ptr);
+// 			if (i != 0)
+// 			{
+// 				printf("%d \n\n", i);
+// 				ptr->full_command = fill_arr(prompt->commands, i - j, j);
+// 				prompt->cmd_list->data->full_path = get_path_cmds(ptr, prompt->envp);
+// 				prompt->cmd_list->data->full_command = fill_arr(prompt->commands, i - j, j);
+// 				j = 0;
+// 			}
+// 		}
+// 		else
+// 			j++;
+// 		i++;
+// 	}
+// 	if (ptr && prompt->stop == 0)
+// 	{
+
+// 		ptr->full_command = fill_arr(prompt->commands, i - j, j);
+// 		ptr->full_path = get_path_cmds(ptr, prompt->envp);
+// 	}
+// 	check_token(prompt);
+
+// 	if (prompt->stop == 0)
+// 	{
+// 		handle_redir(prompt);
+// 		print_cmd_list(prompt->cmd_list);
+// 	}
+
+// 	add_last_cmd_to_envp(prompt);
+// }
 
 void	add_last_cmd_to_envp(t_prompt *prompt)
 {

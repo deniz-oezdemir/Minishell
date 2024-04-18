@@ -6,38 +6,59 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 18:15:48 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/20 19:56:28 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/18 12:45:31 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void add_node_to_list(t_node **head, t_cmddat *data) {
+    t_node *new_node;
+    t_node *current;
 
+    new_node = malloc(sizeof(t_node));
+    if (!new_node)
+        return ;
+    new_node->data = data;
+    new_node->next = NULL;
 
-void	add_node_to_list(t_node **head, t_cmddat *data)
-{
-	t_node	*new_node;
-	t_node	*current;
-
-	new_node = malloc(sizeof(t_node));
-	if (!new_node)
-		return ;
-	new_node->data = data;
-	new_node->next = NULL;
-	if (*head == NULL)
-	{
-		*head = new_node;
-	}
-	else
-	{
-		current = *head;
-		while (current->next != NULL)
-		{
-			current = current->next;
-		}
-		current->next = new_node;
-	}
+    if (*head == NULL) {
+        *head = new_node;
+    } else {
+        current = *head;
+        while (current->next != NULL) {
+            current = current->next;
+        }
+        current->next = new_node;
+    }
 }
+
+
+// void	add_node_to_list(t_node **head, t_cmddat *data)
+// {
+// 	t_node	*new_node;
+// 	t_node	*current;
+
+// 	new_node = malloc(sizeof(t_node));
+// 	if (!new_node)
+// 		return ;
+// 	new_node->data = data;
+// 	new_node->next = NULL;
+// 	if (*head == NULL)
+// 	{
+// 		*head = new_node;
+// 	}
+// 	else
+// 	{
+// 		current = *head;
+// 		while (current->next != NULL)
+// 		{
+// 			current = current->next;
+// 		}
+// 		current->next = new_node;
+// 	}
+// }
+
 int	ft_listsize(t_node *lst)
 {
 	size_t	i;

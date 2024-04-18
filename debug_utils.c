@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:54:02 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/09 14:45:51 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:26:06 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ void print_cmddat(const t_cmddat *cmd) {
 
 void print_cmd_list(const t_node *head) {
     const t_node *current = head;
+
     while (current != NULL) {
-        printf("Node: %p\n", (void *)current);
+        printf("\nNode: %p\n", (void *)current);
         printf("Data: ");
         if (current->data != NULL) {
             print_cmddat(current->data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:45:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/15 15:49:15 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:10:25 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 char	*get_path_cmds(t_cmddat *cmd, char **ev)
 {
+	//printf("here\n");
 	char	*path;
 	if (get_builtin_nbr(cmd) != 0)
 		return (NULL);
 	if (!access(cmd->full_command[0], 1))
 		return (ft_strdup(cmd->full_command[0]));
+	//printf("full")
 	path = get_path(cmd->full_command[0], ev);
 	return (path);
 }
@@ -36,6 +38,7 @@ char	*get_path(char *cmd, char **ev)
 	int		i;
 
 	i = 0;
+
 	while (ev[i] && ft_strnstr(ev[i], "PATH", 4) == 0) //PATH can not be found if unset PATH
 		i++;
 	if (i == get_len_arr(ev))
