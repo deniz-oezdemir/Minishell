@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/15 12:56:25 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:51:30 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_prompt
 	char		**envp;
 	pid_t		pid;
 	int			stop;
+	t_grbg		*grbg_lst;
 }	t_prompt;
 
 typedef struct s_node
@@ -97,6 +98,12 @@ typedef struct s_cmddat
 	int			file_open_error;
 }	t_cmddat;
 
+/* struct for garbage collector */
+typedef struct s_grbg
+{
+	void	*ptr;
+	struct s_grbg	*next;
+}	t_grbg;
 
 /* debug utils*/
 void print_char_array(const char arr[]);
@@ -243,4 +250,10 @@ void	cstm_lstdelone(t_node *lst, void (*del)(void *));
 void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i);
 int	get_heredoc(t_prompt *prompt, char *lim);
 int	pipe_heredoc(t_prompt *prompt, char *content);
+
+/*	garbage_collector	*/
+void	*get_grbg(t_grbg *head, size_t nmemb, size_t size);
+void	collect_grbg(t_grbg **head, void *new);
+void	free_grbg(t_grbg *head);
+
 #endif
