@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 13:28:01 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/18 14:31:45 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	launch_minishell(t_prompt *prompt)
 			parser(prompt);
 		if (cstm_lstsize(prompt->cmd_list) > 1 && prompt->stop == 0)
 			pipe_infile_outfile(prompt->cmd_list);
-		//print_cmd_list(prompt->cmd_list);
+		print_cmd_list(prompt->cmd_list);
 		execute_cmds(prompt); //maybe add stop check
 		// if (prompt->commands != NULL) //@leo commented this to get rid of the double free
 		// 	free_char_array(prompt->commands);

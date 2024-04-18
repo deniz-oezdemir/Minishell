@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 13:31:28 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/18 14:34:23 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,15 +147,12 @@ void	parser(t_prompt *prompt)
 	t_cmddat	*ptr;
 	int	i;
 	int	j;
-	// int k;
-	// k = 0;
 	j = 1;
 	i = 0;
 
 	ptr = NULL;
 	get_rid_quotes(prompt);
 	check_last_char(prompt);
-
 	while (prompt && prompt->commands && prompt->commands[i] && prompt->stop == 0)
 	{
 		ptr = init_struct_cmd(prompt);
@@ -165,18 +162,12 @@ void	parser(t_prompt *prompt)
 		while (prompt->commands[i] && prompt->commands[i][0] != '|')
 			i++;
 		ptr->full_command = fill_arr(prompt->commands, i - j, j);
-		prompt->cmd_list->data->full_path = get_path_cmds(ptr, prompt->envp);
-		prompt->cmd_list->data->full_command = fill_arr(prompt->commands, i - j, j);
-		printf("\n");
-		print_cmddat(prompt->cmd_list->data);
+		ptr->full_path = get_path_cmds(ptr, prompt->envp);
 		i++;
 	}
 	check_token(prompt);
 	if (prompt->stop == 0)
-	{
 		handle_redir(prompt);
-		//print_cmd_list(prompt->cmd_list);
-	}
 	add_last_cmd_to_envp(prompt);
 }
 
