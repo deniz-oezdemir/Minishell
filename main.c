@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 15:01:14 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:57:45 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char *argv[], char **envp)
 {
 	t_prompt	*prompt;
 
-	(void)argv;
+	(void)argv; //@Leo: can we not just delete argv if we do not use it?
 
 	if (argc == 1)
 	{
@@ -76,7 +76,7 @@ void	pipe_infile_outfile(t_node *cmd_lst)
 			cmd_lst->data->outfile = pip[1];
 		else
 			close(pip[1]);
-		cmd_lst->next->data->infile = pip[0]; //set infile to read end of pipe
+		cmd_lst->next->data->infile = pip[0];
 		cmd_lst=cmd_lst->next;
 		free(pip);
 	}

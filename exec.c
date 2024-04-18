@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/15 14:53:35 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:29:00 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	run_cmd(void *content)
 	cmd_data = (t_cmddat *)content;
 	if (cmd_data->prompt->stop == 1)
 		return ;
-	if (!is_executable(cmd_data)) //@Deniz: write is_executable //different
+	if (!is_executable(cmd_data))
 		return ;
 	cmd_data->prompt->pid = fork();
 	if (cmd_data->prompt->pid == -1)

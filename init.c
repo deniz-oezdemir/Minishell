@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 20:12:21 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/10 20:02:34 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:52:04 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	init_prompt_struct(t_prompt *prompt, char **envp)
 	prompt->cmd_list = NULL;
 	prompt->pid = -1;
 	prompt->stop = 0;
+	prompt->grbg_lst = NULL;
 	init_env(prompt, envp);
 }
 
