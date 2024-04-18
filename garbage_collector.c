@@ -24,10 +24,9 @@ typedef struct s_grbg
 
 /*	**head = address of garbage list head
 	nmemb and size of new memory space (same as for ft_calloc)
-	free = 1 for every loop or 2 only at exit freeing	*/
-void	*add_grbg(t_grbg **head, size_t nmemb, size_t size, int free)
+	f = 1 for every loop or 2 only at exit freeing	*/
+void	*get_grbg(t_grbg *head, size_t nmemb, size_t size, int f)
 {
-	t_grbg *last;
 	void *new;
 
 	new = ft_calloc(nmemb, size);
@@ -37,16 +36,42 @@ void	*add_grbg(t_grbg **head, size_t nmemb, size_t size, int free)
 		//set exitstatus, free stuff
 		return ;
 	}
-	if (!(*head)) //
-	{
-		//add_grbg_node();//@Deniz: initialize all to 0
-		(*head)->ptr=new;
-		(*head)->flg=free;
-	}
-
+	collect_grbg(head, new, f);//@Deniz: initialize all to 0
+	return (new);
 }
 
-t_grbg *add_grbg_node()
+void collect_grbg(t_grbg *head, void *new, int f)
 {
-	
+	t_grbg *node;
+
+	node = ft_calloc(1, sizeof(t_grbg));
+	if (!node)
+	{
+		ft_putstr_fd("memory allocation error\n", 2);
+		//set exitstatus, free stuff, exit
+		return ;
+	}
+	node->ptr = new;
+	node->flg = f;
+	node->next = NULL;
+	if (!head) //list is empty
+	{
+		head = node;
+		return ;
+	}
+	while (head->next)
+		head = head->next; //head is last
+	head->next = node;
+	return ;
+}
+
+void free_grbg(t_grbg *head, int f)
+{
+	while (head)
+	{
+		if(head->ptr && head->flg == f)
+			free(head->ptr);
+		if (head->next)
+			head = head->next;
+	}
 }
