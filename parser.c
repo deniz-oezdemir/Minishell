@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 13:29:26 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:31:28 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,20 +156,6 @@ void	parser(t_prompt *prompt)
 	get_rid_quotes(prompt);
 	check_last_char(prompt);
 
-
-	ptr = init_struct_cmd(prompt);
-	if (!ptr)
-		return ;
-	add_node_to_list(&(prompt->cmd_list), ptr);
-	while (prompt->commands[i] && prompt->commands[i][0] != '|')
-		i++;
-	ptr->full_command = fill_arr(prompt->commands, i - j, j);
-	prompt->cmd_list->data->full_path = get_path_cmds(ptr, prompt->envp);
-	prompt->cmd_list->data->full_command = fill_arr(prompt->commands, i - j, j);
-	printf("\n");
-	print_cmddat(prompt->cmd_list->data);
-	i++;
-	j = 1;
 	while (prompt && prompt->commands && prompt->commands[i] && prompt->stop == 0)
 	{
 		ptr = init_struct_cmd(prompt);
