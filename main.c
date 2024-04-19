@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 18:15:25 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 19:53:29 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void	launch_minishell(t_prompt *prompt)
 	}
 }
 
-/* set outfile to write end of pipe;
+/* no garbage collection for below function as it does not leak
+set outfile to write end of pipe
 set infile to read end of pipe */
 void	pipe_infile_outfile(t_node *cmd_lst)
 {
