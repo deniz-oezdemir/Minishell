@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:50:33 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/18 21:38:08 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 12:06:44 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*get_grbg(t_grbg **head, size_t nmemb, size_t size)
 		//set exitstatus, free stuff
 		return (NULL);
 	}
-	printf("allocated new: %x\n", new);
+	//printf("allocated new: %x\n", new);
 	collect_grbg(head, new);
 	return (new);
 }
@@ -42,9 +42,9 @@ void	collect_grbg(t_grbg **head, void *new)
 		//set exitstatus, free stuff, exit
 		return ;
 	}
-	printf("allocated node: %x\n", node);
+	//printf("allocated node: %x\n", node);
 	node->ptr = new;
-	printf("check: node->ptr: %x is equal to allocated new above?\n", node->ptr);
+	//printf("check: node->ptr: %x is equal to allocated new above?\n", node->ptr);
 	node->next = NULL;
 	if (!(*head)) //list is empty
 	{
@@ -63,13 +63,13 @@ void	free_grbg(t_grbg *head)
 	t_grbg *curr;
 	t_grbg *prev;
 
-	printf("head before free: %x\n", head);
+	//printf("head before free: %x\n", head);
 	curr = head;
 	while (curr)
 	{
 		if(curr->ptr)
 		{
-			printf("curr->ptr before free: %x\n", curr->ptr);
+			//printf("curr->ptr before free: %x\n", curr->ptr);
 			free(curr->ptr);
 		}
 		prev = curr;
@@ -77,11 +77,11 @@ void	free_grbg(t_grbg *head)
 			curr = curr->next;
 		else
 		{
-			printf("curr before free: %x\n", curr);
+			//printf("curr before free: %x\n", curr);
 			free(curr);
 			return ;
 		}
-		printf("prev=curr before free: %x\n", prev);
+		//printf("prev=curr before free: %x\n", prev);
 		free(prev);
 	}
 }
