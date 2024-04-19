@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:22:52 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 18:34:54 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 12:46:24 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	lexer(t_prompt *prompt)
 		prompt->stop = 1;
 		free(prompt->input_string);
 	}
-	print_str_array(prompt->commands);
+	//print_str_array(prompt->commands);
 	if (prompt->stop != 1)
 		prompt->commands = expander(prompt->commands, prompt->envp);
 }

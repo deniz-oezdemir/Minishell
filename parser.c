@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 21:14:10 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 12:46:57 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ void	parser(t_prompt *prompt)
 		i++;
 		j = 0;
 	}
-	print_cmd_list(prompt->cmd_list);
+	//print_cmd_list(prompt->cmd_list);
 	check_token(prompt);
 	if (prompt->stop == 0)
 		handle_redir(prompt);
