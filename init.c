@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 20:12:21 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 14:14:40 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:03:12 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int	init_env(t_prompt *prompt, char **env)
 	int	i;
 
 	i = 0;
-	prompt->envp = ft_calloc((get_len_arr(env) +1), sizeof(char *));
+	//prompt->envp = ft_calloc((get_len_arr(env) +1), sizeof(char *));
+	prompt->envp = get_grbg((get_len_arr(env) +1), sizeof(char *));
 	if (!prompt->envp)
 	{
 		printf("Error allocating memory for envp\n");
@@ -62,10 +63,11 @@ int	init_env(t_prompt *prompt, char **env)
 	}
 	while (env[i])
 	{
-		prompt->envp[i] = ft_strdup(env[i]);
+		//prompt->envp[i] = ft_strdup(env[i]);
+		prompt->envp[i] = grbg_strdup(env[i]);
 		if (!prompt->envp[i])
 		{
-			free_char_array(prompt->envp);
+			//free_char_array(prompt->envp);
 			printf("Error env");
 			return (0);
 		}

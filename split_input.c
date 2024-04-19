@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 19:04:40 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:02:30 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ char *add_space(char *str)
 	i = 0;
 	j = 0;
 	len_str = ft_strlen(str) + special_len(str) + 1;
-	new_str = (char *)malloc(sizeof(char) * len_str);
+	//new_str = (char *)malloc(sizeof(char) * len_str);
+	new_str = (char *)get_grbg(len_str, sizeof(char));
 	if (!new_str)
 		return (NULL);
 	while (str[i])
@@ -112,7 +113,7 @@ char *add_space(char *str)
 			new_str[j++] = str[i++];
 	}
 	new_str[j] = '\0';
-	free(str);
+	//free(str);
 	return (new_str);
 }
 
@@ -178,7 +179,7 @@ static char	**ft_create_substrs(char **aux, char const *s, char *set)
 		if (start_index >= s_len)
 			aux[word_index++] = NULL;
 		else
-			aux[word_index++] = ft_substr(s, start_index, i - start_index);
+			aux[word_index++] = grbg_substr(s, start_index, i - start_index);
 	}
 	aux[word_index] = NULL;
 	return (aux);
@@ -202,7 +203,7 @@ char	**split_input(char *str, t_prompt *prompt)
 		return (NULL);
 	}
 	//arr = (char **)malloc(sizeof(char *) * (word_count + 1));
-	arr = get_grbg(&(prompt->grbg_lst), word_count + 1, sizeof(char *));
+	arr = get_grbg(word_count + 1, sizeof(char *));
 	if (!arr)
 		return (NULL);
 	arr = ft_create_substrs(arr, str, " ");
@@ -211,5 +212,4 @@ char	**split_input(char *str, t_prompt *prompt)
 	//print_str_array(arr);
 	// free(str);
 	return (arr);
-
 }

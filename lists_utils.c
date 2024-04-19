@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lists_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 18:15:48 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 12:45:31 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:49:09 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void add_node_to_list(t_node **head, t_cmddat *data) {
     t_node *new_node;
     t_node *current;
 
-    new_node = malloc(sizeof(t_node));
+    new_node = get_grbg(1, sizeof(t_node));
     if (!new_node)
         return ;
     new_node->data = data;

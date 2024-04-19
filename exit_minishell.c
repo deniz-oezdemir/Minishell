@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:19:36 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 18:48:06 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:47:40 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ void	exit_ms(int exitstatus, t_prompt *prompt)
 
 void	free_all(t_prompt	*prompt)
 {
-	if (prompt->input_string)
+	/*if (prompt->input_string)
 		free(prompt->input_string);
 	if (prompt->commands)
 		free_char_array(prompt->commands);
 	if (prompt->envp)
 		free_char_array(prompt->envp);
-	free_node_list(prompt->cmd_list);
+	free_node_list(prompt->cmd_list);*/
 	free_grbg(prompt->grbg_lst);
 	rl_clear_history();
-	if (prompt)
+	if (prompt) //keep after free_grbg
 		free(prompt);
 }
 

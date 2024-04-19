@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:08:21 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/15 13:19:31 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:58:29 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,15 +141,15 @@ char	*add_to_str(char **str, char *add)
 
 	if (!add)
 	{
-		new = ft_strdup(*str);
+		new = grbg_strdup(*str);
 		return (new);
 	}
 	if (!str || !*str)
 	{
-		new = ft_strdup(add);
+		new = grbg_strdup(add);
 		return (new);
 	}
-	new = ft_strjoin(*str, add);
-	free(*str);
+	new = grbg_strjoin(*str, add);
+	//free(*str);
 	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 14:25:59 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:59:37 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 	{
 		signals_interactive();
 		line = readline("> ");
+		collect_grbg(line);
 		signals_non_interactive();
 		if (!line) //if e.g. Ctrl+D
 		{
@@ -54,7 +55,7 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 			break ;
 		content = add_to_str(&content, line);
 		content = add_to_str(&content, "\n");
-		free(line);
+		//free(line);
 	}
 	return (pipe_heredoc(prompt, content));
 }
@@ -66,17 +67,17 @@ int	pipe_heredoc(t_prompt *prompt, char *content)
 
 	if (prompt->exitstatus)
 	{
-		free(content);
+		//free(content);
 		return (0);
 	}
 	//check for meta chars / expand env vars -> @Leo
 	if (!pipe(pip))
 	{
 		ft_putstr_fd(content, pip[1]);
-		free(content);
+		//free(content);
 		close(pip[1]);
 		return(pip[0]);
 	}
-	free(content);
+	//free(content);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 12:46:57 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:04:15 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static t_cmddat	*init_struct_cmd(t_prompt *prompt)
 {
 	t_cmddat	*ptr;
 
-	ptr = malloc(sizeof(t_cmddat));
+	ptr = get_grbg(1, sizeof(t_cmddat));
 	if (!ptr)
 		return (NULL);
 	ptr->full_command = NULL;
@@ -62,6 +62,8 @@ static t_cmddat	*init_struct_cmd(t_prompt *prompt)
   Returns:
     - Pointer to the newly created array of strings.
 */
+
+//main_prompt can be removed as prompt is global variable now
 char	**fill_arr(t_prompt *main_prompt, char **prompt, int i, int len)
 {
 	char **temp;
@@ -70,13 +72,14 @@ char	**fill_arr(t_prompt *main_prompt, char **prompt, int i, int len)
 
 	temp = NULL;
 	//print_str_array(prompt);
-	temp = malloc(sizeof(char *) * (len + 1));
+	//temp = malloc(sizeof(char *) * (len + 1));
+	temp = get_grbg(len + 1, sizeof(char *));
 	if (!temp)
 		return (NULL);
 	while (len > 0)
 	{
 		//temp[j] = ft_strdup(prompt[i]);
-		temp[j] = grbg_strdup(main_prompt, prompt[i]);
+		temp[j] = grbg_strdup(prompt[i]);
 		i++;
 		j++;
 		len--;
@@ -167,14 +170,15 @@ void	parser(t_prompt *prompt)
 			j++;
 		}
 		ptr->full_command = fill_arr(prompt, prompt->commands, i - j, j);
-		ptr->full_path = get_path_cmds(ptr, prompt->envp);
+		ptr->full_path = get_path_cmds(ptr, prompt->envp); //@Deniz: not gc'ed within get_path_cmds
+		collect_grbg(ptr->full_path);
 		if (prompt->commands[i] == NULL)
 			break;
 		i++;
 		j = 0;
 	}
 	//print_cmd_list(prompt->cmd_list);
-	check_token(prompt);
+	check_token(prompt); //@Leo: what does this do - it frees a lot of things but it's hard for me to judge whether thats necessary with the gc - left it as is for now
 	if (prompt->stop == 0)
 		handle_redir(prompt);
 	add_last_cmd_to_envp(prompt);
@@ -242,7 +246,7 @@ void	add_last_cmd_to_envp(t_prompt *prompt)
 		return ;
 	l = get_len_arr(prompt->cmd_list->data->full_command);
 	if (l)
-		modify_envp(prompt, "_", ft_strdup(prompt->cmd_list->data->full_command[l - 1]), 0);
+		modify_envp(prompt, "_", grbg_strdup(prompt->cmd_list->data->full_command[l - 1]), 0);
 }
 
 

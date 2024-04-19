@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:39:46 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/14 20:12:58 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:45:07 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	get_rid_quotes(t_prompt	*prompt)
 	if (prompt->commands == NULL)
 		return ;
 	len_arr = get_len_arr(prompt->commands);
-	temp = malloc(sizeof(char *) * (len_arr + 1));
+	//temp = malloc(sizeof(char *) * (len_arr + 1));
+	temp = get_grbg(len_arr + 1, sizeof(char *));
 	if (!temp)
 		return ;
 	i = 0;
@@ -34,7 +35,7 @@ void	get_rid_quotes(t_prompt	*prompt)
 	}
 	temp[i] = NULL;
 	//free(prompt->commands); //@Leo: to be deleted if below works as intended
-	free_char_array(prompt->commands); //@Leo: this fixed a leak when exit - please double check
+	//free_char_array(prompt->commands); //@Leo: this fixed a leak when exit - please double check //@Deniz: should be unnecessary with gc
 	prompt->commands = temp;
 }
 char	*get_trimmed(char const *s1, int squote, int dquote)
@@ -48,7 +49,8 @@ char	*get_trimmed(char const *s1, int squote, int dquote)
 	count = malloc_len(s1);
 	if (!s1 || count == -1)
 		return (NULL);
-	trimmed = malloc(sizeof(char) * (ft_strlen(s1) - count + 1));
+	//trimmed = malloc(sizeof(char) * (ft_strlen(s1) - count + 1));
+	trimmed = get_grbg(ft_strlen(s1) - count + 1, sizeof(char));
 	if (!trimmed)
 		return (NULL);
 	while (s1[i[0]])

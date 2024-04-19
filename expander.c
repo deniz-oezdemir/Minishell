@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 14:21:56 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:38:18 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ char	**expander(char **str, char **ev)
 	int		i;
 	char	**temp;
 
-	temp = malloc(sizeof(char *) * (get_len_arr(str) + 1));
+	//temp = malloc(sizeof(char *) * (get_len_arr(str) + 1));
+	temp = get_grbg(get_len_arr(str) + 1, sizeof(char *));
 	if (!temp)
 		return (NULL);
 	i = 0;
@@ -94,7 +95,7 @@ char *expand_var(char *str, char **ev)
 		{
 			if (str[i + 1] == '?')
 			{
-				nb = ft_itoa(prompt->exitstatus);
+				nb = grbg_itoa(prompt->exitstatus);
 				if (!nb)
 					return NULL;
 				len = ft_strlen(nb);
@@ -105,7 +106,7 @@ char *expand_var(char *str, char **ev)
 				len = get_len_var(str, i + 1);
 				sub_str = create_sub_var(str, i, ev, len);
 			}
-			free(str);
+			//free(str);
 			str = sub_str;
 		}
 		i++;

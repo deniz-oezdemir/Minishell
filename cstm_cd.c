@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:35:29 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/15 13:26:49 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:54:05 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,24 +51,24 @@ void modify_envp(t_prompt *prompt, char *name, char *insert, int f_free_name)
 	i = 0;
 	if (!prompt->envp || !insert || !name) //different
 		return ;
-	str = ft_strjoin(name, "="); //different
+	str = grbg_strjoin(name, "="); //different
 	if (!str)
 		return ;
 	while (prompt->envp[i])
 	{
 		if (!ft_strncmp(prompt->envp[i], str, ft_strlen(str)))
 		{
-			free(prompt->envp[i]);
-			prompt->envp[i] = ft_strjoin(str, insert);
+			//free(prompt->envp[i]);
+			prompt->envp[i] = grbg_strjoin(str, insert);
 		}
 		i++;
 	}
-	if (insert)
+	/*if (insert)
 		free(insert);
 	if (name && f_free_name)
 		free(name);
 	if (str)
-		free(str);
+		free(str);*/
 }
 
 int	go_home_dir(t_prompt *prompt)

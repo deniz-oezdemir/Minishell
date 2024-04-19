@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 14:25:25 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:32:31 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,11 +253,14 @@ int	get_heredoc(t_prompt *prompt, char *lim);
 int	pipe_heredoc(t_prompt *prompt, char *content);
 
 /*	garbage_collector	*/
-void	*get_grbg(t_grbg **head, size_t nmemb, size_t size);
-void	collect_grbg(t_grbg **head, void *new);
+void	*get_grbg(size_t nmemb, size_t size);
+void	collect_grbg(void *new);
 void	free_grbg(t_grbg *head);
 
 /*	garbage_lib	*/
-char	*grbg_strdup(t_prompt *prompt, const char *s);
+char	*grbg_strdup(const char *s);
+char	*grbg_substr(char const *s, unsigned int start, size_t len);
+char	*grbg_itoa(int n);
+char	*grbg_strjoin(char const *s1, char const *s2);
 
 #endif
