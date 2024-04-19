@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 17:36:53 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:46:44 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ void	parser(t_prompt *prompt)
 			j++;
 		}
 		ptr->full_command = fill_arr(prompt, prompt->commands, i - j, j);
-		ptr->full_path = get_path_cmds(ptr, prompt->envp); //@Deniz: not gc'ed within get_path_cmds
+		ptr->full_path = get_path_cmds(ptr, prompt->envp); //@Deniz: not gc'ed within get_path_cmds as does not leak
 		collect_grbg(ptr->full_path);
 		if (prompt->commands[i] == NULL)
 			break;
@@ -178,7 +178,7 @@ void	parser(t_prompt *prompt)
 		j = 0;
 	}
 	//print_cmd_list(prompt->cmd_list);
-	check_token(prompt); //@Leo: what does this do - it frees a lot of things but it's hard for me to judge whether thats necessary with the gc - left it as is for now
+	check_token(prompt); //@Leo: what does this do - it frees a lot of things but it's hard for me to judge whether thats necessary with the gc - left it as is for now but it might lead to double frees
 	if (prompt->stop == 0)
 		handle_redir(prompt);
 	add_last_cmd_to_envp(prompt);

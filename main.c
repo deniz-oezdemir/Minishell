@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 17:34:25 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:15:25 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char *argv[], char **envp)
 
 	if (argc == 1)
 	{
-		prompt = ft_calloc(1, sizeof(t_prompt)); //@Deniz: gc not possible here as gc needs gc_list to be allocated -> prompt needs seperate free at exit
+		prompt = ft_calloc(1, sizeof(t_prompt)); //gc not possible here as gc needs gc_list to be allocated -> prompt needs seperate free at exit
 		init_prompt_struct(prompt, envp);
 	}
 	launch_minishell(prompt);
@@ -47,13 +47,13 @@ void	launch_minishell(t_prompt *prompt)
 		if (prompt->stop == 0)
 			parser(prompt);
 		if (cstm_lstsize(prompt->cmd_list) > 1 && prompt->stop == 0)
-			pipe_infile_outfile(prompt->cmd_list); //@Deniz: not gc'ed
+			pipe_infile_outfile(prompt->cmd_list); //@Deniz: not gc'ed within pipe_infile_outfile as does not leak
 		//print_cmd_list(prompt->cmd_list);
-		execute_cmds(prompt); //maybe add stop check
+		execute_cmds(); //maybe add stop check
 		// if (prompt->commands != NULL) //@leo commented this to get rid of the double free
 		// 	free_char_array(prompt->commands);
 		//cstm_lstclear(&prompt->cmd_list, clear_cmmdat_lst); //not needed with gc, intead reset cmd_list
-		prompt->cmd_list = NULL;
+		prompt->cmd_list = NULL; //this works but why @Leo
 	}
 }
 

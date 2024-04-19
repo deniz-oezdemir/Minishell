@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:50:33 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/19 17:11:21 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:58:03 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	*get_grbg(size_t nmemb, size_t size)
 	return (new);
 }
 
+/*	can also be used without get_grbg to collect malloc'ed space */
 void	collect_grbg(void *new)
 {
 	t_grbg *node;

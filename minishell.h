@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 15:32:31 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:56:16 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ int scan_envp(t_cmddat *cmd, char *str, int id_len);
 char	*add_to_str(char **str, char *add);
 
 /*	exec.c	*/
-int	execute_cmds(t_prompt *prompt);
+int	execute_cmds();
 void	cls_fds(void *content);
 void	run_cmd(void *content);
 void	wait_update_exitstatus(t_prompt *prompt);

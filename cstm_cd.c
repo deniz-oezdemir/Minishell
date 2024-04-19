@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:35:29 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/19 16:54:05 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:48:19 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char *get_envp(t_prompt *prompt, char *name)
 	i = 0;
 	if (!name)
 		return (NULL);
-	str = ft_strjoin(name, "=");
+	str = grbg_strjoin(name, "=");
 	if (!str)
 		return (NULL);
 	l = ft_strlen(str);
@@ -31,15 +31,15 @@ char *get_envp(t_prompt *prompt, char *name)
 	{
 		if (!ft_strncmp(prompt->envp[i], str, l))
 		{
-			env_var = ft_strdup(prompt->envp[i] + l);
-			if (str)
-				free(str);
+			env_var = grbg_strdup(prompt->envp[i] + l);
+			//if (str)
+			//	free(str);
 			return (env_var);
 		}
 		i++;
 	}
-	if (str)
-		free(str);
+	//if (str)
+	//	free(str);
 	return (NULL);
 }
 
@@ -74,36 +74,50 @@ void modify_envp(t_prompt *prompt, char *name, char *insert, int f_free_name)
 int	go_home_dir(t_prompt *prompt)
 {
 	char	*home_dir;
+	char	*cwd_before;
+	char	*cwd_after;
 
 	home_dir = get_envp(prompt, "HOME");
 	if (!home_dir)
 		return(print_err_msg_lng("cd", "not set", "HOME"));
-	modify_envp(prompt, "OLDPWD", (char *)getcwd(NULL, 0), 0);
+	cwd_before = (char *)getcwd(NULL, 0);
+	collect_grbg(cwd_before);
+	modify_envp(prompt, "OLDPWD", cwd_before, 0);
 	chdir(home_dir);
-	modify_envp(prompt, "PWD", (char *)getcwd(NULL, 0), 0);
-	free(home_dir);
+	cwd_after = (char *)getcwd(NULL, 0);
+	collect_grbg(cwd_after);
+	modify_envp(prompt, "PWD", cwd_after, 0);
+	//free(home_dir);
 	return (0);
 }
 
 int go_back_dir(t_prompt *prompt)
 {
 	char	*old_dir;
+	char	*cwd_before;
+	char	*cwd_after;
 
 	old_dir = get_envp(prompt, "OLDPWD");
 	if (!old_dir)
 		return(print_err_msg_lng("cd", "not set", "OLDPWD"));
 	ft_printf("%s\n", old_dir);
-	modify_envp(prompt, "OLDPWD", (char *)getcwd(NULL, 0), 0);
+	cwd_before = (char *)getcwd(NULL, 0);
+	collect_grbg(cwd_before);
+	modify_envp(prompt, "OLDPWD", cwd_before, 0);
 	chdir(old_dir);
-	modify_envp(prompt, "PWD", (char *)getcwd(NULL, 0), 0);
-	if (old_dir)
-		free(old_dir);
+	cwd_after = (char *)getcwd(NULL, 0);
+	collect_grbg(cwd_after);
+	modify_envp(prompt, "PWD", cwd_after, 0);
+	//if (old_dir)
+	//	free(old_dir);
 	return (0);
 }
 
 int cstm_cd(t_cmddat *cmd_data)
 {
 	DIR *dir_user;
+	char	*cwd_before;
+	char	*cwd_after;
 
 	if (cmd_data->full_command)
 	{
@@ -112,13 +126,17 @@ int cstm_cd(t_cmddat *cmd_data)
 		else if(!ft_strcmp(cmd_data->full_command[1], "-"))
 			return(go_back_dir(cmd_data->prompt));
 	}
-	modify_envp(cmd_data->prompt, "OLDPWD", (char *)getcwd(NULL, 0), 0);
+	cwd_before = (char *)getcwd(NULL, 0);
+	collect_grbg(cwd_before);
+	modify_envp(prompt, "OLDPWD", cwd_before, 0);
 	dir_user = opendir(cmd_data->full_command[1]);
 	if (!dir_user)
 		return(print_err_msg_lng(cmd_data->full_command[0], "No such file or directory", cmd_data->full_command[1])); //compare bash err msg
 	if (chdir(cmd_data->full_command[1]) == -1)
 		return(print_err_msg_lng(cmd_data->full_command[0], "No such file or directory", cmd_data->full_command[1])); //compare bash err msg
 	closedir(dir_user);
-	modify_envp(cmd_data->prompt, "PWD", (char *)getcwd(NULL, 0), 0);
+	cwd_after = (char *)getcwd(NULL, 0);
+	collect_grbg(cwd_after);
+	modify_envp(prompt, "PWD", cwd_after, 0);
 	return (0);
 }

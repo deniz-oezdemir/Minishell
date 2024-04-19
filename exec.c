@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/19 14:21:36 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:55:40 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	run_cmd(void *content)
 	return ;
 }
 
-int	execute_cmds(t_prompt *prompt)
+int	execute_cmds()
 {
 	t_cmddat	*cmd_data;
 
