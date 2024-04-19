@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 16:38:38 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:34:25 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	launch_minishell(t_prompt *prompt)
 		execute_cmds(prompt); //maybe add stop check
 		// if (prompt->commands != NULL) //@leo commented this to get rid of the double free
 		// 	free_char_array(prompt->commands);
-		cstm_lstclear(&prompt->cmd_list, clear_cmmdat_lst);
+		//cstm_lstclear(&prompt->cmd_list, clear_cmmdat_lst); //not needed with gc, intead reset cmd_list
+		prompt->cmd_list = NULL;
 	}
 }
 
