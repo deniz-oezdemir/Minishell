@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/15 15:49:48 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 14:22:07 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int open_file(char **cmds, int i, int *save_fd, int io_flags[2] )
 		if (*save_fd == -1)
 		{
 			printf("%s No such file or directory\n", cmds[i + 1]);
-			exitstatus = 1;
+			prompt->exitstatus = 1;
 			return (1); //command not found
 		}
 	}

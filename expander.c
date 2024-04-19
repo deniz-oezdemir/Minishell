@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/10 18:28:27 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/19 14:21:56 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char *expand_var(char *str, char **ev)
 		{
 			if (str[i + 1] == '?')
 			{
-				nb = ft_itoa(exitstatus);
+				nb = ft_itoa(prompt->exitstatus);
 				if (!nb)
 					return NULL;
 				len = ft_strlen(nb);

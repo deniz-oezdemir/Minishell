@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 20:12:21 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 17:52:04 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 14:14:40 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ Returns: None
 */
 void	init_prompt_struct(t_prompt *prompt, char **envp)
 {
+	prompt->exitstatus = 0;
 	prompt->input_string = NULL;
 	prompt->commands = NULL;
 	prompt->cmd_list = NULL;

@@ -6,23 +6,23 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 12:45:28 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 14:23:36 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	exitstatus = 0; //somehow definition here needed, otherwise compile error-> read up on global variables
+//int	exitstatus = 0; //somehow definition here needed, otherwise compile error-> read up on global variables
+
+t_prompt	*prompt = NULL;
 
 int	main(int argc, char *argv[], char **envp)
 {
-	t_prompt	*prompt;
-
 	(void)argv; //@Leo: can we not just delete argv if we do not use it?
 
 	if (argc == 1)
 	{
-		prompt = ft_calloc(1, sizeof(t_prompt));
+		prompt = ft_calloc(1, sizeof(t_prompt)); //@Deniz: needs seperate free at exit as should not be freed between cmds
 		init_prompt_struct(prompt, envp);
 	}
 	launch_minishell(prompt);

@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/14 20:12:03 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 14:25:59 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i)
 		return ;
 	}
 	cmd->infile = get_heredoc(prompt, lim);
-	if (exitstatus == 1)
+	if (prompt->exitstatus == 1)
 		prompt->stop = 1; //why?
 }
 
@@ -39,7 +39,7 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 
 	content = NULL;
 	line = NULL;
-	exitstatus = 0; //why?
+	prompt->exitstatus = 0; //why?
 	while (1)
 	{
 		signals_interactive();
@@ -50,7 +50,7 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 			print_err_msg("warning", "here-document delimited by end-of-file");
 			break ;
 		}
-		if (!ft_strncmp(line, lim, ft_strlen(line)) && ft_strlen(line) == ft_strlen(lim)) //different: left out exitstatus as exitstatus can not be 1 here anyways?
+		if (!ft_strncmp(line, lim, ft_strlen(line)) && ft_strlen(line) == ft_strlen(lim)) //different: left out prompt->prompt->prompt->prompt->prompt->exitstatus as prompt->exitstatus can not be 1 here anyways?
 			break ;
 		content = add_to_str(&content, line);
 		content = add_to_str(&content, "\n");
@@ -64,7 +64,7 @@ int	pipe_heredoc(t_prompt *prompt, char *content)
 	int pip[2];
 	int i;
 
-	if (exitstatus)
+	if (prompt->exitstatus)
 	{
 		free(content);
 		return (0);

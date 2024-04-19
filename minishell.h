@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 21:12:53 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/19 14:25:25 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@
 
 # include "./libft/libft.h"
 
-extern int	exitstatus;
-
-
 /*Standard file descriptors.
 STDIN_FILENO	0	 Standard input.
 STDOUT_FILENO	1	 Standard output.
@@ -38,6 +35,8 @@ typedef struct s_node t_node;
 typedef struct s_prompt t_prompt;
 typedef struct s_cmddat t_cmddat;
 typedef struct s_grbg t_grbg;
+
+extern t_prompt *prompt;
 
 //@Leo: each nodes content in cmd_list must be of type t_prompt
 /*
@@ -55,6 +54,7 @@ typedef struct s_grbg t_grbg;
 /*modif t_list with t_node*/
 typedef struct s_prompt
 {
+	int			exitstatus;
 	char		*input_string;
 	char		**commands;
 	t_node		*cmd_list;
