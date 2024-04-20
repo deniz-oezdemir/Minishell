@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 17:02:30 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/20 13:44:59 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ static int	special_len(char *str)
     char str7[] = "commande| sortie.txt"; // commande | sortie.txt
     char str1[] = "commande <<sortie.txt"; // commande << sortie.txt
     char str3[] = "commande <<sortie.txt>>"; // commande << sortie.txt>>
+
+	To do : don't do it if inside quotes
 */
+
 char *add_space(char *str)
 {
 	int i;
@@ -75,42 +78,55 @@ char *add_space(char *str)
 	new_str = (char *)get_grbg(len_str, sizeof(char));
 	if (!new_str)
 		return (NULL);
+
+	int sgq = 0; // Compteur de guillemets simples
+	int dbq = 0; // Compteur de guillemets doubles
+
 	while (str[i])
 	{
-		if ((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<'))
+		sgq = (sgq + (!dbq && str[i] == '\'')) % 2;
+		dbq = (dbq + (!sgq && str[i] == '\"')) % 2;
+		if (!sgq && !dbq)
 		{
-			if (i == 0 || str[i - 1] != ' ')
+			if ((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<'))
+			{
+				if (str[i + 2] != ' ' && i + 2 < ft_strlen(str))
+				{
+					new_str[j++] = str[i++];
+					new_str[j++] = str[i++];
+					new_str[j++] = ' ';
+				}
+				else if (i == 0 || str[i - 1] != ' ')
+				{
+					new_str[j++] = ' ';
+					new_str[j++] = str[i++];
+					new_str[j++] = str[i++];
+				}
+				else
+				{
+					new_str[j++] = str[i++];
+					new_str[j++] = str[i++];
+				}
+			}
+			else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i - 1] != ' ' && i != 0)
 			{
 				new_str[j++] = ' ';
 				new_str[j++] = str[i++];
-				new_str[j++] = str[i++];
 			}
-			else if(str[i + 2] != ' ')
+			else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i + 1] != ' ')
 			{
-				new_str[j++] = str[i++];
 				new_str[j++] = str[i++];
 				new_str[j++] = ' ';
 			}
 			else
 			{
-				new_str[j++] = str[i++];
-				new_str[j++] = str[i++];
+			new_str[j++] = str[i++];
 			}
-
-		}
-		else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i - 1] != ' ')
-		{
-			new_str[j++] = ' ';
-			new_str[j++] = str[i++];
-		}
-		else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i + 1] != ' ')
-		{
-			new_str[j++] = str[i++];
-			new_str[j++] = ' ';
-
 		}
 		else
+		{
 			new_str[j++] = str[i++];
+		}
 	}
 	new_str[j] = '\0';
 	//free(str);
