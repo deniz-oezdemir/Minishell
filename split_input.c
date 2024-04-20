@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 16:51:28 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/20 17:29:43 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ static int	special_len(char *str)
 	while (str[i]) {
 		if ((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<'))
 		{
-			if (str[i - 1] != ' ' || str[i + 2] != ' ')
+			//if (str[i - 1] != ' ' || str[i + 2] != ' ')
+			if (str[i - 1] != ' ' || (str[i + 1] != '\0' && str[i + 2] != ' '))
 				count++;
 			i += 2;
 		}
@@ -197,7 +198,7 @@ static char	**ft_create_substrs(char **aux, char const *s, char *set)
 		else
 			aux[word_index++] = grbg_substr(s, start_index, i - start_index);
 	}
-	//aux[word_index] = NULL;
+	//aux[word_index] = NULL; //fixed "exit "
 	return (aux);
 }
 /* Split the input read from the readline and put it into
