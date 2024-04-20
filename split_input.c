@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 18:08:00 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/20 12:39:48 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ static int	special_len(char *str)
     char str7[] = "commande| sortie.txt"; // commande | sortie.txt
     char str1[] = "commande <<sortie.txt"; // commande << sortie.txt
     char str3[] = "commande <<sortie.txt>>"; // commande << sortie.txt>>
+
+	To do : don't do it if inside quotes
 */
 char *add_space(char *str)
 {

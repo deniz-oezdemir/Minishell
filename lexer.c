@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:22:52 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 17:36:49 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/20 12:33:26 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ void	lexer(t_prompt *prompt)
 			prompt->stop = 1;
 			return ;
 	}
+	printf("input string before: %s\n", prompt->input_string);
 	prompt->input_string = add_space(prompt->input_string);
-	//printf("input string: %s\n", prompt->input_string);
+	printf("input string after: %s\n", prompt->input_string);
 	prompt->commands = split_input(prompt->input_string);
 	if (prompt->commands == NULL)
 	{
