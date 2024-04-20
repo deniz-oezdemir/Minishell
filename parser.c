@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 13:45:45 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/20 14:14:44 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,11 @@ static void	check_last_char(t_prompt *prompt)
 {
 	int	len_ar;
 	char last_char;
+	// int sgq;
+	// int dbq;
 
+	// sgq = 0;
+	// dbq = 0;
 
 	len_ar = get_len_arr(prompt->commands) - 1;
 	if (len_ar < 0 || prompt->commands[len_ar] == NULL || prompt->commands[len_ar][0] == '\0')
@@ -115,6 +119,7 @@ static void	check_last_char(t_prompt *prompt)
 	if (last_char == '|' || last_char == '<' || last_char == '>' )
 	{
 		prompt->stop = 1;
+		printf("check_last_char\n");
 		syntax_error(prompt, prompt->commands[len_ar]);
 	}
 }
@@ -143,6 +148,7 @@ static void	check_token(t_prompt *prompt)
 		if (last_char == '|' || last_char == '<' || last_char == '>' )
 		{
 			prompt->stop = 1;
+			printf("check_token\n");
 			syntax_error(prompt, cmd_data->full_command[len_arr]);
 			free_node_list(prompt->cmd_list);
 			prompt->cmd_list = NULL;
@@ -163,8 +169,9 @@ void	parser(t_prompt *prompt)
 	i = 0;
 
 	ptr = NULL;
-	get_rid_quotes(prompt);
 	check_last_char(prompt);
+	get_rid_quotes(prompt);
+	print_str_array(prompt->commands);
 	while (prompt && prompt->commands && prompt->commands[i] != NULL && prompt->stop == 0)
 	{
 		ptr = init_struct_cmd(prompt);

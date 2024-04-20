@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 13:44:59 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/20 13:59:59 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ char *add_space(char *str)
 	if (!new_str)
 		return (NULL);
 
-	int sgq = 0; // Compteur de guillemets simples
-	int dbq = 0; // Compteur de guillemets doubles
+	int sgq = 0;
+	int dbq = 0;
 
 	while (str[i])
 	{
