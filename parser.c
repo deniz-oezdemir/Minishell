@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 14:47:43 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/20 16:00:19 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,13 +188,15 @@ void	parser(t_prompt *prompt)
 	//print_cmd_list(prompt->cmd_list);
 
 	check_token(prompt); //might lead to double frees with gc, but seems to work @DENIZ DOUBLE FREE if error
-	get_rid_quotes(prompt);
+
+	//print_cmd_list(prompt->cmd_list);
 
 	if (prompt->stop == 0)
 	{
 		handle_redir(prompt);
 		add_last_cmd_to_envp(prompt);
 	}
+	get_rid_quotes(prompt);
 
 }
 

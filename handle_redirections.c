@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 14:49:45 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/20 16:00:42 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,42 @@ int	get_type(char *str)
 	//printf("str: %s\n", str);
 	i = 0;
 	type = 0;
-	if (ft_strlen(str) == 1 && str[i] == '<' )
-		type = 1;
-	if (str[i] == '<' && str[i + 1] && str[i + 1] == '<')
+	int sgq = 0;
+	int dbq = 0;
+
+	while (str[i])
 	{
-		type = 2;
-	}
-	if (type == 0 && str[i] == '>')
-	{
-		type = 3;
-	}
-	if (type == 3 && str[i + 1] && str[i + 1] == '>')
-	{
-		type = 4;
+		sgq = (sgq + (!dbq && str[i] == '\'')) % 2;
+		dbq = (dbq + (!sgq && str[i] == '\"')) % 2;
+		if (!sgq && !dbq)
+		{
+			if (ft_strlen(str) == 1 && str[i] == '<' )
+			{
+				//printf("c1\n");
+				type = 1;
+			}
+
+			if (str[i] == '<' && str[i + 1] && str[i + 1] == '<')
+			{
+				//printf("c2\n");
+				type = 2;
+			}
+			if (type == 0 && str[i] == '>')
+			{
+				//printf("c3\n");
+				type = 3;
+			}
+			if (type == 3 && str[i + 1] && str[i + 1] == '>')
+			{
+				//printf("c4\n");
+				type = 4;
+			}
+		}
+		i++;
 	}
 	return (type);
 }
+
 
 /*
   Handles redirections within the commands stored in the prompt structure `ptr`.
@@ -78,8 +98,11 @@ void	handle_redir(t_prompt *ptr)
 		if (cmd_data)
 		{
 			i = 0;
+			//print_str_array(cmd_data->full_command);
+			//printf("full_command : %s\n", cmd_data->full_command);
 			while (cmd_data->full_command[i])
 			{
+			//	printf("full_command[i] : %s\n", cmd_data->full_command[i]);
 				type = get_type(cmd_data->full_command[i]);
 				if (type < 5 && type > 0)
 				{

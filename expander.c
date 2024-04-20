@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 15:38:18 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/20 16:20:40 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,16 +91,18 @@ char *expand_var(char *str, char **ev)
 	{
 		sgq = (sgq + (!dbq && str[i] == '\'')) % 2;
 		dbq = (dbq + (!sgq && str[i] == '\"')) % 2;
-		if (!sgq && str[i] == '$' && str[i + 1])
+		if (!sgq && str[i] == '$' && str[i + 1] && str[i+1] != ' ')
 		{
 			if (str[i + 1] == '?')
 			{
 				nb = grbg_itoa(prompt->exitstatus);
 				if (!nb)
-					return NULL;
+					return (NULL);
 				len = ft_strlen(nb);
 				sub_str = create_sub(str, i, nb, len);
 			}
+			// else if (str[i - 1]  && str[i - 1] == '\"' && str[i + 1] == '\"')
+			// 	return str;
 			else
 			{
 				len = get_len_var(str, i + 1);
