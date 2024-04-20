@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 13:59:59 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/20 16:51:28 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,7 @@ static char	**ft_create_substrs(char **aux, char const *s, char *set)
 		else
 			aux[word_index++] = grbg_substr(s, start_index, i - start_index);
 	}
-	aux[word_index] = NULL;
+	//aux[word_index] = NULL;
 	return (aux);
 }
 /* Split the input read from the readline and put it into
