@@ -6,14 +6,11 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 18:30:13 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/20 19:37:55 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*exemple input = "ls -l | grep 'file.txt'" */
-
 
 /*Parcourt la chaine et compte le nombre de char speciaux (> >> < << |) qui sont attaches*/
 
@@ -29,32 +26,37 @@
     - The number of special characters that are not preceded or followed
 	by a space in the string.
 */
-static int	special_len(char *str)
-{
-	int	i;
-	int	count;
+
+static int special_len(char *str) {
+	int i;
+	int count;
 
 	i = 0;
 	count = 0;
-	while (str[i]) {
-		if ((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<'))
+	while (str[i] && str[i + 1])
+	{
+		if (str[i + 1] && (str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<'))
 		{
-			if (str[i - 1] != ' ' || str[i + 2] != ' ')
+			if (i > 0 && str[i - 1] != ' ')
 				count++;
-			i += 2;
+			if (str[i + 2] && str[i + 2] != ' ')
+				count++;
+			i += 1;
 		}
-		if (str[i] == '>' || str[i] == '<' || str[i] == '|')
+		else if (str[i] == '>' || str[i] == '<' || str[i] == '|')
 		{
-			if (str[i - 1] != ' ' || str[i + 1] != ' ')
+			if (i > 0 && str[i - 1] != ' ')
 				count++;
+			if (str[i + 1] && str[i + 1] != ' ')
+				count++;
+		i++;
 		}
 		i++;
 	}
+	count++;
 	return (count);
 }
-/*
 
-*/
 
 char *add_space(char *str)
 {
@@ -62,9 +64,12 @@ char *add_space(char *str)
 	int j;
 	int len_str;
 	char *new_str;
-
 	i = 0;
 	j = 0;
+
+
+
+
 	len_str = ft_strlen(str) + special_len(str) + 1;
 	//new_str = (char *)malloc(sizeof(char) * len_str);
 	new_str = (char *)get_grbg(len_str, sizeof(char));
@@ -100,7 +105,7 @@ char *add_space(char *str)
 					new_str[j++] = str[i++];
 				}
 			}
-			else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i - 1] != ' ' && i != 0)
+			else if (i != 0 && (str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i - 1] != ' ')
 			{
 				new_str[j++] = ' ';
 				new_str[j++] = str[i++];
@@ -132,25 +137,23 @@ If there's a mismatch in quotes, it returns -1 to indicate an error.
 */
 static int	ft_count_words(const char *str, char *sep)
 {
-	int count = 0;
-	int i = 0; //parcourir la chaine
+	int	count = 0;
+	int	i = 0; //parcourir la chaine
 	int	sgq = 0; //Guillemets simple (Ouvert =1, ferme = 0)
 	int	dbq = 0;
+
 	while (str[i] != '\0') //index actuel dans la chaine de char s
 	{
-		if (!ft_strchr(sep, str[i])) //verifie si char act n'est pas dans la sep
+		if (!ft_strchr(sep, str[i]))
 		{
-			count++; //nouveau mot
+			count++;
 			while ((!ft_strchr(sep, str[i]) || sgq) && str[i] != '\0')
-			//(si pas un del ou sql ouvert) ET pas fin de la chaine
 			{
-				//si dbq ferme ET on trouve ' ou ''
 				if (!dbq && (str[i] == '\"' || str[i] == '\''))
 					dbq = str[i];
 				if (str[i] == dbq)
-					sgq = (sgq + 1) % 2; //sgq est inverse
-				//sgq = (sgq + (str[i]== dbq)) % 2;
-				dbq = dbq * (sgq != 0); //ferme "" si '
+					sgq = (sgq + 1) % 2;
+				dbq = dbq * (sgq != 0);
 				i++;
 			}
 			if (sgq)
