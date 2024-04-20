@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redirections.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 14:22:07 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/20 14:49:45 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,14 @@ int	get_type(char *str)
 	if (str[i] == '<' && str[i + 1] && str[i + 1] == '<')
 	{
 		type = 2;
-		printf("here_doc-redirection\n\n");
 	}
 	if (type == 0 && str[i] == '>')
 	{
 		type = 3;
-		//printf("write to outfile\n");
 	}
 	if (type == 3 && str[i + 1] && str[i + 1] == '>')
 	{
 		type = 4;
-		printf("append to outfile\n");
 	}
 	return (type);
 }
@@ -86,7 +83,6 @@ void	handle_redir(t_prompt *ptr)
 				type = get_type(cmd_data->full_command[i]);
 				if (type < 5 && type > 0)
 				{
-
 					open_fd_redir(ptr, cmd_data, i, type);
 					cmd_data->full_command = del_str_from_array(cmd_data->full_command, i, 2);
 					i -= 1;
@@ -108,9 +104,7 @@ int open_file(char **cmds, int i, int *save_fd, int io_flags[2] )
 	{
 		if (close(*save_fd) == -1)
 			printf("Error while attempting to close a file");
-			//perror("minishell");
 	}
-	//if (cmds[i + 1] && cmds[i + 1][0] != '>' && cmds[i + 1][0] != '<')
 	if (cmds[i + 1])
 	{
 		if (io_flags[1] != 0)
@@ -121,11 +115,12 @@ int open_file(char **cmds, int i, int *save_fd, int io_flags[2] )
 		{
 			printf("%s No such file or directory\n", cmds[i + 1]);
 			prompt->exitstatus = 1;
-			return (1); //command not found
+			return (1);
 		}
 	}
 	else
 	{
+		printf("open_file\n");
 		syntax_error(NULL, cmds[i + 1]);
 	}
 	return (0);

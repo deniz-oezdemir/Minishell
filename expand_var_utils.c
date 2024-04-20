@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:43:45 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 15:36:43 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/20 14:35:51 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len )
 	return (expanded_str);
 }
 
-char	*create_sub(char *str, size_t i, char *nb, ssize_t len )
+char	*create_sub(char *str, size_t i, char *nb, ssize_t len)
 {
 	char *s1; //partie avant $
 	char *s3; // apres $
