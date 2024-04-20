@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:31:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 19:45:43 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/20 13:22:28 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,8 @@ int	ft_isspace(int c)
 delete a str from a string array
 pos : position of the first str to del
 count : how many str to delete
-
-
 */
-//@Leo: i tried to modify this such that it does not free but only removes the str from the array (otherwise double free with gc)-> seems to work but please check it
+
 char	**del_str_from_array(char **array, int pos, int count)
 {
 	int	i;
