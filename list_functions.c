@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:08:23 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/09 19:59:46 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:40:00 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	cstm_lstsize(t_node*lst)
 	}
 	return (i);
 }
+
 void	cstm_lstclear(t_node **lst, void (*del)(void *))
 {
 	t_node	*next;

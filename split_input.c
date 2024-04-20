@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 17:29:43 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:30:13 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ static int	special_len(char *str)
 	while (str[i]) {
 		if ((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<'))
 		{
-			//if (str[i - 1] != ' ' || str[i + 2] != ' ')
-			if (str[i - 1] != ' ' || (str[i + 1] != '\0' && str[i + 2] != ' '))
+			if (str[i - 1] != ' ' || str[i + 2] != ' ')
 				count++;
 			i += 2;
 		}
@@ -54,15 +53,7 @@ static int	special_len(char *str)
 	return (count);
 }
 /*
-    char str2[] = "commande sortie.txt>>"; // commande sortie.txt >>
-	char str4[] = "commande <sortie.txt"; // commande < sortie.txt
-	char str5[] = "commande sortie.txt>"; // commande sortie.txt >
-	char str6[] = "commande |sortie.txt"; // commande | sortie.txt
-    char str7[] = "commande| sortie.txt"; // commande | sortie.txt
-    char str1[] = "commande <<sortie.txt"; // commande << sortie.txt
-    char str3[] = "commande <<sortie.txt>>"; // commande << sortie.txt>>
 
-	To do : don't do it if inside quotes
 */
 
 char *add_space(char *str)
@@ -225,8 +216,6 @@ char	**split_input(char *str, t_prompt *prompt)
 		return (NULL);
 	arr = ft_create_substrs(arr, str, " ");
 	arr[word_count] = NULL; //@Leo: how is this different from aux[word_index] = NULL above?
-	//printf("\narray : ");
-	//print_str_array(arr);
 	// free(str);
 	return (arr);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:50:33 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/19 17:58:03 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:39:17 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*	nmemb and size of new memory space (same as for ft_calloc) */
 void	*get_grbg(size_t nmemb, size_t size)
 {
-	void *new;
+	void	*new;
 
 	new = ft_calloc(nmemb, size);
 	if (!new)

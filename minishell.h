@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 17:56:16 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:34:16 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,8 @@ char	**ft_split(char const *s, char c);
 char *add_space(char *str);
 
 /*	parser*/
-void	parser(t_prompt *prompt);
+//void	parser(t_prompt *prompt);
+void	parser(t_prompt *prompt, int i, int j);
 char	**fill_arr(t_prompt *main_prompt, char **prompt, int i, int len);
 void	add_last_cmd_to_envp(t_prompt *prompt);
 

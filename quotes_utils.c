@@ -6,21 +6,31 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:39:46 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 14:50:27 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:48:12 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
+  Removes unnecessary quotes from the commands stored in the prompt.
+  It iterates over each command, trims unnecessary quotes from its arguments,
+  and updates the prompt's command data accordingly.
 
+  Parameters:
+    - prompt: Pointer to the prompt containing the commands to be processed.
+
+  Returns:
+    - None.
+*/
 void	get_rid_quotes(t_prompt	*prompt)
 {
-	char	**temp;
-	char	*trim_cmd;
-	int		i;
-	t_node *current_node;
-	t_cmddat *cmd_data;
-	int	len_arr;
+	char		**temp;
+	char		*trim_cmd;
+	int			i;
+	int			len_arr;
+	t_node		*current_node;
+	t_cmddat	*cmd_data;
 
 	current_node = prompt->cmd_list;
 	while (current_node != NULL)
@@ -30,48 +40,30 @@ void	get_rid_quotes(t_prompt	*prompt)
 		len_arr = get_len_arr(cmd_data->full_command);
 		temp = get_grbg(len_arr + 1, sizeof(char *));
 		if (!temp)
-			return ;;
+			return ;
 		while (cmd_data->full_command[i])
 		{
-			// printf("before : %s\n",cmd_data->full_command[i] );
 			trim_cmd = get_trimmed(cmd_data->full_command[i], 0, 0);
-			// printf("after : %s\n", trim_cmd);
 			temp[i] = trim_cmd;
 			i++;
 		}
 		cmd_data->full_command = temp;
 		current_node = current_node->next;
 	}
-	//free(prompt->commands); //@Leo: to be deleted if below works as intended
-	//free_char_array(prompt->commands); //@Leo: this fixed a leak when exit - please double check //@Deniz: should be unnecessary with gc
 }
 
-// void	get_rid_quotes(t_prompt	*prompt)
-// {
-// 	char	**temp;
-// 	char	*trim_cmd;
-// 	int		i;
-// 	int		len_arr;
-// 	if (prompt->commands == NULL)
-// 		return ;
-// 	len_arr = get_len_arr(prompt->commands);
-// 	//temp = malloc(sizeof(char *) * (len_arr + 1));
-// 	temp = get_grbg(len_arr + 1, sizeof(char *));
-// 	if (!temp)
-// 		return ;
-// 	i = 0;
-// 	while (prompt->commands[i])
-// 	{
-// 		trim_cmd = get_trimmed(prompt->commands[i], 0, 0);
-// 		temp[i] = trim_cmd;
-// 		i++;
-// 	}
-// 	temp[i] = NULL;
-// 	//free(prompt->commands); //@Leo: to be deleted if below works as intended
-// 	//free_char_array(prompt->commands); //@Leo: this fixed a leak when exit - please double check //@Deniz: should be unnecessary with gc
-// 	prompt->commands = temp;
-// }
+/*
+  Removes unnecessary quotes from a str while preserving quoted substrings.
+  It returns a new dynamically allocated string containing the trimmed result.
 
+  Parameters:
+    - s1: Pointer to the input string to be trimmed.
+    - squote: Integer representing the state of single quotes in the string.
+    - dquote: Integer representing the state of double quotes in the string.
+
+  Returns:
+    - Pointer to the dynamically allocated trimmed string.
+*/
 char	*get_trimmed(char const *s1, int squote, int dquote)
 {
 	int		count;
@@ -100,6 +92,16 @@ char	*get_trimmed(char const *s1, int squote, int dquote)
 	return (trimmed);
 }
 
+/*
+  Counts the number of unnecessary quotes in the string `str`.
+  It checks the consistency of quotes and returns the count.
+
+  Parameters:
+    - str: Pointer to the input string to be checked.
+
+  Returns:
+    - Number of unnecessary quotes in the string.
+*/
 int	malloc_len(char const *str)
 {
 	int	count;
@@ -123,3 +125,33 @@ int	malloc_len(char const *str)
 		return (-1);
 	return (count);
 }
+
+/*BACKUP*/
+//free(prompt->commands); //@Leo: to be deleted if below works as intended
+//free_char_array(prompt->commands); //@Leo: this fixed a leak when exit - please double check //@Deniz: should be unnecessary with gc
+
+// void	get_rid_quotes(t_prompt	*prompt)
+// {
+// 	char	**temp;
+// 	char	*trim_cmd;
+// 	int		i;
+// 	int		len_arr;
+// 	if (prompt->commands == NULL)
+// 		return ;
+// 	len_arr = get_len_arr(prompt->commands);
+// 	//temp = malloc(sizeof(char *) * (len_arr + 1));
+// 	temp = get_grbg(len_arr + 1, sizeof(char *));
+// 	if (!temp)
+// 		return ;
+// 	i = 0;
+// 	while (prompt->commands[i])
+// 	{
+// 		trim_cmd = get_trimmed(prompt->commands[i], 0, 0);
+// 		temp[i] = trim_cmd;
+// 		i++;
+// 	}
+// 	temp[i] = NULL;
+// 	//free(prompt->commands); //@Leo: to be deleted if below works as intended
+// 	//free_char_array(prompt->commands); //@Leo: this fixed a leak when exit - please double check //@Deniz: should be unnecessary with gc
+// 	prompt->commands = temp;
+// }

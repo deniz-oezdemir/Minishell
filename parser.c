@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 16:00:19 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:38:10 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ static t_cmddat	*init_struct_cmd(t_prompt *prompt)
 //main_prompt can be removed as prompt is global variable now
 char	**fill_arr(t_prompt *main_prompt, char **prompt, int i, int len)
 {
-	char **temp;
-	int j;
-	j = 0;
+	char	**temp;
+	int		j;
 
+	j = 0;
 	temp = NULL;
 	//print_str_array(prompt);
 	//temp = malloc(sizeof(char *) * (len + 1));
@@ -85,38 +85,36 @@ char	**fill_arr(t_prompt *main_prompt, char **prompt, int i, int len)
 		len--;
 	}
 	temp[j] = NULL;
-
-	//print_str_array(ptr->full_command);
 	return (temp);
 }
 
 /*
-Checks if the last character of the command in the prompt is either '<', '>', or '|'.
+Checks if the last character of
+the command in the prompt is either '<', '>', or '|'.
 If it's the case, prompt->stop = 1 and throw syntax error.
 Parameters:
     - prompt: Pointer to the prompt structure containing input commands.
 
 Returns:
 - No return value.
-
 */
 static void	check_last_char(t_prompt *prompt)
 {
-	int	len_ar;
-	char last_char;
+	int		len_ar;
+	char	last_char;
 
 	len_ar = get_len_arr(prompt->commands) - 1;
-	if (len_ar < 0 || prompt->commands[len_ar] == NULL || prompt->commands[len_ar][0] == '\0')
-		return;
-
+	if (len_ar < 0 || prompt->commands[len_ar] == NULL
+		|| prompt->commands[len_ar][0] == '\0')
+		return ;
 	last_char = prompt->commands[len_ar][0] ;
-
 	if (last_char == '|' || last_char == '<' || last_char == '>' )
 	{
 		prompt->stop = 1;
 		syntax_error(prompt, prompt->commands[len_ar]);
 	}
 }
+
 /*
 Checks if the last character of EACH command in the prompt is either '<', '>'.
 If it's the case, prompt->stop = 1 and throw syntax error
@@ -128,10 +126,10 @@ Returns:
 */
 static void	check_token(t_prompt *prompt)
 {
-	t_node *current_node;
-	t_cmddat *cmd_data;
-	int	len_arr;
-	char	last_char;
+	t_node		*current_node;
+	t_cmddat	*cmd_data;
+	int			len_arr;
+	char		last_char;
 
 	current_node = prompt->cmd_list;
 	while (current_node != NULL)
@@ -146,27 +144,21 @@ static void	check_token(t_prompt *prompt)
 			syntax_error(prompt, cmd_data->full_command[len_arr]);
 			free_node_list(prompt->cmd_list);
 			prompt->cmd_list = NULL;
-			break;
+			break ;
 		}
 		current_node = current_node->next;
 	}
 }
 
 
-void	parser(t_prompt *prompt)
+void	parser(t_prompt *prompt, int i, int j)
 {
 	t_cmddat	*ptr;
-	int			i;
-	int			j;
-
-	j = 0;
-	i = 0;
 
 	ptr = NULL;
 	check_last_char(prompt);
-
-	//print_str_array(prompt->commands);
-	while (prompt && prompt->commands && prompt->commands[i] != NULL && prompt->stop == 0)
+	while (prompt && prompt->commands && prompt->commands[i] != NULL
+		&& prompt->stop == 0)
 	{
 		ptr = init_struct_cmd(prompt);
 		if (!ptr)
@@ -185,20 +177,16 @@ void	parser(t_prompt *prompt)
 		i++;
 		j = 0;
 	}
-	//print_cmd_list(prompt->cmd_list);
-
 	check_token(prompt); //might lead to double frees with gc, but seems to work @DENIZ DOUBLE FREE if error
-
-	//print_cmd_list(prompt->cmd_list);
-
 	if (prompt->stop == 0)
 	{
 		handle_redir(prompt);
 		add_last_cmd_to_envp(prompt);
 	}
 	get_rid_quotes(prompt);
-
 }
+
+
 
 // void	parser(t_prompt *prompt)
 // {

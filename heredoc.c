@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 15:59:37 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:39:51 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i)
 	char	*lim;
 	int		j;
 
-	lim = prompt->commands[i + 1]; //is is position of <<
+	lim = prompt->commands[i + 1];
 	j = 0;
-	while(ft_isalnum(lim[j]))
+	while (ft_isalnum(lim[j]))
 		j++;
 	if (j != ft_strlen(lim))
 	{

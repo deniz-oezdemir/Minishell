@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:31:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 13:22:28 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:52:52 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,10 @@ size_t	get_len_arr(char **array)
 
 int	ft_isspace(int c)
 {
-	//printf("enters ft_isspace");
 	if (c == ' ' || (c >= 9 && c <= 13))
-	{
-		//printf("LE char est '%c' \n et la valeur retournee 1", c);
 		return (1);
-	}
-
 	else
-	{
-		//printf("LE char est '%c' \n et la valeur retournee 0", c);
 		return (0);
-	}
-
 }
 
 /*

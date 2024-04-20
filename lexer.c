@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:22:52 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 13:48:05 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:29:33 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ after split : prompt.commands = [ "echo", "hello", NULL]
 
 void	lexer(t_prompt *prompt)
 {
-
 	prompt->input_string = readline("minishell> ");
 	collect_grbg(prompt->input_string);
 	signals_non_interactive();
@@ -42,10 +41,11 @@ void	lexer(t_prompt *prompt)
 		exit_ms(0, prompt);
 		return ;
 	}
-	if (ft_strlen(prompt->input_string) <= 0 || is_only_space(prompt->input_string))
+	if (ft_strlen(prompt->input_string) <= 0
+		|| is_only_space(prompt->input_string))
 	{
-			prompt->stop = 1;
-			return ;
+		prompt->stop = 1;
+		return ;
 	}
 	prompt->input_string = add_space(prompt->input_string);
 	prompt->commands = split_input(prompt->input_string, prompt);

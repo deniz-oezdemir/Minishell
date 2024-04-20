@@ -6,13 +6,13 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:43:45 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 14:35:51 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:41:02 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*don't know what to do with the ? */
+
 /*
 Gets the lenght of the var to expand, starting from after the$
 i is the position of the string */
@@ -43,18 +43,18 @@ no match found
 */
 
 /*
-  Searches for the value of the environment variable
-  specified by the string `str` within the array of environment variables `env`.
-  It returns a pointer to the value of the environment variable.
+Searches for the value of the environment variable
+specified by the string `str` within the array of environment variables `env`.
+It returns a pointer to the value of the environment variable.
 
-  Parameters:
-    - str:          Pointer to the string representing the environment variable.
-    - var_exp_len:  Length of the environment variable to search for.
-    - env:          Array of strings representing environment variables.
+Parameters:
+- str:          Pointer to the string representing the environment variable.
+- var_exp_len:  Length of the environment variable to search for.
+- env:          Array of strings representing environment variables.
 
-  Returns:
-    - Pointer to the value of the environment variable if found.
-    - Pointer to an empty string if the environment variable is not found.
+Returns:
+- Pointer to the value of the environment variable if found.
+- Pointer to an empty string if the environment variable is not found.
 */
 static char	*get_ptr_var(char *str, size_t var_exp_len, char **env)
 {
@@ -70,16 +70,17 @@ static char	*get_ptr_var(char *str, size_t var_exp_len, char **env)
 
 
 /*
-  Creates a substring by expanding the environment
-   variable specified by the substring in the string
-   `str`. It constructs and returns a new string with the
-   expanded environment variable.
+Creates a substring by expanding the environment
+variable specified by the substring in the string
+`str`. It constructs and returns a new string with the
+ expanded environment variable.
 
-  Parameters:
-    - str: Pointer to the string containing the environment variable to be expanded.
-    - i:   Index of the starting character of the environment variable substring.
-    - ev:  Array of strings representing environment variables.
-    - len: Length of the environment variable substring to expand.
+Parameters:
+- str: Pointer to the string containing the environment
+variable to be expanded.
+- i:   Index of the starting character of the environment variable substring.
+- ev:  Array of strings representing environment variables.
+- len: Length of the environment variable substring to expand.
 
   Returns:
     - Pointer to the newly created string with the expanded environment variable.

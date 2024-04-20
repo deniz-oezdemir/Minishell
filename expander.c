@@ -6,19 +6,11 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 16:32:00 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:38:56 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/* before [["echo"], ["$PWD"]]
-	after [["echo"], []]
-metachar ( < > | $)
-ne pas traiter les metachar
-A l'interieur de double quote : doit traiter $
-A l'interieur de single quote : ne pas traiter $
-*/
 
 /*
   Expands environment variables in the array of strings `str` using
@@ -97,7 +89,6 @@ char *expand_var(char *str, char **ev)
 		dbq = (dbq + (!sgq && str[i] == '\"')) % 2;
 		if (!sgq && str[i] == '$' && str[i + 1] && str[i+1] != ' ')
 		{
-
 			if (str[i + 1] == '?')
 			{
 				nb = grbg_itoa(prompt->exitstatus);

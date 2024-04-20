@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 16:00:42 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:51:52 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ int	get_type(char *str)
 */
 void	handle_redir(t_prompt *ptr)
 {
-	int i;
-	int type;
-	t_node *current_node;
-	t_cmddat *cmd_data;
+	int			i;
+	int			type;
+	t_node		*current_node;
+	t_cmddat	*cmd_data;
 
 	current_node = ptr->cmd_list;
 	while (current_node != NULL)
@@ -98,11 +98,8 @@ void	handle_redir(t_prompt *ptr)
 		if (cmd_data)
 		{
 			i = 0;
-			//print_str_array(cmd_data->full_command);
-			//printf("full_command : %s\n", cmd_data->full_command);
 			while (cmd_data->full_command[i])
 			{
-			//	printf("full_command[i] : %s\n", cmd_data->full_command[i]);
 				type = get_type(cmd_data->full_command[i]);
 				if (type < 5 && type > 0)
 				{
@@ -121,7 +118,7 @@ void	handle_redir(t_prompt *ptr)
 if save_fd > 1 , it means that it's already open and we need to close it
 */
 
-int open_file(char **cmds, int i, int *save_fd, int io_flags[2] )
+int	open_file(char **cmds, int i, int *save_fd, int io_flags[2] )
 {
 	if (*save_fd > 1)
 	{
@@ -207,11 +204,7 @@ int	open_fd_redir(t_prompt *prompt, t_cmddat *cmd_struct, int i, int type)
 	if (type == 1)
 		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i, &cmd_struct->infile, io_flags);
 	else if (type == 2)
-	{
-		printf("to do : start here_doc\n ");
-		printf("i: %d\n", i);
 		launch_heredoc(prompt, cmd_struct, i); //i is the position of << in full_command
-	}
 	else if (type == 3)
 		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i, &cmd_struct->outfile, io_flags);
 	else
