@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 17:46:44 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/20 13:11:26 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,10 +178,13 @@ void	parser(t_prompt *prompt)
 		j = 0;
 	}
 	//print_cmd_list(prompt->cmd_list);
-	check_token(prompt); //@Leo: what does this do - it frees a lot of things but it's hard for me to judge whether thats necessary with the gc - left it as is for now but it might lead to double frees
+	check_token(prompt); //might lead to double frees with gc, but seems to work
 	if (prompt->stop == 0)
+	{
 		handle_redir(prompt);
-	add_last_cmd_to_envp(prompt);
+		add_last_cmd_to_envp(prompt);
+	}
+
 }
 
 // void	parser(t_prompt *prompt)

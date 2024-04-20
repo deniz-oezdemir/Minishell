@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:55:10 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/12 16:41:39 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/20 13:13:15 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	handle_sig_quit(int n)
 void	handle_sig_int(int n)
 {
 
+	(void)n;
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	write(1, "\n", STDERR_FILENO);
