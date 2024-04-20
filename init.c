@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 20:12:21 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 15:03:12 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/20 14:21:28 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ Returns: None
 */
 void	init_prompt_struct(t_prompt *prompt, char **envp)
 {
-	prompt->exitstatus = 0;
 	prompt->input_string = NULL;
 	prompt->commands = NULL;
 	prompt->cmd_list = NULL;
@@ -55,7 +54,7 @@ int	init_env(t_prompt *prompt, char **env)
 
 	i = 0;
 	//prompt->envp = ft_calloc((get_len_arr(env) +1), sizeof(char *));
-	prompt->envp = get_grbg((get_len_arr(env) +1), sizeof(char *));
+	prompt->envp = get_grbg(prompt, get_len_arr(env) + 1, sizeof(char *));
 	if (!prompt->envp)
 	{
 		printf("Error allocating memory for envp\n");
@@ -64,7 +63,7 @@ int	init_env(t_prompt *prompt, char **env)
 	while (env[i])
 	{
 		//prompt->envp[i] = ft_strdup(env[i]);
-		prompt->envp[i] = grbg_strdup(env[i]);
+		prompt->envp[i] = grbg_strdup(prompt, env[i]);
 		if (!prompt->envp[i])
 		{
 			//free_char_array(prompt->envp);

@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 15:59:37 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:33:30 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i)
 		return ;
 	}
 	cmd->infile = get_heredoc(prompt, lim);
-	if (prompt->exitstatus == 1)
+	if (exitstatus == 1)
 		prompt->stop = 1; //why?
 }
 
@@ -39,12 +39,12 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 
 	content = NULL;
 	line = NULL;
-	prompt->exitstatus = 0; //why?
+	exitstatus = 0; //why?
 	while (1)
 	{
 		signals_interactive();
 		line = readline("> ");
-		collect_grbg(line);
+		collect_grbg(prompt, line);
 		signals_non_interactive();
 		if (!line) //if e.g. Ctrl+D
 		{
@@ -53,8 +53,8 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 		}
 		if (!ft_strncmp(line, lim, ft_strlen(line)) && ft_strlen(line) == ft_strlen(lim)) //different: left out prompt->prompt->prompt->prompt->prompt->exitstatus as prompt->exitstatus can not be 1 here anyways?
 			break ;
-		content = add_to_str(&content, line);
-		content = add_to_str(&content, "\n");
+		content = add_to_str(prompt, &content, line);
+		content = add_to_str(prompt, &content, "\n");
 		//free(line);
 	}
 	return (pipe_heredoc(prompt, content));
@@ -65,7 +65,7 @@ int	pipe_heredoc(t_prompt *prompt, char *content)
 	int pip[2];
 	int i;
 
-	if (prompt->exitstatus)
+	if (exitstatus)
 	{
 		//free(content);
 		return (0);

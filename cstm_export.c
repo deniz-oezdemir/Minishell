@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:08:21 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/19 19:31:51 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/20 14:27:42 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int	cstm_export(t_cmddat *cmd)
 	if (get_len_arr(cmd->full_command) == 1)
 		return (print_export(cmd));
 	if (!cmd->prompt->envp && get_len_arr(cmd->full_command) > 1
-		&& get_len_id(cmd->full_command[i], 0)) // uninitiaized envp - @Leo: is this even possible? @deniz is this comment still valid? 10/04 @Leo: yes
-		cmd->prompt->envp = add_str_to_arr(cmd->prompt->envp,
+		&& get_len_id(cmd->prompt, cmd->full_command[i], 0)) // uninitiaized envp - @Leo: is this even possible? @deniz is this comment still valid? 10/04 @Leo: yes
+		cmd->prompt->envp = add_str_to_arr(cmd->prompt, cmd->prompt->envp,
 				cmd->full_command[i++]);
 	while (cmd->full_command[i])
 	{
-		id_len = get_len_id(cmd->full_command[i], 1);
+		id_len = get_len_id(cmd->prompt, cmd->full_command[i], 1);
 		if (id_len)
 			scan_envp(cmd, cmd->full_command[i], id_len);
 		else
@@ -60,7 +60,7 @@ void	print_line_export(t_cmddat *cmd, int i)
 {
 	size_t	l;
 
-	l = get_len_id(cmd->prompt->envp[i], 0);
+	l = get_len_id(cmd->prompt, cmd->prompt->envp[i], 0);
 	ft_putstr_fd("declare -x ", cmd->outfile);
 	if (l && l != ft_strlen(cmd->prompt->envp[i]))
 	{
@@ -76,7 +76,7 @@ void	print_line_export(t_cmddat *cmd, int i)
 	ft_putstr_fd("\n", cmd->outfile);
 }
 
-int	get_len_id(char *str, int msg)
+int	get_len_id(t_prompt *prompt, char *str, int msg)
 {
 	int		i;
 	int		e;
@@ -96,8 +96,8 @@ int	get_len_id(char *str, int msg)
 	{
 		if (msg)
 		{
-			tmp = grbg_strjoin("`", str);
-			tmp = add_to_str(&tmp, "'");
+			tmp = grbg_strjoin(prompt, "`", str);
+			tmp = add_to_str(prompt, &tmp, "'");
 			print_err_msg_lng("export", tmp, "not a valid identifier");
 			//if (tmp)
 				//free(tmp);
@@ -117,17 +117,17 @@ int	scan_envp(t_cmddat *cmd, char *str, int id_len)
 	i = 0;
 	while (cmd->prompt->envp[i])
 	{
-		envp_id_len = get_len_id(cmd->prompt->envp[i], 0);
+		envp_id_len = get_len_id(cmd->prompt, cmd->prompt->envp[i], 0);
 		if (envp_id_len == id_len && !ft_strncmp(cmd->prompt->envp[i], str, id_len))
 		{
 			if (ft_strchr(str, '='))
-				modify_envp(cmd->prompt, grbg_substr(cmd->prompt->envp[i], 0,
-						envp_id_len), grbg_strdup(str + envp_id_len + 1), 1);
+				modify_envp(cmd->prompt, grbg_substr(cmd->prompt, cmd->prompt->envp[i], 0,
+						envp_id_len), grbg_strdup(cmd->prompt, str + envp_id_len + 1), 1);
 			break ;
 		}
 		else if (i == get_len_arr(cmd->prompt->envp) - 1)
 		{
-			cmd->prompt->envp = add_str_to_arr(cmd->prompt->envp, str);
+			cmd->prompt->envp = add_str_to_arr(cmd->prompt, cmd->prompt->envp, str);
 			break ;
 		}
 		i++;
@@ -135,21 +135,21 @@ int	scan_envp(t_cmddat *cmd, char *str, int id_len)
 	return (0);
 }
 
-char	*add_to_str(char **str, char *add)
+char	*add_to_str(t_prompt *prompt, char **str, char *add)
 {
 	char	*new;
 
 	if (!add)
 	{
-		new = grbg_strdup(*str);
+		new = grbg_strdup(prompt, *str);
 		return (new);
 	}
 	if (!str || !*str)
 	{
-		new = grbg_strdup(add);
+		new = grbg_strdup(prompt, add);
 		return (new);
 	}
-	new = grbg_strjoin(*str, add);
+	new = grbg_strjoin(prompt, *str, add);
 	//free(*str);
 	return (new);
 }
