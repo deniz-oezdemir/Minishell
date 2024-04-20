@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 16:20:40 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/20 16:32:00 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,17 @@ char *expand_var(char *str, char **ev)
 	sgq = 0;
 	dbq = 0;
 	i = 0;
+
+	if (ft_strcmp(str, "$") && ft_strlen(str) == 3)
+		return (str);
+
 	while (str[i])
 	{
 		sgq = (sgq + (!dbq && str[i] == '\'')) % 2;
 		dbq = (dbq + (!sgq && str[i] == '\"')) % 2;
 		if (!sgq && str[i] == '$' && str[i + 1] && str[i+1] != ' ')
 		{
+
 			if (str[i + 1] == '?')
 			{
 				nb = grbg_itoa(prompt->exitstatus);
@@ -101,8 +106,6 @@ char *expand_var(char *str, char **ev)
 				len = ft_strlen(nb);
 				sub_str = create_sub(str, i, nb, len);
 			}
-			// else if (str[i - 1]  && str[i - 1] == '\"' && str[i + 1] == '\"')
-			// 	return str;
 			else
 			{
 				len = get_len_var(str, i + 1);
