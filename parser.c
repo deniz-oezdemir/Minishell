@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 16:50:51 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/20 12:26:57 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,15 @@ char	**fill_arr(char **prompt, int i, int len)
 }
 
 /*
-  Parses the input commands stored in the prompt structure.
-  It constructs a list of commands with their arguments and other details.
-  Also handles redirections and pipes.
-
-  Parameters:
+Checks if the last character of the command in the prompt is either '<', '>', or '|'.
+If it's the case, prompt->stop = 1 and throw syntax error.
+Parameters:
     - prompt: Pointer to the prompt structure containing input commands.
+
+Returns:
+- No return value.
+
 */
-/*
-check if the last char is | < > */
 static void	check_last_char(t_prompt *prompt)
 {
 	int	len_ar;
@@ -115,7 +115,14 @@ static void	check_last_char(t_prompt *prompt)
 	}
 }
 /*
-check pour chaque struct si le dernier char est < ou > */
+Checks if the last character of EACH command in the prompt is either '<', '>'.
+If it's the case, prompt->stop = 1 and throw syntax error
+Parameters:
+    - prompt: Pointer to the prompt structure containing input commands.
+
+Returns:
+- No return value.
+*/
 static void	check_token(t_prompt *prompt)
 {
 	t_node *current_node;
