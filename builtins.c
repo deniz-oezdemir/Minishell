@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 10:34:24 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/14 19:39:10 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 13:32:57 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ int	execute_builtin(t_cmddat *cmd, int n, int forked)
 	if (forked)
 	{
 		cstm_lstiter(cmd->prompt->cmd_list, cls_fds);
+		//printf("execute_builtin forked: r = %i\n", r);
 		exit_ms(r, cmd->prompt);
 	}
+	//printf("execute_builtin: r = %i\n", r);
 	return (r);
 }
