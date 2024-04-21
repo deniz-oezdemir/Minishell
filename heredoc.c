@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 19:39:31 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 19:48:50 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,13 @@ int	pipe_heredoc(char *content)
 	//int i; @deniz
 
 	if (exitstatus)
-	{
-		//free(content);
 		return (0);
-	}
 	//check for meta chars / expand env vars -> @Leo
 	if (!pipe(pip))
 	{
 		ft_putstr_fd(content, pip[1]);
-		//free(content);
 		close(pip[1]);
 		return(pip[0]);
 	}
-	//free(content);
 	return (0);
 }
