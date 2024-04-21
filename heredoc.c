@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 16:13:14 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 19:03:46 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 		content = add_to_str(prompt, &content, "\n");
 		//free(line);
 	}
-	return (pipe_heredoc(content));
+	return (pipe_heredoc(prompt, content));
 }
 
-int	pipe_heredoc(char *content)
+int	pipe_heredoc(t_prompt *prompt, char *content)
 {
 	int pip[2];
-	//int i; @deniz not used?
+	//int i; @deniz
 
 	if (exitstatus)
 	{
