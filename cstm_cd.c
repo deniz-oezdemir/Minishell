@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cstm_cd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:35:29 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/21 16:09:19 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:23:25 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ int cstm_cd(t_cmddat *cmd_data)
 	char	*cwd_before;
 	char	*cwd_after;
 
+	if (cmd_data->full_command[2]) //if more than one arg
+		return(print_err_msg_lng(cmd_data->full_command[0], "too many arguments", NULL)); //compare bash err msg
 	if (cmd_data->full_command)
 	{
 		if (!cmd_data->full_command[1])
