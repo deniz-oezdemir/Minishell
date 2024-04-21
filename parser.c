@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 16:10:01 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 17:35:51 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	**fill_arr(t_prompt *main_prompt, char **prompt, int i, int len)
 {
 	char	**temp;
 	int		j;
-
+	//write(1, "2", 1);
 	j = 0;
 	temp = NULL;
 	//print_str_array(prompt);
@@ -176,70 +176,16 @@ void	parser(t_prompt *prompt, int i, int j)
 			break;
 		i++;
 		j = 0;
+
 	}
+
 	check_token(prompt); //might lead to double frees with gc, but seems to work @DENIZ DOUBLE FREE if error
 	if (prompt->stop == 0)
-	{
 		handle_redir(prompt);
+	if (prompt->cmd_list != NULL)
 		add_last_cmd_to_envp(prompt);
-	}
 	get_rid_quotes(prompt);
 }
-
-
-
-// void	parser(t_prompt *prompt)
-// {
-// 	t_cmddat	*ptr;
-// 	char **temp;
-// 	int	i;
-// 	int	j;
-// 	j = 1;
-// 	i = 0;
-
-// 	ptr = NULL;
-// 	temp = NULL;
-// 	get_rid_quotes(prompt);
-// 	check_last_char(prompt);
-
-// 	while (prompt && prompt->commands && prompt->commands[i] && prompt->stop == 0)
-// 	{
-// 		if (i == 0 || prompt->commands[i][0] == '|' && prompt->commands[i + 1] && prompt->commands[i][0])
-// 		{
-
-// 			ptr = init_struct_cmd(prompt);
-//  			if (!ptr)
-// 				return ;
-//  			add_node_to_list(&(prompt->cmd_list), ptr);
-// 			if (i != 0)
-// 			{
-// 				printf("%d \n\n", i);
-// 				ptr->full_command = fill_arr(prompt->commands, i - j, j);
-// 				prompt->cmd_list->data->full_path = get_path_cmds(ptr, prompt->envp);
-// 				prompt->cmd_list->data->full_command = fill_arr(prompt->commands, i - j, j);
-// 				j = 0;
-// 			}
-// 		}
-// 		else
-// 			j++;
-// 		i++;
-// 	}
-// 	if (ptr && prompt->stop == 0)
-// 	{
-
-// 		ptr->full_command = fill_arr(prompt->commands, i - j, j);
-// 		ptr->full_path = get_path_cmds(ptr, prompt->envp);
-// 	}
-// 	check_token(prompt);
-
-// 	if (prompt->stop == 0)
-// 	{
-// 		handle_redir(prompt);
-// 		print_cmd_list(prompt->cmd_list);
-// 	}
-
-// 	add_last_cmd_to_envp(prompt);
-// }
 
 void	add_last_cmd_to_envp(t_prompt *prompt)
 {

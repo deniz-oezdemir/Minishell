@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 17:04:23 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 17:32:55 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,9 @@ char *expand_var(t_prompt *prompt, char *str, char **ev)
 		}
 		i++;
 	}
+	// write(1, "1", 1);
+	// printf("sub_str : %s\n",sub_str);
+	// printf("str : %s\n",str);
 	if (sub_str)
 		return (sub_str);
 	else
