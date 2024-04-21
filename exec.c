@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/21 19:09:44 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 21:14:17 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,10 @@ int	execute_cmds(t_prompt *prompt)
 {
 	t_cmddat	*cmd_data;
 
-	cmd_data = prompt->cmd_list->data;
-
-	if (!prompt->cmd_list || !cmd_data->full_command[0])
+	//@leo had to change a bit here
+	if (!prompt->cmd_list || !prompt->cmd_list->data->full_command[0])
 		return (0);
+	cmd_data = prompt->cmd_list->data; //@deniz SEGV when enter $empty ->fixed
 	if(cstm_lstsize(prompt->cmd_list) == 1 && get_builtin_nbr(cmd_data))
 	{
 		exitstatus = execute_builtin(cmd_data, get_builtin_nbr(cmd_data), 0);
