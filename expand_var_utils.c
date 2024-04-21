@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:43:45 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 17:09:23 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 17:44:46 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len)
 	s2 = ft_strdup(get_ptr_var(&str[i + 1], len, ev));
 	if (s2 == NULL)
 	{
+
 		free(s1);
 		free(s3);
 		return NULL;

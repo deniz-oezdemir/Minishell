@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 17:35:51 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 17:58:22 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,7 @@ void	parser(t_prompt *prompt, int i, int j)
 	if (prompt->cmd_list != NULL)
 		add_last_cmd_to_envp(prompt);
 	get_rid_quotes(prompt);
+	//print_cmd_list(prompt->cmd_list);
 }
 
 void	add_last_cmd_to_envp(t_prompt *prompt)

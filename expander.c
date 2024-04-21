@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 17:32:55 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 18:13:50 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,17 @@ char	**expander(t_prompt *prompt, char **str, char **ev)
 	}
 	temp[i] = NULL;
 	i = 0;
+	while(temp[i] != NULL)
+	{
+		if (ft_strcmp(temp[i], "") == 0)
+		{
+			del_str_from_array(temp,i,1);
+			i=0;
+		}
+		else
+		i++;
+
+	}
 	return (temp);
 }
 
@@ -104,20 +115,16 @@ char *expand_var(t_prompt *prompt, char *str, char **ev)
 				collect_grbg(prompt, sub_str);
 				if (sub_str == NULL)
 				{
-					str = NULL;
+					str = "";
+					//del_str_from_array(prompt->)
 					//printf("HERE\n");
 					break;
-
 				}
-
 			}
 			str = sub_str;
 		}
 		i++;
 	}
-	// write(1, "1", 1);
-	// printf("sub_str : %s\n",sub_str);
-	// printf("str : %s\n",str);
 	if (sub_str)
 		return (sub_str);
 	else
