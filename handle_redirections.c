@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 20:17:08 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 20:56:32 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,11 @@ int	open_file(char **cmds, int i, int *save_fd, int io_flags[2] )
 			*save_fd = open(cmds[i + 1], io_flags[0]);
 		if (*save_fd == -1)
 		{
-			printf("%s No such file or directory\n", cmds[i + 1]);
 			exitstatus = 1;
+			print_err_msg(cmds[i + 1], "No such file or directory");
+			//print_err_msg_lng(cmds[i + 1], "No such file or directory");
+			//printf("%s : No such file or directory\n", cmds[i + 1]);
+
 			return (1); //command not found
 		}
 	}
