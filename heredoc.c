@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 14:49:15 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:13:14 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i)
 {
 	char	*lim;
-	int		j;
+	size_t		j;
 
 	lim = prompt->commands[i + 1];
 	j = 0;
@@ -57,13 +57,13 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 		content = add_to_str(prompt, &content, "\n");
 		//free(line);
 	}
-	return (pipe_heredoc(prompt, content));
+	return (pipe_heredoc(content));
 }
 
-int	pipe_heredoc(t_prompt *prompt, char *content)
+int	pipe_heredoc(char *content)
 {
 	int pip[2];
-	int i;
+	//int i; @deniz not used?
 
 	if (exitstatus)
 	{

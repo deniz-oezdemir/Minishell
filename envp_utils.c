@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:45:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/19 19:51:45 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:11:46 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*get_path(char *cmd, char **ev)
 	char	**all_paths;
 	char	*path;
 	char	*path_part;
-	int		i;
+	size_t		i;
 
 	i = 0;
 

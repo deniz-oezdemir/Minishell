@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 15:53:21 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:04:14 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@
 */
 
 static int special_len(char *str) {
-	int i;
+	size_t i;
 	int count;
 
 	i = 0;
 	count = 0;
 	while (str[i] && str[i + 1])
 	{
-		if (str[i + 1] && (str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<'))
+		if (str[i + 1] && ((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<')))
 		{
 			if (i > 0 && str[i - 1] != ' ')
 				count++;
@@ -60,15 +60,12 @@ static int special_len(char *str) {
 
 char *add_space(t_prompt *prompt, char *str)
 {
-	int i;
+	size_t i;
 	int j;
 	int len_str;
 	char *new_str;
 	i = 0;
 	j = 0;
-
-
-
 
 	len_str = ft_strlen(str) + special_len(str) + 1;
 	//new_str = (char *)malloc(sizeof(char) * len_str);

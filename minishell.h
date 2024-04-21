@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 14:49:56 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:13:52 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ size_t get_len_env(const char *s);
 int cstm_cd(t_cmddat *cmd_data);
 int	go_home_dir(t_prompt *prompt);
 int go_back_dir(t_prompt *prompt);
-void modify_envp(t_prompt *prompt, char *name, char *insert, int f_free_name);
+void modify_envp(t_prompt *prompt, char *name, char *insert);
 char *get_envp(t_prompt *prompt, char *name);
 
 /*	cstm_export.c	*/
@@ -251,7 +251,7 @@ void	cstm_lstdelone(t_node *lst, void (*del)(void *));
 /* here_doc */
 void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i);
 int	get_heredoc(t_prompt *prompt, char *lim);
-int	pipe_heredoc(t_prompt *prompt, char *content);
+int	pipe_heredoc(char *content);
 
 /*	garbage_collector	*/
 void	*get_grbg(t_prompt *prompt, size_t nmemb, size_t size);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cstm_export.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:08:21 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/20 14:27:42 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:11:13 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	get_len_id(t_prompt *prompt, char *str, int msg)
 	else if end of envp, add VAR */
 int	scan_envp(t_cmddat *cmd, char *str, int id_len)
 {
-	int	i;
+	size_t	i;
 	int	envp_id_len;
 
 	i = 0;
@@ -122,7 +122,7 @@ int	scan_envp(t_cmddat *cmd, char *str, int id_len)
 		{
 			if (ft_strchr(str, '='))
 				modify_envp(cmd->prompt, grbg_substr(cmd->prompt, cmd->prompt->envp[i], 0,
-						envp_id_len), grbg_strdup(cmd->prompt, str + envp_id_len + 1), 1);
+						envp_id_len), grbg_strdup(cmd->prompt, str + envp_id_len + 1));
 			break ;
 		}
 		else if (i == get_len_arr(cmd->prompt->envp) - 1)

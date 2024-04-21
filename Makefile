@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
+#    By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 20:35:04 by denizozd          #+#    #+#              #
-#    Updated: 2024/04/21 15:57:54 by denizozd         ###   ########.fr        #
+#    Updated: 2024/04/21 15:59:10 by ecarlier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CUT = "\033[K"
 NAME = minishell
 CC = cc
 #CFLAGS = -Wall -Werror -Wextra #commented out to not silence all unused vars
-CFLAGS = -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 LIBFTPATH = ./libft
 LIBFT = ./libft/libft.a
 

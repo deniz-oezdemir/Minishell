@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cstm_cd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:35:29 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/20 14:24:02 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:09:19 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char *get_envp(t_prompt *prompt, char *name)
 	return (NULL);
 }
 
-void modify_envp(t_prompt *prompt, char *name, char *insert, int f_free_name)
+void modify_envp(t_prompt *prompt, char *name, char *insert)
 {
 	int	i;
 	char *str;;
@@ -82,11 +82,11 @@ int	go_home_dir(t_prompt *prompt)
 		return(print_err_msg_lng("cd", "not set", "HOME"));
 	cwd_before = (char *)getcwd(NULL, 0);
 	collect_grbg(prompt, cwd_before);
-	modify_envp(prompt, "OLDPWD", cwd_before, 0);
+	modify_envp(prompt, "OLDPWD", cwd_before);
 	chdir(home_dir);
 	cwd_after = (char *)getcwd(NULL, 0);
 	collect_grbg(prompt, cwd_after);
-	modify_envp(prompt, "PWD", cwd_after, 0);
+	modify_envp(prompt, "PWD", cwd_after);
 	//free(home_dir);
 	return (0);
 }
@@ -103,11 +103,11 @@ int go_back_dir(t_prompt *prompt)
 	ft_printf("%s\n", old_dir);
 	cwd_before = (char *)getcwd(NULL, 0);
 	collect_grbg(prompt, cwd_before);
-	modify_envp(prompt, "OLDPWD", cwd_before, 0);
+	modify_envp(prompt, "OLDPWD", cwd_before);
 	chdir(old_dir);
 	cwd_after = (char *)getcwd(NULL, 0);
 	collect_grbg(prompt, cwd_after);
-	modify_envp(prompt, "PWD", cwd_after, 0);
+	modify_envp(prompt, "PWD", cwd_after);
 	//if (old_dir)
 	//	free(old_dir);
 	return (0);
@@ -128,7 +128,7 @@ int cstm_cd(t_cmddat *cmd_data)
 	}
 	cwd_before = (char *)getcwd(NULL, 0);
 	collect_grbg(cmd_data->prompt, cwd_before);
-	modify_envp(cmd_data->prompt, "OLDPWD", cwd_before, 0);
+	modify_envp(cmd_data->prompt, "OLDPWD", cwd_before);
 	dir_user = opendir(cmd_data->full_command[1]);
 	if (!dir_user)
 		return(print_err_msg_lng(cmd_data->full_command[0], "No such file or directory", cmd_data->full_command[1])); //compare bash err msg
@@ -137,6 +137,6 @@ int cstm_cd(t_cmddat *cmd_data)
 	closedir(dir_user);
 	cwd_after = (char *)getcwd(NULL, 0);
 	collect_grbg(cmd_data->prompt, cwd_after);
-	modify_envp(cmd_data->prompt, "PWD", cwd_after, 0);
+	modify_envp(cmd_data->prompt, "PWD", cwd_after);
 	return (0);
 }

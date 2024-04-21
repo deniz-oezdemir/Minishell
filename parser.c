@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 14:49:45 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:10:01 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,7 +250,7 @@ void	add_last_cmd_to_envp(t_prompt *prompt)
 		return ;
 	l = get_len_arr(prompt->cmd_list->data->full_command);
 	if (l)
-		modify_envp(prompt, "_", grbg_strdup(prompt, prompt->cmd_list->data->full_command[l - 1]), 0);
+		modify_envp(prompt, "_", grbg_strdup(prompt, prompt->cmd_list->data->full_command[l - 1]));
 }
 
 
