@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cstm_export.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:08:21 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/21 16:11:13 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:34:24 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	get_len_id(t_prompt *prompt, char *str, int msg)
 		{
 			tmp = grbg_strjoin(prompt, "`", str);
 			tmp = add_to_str(prompt, &tmp, "'");
-			print_err_msg_lng("export", tmp, "not a valid identifier");
+			print_err_msg_lng("export", "not a valid identifier", tmp);
 			//if (tmp)
 				//free(tmp);
 		}
