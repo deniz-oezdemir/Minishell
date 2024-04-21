@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 19:48:50 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 22:54:41 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,28 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 		}
 		if (!ft_strncmp(line, lim, ft_strlen(line)) && ft_strlen(line) == ft_strlen(lim)) //different: left out prompt->prompt->prompt->prompt->prompt->exitstatus as prompt->exitstatus can not be 1 here anyways?
 			break ;
+		line = expand_var(prompt, line, prompt->envp);
 		content = add_to_str(prompt, &content, line);
 		content = add_to_str(prompt, &content, "\n");
-		//free(line);
 	}
 	return (pipe_heredoc(content));
 }
 
 int	pipe_heredoc(char *content)
 {
-	int pip[2];
-	//int i; @deniz
-
-	if (exitstatus)
+	int	pip[2];
+	// printf("content : %s\n", content);
+	// printf("end\n");
+	if (exitstatus) //@deniz why?
 		return (0);
+
 	//check for meta chars / expand env vars -> @Leo
 	if (!pipe(pip))
 	{
+
 		ft_putstr_fd(content, pip[1]);
 		close(pip[1]);
-		return(pip[0]);
+		return (pip[0]);
 	}
 	return (0);
 }

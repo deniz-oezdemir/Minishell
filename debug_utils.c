@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:54:02 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/18 13:26:06 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 21:19:33 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void print_cmddat(const t_cmddat *cmd) {
 
     printf("infile: %d\n", cmd->infile);
     printf("outfile: %d\n", cmd->outfile);
-    printf("*prompt: %p\n", cmd->prompt);
-    printf("file_open_error: %d\n", cmd->file_open_error);
+    //printf("*prompt: %p\n", cmd->prompt);
+   //printf("file_open_error: %d\n", cmd->file_open_error);
     // Additional fields can be printed similarly
 }
 
