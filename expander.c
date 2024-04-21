@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 16:59:02 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 17:04:23 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,18 +98,23 @@ char *expand_var(t_prompt *prompt, char *str, char **ev)
 			}
 			else
 			{
+				//printf("HERE\n");
 				len = get_len_var(str, i + 1);
 				sub_str = create_sub_var(str, i, ev, len);
 				collect_grbg(prompt, sub_str);
 				if (sub_str == NULL)
+				{
+					str = NULL;
+					//printf("HERE\n");
 					break;
+
+				}
 
 			}
 			str = sub_str;
 		}
 		i++;
 	}
-
 	if (sub_str)
 		return (sub_str);
 	else
