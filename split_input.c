@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 15:48:34 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 15:53:21 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int special_len(char *str) {
 }
 
 
-char *add_space(char *str)
+char *add_space(t_prompt *prompt, char *str)
 {
 	int i;
 	int j;

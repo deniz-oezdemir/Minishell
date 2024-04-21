@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:39:46 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 15:48:02 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 15:55:28 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ void	get_rid_quotes(t_prompt	*prompt)
 		cmd_data = current_node->data;
 		i = 0;
 		len_arr = get_len_arr(cmd_data->full_command);
-		temp = get_grbg(len_arr + 1, sizeof(char *));
+		temp = get_grbg(prompt, len_arr + 1, sizeof(char *));
 		if (!temp)
 			return ;
 		while (cmd_data->full_command[i])
 		{
-			trim_cmd = get_trimmed(cmd_data->full_command[i], 0, 0);
+			trim_cmd = get_trimmed(prompt, cmd_data->full_command[i], 0, 0);
 			temp[i] = trim_cmd;
 			i++;
 		}
@@ -64,7 +64,7 @@ void	get_rid_quotes(t_prompt	*prompt)
   Returns:
     - Pointer to the dynamically allocated trimmed string.
 */
-char	*get_trimmed(char const *s1, int squote, int dquote)
+char	*get_trimmed(t_prompt *prompt, char const *s1, int squote, int dquote)
 {
 	int		count;
 	int		i[2];
