@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:35:29 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/20 14:24:02 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:20:00 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ int cstm_cd(t_cmddat *cmd_data)
 	char	*cwd_before;
 	char	*cwd_after;
 
+	if (cmd_data->full_command[2]) //if more than one arg
+		return(print_err_msg_lng(cmd_data->full_command[0], "too many arguments", NULL)); //compare bash err msg
 	if (cmd_data->full_command)
 	{
 		if (!cmd_data->full_command[1])
