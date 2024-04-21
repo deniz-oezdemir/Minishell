@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/20 13:51:16 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 18:53:14 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,10 @@ int	execute_cmds(t_prompt *prompt)
 {
 	t_cmddat	*cmd_data;
 
-	if (!prompt->cmd_list)
-		return (0);
 	cmd_data = prompt->cmd_list->data;
+
+	if (!prompt->cmd_list || !cmd_data->full_command[0])
+		return (0);
 	if(cstm_lstsize(prompt->cmd_list) == 1 && get_builtin_nbr(cmd_data))
 	{
 		exitstatus = execute_builtin(cmd_data, get_builtin_nbr(cmd_data), 0);
