@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 19:13:57 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 19:33:02 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	launch_minishell(t_prompt *prompt)
 		if (cstm_lstsize(prompt->cmd_list) > 1 && prompt->stop == 0)
 			pipe_infile_outfile(prompt->cmd_list); //@Deniz: not gc'ed within pipe_infile_outfile as does not leak
 		//print_cmd_list(prompt->cmd_list);
-		execute_cmds(prompt); //maybe add stop check
+		if (!prompt->stop)
+			execute_cmds(prompt);
 		prompt->cmd_list = NULL; //this works but why @Leo
 	}
 }
