@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:43:45 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 14:46:53 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:57:27 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static char	*get_ptr_var(char *str, size_t var_exp_len, char **env)
 			return (*env + var_exp_len + 1);
 		env++;
 	}
-	return ("");
+	return (NULL);
 }
 
 
@@ -90,21 +90,33 @@ variable to be expanded.
 //@Leo: not gc'ed but freed as to many params
 char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len)
 {
-	//ssize_t	len; //longueur de la variable a etendre
 	char *s1; //partie avant $ //part before $
-	char *s2; // valeur de la variable a etendre //value of the variable to expand
+	char *s2; //value of the variable to expand
 	char *s3; // apres $ //part after $
 	char *expanded_tmp;
 	char *expanded_str; //should be put to NULL?
 
+	expanded_tmp = NULL;
 	s1 = ft_substr(str, 0, i);
 	s3 = ft_substr(str, i + len + 1, ft_strlen(str) - i - len);
 	s2 = ft_strdup(get_ptr_var(&str[i + 1], len, ev));
-	expanded_tmp = ft_strjoin(s1, s2);
-	expanded_str = ft_strjoin(expanded_tmp, s3);
-	free(expanded_tmp);
+	if (s2 == NULL)
+	{
+		free(s1);
+		free(s3);
+		return NULL;
+		//expanded_str = ft_strjoin(s1, s3);
+	}
+	else
+	{
+		expanded_tmp = ft_strjoin(s1, s2);
+		expanded_str = ft_strjoin(expanded_tmp, s3);
+	}
+	if (expanded_tmp)
+		free(expanded_tmp);
+	if (s2)
+		free(s2);
 	free(s1);
-	free(s2);
 	free(s3);
 	return (expanded_str);
 }
@@ -123,7 +135,6 @@ char	*create_sub(char *str, size_t i, char *nb, ssize_t len)
 	expanded_str = ft_strjoin(expanded_tmp, s3);
 	free(expanded_tmp);
 	free(s1);
-	//free(nb);
 	free(s3);
 	return (expanded_str);
 }

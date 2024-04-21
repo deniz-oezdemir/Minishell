@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 14:48:01 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:59:02 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ char	**expander(t_prompt *prompt, char **str, char **ev)
 	int		i;
 	char	**temp;
 
-	//temp = malloc(sizeof(char *) * (get_len_arr(str) + 1));
 	temp = get_grbg(prompt, get_len_arr(str) + 1, sizeof(char *));
 	if (!temp)
 		return (NULL);
@@ -42,7 +41,6 @@ char	**expander(t_prompt *prompt, char **str, char **ev)
 	}
 	temp[i] = NULL;
 	i = 0;
-	//free(str);
 	return (temp);
 }
 
@@ -87,7 +85,7 @@ char *expand_var(t_prompt *prompt, char *str, char **ev)
 	{
 		sgq = (sgq + (!dbq && str[i] == '\'')) % 2;
 		dbq = (dbq + (!sgq && str[i] == '\"')) % 2;
-		if (!sgq && str[i] == '$' && str[i + 1] && str[i+1] != ' ')
+		if (!sgq && str[i] == '$' && str[i + 1] && str[i + 1] != ' ')
 		{
 			if (str[i + 1] == '?')
 			{
@@ -103,12 +101,15 @@ char *expand_var(t_prompt *prompt, char *str, char **ev)
 				len = get_len_var(str, i + 1);
 				sub_str = create_sub_var(str, i, ev, len);
 				collect_grbg(prompt, sub_str);
+				if (sub_str == NULL)
+					break;
+
 			}
-			//free(str);
 			str = sub_str;
 		}
 		i++;
 	}
+
 	if (sub_str)
 		return (sub_str);
 	else
