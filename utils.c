@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:31:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 14:51:18 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:34:42 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,15 +128,15 @@ int print_err_msg_lng(char *cmd, char *msg, char *arg) //different -> compare al
 	ft_putstr_fd("minishell: ", 2);
 	if (cmd)
 		ft_putstr_fd(cmd, 2);
-	if (msg)
-	{
-		ft_putstr_fd(": ", 2);
-		ft_putstr_fd(msg, 2);
-	}
 	if (arg)
 	{
 		ft_putstr_fd(": ", 2);
 		ft_putstr_fd(arg, 2);
+	}
+	if (msg)
+	{
+		ft_putstr_fd(": ", 2);
+		ft_putstr_fd(msg, 2);
 	}
 	ft_putstr_fd("\n", 2);
 	return (1);
