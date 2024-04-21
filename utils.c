@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:31:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 18:52:52 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 14:51:18 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,21 @@ char	**del_str_from_array(char **array, int pos, int count)
 	return (array);
 }
 
-char	**add_str_to_arr(char **arr, char *str)
+char	**add_str_to_arr(t_prompt *prompt, char **arr, char *str)
 {
 	char	**new;
 	int		l;
 
 	l = get_len_arr(arr);
 	//new = ft_calloc(l + 2, sizeof(char *));
-	new = get_grbg(l + 2, sizeof(char *));
+	new = get_grbg(prompt, l + 2, sizeof(char *));
 	if (!new)
 		return (NULL);
-	new[l] = grbg_strdup(str);
+	new[l] = grbg_strdup(prompt, str);
 	l--;
 	while (l >= 0)
 	{
-		new[l] = grbg_strdup(arr[l]);
+		new[l] = grbg_strdup(prompt, arr[l]);
 		l--;
 	}
 	//free_char_array(arr);

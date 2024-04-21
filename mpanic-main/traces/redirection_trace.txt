@@ -1,0 +1,3003 @@
+
+**************************************************************
+*                          CARE!                             *
+*                                                            * 
+* This tester doesnt work if ur readline prompt have '\n'    *
+*                                                            *
+**************************************************************
+
+---------------------------------------------> test [274]
+|  CMD: ->> no_cmd_file
+| cat no_cmd_file
+| rm no_cmd_file<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->=================================================================$
+| ==259782==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x6020000032af at pc 0x000000404fba bp 0x7fff944ff3a0 sp 0x7fff944ff390$
+| READ of size 1 at 0x6020000032af thread T0$
+|     #0 0x404fb9 in special_len /home/denizozd/42-Minishell/split_input.c:48$
+|     #1 0x403c66 in add_space /home/denizozd/42-Minishell/split_input.c:73$
+|     #2 0x409081 in lexer /home/denizozd/42-Minishell/lexer.c:50$
+|     #3 0x406c04 in launch_minishell /home/denizozd/42-Minishell/main.c:42$
+|     #4 0x406b8c in main /home/denizozd/42-Minishell/main.c:28$
+|     #5 0x76baa9429d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58$
+|     #6 0x76baa9429e3f in __libc_start_main_impl ../csu/libc-start.c:392$
+|     #7 0x4012b4 in _start (/home/denizozd/42-Minishell/mpanic-main/minishell+0x4012b4)$
+| $
+| 0x6020000032af is located 1 bytes to the left of 14-byte region [0x6020000032b0,0x6020000032be)$
+| allocated by thread T0 here:$
+|     #0 0x76baa98bf91f in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69$
+|     #1 0x76baa9f85bac in xmalloc (/lib/x86_64-linux-gnu/libreadline.so.8+0x39bac)$
+| $
+| SUMMARY: AddressSanitizer: heap-buffer-overflow /home/denizozd/42-Minishell/split_input.c:48 in special_len$
+| Shadow bytes around the buggy address:$
+|   0x0c047fff8600: fa fa fd fa fa fa fd fa fa fa fd fa fa fa fd fa$
+|   0x0c047fff8610: fa fa fd fa fa fa fd fa fa fa fd fd fa fa fd fd$
+|   0x0c047fff8620: fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd$
+|   0x0c047fff8630: fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd$
+|   0x0c047fff8640: fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd$
+| =>0x0c047fff8650: fa fa 00 00 fa[fa]00 06 fa fa 00 00 fa fa fa fa$
+|   0x0c047fff8660: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff8670: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff8680: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff8690: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff86a0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+| Shadow byte legend (one shadow byte represents 8 application bytes):$
+|   Addressable:           00$
+|   Partially addressable: 01 02 03 04 05 06 07 $
+|   Heap left redzone:       fa$
+|   Freed heap region:       fd$
+|   Stack left redzone:      f1$
+|   Stack mid redzone:       f2$
+|   Stack right redzone:     f3$
+|   Stack after return:      f5$
+|   Stack use after scope:   f8$
+|   Global redzone:          f9$
+|   Global init order:       f6$
+|   Poisoned by user:        f7$
+|   Container overflow:      fc$
+|   Array cookie:            ac$
+|   Intra object redzone:    bb$
+|   ASan internal:           fe$
+|   Left alloca redzone:     ca$
+|   Right alloca redzone:    cb$
+| ==259782==ABORTING$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [275]
+|  CMD: ->>> no_cmd_test
+| cat no_cmd_test
+| rm no_cmd_test<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->=================================================================$
+| ==259833==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x6020000032af at pc 0x000000404dc9 bp 0x7ffdb5acdf40 sp 0x7ffdb5acdf30$
+| READ of size 1 at 0x6020000032af thread T0$
+|     #0 0x404dc8 in special_len /home/denizozd/42-Minishell/split_input.c:42$
+|     #1 0x403c66 in add_space /home/denizozd/42-Minishell/split_input.c:73$
+|     #2 0x409081 in lexer /home/denizozd/42-Minishell/lexer.c:50$
+|     #3 0x406c04 in launch_minishell /home/denizozd/42-Minishell/main.c:42$
+|     #4 0x406b8c in main /home/denizozd/42-Minishell/main.c:28$
+|     #5 0x798ba9c29d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58$
+|     #6 0x798ba9c29e3f in __libc_start_main_impl ../csu/libc-start.c:392$
+|     #7 0x4012b4 in _start (/home/denizozd/42-Minishell/mpanic-main/minishell+0x4012b4)$
+| $
+| 0x6020000032af is located 1 bytes to the left of 15-byte region [0x6020000032b0,0x6020000032bf)$
+| allocated by thread T0 here:$
+|     #0 0x798baa0bf91f in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69$
+|     #1 0x798baa7c6bac in xmalloc (/lib/x86_64-linux-gnu/libreadline.so.8+0x39bac)$
+| $
+| SUMMARY: AddressSanitizer: heap-buffer-overflow /home/denizozd/42-Minishell/split_input.c:42 in special_len$
+| Shadow bytes around the buggy address:$
+|   0x0c047fff8600: fa fa fd fa fa fa fd fa fa fa fd fa fa fa fd fa$
+|   0x0c047fff8610: fa fa fd fa fa fa fd fa fa fa fd fd fa fa fd fd$
+|   0x0c047fff8620: fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd$
+|   0x0c047fff8630: fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd$
+|   0x0c047fff8640: fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd$
+| =>0x0c047fff8650: fa fa 00 00 fa[fa]00 07 fa fa 00 00 fa fa fa fa$
+|   0x0c047fff8660: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff8670: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff8680: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff8690: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff86a0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+| Shadow byte legend (one shadow byte represents 8 application bytes):$
+|   Addressable:           00$
+|   Partially addressable: 01 02 03 04 05 06 07 $
+|   Heap left redzone:       fa$
+|   Freed heap region:       fd$
+|   Stack left redzone:      f1$
+|   Stack mid redzone:       f2$
+|   Stack right redzone:     f3$
+|   Stack after return:      f5$
+|   Stack use after scope:   f8$
+|   Global redzone:          f9$
+|   Global init order:       f6$
+|   Poisoned by user:        f7$
+|   Container overflow:      fc$
+|   Array cookie:            ac$
+|   Intra object redzone:    bb$
+|   ASan internal:           fe$
+|   Left alloca redzone:     ca$
+|   Right alloca redzone:    cb$
+| ==259833==ABORTING$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [276]
+|  CMD: ->echo hola | > filepipe
+| cat filepipe
+| rm filepipe<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->AddressSanitizer:DEADLYSIGNAL$
+| =================================================================$
+| ==259884==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x000000411f2b bp 0x7ffc0dd5f6c0 sp 0x7ffc0dd5f6c0 T0)$
+| ==259884==The signal is caused by a READ memory access.$
+| ==259884==Hint: address points to the zero page.$
+|     #0 0x411f2b in ft_strcmp (/home/denizozd/42-Minishell/mpanic-main/minishell+0x411f2b)$
+|     #1 0x401ea7 in get_builtin_nbr /home/denizozd/42-Minishell/builtins.c:19$
+|     #2 0x402557 in is_executable /home/denizozd/42-Minishell/exec.c:19$
+|     #3 0x4032c2 in run_cmd /home/denizozd/42-Minishell/exec.c:92$
+|     #4 0x40efc1 in cstm_lstiter /home/denizozd/42-Minishell/list_functions.c:21$
+|     #5 0x4038f8 in execute_cmds /home/denizozd/42-Minishell/exec.c:127$
+|     #6 0x406d81 in launch_minishell /home/denizozd/42-Minishell/main.c:52$
+|     #7 0x406b8c in main /home/denizozd/42-Minishell/main.c:28$
+|     #8 0x79b5e8629d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58$
+|     #9 0x79b5e8629e3f in __libc_start_main_impl ../csu/libc-start.c:392$
+|     #10 0x4012b4 in _start (/home/denizozd/42-Minishell/mpanic-main/minishell+0x4012b4)$
+| $
+| AddressSanitizer can not provide additional info.$
+| SUMMARY: AddressSanitizer: SEGV (/home/denizozd/42-Minishell/mpanic-main/minishell+0x411f2b) in ft_strcmp$
+| ==259884==ABORTING$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [277]
+|  CMD: ->> file_first | > file_second
+| cat file_first
+| cat file_second
+| rm file_first
+| rm file_second<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->=================================================================$
+| ==259945==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000075f at pc 0x000000404fba bp 0x7ffe0bad8840 sp 0x7ffe0bad8830$
+| READ of size 1 at 0x60300000075f thread T0$
+|     #0 0x404fb9 in special_len /home/denizozd/42-Minishell/split_input.c:48$
+|     #1 0x403c66 in add_space /home/denizozd/42-Minishell/split_input.c:73$
+|     #2 0x409081 in lexer /home/denizozd/42-Minishell/lexer.c:50$
+|     #3 0x406c04 in launch_minishell /home/denizozd/42-Minishell/main.c:42$
+|     #4 0x406b8c in main /home/denizozd/42-Minishell/main.c:28$
+|     #5 0x7323e2029d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58$
+|     #6 0x7323e2029e3f in __libc_start_main_impl ../csu/libc-start.c:392$
+|     #7 0x4012b4 in _start (/home/denizozd/42-Minishell/mpanic-main/minishell+0x4012b4)$
+| $
+| 0x60300000075f is located 1 bytes to the left of 29-byte region [0x603000000760,0x60300000077d)$
+| allocated by thread T0 here:$
+|     #0 0x7323e24bf91f in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69$
+|     #1 0x7323e2bfebac in xmalloc (/lib/x86_64-linux-gnu/libreadline.so.8+0x39bac)$
+| $
+| SUMMARY: AddressSanitizer: heap-buffer-overflow /home/denizozd/42-Minishell/split_input.c:48 in special_len$
+| Shadow bytes around the buggy address:$
+|   0x0c067fff8090: fa fa 00 00 00 06 fa fa 00 00 07 fa fa fa 00 00$
+|   0x0c067fff80a0: 00 06 fa fa 00 00 02 fa fa fa 00 00 02 fa fa fa$
+|   0x0c067fff80b0: 00 00 04 fa fa fa 00 00 00 fa fa fa 00 00 00 fa$
+|   0x0c067fff80c0: fa fa 00 00 00 03 fa fa 00 00 00 fa fa fa fd fd$
+|   0x0c067fff80d0: fd fd fa fa 00 00 04 fa fa fa 00 00 00 00 fa fa$
+| =>0x0c067fff80e0: fd fd fd fd fa fa fd fd fd fd fa[fa]00 00 00 05$
+|   0x0c067fff80f0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8110: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8120: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8130: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+| Shadow byte legend (one shadow byte represents 8 application bytes):$
+|   Addressable:           00$
+|   Partially addressable: 01 02 03 04 05 06 07 $
+|   Heap left redzone:       fa$
+|   Freed heap region:       fd$
+|   Stack left redzone:      f1$
+|   Stack mid redzone:       f2$
+|   Stack right redzone:     f3$
+|   Stack after return:      f5$
+|   Stack use after scope:   f8$
+|   Global redzone:          f9$
+|   Global init order:       f6$
+|   Poisoned by user:        f7$
+|   Container overflow:      fc$
+|   Array cookie:            ac$
+|   Intra object redzone:    bb$
+|   ASan internal:           fe$
+|   Left alloca redzone:     ca$
+|   Right alloca redzone:    cb$
+| ==259945==ABORTING$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [279]
+|  CMD: ->echo hi >> file
+| echo hi >> file
+| cat file
+| rm file<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->hi$
+| hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| append to outfile$
+| hi$
+| hi$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [282]
+|  CMD: ->echo >> file hi
+| echo >> file hi
+| cat file
+| rm file<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->hi$
+| hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| append to outfile$
+| hi$
+| hi$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [283]
+|  CMD: ->> file echo hi
+| cat file
+| rm file<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->=================================================================$
+| ==260276==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x6020000032af at pc 0x000000404fba bp 0x7ffcd32d4aa0 sp 0x7ffcd32d4a90$
+| READ of size 1 at 0x6020000032af thread T0$
+|     #0 0x404fb9 in special_len /home/denizozd/42-Minishell/split_input.c:48$
+|     #1 0x403c66 in add_space /home/denizozd/42-Minishell/split_input.c:73$
+|     #2 0x409081 in lexer /home/denizozd/42-Minishell/lexer.c:50$
+|     #3 0x406c04 in launch_minishell /home/denizozd/42-Minishell/main.c:42$
+|     #4 0x406b8c in main /home/denizozd/42-Minishell/main.c:28$
+|     #5 0x7e689e029d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58$
+|     #6 0x7e689e029e3f in __libc_start_main_impl ../csu/libc-start.c:392$
+|     #7 0x4012b4 in _start (/home/denizozd/42-Minishell/mpanic-main/minishell+0x4012b4)$
+| $
+| 0x6020000032af is located 1 bytes to the left of 15-byte region [0x6020000032b0,0x6020000032bf)$
+| allocated by thread T0 here:$
+|     #0 0x7e689e4bf91f in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69$
+|     #1 0x7e689ec08bac in xmalloc (/lib/x86_64-linux-gnu/libreadline.so.8+0x39bac)$
+| $
+| SUMMARY: AddressSanitizer: heap-buffer-overflow /home/denizozd/42-Minishell/split_input.c:48 in special_len$
+| Shadow bytes around the buggy address:$
+|   0x0c047fff8600: fa fa fd fa fa fa fd fa fa fa fd fa fa fa fd fa$
+|   0x0c047fff8610: fa fa fd fa fa fa fd fa fa fa fd fd fa fa fd fd$
+|   0x0c047fff8620: fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd$
+|   0x0c047fff8630: fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd$
+|   0x0c047fff8640: fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd$
+| =>0x0c047fff8650: fa fa 00 00 fa[fa]00 07 fa fa 00 00 fa fa fa fa$
+|   0x0c047fff8660: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff8670: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff8680: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff8690: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff86a0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+| Shadow byte legend (one shadow byte represents 8 application bytes):$
+|   Addressable:           00$
+|   Partially addressable: 01 02 03 04 05 06 07 $
+|   Heap left redzone:       fa$
+|   Freed heap region:       fd$
+|   Stack left redzone:      f1$
+|   Stack mid redzone:       f2$
+|   Stack right redzone:     f3$
+|   Stack after return:      f5$
+|   Stack use after scope:   f8$
+|   Global redzone:          f9$
+|   Global init order:       f6$
+|   Poisoned by user:        f7$
+|   Container overflow:      fc$
+|   Array cookie:            ac$
+|   Intra object redzone:    bb$
+|   ASan internal:           fe$
+|   Left alloca redzone:     ca$
+|   Right alloca redzone:    cb$
+| ==260276==ABORTING$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [284]
+|  CMD: ->>> file echo hi
+| >> file echo hi
+| cat file
+| rm file<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->hi$
+| hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->=================================================================$
+| ==260330==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x6020000032af at pc 0x000000404dc9 bp 0x7ffdd0fb0ed0 sp 0x7ffdd0fb0ec0$
+| READ of size 1 at 0x6020000032af thread T0$
+|     #0 0x404dc8 in special_len /home/denizozd/42-Minishell/split_input.c:42$
+|     #1 0x403c66 in add_space /home/denizozd/42-Minishell/split_input.c:73$
+|     #2 0x409081 in lexer /home/denizozd/42-Minishell/lexer.c:50$
+|     #3 0x406c04 in launch_minishell /home/denizozd/42-Minishell/main.c:42$
+|     #4 0x406b8c in main /home/denizozd/42-Minishell/main.c:28$
+|     #5 0x71f4a3029d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58$
+|     #6 0x71f4a3029e3f in __libc_start_main_impl ../csu/libc-start.c:392$
+|     #7 0x4012b4 in _start (/home/denizozd/42-Minishell/mpanic-main/minishell+0x4012b4)$
+| $
+| 0x6020000032af is located 1 bytes to the left of 16-byte region [0x6020000032b0,0x6020000032c0)$
+| allocated by thread T0 here:$
+|     #0 0x71f4a34bf91f in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69$
+|     #1 0x71f4a3c5fbac in xmalloc (/lib/x86_64-linux-gnu/libreadline.so.8+0x39bac)$
+| $
+| SUMMARY: AddressSanitizer: heap-buffer-overflow /home/denizozd/42-Minishell/split_input.c:42 in special_len$
+| Shadow bytes around the buggy address:$
+|   0x0c047fff8600: fa fa fd fa fa fa fd fa fa fa fd fa fa fa fd fa$
+|   0x0c047fff8610: fa fa fd fa fa fa fd fa fa fa fd fd fa fa fd fd$
+|   0x0c047fff8620: fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd$
+|   0x0c047fff8630: fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd$
+|   0x0c047fff8640: fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd$
+| =>0x0c047fff8650: fa fa 00 00 fa[fa]00 00 fa fa 00 00 fa fa fa fa$
+|   0x0c047fff8660: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff8670: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff8680: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff8690: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff86a0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+| Shadow byte legend (one shadow byte represents 8 application bytes):$
+|   Addressable:           00$
+|   Partially addressable: 01 02 03 04 05 06 07 $
+|   Heap left redzone:       fa$
+|   Freed heap region:       fd$
+|   Stack left redzone:      f1$
+|   Stack mid redzone:       f2$
+|   Stack right redzone:     f3$
+|   Stack after return:      f5$
+|   Stack use after scope:   f8$
+|   Global redzone:          f9$
+|   Global init order:       f6$
+|   Poisoned by user:        f7$
+|   Container overflow:      fc$
+|   Array cookie:            ac$
+|   Intra object redzone:    bb$
+|   ASan internal:           fe$
+|   Left alloca redzone:     ca$
+|   Right alloca redzone:    cb$
+| ==260330==ABORTING$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [286]
+|  CMD: ->echo hi >> file2 > file hi
+| echo hi >> file2 > file hi
+| ls
+| cat file
+| rm file file2<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| append to outfile$
+| <$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [287]
+|  CMD: ->echo hi > file2 >> file hi
+| echo hi > file2 >> file hi
+| ls
+| cat file
+| rm file file2<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$
+| hi hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| append to outfile$
+| <$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$
+| hi hi$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [289]
+|  CMD: ->echo hi >> file2 >> file hi
+| echo hi >> file2 >> file hi
+| ls
+| cat file
+| rm file file2<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$
+| hi hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| append to outfile$
+| append to outfile$
+| append to outfile$
+| <$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$
+| hi hi$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [290]
+|  CMD: ->echo hi>file2>file hi
+| ls
+| cat file
+| rm file file2<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| >file2$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$<-
+|
+|--- STDERR:
+| ->cat: file: No such file or directory$
+| rm: cannot remove 'file': No such file or directory$
+| rm: cannot remove 'file2': No such file or directory$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [291]
+|  CMD: ->echo hi>>file2>>file hi
+| ls
+| cat file
+| rm file file2<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| <$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| >file2$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$<-
+|
+|--- STDERR:
+| ->cat: file: No such file or directory$
+| rm: cannot remove 'file': No such file or directory$
+| rm: cannot remove 'file2': No such file or directory$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [293]
+|  CMD: ->echo hi > file3 >> file2 > file hi
+| echo hii > file3 >> file2 > file hii
+| ls
+| cat file
+| rm file file2 file3<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| file3$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hii hii$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| append to outfile$
+| <$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| file3$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hii hii$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [294]
+|  CMD: ->echo hi > file3 > file2 >> file hi
+| echo hii > file3 > file2 >> file hii
+| ls
+| cat file
+| rm file file2 file3<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| file3$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$
+| hii hii$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| append to outfile$
+| <$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| file3$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$
+| hii hii$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [295]
+|  CMD: ->echo hi >> file3 > file2 > file hi
+| echo hii >> file3 > file2 > file hii
+| ls
+| cat file
+| rm file file2 file3<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| file3$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hii hii$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| append to outfile$
+| <$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| file3$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hii hii$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [296]
+|  CMD: ->echo hi >> file3 > file2 >> file hi
+| echo hii >> file3 > file2 >> file hii
+| ls
+| cat file
+| rm file file2 file3<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| file3$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$
+| hii hii$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| append to outfile$
+| append to outfile$
+| append to outfile$
+| <$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| file3$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$
+| hii hii$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [297]
+|  CMD: ->echo hi >> file3 >> file2 > file hi
+| echo hii >> file3 >> file2 > file hii
+| ls
+| cat file
+| rm file file2 file3<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| file3$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hii hii$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| append to outfile$
+| append to outfile$
+| append to outfile$
+| <$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| file3$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hii hii$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [298]
+|  CMD: ->echo hi>file3>file2>file hi
+| ls
+| cat file
+| rm file file2 file3<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| file3$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| >file2$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$<-
+|
+|--- STDERR:
+| ->cat: file: No such file or directory$
+| rm: cannot remove 'file': No such file or directory$
+| rm: cannot remove 'file2': No such file or directory$
+| rm: cannot remove 'file3': No such file or directory$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [299]
+|  CMD: ->> file3 echo hi > file2 > file hi
+| > file3 echo hi > file2 > file hi
+| ls
+| cat file
+| rm file file2 file3<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| file3$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->=================================================================$
+| ==261405==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60400000050f at pc 0x000000404fba bp 0x7ffff70ae070 sp 0x7ffff70ae060$
+| READ of size 1 at 0x60400000050f thread T0$
+|     #0 0x404fb9 in special_len /home/denizozd/42-Minishell/split_input.c:48$
+|     #1 0x403c66 in add_space /home/denizozd/42-Minishell/split_input.c:73$
+|     #2 0x409081 in lexer /home/denizozd/42-Minishell/lexer.c:50$
+|     #3 0x406c04 in launch_minishell /home/denizozd/42-Minishell/main.c:42$
+|     #4 0x406b8c in main /home/denizozd/42-Minishell/main.c:28$
+|     #5 0x7a6fe8a29d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58$
+|     #6 0x7a6fe8a29e3f in __libc_start_main_impl ../csu/libc-start.c:392$
+|     #7 0x4012b4 in _start (/home/denizozd/42-Minishell/mpanic-main/minishell+0x4012b4)$
+| $
+| 0x60400000050f is located 1 bytes to the left of 34-byte region [0x604000000510,0x604000000532)$
+| allocated by thread T0 here:$
+|     #0 0x7a6fe8ebf91f in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69$
+|     #1 0x7a6fe9639bac in xmalloc (/lib/x86_64-linux-gnu/libreadline.so.8+0x39bac)$
+| $
+| SUMMARY: AddressSanitizer: heap-buffer-overflow /home/denizozd/42-Minishell/split_input.c:48 in special_len$
+| Shadow bytes around the buggy address:$
+|   0x0c087fff8050: fa fa 00 00 00 00 00 fa fa fa 00 00 00 00 01 fa$
+|   0x0c087fff8060: fa fa 00 00 00 00 00 00 fa fa 00 00 00 00 00 02$
+|   0x0c087fff8070: fa fa 00 00 00 00 02 fa fa fa 00 00 00 00 03 fa$
+|   0x0c087fff8080: fa fa 00 00 00 00 00 00 fa fa fd fd fd fd fd fd$
+|   0x0c087fff8090: fa fa 00 00 00 00 00 06 fa fa 00 00 00 00 00 06$
+| =>0x0c087fff80a0: fa[fa]00 00 00 00 02 fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80b0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80c0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80d0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80e0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80f0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+| Shadow byte legend (one shadow byte represents 8 application bytes):$
+|   Addressable:           00$
+|   Partially addressable: 01 02 03 04 05 06 07 $
+|   Heap left redzone:       fa$
+|   Freed heap region:       fd$
+|   Stack left redzone:      f1$
+|   Stack mid redzone:       f2$
+|   Stack right redzone:     f3$
+|   Stack after return:      f5$
+|   Stack use after scope:   f8$
+|   Global redzone:          f9$
+|   Global init order:       f6$
+|   Poisoned by user:        f7$
+|   Container overflow:      fc$
+|   Array cookie:            ac$
+|   Intra object redzone:    bb$
+|   ASan internal:           fe$
+|   Left alloca redzone:     ca$
+|   Right alloca redzone:    cb$
+| ==261405==ABORTING$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [300]
+|  CMD: ->> file3 echo hi > file2 >> file hi
+| > file3 echo hi > file2 >> file hi
+| ls
+| cat file
+| rm file file2 file3<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| file3$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$
+| hi hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->=================================================================$
+| ==261463==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60400000050f at pc 0x000000404fba bp 0x7ffed9cf7b70 sp 0x7ffed9cf7b60$
+| READ of size 1 at 0x60400000050f thread T0$
+|     #0 0x404fb9 in special_len /home/denizozd/42-Minishell/split_input.c:48$
+|     #1 0x403c66 in add_space /home/denizozd/42-Minishell/split_input.c:73$
+|     #2 0x409081 in lexer /home/denizozd/42-Minishell/lexer.c:50$
+|     #3 0x406c04 in launch_minishell /home/denizozd/42-Minishell/main.c:42$
+|     #4 0x406b8c in main /home/denizozd/42-Minishell/main.c:28$
+|     #5 0x775e2a629d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58$
+|     #6 0x775e2a629e3f in __libc_start_main_impl ../csu/libc-start.c:392$
+|     #7 0x4012b4 in _start (/home/denizozd/42-Minishell/mpanic-main/minishell+0x4012b4)$
+| $
+| 0x60400000050f is located 1 bytes to the left of 35-byte region [0x604000000510,0x604000000533)$
+| allocated by thread T0 here:$
+|     #0 0x775e2aabf91f in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69$
+|     #1 0x775e2b203bac in xmalloc (/lib/x86_64-linux-gnu/libreadline.so.8+0x39bac)$
+| $
+| SUMMARY: AddressSanitizer: heap-buffer-overflow /home/denizozd/42-Minishell/split_input.c:48 in special_len$
+| Shadow bytes around the buggy address:$
+|   0x0c087fff8050: fa fa 00 00 00 00 00 fa fa fa 00 00 00 00 01 fa$
+|   0x0c087fff8060: fa fa 00 00 00 00 00 00 fa fa 00 00 00 00 00 02$
+|   0x0c087fff8070: fa fa 00 00 00 00 02 fa fa fa 00 00 00 00 03 fa$
+|   0x0c087fff8080: fa fa 00 00 00 00 00 00 fa fa fd fd fd fd fd fd$
+|   0x0c087fff8090: fa fa 00 00 00 00 00 06 fa fa 00 00 00 00 00 06$
+| =>0x0c087fff80a0: fa[fa]00 00 00 00 03 fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80b0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80c0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80d0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80e0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80f0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+| Shadow byte legend (one shadow byte represents 8 application bytes):$
+|   Addressable:           00$
+|   Partially addressable: 01 02 03 04 05 06 07 $
+|   Heap left redzone:       fa$
+|   Freed heap region:       fd$
+|   Stack left redzone:      f1$
+|   Stack mid redzone:       f2$
+|   Stack right redzone:     f3$
+|   Stack after return:      f5$
+|   Stack use after scope:   f8$
+|   Global redzone:          f9$
+|   Global init order:       f6$
+|   Poisoned by user:        f7$
+|   Container overflow:      fc$
+|   Array cookie:            ac$
+|   Intra object redzone:    bb$
+|   ASan internal:           fe$
+|   Left alloca redzone:     ca$
+|   Right alloca redzone:    cb$
+| ==261463==ABORTING$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [301]
+|  CMD: ->>> file3 echo hi > file2 > file hi
+| >> file3 echo hi > file2 > file hi
+| ls
+| cat file
+| rm file file2 file3<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| file3$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->=================================================================$
+| ==261530==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60400000050f at pc 0x000000404dc9 bp 0x7fff25daedc0 sp 0x7fff25daedb0$
+| READ of size 1 at 0x60400000050f thread T0$
+|     #0 0x404dc8 in special_len /home/denizozd/42-Minishell/split_input.c:42$
+|     #1 0x403c66 in add_space /home/denizozd/42-Minishell/split_input.c:73$
+|     #2 0x409081 in lexer /home/denizozd/42-Minishell/lexer.c:50$
+|     #3 0x406c04 in launch_minishell /home/denizozd/42-Minishell/main.c:42$
+|     #4 0x406b8c in main /home/denizozd/42-Minishell/main.c:28$
+|     #5 0x7ad96a429d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58$
+|     #6 0x7ad96a429e3f in __libc_start_main_impl ../csu/libc-start.c:392$
+|     #7 0x4012b4 in _start (/home/denizozd/42-Minishell/mpanic-main/minishell+0x4012b4)$
+| $
+| 0x60400000050f is located 1 bytes to the left of 35-byte region [0x604000000510,0x604000000533)$
+| allocated by thread T0 here:$
+|     #0 0x7ad96a8bf91f in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69$
+|     #1 0x7ad96a7e5bac in xmalloc (/lib/x86_64-linux-gnu/libreadline.so.8+0x39bac)$
+| $
+| SUMMARY: AddressSanitizer: heap-buffer-overflow /home/denizozd/42-Minishell/split_input.c:42 in special_len$
+| Shadow bytes around the buggy address:$
+|   0x0c087fff8050: fa fa 00 00 00 00 00 fa fa fa 00 00 00 00 01 fa$
+|   0x0c087fff8060: fa fa 00 00 00 00 00 00 fa fa 00 00 00 00 00 02$
+|   0x0c087fff8070: fa fa 00 00 00 00 02 fa fa fa 00 00 00 00 03 fa$
+|   0x0c087fff8080: fa fa 00 00 00 00 00 00 fa fa fd fd fd fd fd fd$
+|   0x0c087fff8090: fa fa 00 00 00 00 00 06 fa fa 00 00 00 00 00 06$
+| =>0x0c087fff80a0: fa[fa]00 00 00 00 03 fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80b0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80c0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80d0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80e0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80f0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+| Shadow byte legend (one shadow byte represents 8 application bytes):$
+|   Addressable:           00$
+|   Partially addressable: 01 02 03 04 05 06 07 $
+|   Heap left redzone:       fa$
+|   Freed heap region:       fd$
+|   Stack left redzone:      f1$
+|   Stack mid redzone:       f2$
+|   Stack right redzone:     f3$
+|   Stack after return:      f5$
+|   Stack use after scope:   f8$
+|   Global redzone:          f9$
+|   Global init order:       f6$
+|   Poisoned by user:        f7$
+|   Container overflow:      fc$
+|   Array cookie:            ac$
+|   Intra object redzone:    bb$
+|   ASan internal:           fe$
+|   Left alloca redzone:     ca$
+|   Right alloca redzone:    cb$
+| ==261530==ABORTING$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [302]
+|  CMD: ->> file3 echo hi >> file2 > file hi
+| > file3 echo hi >> file2 > file hi
+| ls
+| cat file
+| rm file file2 file3<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| file3$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->=================================================================$
+| ==261589==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60400000050f at pc 0x000000404fba bp 0x7ffd35929bd0 sp 0x7ffd35929bc0$
+| READ of size 1 at 0x60400000050f thread T0$
+|     #0 0x404fb9 in special_len /home/denizozd/42-Minishell/split_input.c:48$
+|     #1 0x403c66 in add_space /home/denizozd/42-Minishell/split_input.c:73$
+|     #2 0x409081 in lexer /home/denizozd/42-Minishell/lexer.c:50$
+|     #3 0x406c04 in launch_minishell /home/denizozd/42-Minishell/main.c:42$
+|     #4 0x406b8c in main /home/denizozd/42-Minishell/main.c:28$
+|     #5 0x778efd229d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58$
+|     #6 0x778efd229e3f in __libc_start_main_impl ../csu/libc-start.c:392$
+|     #7 0x4012b4 in _start (/home/denizozd/42-Minishell/mpanic-main/minishell+0x4012b4)$
+| $
+| 0x60400000050f is located 1 bytes to the left of 35-byte region [0x604000000510,0x604000000533)$
+| allocated by thread T0 here:$
+|     #0 0x778efd6bf91f in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69$
+|     #1 0x778efde65bac in xmalloc (/lib/x86_64-linux-gnu/libreadline.so.8+0x39bac)$
+| $
+| SUMMARY: AddressSanitizer: heap-buffer-overflow /home/denizozd/42-Minishell/split_input.c:48 in special_len$
+| Shadow bytes around the buggy address:$
+|   0x0c087fff8050: fa fa 00 00 00 00 00 fa fa fa 00 00 00 00 01 fa$
+|   0x0c087fff8060: fa fa 00 00 00 00 00 00 fa fa 00 00 00 00 00 02$
+|   0x0c087fff8070: fa fa 00 00 00 00 02 fa fa fa 00 00 00 00 03 fa$
+|   0x0c087fff8080: fa fa 00 00 00 00 00 00 fa fa fd fd fd fd fd fd$
+|   0x0c087fff8090: fa fa 00 00 00 00 00 06 fa fa 00 00 00 00 00 06$
+| =>0x0c087fff80a0: fa[fa]00 00 00 00 03 fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80b0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80c0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80d0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80e0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c087fff80f0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+| Shadow byte legend (one shadow byte represents 8 application bytes):$
+|   Addressable:           00$
+|   Partially addressable: 01 02 03 04 05 06 07 $
+|   Heap left redzone:       fa$
+|   Freed heap region:       fd$
+|   Stack left redzone:      f1$
+|   Stack mid redzone:       f2$
+|   Stack right redzone:     f3$
+|   Stack after return:      f5$
+|   Stack use after scope:   f8$
+|   Global redzone:          f9$
+|   Global init order:       f6$
+|   Poisoned by user:        f7$
+|   Container overflow:      fc$
+|   Array cookie:            ac$
+|   Intra object redzone:    bb$
+|   ASan internal:           fe$
+|   Left alloca redzone:     ca$
+|   Right alloca redzone:    cb$
+| ==261589==ABORTING$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [303]
+|  CMD: ->>file3 echo hi>file2>file hi
+| > file3 echo hi > file2 > file hi
+| ls
+| cat file
+| rm file file2 file3<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| file$
+| >file2$
+| file2$
+| file3$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->=================================================================$
+| ==261647==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000075f at pc 0x000000404fba bp 0x7ffee1b8eb40 sp 0x7ffee1b8eb30$
+| READ of size 1 at 0x60300000075f thread T0$
+|     #0 0x404fb9 in special_len /home/denizozd/42-Minishell/split_input.c:48$
+|     #1 0x403c66 in add_space /home/denizozd/42-Minishell/split_input.c:73$
+|     #2 0x409081 in lexer /home/denizozd/42-Minishell/lexer.c:50$
+|     #3 0x406c04 in launch_minishell /home/denizozd/42-Minishell/main.c:42$
+|     #4 0x406b8c in main /home/denizozd/42-Minishell/main.c:28$
+|     #5 0x7efc76829d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58$
+|     #6 0x7efc76829e3f in __libc_start_main_impl ../csu/libc-start.c:392$
+|     #7 0x4012b4 in _start (/home/denizozd/42-Minishell/mpanic-main/minishell+0x4012b4)$
+| $
+| 0x60300000075f is located 1 bytes to the left of 29-byte region [0x603000000760,0x60300000077d)$
+| allocated by thread T0 here:$
+|     #0 0x7efc76cbf91f in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69$
+|     #1 0x7efc773bdbac in xmalloc (/lib/x86_64-linux-gnu/libreadline.so.8+0x39bac)$
+| $
+| SUMMARY: AddressSanitizer: heap-buffer-overflow /home/denizozd/42-Minishell/split_input.c:48 in special_len$
+| Shadow bytes around the buggy address:$
+|   0x0c067fff8090: fa fa 00 00 00 06 fa fa 00 00 07 fa fa fa 00 00$
+|   0x0c067fff80a0: 00 06 fa fa 00 00 02 fa fa fa 00 00 02 fa fa fa$
+|   0x0c067fff80b0: 00 00 04 fa fa fa 00 00 00 fa fa fa 00 00 00 fa$
+|   0x0c067fff80c0: fa fa 00 00 00 03 fa fa 00 00 00 fa fa fa fd fd$
+|   0x0c067fff80d0: fd fd fa fa 00 00 04 fa fa fa 00 00 00 00 fa fa$
+| =>0x0c067fff80e0: fd fd fd fd fa fa fd fd fd fd fa[fa]00 00 00 05$
+|   0x0c067fff80f0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8110: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8120: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8130: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+| Shadow byte legend (one shadow byte represents 8 application bytes):$
+|   Addressable:           00$
+|   Partially addressable: 01 02 03 04 05 06 07 $
+|   Heap left redzone:       fa$
+|   Freed heap region:       fd$
+|   Stack left redzone:      f1$
+|   Stack mid redzone:       f2$
+|   Stack right redzone:     f3$
+|   Stack after return:      f5$
+|   Stack use after scope:   f8$
+|   Global redzone:          f9$
+|   Global init order:       f6$
+|   Poisoned by user:        f7$
+|   Container overflow:      fc$
+|   Array cookie:            ac$
+|   Intra object redzone:    bb$
+|   ASan internal:           fe$
+|   Left alloca redzone:     ca$
+|   Right alloca redzone:    cb$
+| ==261647==ABORTING$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [304]
+|  CMD: ->echo hi >filea>fileb>filec hi
+| echo hi >filea>fileb>filec hi
+| ls
+| cat filec
+| rm filea fileb filec<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| >file2$
+| filea$
+| fileb$
+| >>filec$
+| >filec$
+| filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| >file2$
+| filea$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$<-
+|
+|--- STDERR:
+| ->cat: filec: No such file or directory$
+| rm: cannot remove 'fileb': No such file or directory$
+| rm: cannot remove 'filec': No such file or directory$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [305]
+|  CMD: ->echo hi >filea>>fileb>filec hi
+| echo hi >filea>>fileb>filec hi
+| ls
+| cat filec
+| rm filea fileb filec<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| >file2$
+| filea$
+| fileb$
+| >>filec$
+| >filec$
+| filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| append to outfile$
+| <$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| >file2$
+| filea$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$<-
+|
+|--- STDERR:
+| ->cat: filec: No such file or directory$
+| rm: cannot remove 'fileb': No such file or directory$
+| rm: cannot remove 'filec': No such file or directory$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [306]
+|  CMD: ->echo hi >filea>fileb>>filec hi
+| echo hi >filea>fileb>>filec hi
+| ls
+| cat filec
+| rm filea fileb filec<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| >file2$
+| filea$
+| fileb$
+| >>filec$
+| >filec$
+| filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$
+| hi hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| >file2$
+| filea$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$<-
+|
+|--- STDERR:
+| ->cat: filec: No such file or directory$
+| rm: cannot remove 'fileb': No such file or directory$
+| rm: cannot remove 'filec': No such file or directory$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [307]
+|  CMD: ->echo hi >>filea>fileb>filec hi
+| echo hi >>filea>fileb>filec hi
+| ls
+| cat filec
+| rm filea fileb filec<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| >file2$
+| filea$
+| fileb$
+| >>filec$
+| >filec$
+| filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| hi hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| append to outfile$
+| <$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| >file2$
+| filea$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$<-
+|
+|--- STDERR:
+| ->cat: filec: No such file or directory$
+| rm: cannot remove 'fileb': No such file or directory$
+| rm: cannot remove 'filec': No such file or directory$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [310]
+|  CMD: ->echo -n hi >>"doble"quote
+| echo -n hi >>"doble"quote
+| cat doblequote
+| rm doblequote<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->hihi<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| append to outfile$
+| hihi<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [313]
+|  CMD: ->echo -n hi >>'simple'quote
+| echo -n hi >>'simple'quote
+| cat simplequote
+| rm simplequote<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->hihi<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| append to outfile$
+| hihi<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [315]
+|  CMD: ->echo hi >>'with spaces'
+| echo hi >>'with spaces'
+| cat 'with spaces'
+| rm 'with spaces'<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->hi$
+| hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| append to outfile$
+| hi$
+| hi$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [317]
+|  CMD: ->echo hi >> "mixed"'file 'name
+| echo hi >> "mixed"'file 'name
+| cat "mixedfile name"
+| rm "mixedfile name"<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->hi$
+| hi$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| append to outfile$
+| hi$
+| hi$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [318]
+|  CMD: ->echo hi 0< file
+| rm file<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->bash: line 1: file: No such file or directory$
+| rm: cannot remove 'file': No such file or directory$<-
+|
+|--- COMPARED STR:
+| ->file: No such file or directory<-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->hi 0$
+| file No such file or directory$<-
+|
+|--- STDERR:
+| ->rm: cannot remove 'file': No such file or directory$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [319]
+|  CMD: ->bash 4> outpfile
+| echo hola >&4
+| cat outpfile
+| rm outpfile<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->hola$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->bash: 4: No such file or directory$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [320]
+|  CMD: ->echo hi > testfolder<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->bash: line 1: testfolder: Is a directory$<-
+|
+|--- COMPARED STR:
+| ->testfolder: Is a directory<-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->testfolder No such file or directory$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [321]
+|  CMD: ->echo hi >> testfolder<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->bash: line 1: testfolder: Is a directory$<-
+|
+|--- COMPARED STR:
+| ->testfolder: Is a directory<-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| testfolder No such file or directory$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [322]
+|  CMD: ->echo hi 2> testfolder<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->bash: line 1: testfolder: Is a directory$<-
+|
+|--- COMPARED STR:
+| ->testfolder: Is a directory<-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->testfolder No such file or directory$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [323]
+|  CMD: ->echo hi 2>> testfolder<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->bash: line 1: testfolder: Is a directory$<-
+|
+|--- COMPARED STR:
+| ->testfolder: Is a directory<-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| testfolder No such file or directory$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [324]
+|  CMD: ->echo hi > testfolder<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->bash: line 1: testfolder: Is a directory$<-
+|
+|--- COMPARED STR:
+| ->testfolder: Is a directory<-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->testfolder No such file or directory$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [325]
+|  CMD: ->echo hi >> testfolder<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->bash: line 1: testfolder: Is a directory$<-
+|
+|--- COMPARED STR:
+| ->testfolder: Is a directory<-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| testfolder No such file or directory$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [326]
+|  CMD: ->echo hi 2> testfolder<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->bash: line 1: testfolder: Is a directory$<-
+|
+|--- COMPARED STR:
+| ->testfolder: Is a directory<-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->testfolder No such file or directory$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [327]
+|  CMD: ->echo hi 2>> testfolder<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->bash: line 1: testfolder: Is a directory$<-
+|
+|--- COMPARED STR:
+| ->testfolder: Is a directory<-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| testfolder No such file or directory$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [328]
+|  CMD: ->echo > file hi
+| cat file<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->bash: line 1: file: Permission denied$
+| cat: file: Permission denied$<-
+|
+|--- COMPARED STR:
+| ->file: Permission denied<-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->file No such file or directory$<-
+|
+|--- STDERR:
+| ->cat: file: Permission denied$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [329]
+|  CMD: ->echo >> file2 hi
+| cat file2<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->bash: line 1: file2: Permission denied$
+| cat: file2: Permission denied$<-
+|
+|--- COMPARED STR:
+| ->file2: Permission denied<-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->append to outfile$
+| file2 No such file or directory$<-
+|
+|--- STDERR:
+| ->cat: file2: Permission denied$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [330]
+|  CMD: ->> file echo hi
+| cat file<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->bash: line 1: file: Permission denied$
+| cat: file: Permission denied$<-
+|
+|--- COMPARED STR:
+| ->file: Permission denied<-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->=================================================================$
+| ==263067==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x6020000032af at pc 0x000000404fba bp 0x7ffced80ee20 sp 0x7ffced80ee10$
+| READ of size 1 at 0x6020000032af thread T0$
+|     #0 0x404fb9 in special_len /home/denizozd/42-Minishell/split_input.c:48$
+|     #1 0x403c66 in add_space /home/denizozd/42-Minishell/split_input.c:73$
+|     #2 0x409081 in lexer /home/denizozd/42-Minishell/lexer.c:50$
+|     #3 0x406c04 in launch_minishell /home/denizozd/42-Minishell/main.c:42$
+|     #4 0x406b8c in main /home/denizozd/42-Minishell/main.c:28$
+|     #5 0x78cc77429d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58$
+|     #6 0x78cc77429e3f in __libc_start_main_impl ../csu/libc-start.c:392$
+|     #7 0x4012b4 in _start (/home/denizozd/42-Minishell/mpanic-main/minishell+0x4012b4)$
+| $
+| 0x6020000032af is located 1 bytes to the left of 15-byte region [0x6020000032b0,0x6020000032bf)$
+| allocated by thread T0 here:$
+|     #0 0x78cc778bf91f in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69$
+|     #1 0x78cc78038bac in xmalloc (/lib/x86_64-linux-gnu/libreadline.so.8+0x39bac)$
+| $
+| SUMMARY: AddressSanitizer: heap-buffer-overflow /home/denizozd/42-Minishell/split_input.c:48 in special_len$
+| Shadow bytes around the buggy address:$
+|   0x0c047fff8600: fa fa fd fa fa fa fd fa fa fa fd fa fa fa fd fa$
+|   0x0c047fff8610: fa fa fd fa fa fa fd fa fa fa fd fd fa fa fd fd$
+|   0x0c047fff8620: fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd$
+|   0x0c047fff8630: fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd$
+|   0x0c047fff8640: fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd$
+| =>0x0c047fff8650: fa fa 00 00 fa[fa]00 07 fa fa 00 00 fa fa fa fa$
+|   0x0c047fff8660: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff8670: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff8680: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff8690: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c047fff86a0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+| Shadow byte legend (one shadow byte represents 8 application bytes):$
+|   Addressable:           00$
+|   Partially addressable: 01 02 03 04 05 06 07 $
+|   Heap left redzone:       fa$
+|   Freed heap region:       fd$
+|   Stack left redzone:      f1$
+|   Stack mid redzone:       f2$
+|   Stack right redzone:     f3$
+|   Stack after return:      f5$
+|   Stack use after scope:   f8$
+|   Global redzone:          f9$
+|   Global init order:       f6$
+|   Poisoned by user:        f7$
+|   Container overflow:      fc$
+|   Array cookie:            ac$
+|   Intra object redzone:    bb$
+|   ASan internal:           fe$
+|   Left alloca redzone:     ca$
+|   Right alloca redzone:    cb$
+| ==263067==ABORTING$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [331]
+|  CMD: ->>> file3 echo hi
+| cat file3<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->bash: line 1: file3: Permission denied$
+| cat: file3: Permission denied$<-
+|
+|--- COMPARED STR:
+| ->file3: Permission denied<-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->=================================================================$
+| ==263117==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000072f at pc 0x000000404dc9 bp 0x7fffe16dd260 sp 0x7fffe16dd250$
+| READ of size 1 at 0x60300000072f thread T0$
+|     #0 0x404dc8 in special_len /home/denizozd/42-Minishell/split_input.c:42$
+|     #1 0x403c66 in add_space /home/denizozd/42-Minishell/split_input.c:73$
+|     #2 0x409081 in lexer /home/denizozd/42-Minishell/lexer.c:50$
+|     #3 0x406c04 in launch_minishell /home/denizozd/42-Minishell/main.c:42$
+|     #4 0x406b8c in main /home/denizozd/42-Minishell/main.c:28$
+|     #5 0x78226d829d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58$
+|     #6 0x78226d829e3f in __libc_start_main_impl ../csu/libc-start.c:392$
+|     #7 0x4012b4 in _start (/home/denizozd/42-Minishell/mpanic-main/minishell+0x4012b4)$
+| $
+| 0x60300000072f is located 1 bytes to the left of 17-byte region [0x603000000730,0x603000000741)$
+| allocated by thread T0 here:$
+|     #0 0x78226dcbf91f in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69$
+|     #1 0x78226e46ebac in xmalloc (/lib/x86_64-linux-gnu/libreadline.so.8+0x39bac)$
+| $
+| SUMMARY: AddressSanitizer: heap-buffer-overflow /home/denizozd/42-Minishell/split_input.c:42 in special_len$
+| Shadow bytes around the buggy address:$
+|   0x0c067fff8090: fa fa 00 00 00 06 fa fa 00 00 07 fa fa fa 00 00$
+|   0x0c067fff80a0: 00 06 fa fa 00 00 02 fa fa fa 00 00 02 fa fa fa$
+|   0x0c067fff80b0: 00 00 04 fa fa fa 00 00 00 fa fa fa 00 00 00 fa$
+|   0x0c067fff80c0: fa fa 00 00 00 03 fa fa 00 00 00 fa fa fa fd fd$
+|   0x0c067fff80d0: fd fd fa fa 00 00 04 fa fa fa 00 00 00 00 fa fa$
+| =>0x0c067fff80e0: fd fd fd fd fa[fa]00 00 01 fa fa fa fa fa fa fa$
+|   0x0c067fff80f0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8110: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8120: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8130: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+| Shadow byte legend (one shadow byte represents 8 application bytes):$
+|   Addressable:           00$
+|   Partially addressable: 01 02 03 04 05 06 07 $
+|   Heap left redzone:       fa$
+|   Freed heap region:       fd$
+|   Stack left redzone:      f1$
+|   Stack mid redzone:       f2$
+|   Stack right redzone:     f3$
+|   Stack after return:      f5$
+|   Stack use after scope:   f8$
+|   Global redzone:          f9$
+|   Global init order:       f6$
+|   Poisoned by user:        f7$
+|   Container overflow:      fc$
+|   Array cookie:            ac$
+|   Intra object redzone:    bb$
+|   ASan internal:           fe$
+|   Left alloca redzone:     ca$
+|   Right alloca redzone:    cb$
+| ==263117==ABORTING$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [333]
+|  CMD: ->< file cat < file2<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->hi, I am the file2$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->=================================================================$
+| ==263230==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000072f at pc 0x000000404fba bp 0x7fff0a67f620 sp 0x7fff0a67f610$
+| READ of size 1 at 0x60300000072f thread T0$
+|     #0 0x404fb9 in special_len /home/denizozd/42-Minishell/split_input.c:48$
+|     #1 0x403c66 in add_space /home/denizozd/42-Minishell/split_input.c:73$
+|     #2 0x409081 in lexer /home/denizozd/42-Minishell/lexer.c:50$
+|     #3 0x406c04 in launch_minishell /home/denizozd/42-Minishell/main.c:42$
+|     #4 0x406b8c in main /home/denizozd/42-Minishell/main.c:28$
+|     #5 0x75d987429d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58$
+|     #6 0x75d987429e3f in __libc_start_main_impl ../csu/libc-start.c:392$
+|     #7 0x4012b4 in _start (/home/denizozd/42-Minishell/mpanic-main/minishell+0x4012b4)$
+| $
+| 0x60300000072f is located 1 bytes to the left of 19-byte region [0x603000000730,0x603000000743)$
+| allocated by thread T0 here:$
+|     #0 0x75d9878bf91f in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69$
+|     #1 0x75d987f5bbac in xmalloc (/lib/x86_64-linux-gnu/libreadline.so.8+0x39bac)$
+| $
+| SUMMARY: AddressSanitizer: heap-buffer-overflow /home/denizozd/42-Minishell/split_input.c:48 in special_len$
+| Shadow bytes around the buggy address:$
+|   0x0c067fff8090: fa fa 00 00 00 06 fa fa 00 00 07 fa fa fa 00 00$
+|   0x0c067fff80a0: 00 06 fa fa 00 00 02 fa fa fa 00 00 02 fa fa fa$
+|   0x0c067fff80b0: 00 00 04 fa fa fa 00 00 00 fa fa fa 00 00 00 fa$
+|   0x0c067fff80c0: fa fa 00 00 00 03 fa fa 00 00 00 fa fa fa fd fd$
+|   0x0c067fff80d0: fd fd fa fa 00 00 04 fa fa fa 00 00 00 00 fa fa$
+| =>0x0c067fff80e0: fd fd fd fd fa[fa]00 00 03 fa fa fa fa fa fa fa$
+|   0x0c067fff80f0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8110: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8120: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8130: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+| Shadow byte legend (one shadow byte represents 8 application bytes):$
+|   Addressable:           00$
+|   Partially addressable: 01 02 03 04 05 06 07 $
+|   Heap left redzone:       fa$
+|   Freed heap region:       fd$
+|   Stack left redzone:      f1$
+|   Stack mid redzone:       f2$
+|   Stack right redzone:     f3$
+|   Stack after return:      f5$
+|   Stack use after scope:   f8$
+|   Global redzone:          f9$
+|   Global init order:       f6$
+|   Poisoned by user:        f7$
+|   Container overflow:      fc$
+|   Array cookie:            ac$
+|   Intra object redzone:    bb$
+|   ASan internal:           fe$
+|   Left alloca redzone:     ca$
+|   Right alloca redzone:    cb$
+| ==263230==ABORTING$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [334]
+|  CMD: ->cat < nonexist<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->bash: line 1: nonexist: No such file or directory$<-
+|
+|--- COMPARED STR:
+| ->nonexist: No such file or directory<-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->nonexist No such file or directory$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [335]
+|  CMD: ->cat < $USER<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->bash: line 1: denizozd: No such file or directory$<-
+|
+|--- COMPARED STR:
+| ->denizozd: No such file or directory<-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->denizozd No such file or directory$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [336]
+|  CMD: ->cat < file3<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->bash: line 1: file3: Permission denied$<-
+|
+|--- COMPARED STR:
+| ->file3: Permission denied<-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->file3 No such file or directory$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [337]
+|  CMD: ->echo hi 2> error_outp < non_exist<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->non_exist No such file or directory$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [338]
+|  CMD: ->echo hi < non_exist > wrong
+| ls
+| rm wrong<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| >file2$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$<-
+|
+|--- STDERR:
+| ->bash: line 1: non_exist: No such file or directory$
+| rm: cannot remove 'wrong': No such file or directory$<-
+|
+|--- COMPARED STR:
+| ->non_exist: No such file or directory<-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->non_exist No such file or directory$
+| <$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| >file2$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$
+| wrong$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [339]
+|  CMD: ->< non_exist echo hi > wrong
+| ls
+| rm wrong<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| echo$
+| >>file$
+| >file$
+| >file2$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$<-
+|
+|--- STDERR:
+| ->bash: line 1: non_exist: No such file or directory$
+| rm: cannot remove 'wrong': No such file or directory$<-
+|
+|--- COMPARED STR:
+| ->non_exist: No such file or directory<-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->=================================================================$
+| ==263525==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000075f at pc 0x000000404fba bp 0x7ffd9ecf8ac0 sp 0x7ffd9ecf8ab0$
+| READ of size 1 at 0x60300000075f thread T0$
+|     #0 0x404fb9 in special_len /home/denizozd/42-Minishell/split_input.c:48$
+|     #1 0x403c66 in add_space /home/denizozd/42-Minishell/split_input.c:73$
+|     #2 0x409081 in lexer /home/denizozd/42-Minishell/lexer.c:50$
+|     #3 0x406c04 in launch_minishell /home/denizozd/42-Minishell/main.c:42$
+|     #4 0x406b8c in main /home/denizozd/42-Minishell/main.c:28$
+|     #5 0x7816b7829d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58$
+|     #6 0x7816b7829e3f in __libc_start_main_impl ../csu/libc-start.c:392$
+|     #7 0x4012b4 in _start (/home/denizozd/42-Minishell/mpanic-main/minishell+0x4012b4)$
+| $
+| 0x60300000075f is located 1 bytes to the left of 28-byte region [0x603000000760,0x60300000077c)$
+| allocated by thread T0 here:$
+|     #0 0x7816b7cbf91f in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69$
+|     #1 0x7816b7be5bac in xmalloc (/lib/x86_64-linux-gnu/libreadline.so.8+0x39bac)$
+| $
+| SUMMARY: AddressSanitizer: heap-buffer-overflow /home/denizozd/42-Minishell/split_input.c:48 in special_len$
+| Shadow bytes around the buggy address:$
+|   0x0c067fff8090: fa fa 00 00 00 06 fa fa 00 00 07 fa fa fa 00 00$
+|   0x0c067fff80a0: 00 06 fa fa 00 00 02 fa fa fa 00 00 02 fa fa fa$
+|   0x0c067fff80b0: 00 00 04 fa fa fa 00 00 00 fa fa fa 00 00 00 fa$
+|   0x0c067fff80c0: fa fa 00 00 00 03 fa fa 00 00 00 fa fa fa fd fd$
+|   0x0c067fff80d0: fd fd fa fa 00 00 04 fa fa fa 00 00 00 00 fa fa$
+| =>0x0c067fff80e0: fd fd fd fd fa fa fd fd fd fd fa[fa]00 00 00 04$
+|   0x0c067fff80f0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8110: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8120: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8130: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+| Shadow byte legend (one shadow byte represents 8 application bytes):$
+|   Addressable:           00$
+|   Partially addressable: 01 02 03 04 05 06 07 $
+|   Heap left redzone:       fa$
+|   Freed heap region:       fd$
+|   Stack left redzone:      f1$
+|   Stack mid redzone:       f2$
+|   Stack right redzone:     f3$
+|   Stack after return:      f5$
+|   Stack use after scope:   f8$
+|   Global redzone:          f9$
+|   Global init order:       f6$
+|   Poisoned by user:        f7$
+|   Container overflow:      fc$
+|   Array cookie:            ac$
+|   Intra object redzone:    bb$
+|   ASan internal:           fe$
+|   Left alloca redzone:     ca$
+|   Right alloca redzone:    cb$
+| ==263525==ABORTING$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [340]
+|  CMD: ->> correct echo hi < non_exist
+| ls
+| rm correct<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| -><$
+| &4$
+| cleaner$
+| cleaner.c$
+| correct$
+| echo$
+| >>file$
+| >file$
+| >file2$
+| >>filec$
+| >filec$
+| hi$
+| minishell$
+| mp04151643$
+| mpanic.sh$
+| README.md$
+| test$
+| traces$<-
+|
+|--- STDERR:
+| ->bash: line 1: non_exist: No such file or directory$<-
+|
+|--- COMPARED STR:
+| ->non_exist: No such file or directory<-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->=================================================================$
+| ==263576==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000075f at pc 0x000000404fba bp 0x7ffc9fb548a0 sp 0x7ffc9fb54890$
+| READ of size 1 at 0x60300000075f thread T0$
+|     #0 0x404fb9 in special_len /home/denizozd/42-Minishell/split_input.c:48$
+|     #1 0x403c66 in add_space /home/denizozd/42-Minishell/split_input.c:73$
+|     #2 0x409081 in lexer /home/denizozd/42-Minishell/lexer.c:50$
+|     #3 0x406c04 in launch_minishell /home/denizozd/42-Minishell/main.c:42$
+|     #4 0x406b8c in main /home/denizozd/42-Minishell/main.c:28$
+|     #5 0x7907e4429d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58$
+|     #6 0x7907e4429e3f in __libc_start_main_impl ../csu/libc-start.c:392$
+|     #7 0x4012b4 in _start (/home/denizozd/42-Minishell/mpanic-main/minishell+0x4012b4)$
+| $
+| 0x60300000075f is located 1 bytes to the left of 30-byte region [0x603000000760,0x60300000077e)$
+| allocated by thread T0 here:$
+|     #0 0x7907e48bf91f in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69$
+|     #1 0x7907e4f10bac in xmalloc (/lib/x86_64-linux-gnu/libreadline.so.8+0x39bac)$
+| $
+| SUMMARY: AddressSanitizer: heap-buffer-overflow /home/denizozd/42-Minishell/split_input.c:48 in special_len$
+| Shadow bytes around the buggy address:$
+|   0x0c067fff8090: fa fa 00 00 00 06 fa fa 00 00 07 fa fa fa 00 00$
+|   0x0c067fff80a0: 00 06 fa fa 00 00 02 fa fa fa 00 00 02 fa fa fa$
+|   0x0c067fff80b0: 00 00 04 fa fa fa 00 00 00 fa fa fa 00 00 00 fa$
+|   0x0c067fff80c0: fa fa 00 00 00 03 fa fa 00 00 00 fa fa fa fd fd$
+|   0x0c067fff80d0: fd fd fa fa 00 00 04 fa fa fa 00 00 00 00 fa fa$
+| =>0x0c067fff80e0: fd fd fd fd fa fa fd fd fd fd fa[fa]00 00 00 06$
+|   0x0c067fff80f0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8110: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8120: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+|   0x0c067fff8130: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa$
+| Shadow byte legend (one shadow byte represents 8 application bytes):$
+|   Addressable:           00$
+|   Partially addressable: 01 02 03 04 05 06 07 $
+|   Heap left redzone:       fa$
+|   Freed heap region:       fd$
+|   Stack left redzone:      f1$
+|   Stack mid redzone:       f2$
+|   Stack right redzone:     f3$
+|   Stack after return:      f5$
+|   Stack use after scope:   f8$
+|   Global redzone:          f9$
+|   Global init order:       f6$
+|   Poisoned by user:        f7$
+|   Container overflow:      fc$
+|   Array cookie:            ac$
+|   Intra object redzone:    bb$
+|   ASan internal:           fe$
+|   Left alloca redzone:     ca$
+|   Right alloca redzone:    cb$
+| ==263576==ABORTING$<-
+|
+---------------------------------------------<
+

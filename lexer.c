@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:22:52 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 18:29:33 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 14:49:37 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ after split : prompt.commands = [ "echo", "hello", NULL]
 void	lexer(t_prompt *prompt)
 {
 	prompt->input_string = readline("minishell> ");
-	collect_grbg(prompt->input_string);
+	collect_grbg(prompt, prompt->input_string);
 	signals_non_interactive();
 	if (prompt->input_string == NULL)
 	{
@@ -47,7 +47,8 @@ void	lexer(t_prompt *prompt)
 		prompt->stop = 1;
 		return ;
 	}
-	prompt->input_string = add_space(prompt->input_string);
+	prompt->input_string = add_space(prompt, prompt->input_string);
+	//printf("input string: %s\n", prompt->input_string);
 	prompt->commands = split_input(prompt->input_string, prompt);
 	if (prompt->commands == NULL)
 	{
@@ -56,7 +57,7 @@ void	lexer(t_prompt *prompt)
 	}
 	//print_str_array(prompt->commands);
 	if (prompt->stop != 1)
-		prompt->commands = expander(prompt->commands, prompt->envp);
+		prompt->commands = expander(prompt, prompt->commands, prompt->envp);
 }
 
 

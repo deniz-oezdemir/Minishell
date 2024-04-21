@@ -2,7 +2,7 @@
 
 /* create custom libft functions with get_grbg instead of malloc / ft_calloc*/
 
-char	*grbg_strdup(const char *s)
+char	*grbg_strdup(t_prompt *prompt, const char *s)
 {
 	size_t	len;
 	size_t	i;
@@ -11,7 +11,7 @@ char	*grbg_strdup(const char *s)
 	i = 0;
 	len = ft_strlen(s) + 1;
 	//dest = malloc(sizeof(char) * len);
-	dest = get_grbg(len, sizeof(char));
+	dest = get_grbg(prompt, len, sizeof(char));
 	if (dest == NULL)
 		return (NULL);
 	while (s[i] != '\0')
@@ -23,18 +23,18 @@ char	*grbg_strdup(const char *s)
 	return (dest);
 }
 
-char	*grbg_substr(char const *s, unsigned int start, size_t len)
+char	*grbg_substr(t_prompt *prompt, char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	char	*dest;
 
 	i = 0;
 	if (ft_strlen(s) < start)
-		return (grbg_strdup(""));
+		return (grbg_strdup(prompt, ""));
 	if (ft_strlen(s + start) < len)
 		len = ft_strlen(s + start);
 	//dest = malloc(sizeof(char) * (len + 1));
-	dest = get_grbg(len + 1, sizeof(char));
+	dest = get_grbg(prompt, len + 1, sizeof(char));
 	if (!dest)
 		return (NULL);
 	while (i < len)
@@ -86,33 +86,33 @@ static	char	*fill_the_array(int len, char *dest, int n )
 	return (dest);
 }
 
-char	*grbg_itoa(int n)
+char	*grbg_itoa(t_prompt *prompt, int n)
 {
 	char	*dest;
 	size_t	len;
 	long	num;
 
 	if (n == -2147483648)
-		return (dest = grbg_strdup("-2147483648"));
+		return (dest = grbg_strdup(prompt, "-2147483648"));
 	if (n == 0)
-		return (dest = grbg_strdup("0"));
+		return (dest = grbg_strdup(prompt, "0"));
 	num = n;
 	len = get_len(num);
-	dest = get_grbg(len + 1, sizeof(char));
+	dest = get_grbg(prompt, len + 1, sizeof(char));
 	if (!dest)
 		return (NULL);
 	dest = fill_the_array(len, dest, num);
 	return (dest);
 }
 
-char	*grbg_strjoin(char const *s1, char const *s2)
+char	*grbg_strjoin(t_prompt *prompt, char const *s1, char const *s2)
 {
 	size_t	len;
 	char	*dest;
 
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
 	//dest = malloc(sizeof(char) * len);
-	dest = get_grbg(sizeof(char), len);
+	dest = get_grbg(prompt, sizeof(char), len);
 	if (!dest)
 		return (NULL);
 	ft_strlcpy(dest, s1, ft_strlen(s1) + 1);

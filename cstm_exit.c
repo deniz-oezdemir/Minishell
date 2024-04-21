@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:16:10 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/19 14:24:37 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/20 16:50:26 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	is_only_digits(char *s)
 
 int	cstm_exit(t_cmddat *cmd_data)
 {
-	int	tmp_exitstatus;
+	int exitstatus;
 
-	tmp_exitstatus = 0;
+	exitstatus = 0;
 
 	if (get_len_arr(cmd_data->full_command) >= 3 && is_only_digits(cmd_data->full_command[1]))
 	{
@@ -43,7 +43,7 @@ int	cstm_exit(t_cmddat *cmd_data)
 		ft_putstr_fd(": numeric argument required\n", 2);
 	}
 	if (cmd_data->full_command[1])
-		tmp_exitstatus = ft_atoi(cmd_data->full_command[1]);
-	exit_ms(tmp_exitstatus, cmd_data->prompt);
+		exitstatus = ft_atoi(cmd_data->full_command[1]);
+	exit_ms(exitstatus, cmd_data->prompt);
 	return (0);
 }

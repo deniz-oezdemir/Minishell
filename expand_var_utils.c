@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:43:45 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 18:41:02 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 14:46:53 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,38 +85,46 @@ variable to be expanded.
   Returns:
     - Pointer to the newly created string with the expanded environment variable.
 */
-char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len )
+
+
+//@Leo: not gc'ed but freed as to many params
+char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len)
 {
 	//ssize_t	len; //longueur de la variable a etendre
-	char *s1; //partie avant $
-	char *s2; // valeur de la variable a etendre
-	char *s3; // apres $
+	char *s1; //partie avant $ //part before $
+	char *s2; // valeur de la variable a etendre //value of the variable to expand
+	char *s3; // apres $ //part after $
+	char *expanded_tmp;
 	char *expanded_str; //should be put to NULL?
 
-	s1 = grbg_substr(str, 0, i);
-	s3 = grbg_substr(str, i + len + 1, ft_strlen(str) - i - len);
-	s2 = grbg_strdup(get_ptr_var(&str[i + 1], len, ev));
-	expanded_str = grbg_strjoin(s1, s2);
-	expanded_str = grbg_strjoin(expanded_str, s3);
-	//free(s1);
-	//free(s2);
-	//free(s3);
-	//free(expanded_str);
+	s1 = ft_substr(str, 0, i);
+	s3 = ft_substr(str, i + len + 1, ft_strlen(str) - i - len);
+	s2 = ft_strdup(get_ptr_var(&str[i + 1], len, ev));
+	expanded_tmp = ft_strjoin(s1, s2);
+	expanded_str = ft_strjoin(expanded_tmp, s3);
+	free(expanded_tmp);
+	free(s1);
+	free(s2);
+	free(s3);
 	return (expanded_str);
 }
 
+//@Leo: not gc'ed but freed as to many params
 char	*create_sub(char *str, size_t i, char *nb, ssize_t len)
 {
-	char *s1; //partie avant $
-	char *s3; // apres $
+	char *s1; //partie avant $ //part before $
+	char *s3; // apres $ //part after $
+	char *expanded_tmp;
 	char *expanded_str; //should be put to NULL?
 
-	s1 = grbg_substr(str, 0, i);
-	s3 = grbg_substr(str, i + len + 1, ft_strlen(str) - i - len);
-	expanded_str = grbg_strjoin(s1, nb); //Reminder: between the two ft_strjoins might have been a free missing without the gc
-	expanded_str = grbg_strjoin(expanded_str, s3);
-	//free(s1);
+	s1 = ft_substr(str, 0, i);
+	s3 = ft_substr(str, i + len + 1, ft_strlen(str) - i - len);
+	expanded_tmp = ft_strjoin(s1, nb);
+	expanded_str = ft_strjoin(expanded_tmp, s3);
+	free(expanded_tmp);
+	free(s1);
 	//free(nb);
-	//free(s3);
+	free(s3);
 	return (expanded_str);
 }
+

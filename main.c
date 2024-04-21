@@ -3,28 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 18:33:44 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 14:45:51 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//int	exitstatus = 0; //somehow definition here needed, otherwise compile error-> read up on global variables
-
-t_prompt	*prompt = NULL;
+int	exitstatus = 0; //somehow definition here needed, otherwise compile error-> read up on global variables
 
 int	main(int argc, char *argv[], char **envp)
 {
+	t_prompt *prompt;
+
 	(void)argv; //@Leo: can we not just delete argv if we do not use it?
 
+	//printf("c1 - exitstatus: %i\n", exitstatus);
 	if (argc == 1)
 	{
 		prompt = ft_calloc(1, sizeof(t_prompt)); //gc not possible here as gc needs gc_list to be allocated -> prompt needs seperate free at exit
 		init_prompt_struct(prompt, envp);
 	}
+	//printf("c2 - exitstatus: %i\n", exitstatus);
 	launch_minishell(prompt);
 	return (0);
 }
@@ -39,18 +41,26 @@ void	launch_minishell(t_prompt *prompt)
 	{
 		signals_interactive();
 		prompt->stop = 0;
+		//printf("c3 - exitstatus: %i\n", exitstatus);
 		lexer(prompt);
+		//printf("c4 - exitstatus: %i\n", exitstatus);
+		// if (prompt->commands == NULL)
+		// 	continue;
 		if (prompt->commands)
 			add_history(prompt->input_string);
+		//printf("c5 - exitstatus: %i\n", exitstatus);
 		if (prompt->stop == 0)
 			parser(prompt, 0, 0);
 		if (cstm_lstsize(prompt->cmd_list) > 1 && prompt->stop == 0)
 			pipe_infile_outfile(prompt->cmd_list); //@Deniz: not gc'ed within pipe_infile_outfile as does not leak
-		execute_cmds(); //maybe add stop check
+		//print_cmd_list(prompt->cmd_list);
+		//printf("c6 - exitstatus: %i\n", exitstatus);
+		execute_cmds(prompt); //maybe add stop check
 		// if (prompt->commands != NULL) //@leo commented this to get rid of the double free
 		// 	free_char_array(prompt->commands);
 		//cstm_lstclear(&prompt->cmd_list, clear_cmmdat_lst); //not needed with gc, intead reset cmd_list
 		prompt->cmd_list = NULL; //this works but why @Leo
+		//printf("c7 - exitstatus: %i\n", exitstatus);
 	}
 }
 

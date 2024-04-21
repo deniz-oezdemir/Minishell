@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 19:37:55 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 15:48:34 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char *add_space(char *str)
 
 	len_str = ft_strlen(str) + special_len(str) + 1;
 	//new_str = (char *)malloc(sizeof(char) * len_str);
-	new_str = (char *)get_grbg(len_str, sizeof(char));
+	new_str = (char *)get_grbg(prompt, len_str, sizeof(char));
 	if (!new_str)
 		return (NULL);
 
@@ -166,7 +166,7 @@ static int	ft_count_words(const char *str, char *sep)
 }
 
 /*Create */
-static char	**ft_create_substrs(char **aux, char const *s, char *set)
+static char	**ft_create_substrs(t_prompt *prompt, char **aux, char const *s, char *set)
 {
 	int		s_len;
 	int		i = 0; // Index courant dans la chaîne s
@@ -190,7 +190,7 @@ static char	**ft_create_substrs(char **aux, char const *s, char *set)
 		if (start_index >= s_len)
 			aux[word_index++] = NULL;
 		else
-			aux[word_index++] = grbg_substr(s, start_index, i - start_index);
+			aux[word_index++] = grbg_substr(prompt, s, start_index, i - start_index);
 	}
 	//aux[word_index] = NULL; //fixed "exit "
 	return (aux);
@@ -214,10 +214,10 @@ char	**split_input(char *str, t_prompt *prompt)
 		return (NULL);
 	}
 	//arr = (char **)malloc(sizeof(char *) * (word_count + 1));
-	arr = get_grbg(word_count + 1, sizeof(char *));
+	arr = get_grbg(prompt, word_count + 1, sizeof(char *));
 	if (!arr)
 		return (NULL);
-	arr = ft_create_substrs(arr, str, " ");
+	arr = ft_create_substrs(prompt, arr, str, " ");
 	arr[word_count] = NULL; //@Leo: how is this different from aux[word_index] = NULL above?
 	// free(str);
 	return (arr);

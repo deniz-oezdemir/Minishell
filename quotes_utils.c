@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:39:46 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 18:48:12 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 15:48:02 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*get_trimmed(char const *s1, int squote, int dquote)
 	if (!s1 || count == -1)
 		return (NULL);
 	//trimmed = malloc(sizeof(char) * (ft_strlen(s1) - count + 1));
-	trimmed = get_grbg(ft_strlen(s1) - count + 1, sizeof(char));
+	trimmed = get_grbg(prompt, ft_strlen(s1) - count + 1, sizeof(char));
 	if (!trimmed)
 		return (NULL);
 	while (s1[i[0]])

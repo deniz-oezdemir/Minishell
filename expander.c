@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 18:38:56 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 14:48:01 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@
     - A new array of strings with expanded environment variables.
 */
 
-char	**expander(char **str, char **ev)
+char	**expander(t_prompt *prompt, char **str, char **ev)
 {
 	int		i;
 	char	**temp;
 
 	//temp = malloc(sizeof(char *) * (get_len_arr(str) + 1));
-	temp = get_grbg(get_len_arr(str) + 1, sizeof(char *));
+	temp = get_grbg(prompt, get_len_arr(str) + 1, sizeof(char *));
 	if (!temp)
 		return (NULL);
 	i = 0;
 	while (str[i])
 	{
-		temp[i] = expand_var(str[i], ev);
+		temp[i] = expand_var(prompt, str[i], ev);
 		i++;
 	}
 	temp[i] = NULL;
@@ -65,7 +65,7 @@ alors sgq est mis a 1 (sinon 0)
   Returns:
     - Pointer to the modified string with expanded environment variables.
 */
-char *expand_var(char *str, char **ev)
+char *expand_var(t_prompt *prompt, char *str, char **ev)
 {
 	int		sgq;
 	int		dbq;
@@ -91,16 +91,18 @@ char *expand_var(char *str, char **ev)
 		{
 			if (str[i + 1] == '?')
 			{
-				nb = grbg_itoa(prompt->exitstatus);
+				nb = grbg_itoa(prompt, exitstatus);
 				if (!nb)
 					return (NULL);
 				len = ft_strlen(nb);
 				sub_str = create_sub(str, i, nb, len);
+				collect_grbg(prompt, sub_str);
 			}
 			else
 			{
 				len = get_len_var(str, i + 1);
 				sub_str = create_sub_var(str, i, ev, len);
+				collect_grbg(prompt, sub_str);
 			}
 			//free(str);
 			str = sub_str;

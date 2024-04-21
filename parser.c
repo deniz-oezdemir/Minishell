@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 18:38:10 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 14:49:45 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static t_cmddat	*init_struct_cmd(t_prompt *prompt)
 {
 	t_cmddat	*ptr;
 
-	ptr = get_grbg(1, sizeof(t_cmddat));
+	ptr = get_grbg(prompt, 1, sizeof(t_cmddat));
 	if (!ptr)
 		return (NULL);
 	ptr->full_command = NULL;
@@ -73,13 +73,13 @@ char	**fill_arr(t_prompt *main_prompt, char **prompt, int i, int len)
 	temp = NULL;
 	//print_str_array(prompt);
 	//temp = malloc(sizeof(char *) * (len + 1));
-	temp = get_grbg(len + 1, sizeof(char *));
+	temp = get_grbg(main_prompt, len + 1, sizeof(char *));
 	if (!temp)
 		return (NULL);
 	while (len > 0)
 	{
 		//temp[j] = ft_strdup(prompt[i]);
-		temp[j] = grbg_strdup(prompt[i]);
+		temp[j] = grbg_strdup(main_prompt, prompt[i]);
 		i++;
 		j++;
 		len--;
@@ -163,7 +163,7 @@ void	parser(t_prompt *prompt, int i, int j)
 		ptr = init_struct_cmd(prompt);
 		if (!ptr)
 			return ;
-		add_node_to_list(&(prompt->cmd_list), ptr);
+		add_node_to_list(prompt, &(prompt->cmd_list), ptr);
 		while (prompt->commands[i] != NULL && prompt->commands[i][0] != '|')
 		{
 			i++;
@@ -171,7 +171,7 @@ void	parser(t_prompt *prompt, int i, int j)
 		}
 		ptr->full_command = fill_arr(prompt, prompt->commands, i - j, j);
 		ptr->full_path = get_path_cmds(ptr, prompt->envp); //@Deniz: not gc'ed within get_path_cmds as does not leak
-		collect_grbg(ptr->full_path);
+		collect_grbg(prompt, ptr->full_path);
 		if (prompt->commands[i] == NULL)
 			break;
 		i++;
@@ -250,7 +250,7 @@ void	add_last_cmd_to_envp(t_prompt *prompt)
 		return ;
 	l = get_len_arr(prompt->cmd_list->data->full_command);
 	if (l)
-		modify_envp(prompt, "_", grbg_strdup(prompt->cmd_list->data->full_command[l - 1]), 0);
+		modify_envp(prompt, "_", grbg_strdup(prompt, prompt->cmd_list->data->full_command[l - 1]), 0);
 }
 
 

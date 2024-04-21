@@ -3,34 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:50:33 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/20 18:39:17 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 14:48:24 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /*	nmemb and size of new memory space (same as for ft_calloc) */
-void	*get_grbg(size_t nmemb, size_t size)
+void	*get_grbg(t_prompt *prompt, size_t nmemb, size_t size)
 {
 	void	*new;
 
 	new = ft_calloc(nmemb, size);
 	if (!new)
 	{
-		//ft_putstr_fd("memory allocation error\n", 2);
+		ft_putstr_fd("memory allocation error\n", 2);
 		//set exitstatus, free stuff
+		exitstatus = 1;
 		return (NULL);
 	}
 	//printf("allocated new: %x\n", new);
-	collect_grbg(new);
+	collect_grbg(prompt, new);
 	return (new);
 }
 
 /*	can also be used without get_grbg to collect malloc'ed space */
-void	collect_grbg(void *new)
+void	collect_grbg(t_prompt *prompt, void *new)
 {
 	t_grbg *node;
 	t_grbg *tmp;
@@ -40,8 +41,9 @@ void	collect_grbg(void *new)
 	node = ft_calloc(1, sizeof(t_grbg));
 	if (!node)
 	{
-		//ft_putstr_fd("memory allocation error\n", 2);
+		ft_putstr_fd("memory allocation error\n", 2);
 		//set exitstatus, free stuff, exit
+		exitstatus = 1;
 		return ;
 	}
 	//printf("allocated node: %x\n", node);

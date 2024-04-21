@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 18:34:16 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 14:49:56 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 
 # include "./libft/libft.h"
 
+extern int exitstatus;
+
 /*Standard file descriptors.
 STDIN_FILENO	0	 Standard input.
 STDOUT_FILENO	1	 Standard output.
@@ -36,7 +38,6 @@ typedef struct s_prompt t_prompt;
 typedef struct s_cmddat t_cmddat;
 typedef struct s_grbg t_grbg;
 
-extern t_prompt *prompt;
 
 //@Leo: each nodes content in cmd_list must be of type t_prompt
 /*
@@ -54,7 +55,6 @@ extern t_prompt *prompt;
 /*modif t_list with t_node*/
 typedef struct s_prompt
 {
-	int			exitstatus;
 	char		*input_string;
 	char		**commands;
 	t_node		*cmd_list;
@@ -142,7 +142,7 @@ void	print_err_msg(char *cmd, char *msg);
 int print_err_msg_lng(char *cmd, char *msg, char *arg);
 int	ft_isspace(int c);
 char	**del_str_from_array(char **array, int pos, int count);
-char	**add_str_to_arr(char **arr, char *str);
+char	**add_str_to_arr(t_prompt *prompt, char **arr, char *str);
 
 /*	builtins.c	*/
 int	get_builtin_nbr(t_cmddat *cmd);
@@ -176,12 +176,12 @@ char *get_envp(t_prompt *prompt, char *name);
 int	cstm_export(t_cmddat *cmd);
 int	print_export(t_cmddat *cmd);
 void	print_line_export(t_cmddat *cmd, int i);
-int	get_len_id(char *str, int msg);
+int	get_len_id(t_prompt *prompt, char *str, int msg);
 int scan_envp(t_cmddat *cmd, char *str, int id_len);
-char	*add_to_str(char **str, char *add);
+char	*add_to_str(t_prompt *prompt, char **str, char *add);
 
 /*	exec.c	*/
-int	execute_cmds();
+int	execute_cmds(t_prompt *prompt);
 void	cls_fds(void *content);
 void	run_cmd(void *content);
 void	wait_update_exitstatus(t_prompt *prompt);
@@ -193,7 +193,7 @@ void	lexer(t_prompt *prompt);
 /* split*/
 char	**split_input(char *str, t_prompt *prompt);
 char	**ft_split(char const *s, char c);
-char *add_space(char *str);
+char *add_space(t_prompt *prompt, char *str);
 
 /*	parser*/
 //void	parser(t_prompt *prompt);
@@ -202,7 +202,7 @@ char	**fill_arr(t_prompt *main_prompt, char **prompt, int i, int len);
 void	add_last_cmd_to_envp(t_prompt *prompt);
 
 /* list_utils */
-void	add_node_to_list(t_node **head, t_cmddat *data);
+void	add_node_to_list(t_prompt *prompt, t_node **head, t_cmddat *data);
 int	ft_listsize(t_node *lst);
 
 
@@ -213,14 +213,14 @@ void	free_split(char **strs);
 
 
 /* expander.c */
-char	**expander(char **str, char **ev);
+char	**expander(t_prompt *prompt, char **str, char **ev);
 /*expand_var_utils.c */
 
 char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len );
 ssize_t	get_len_var(char *str, int i);
 char	*create_sub(char *str, size_t i, char *nb, ssize_t len );
 //static char *get_substr_var(char *str, int len, char **env);
-char *expand_var(char *str, char **ev);
+char *expand_var(t_prompt *prompt, char *str, char **ev);
 
 /* handle_redirections.c */
 
@@ -236,7 +236,7 @@ int	syntax_error(t_prompt *prompt, char *token);
 
 /* quotes_utils.c */
 void	get_rid_quotes(t_prompt	*prompt);
-char	*get_trimmed(char const *s1, int squote, int dquote);
+char	*get_trimmed(t_prompt *prompt, char const *s1, int squote, int dquote);
 //char	*get_trimmed(char *str, int squote, int dquote);
 int	malloc_len(char const *str);
 
@@ -254,14 +254,14 @@ int	get_heredoc(t_prompt *prompt, char *lim);
 int	pipe_heredoc(t_prompt *prompt, char *content);
 
 /*	garbage_collector	*/
-void	*get_grbg(size_t nmemb, size_t size);
-void	collect_grbg(void *new);
+void	*get_grbg(t_prompt *prompt, size_t nmemb, size_t size);
+void	collect_grbg(t_prompt *prompt, void *new);
 void	free_grbg(t_grbg *head);
 
 /*	garbage_lib	*/
-char	*grbg_strdup(const char *s);
-char	*grbg_substr(char const *s, unsigned int start, size_t len);
-char	*grbg_itoa(int n);
-char	*grbg_strjoin(char const *s1, char const *s2);
+char	*grbg_strdup(t_prompt *prompt, const char *s);
+char	*grbg_substr(t_prompt *prompt, char const *s, unsigned int start, size_t len);
+char	*grbg_itoa(t_prompt *prompt, int n);
+char	*grbg_strjoin(t_prompt *prompt, char const *s1, char const *s2);
 
 #endif
