@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+         #
+#    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 20:35:04 by denizozd          #+#    #+#              #
-#    Updated: 2024/04/21 15:59:10 by ecarlier         ###   ########.fr        #
+#    Updated: 2024/04/21 17:38:49 by denizozd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,12 @@ CUT = "\033[K"
 NAME = minishell
 CC = cc
 #CFLAGS = -Wall -Werror -Wextra #commented out to not silence all unused vars
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g #-fsanitize=address
 LIBFTPATH = ./libft
 LIBFT = ./libft/libft.a
 
-LDFLAGS		= -L/Users/$(USER)/.brew/opt/readline/lib -lasan
-CPPFLAGS	= -I/Users/$(USER)/.brew/opt/readline/include
+#LDFLAGS		= -L/Users/$(USER)/.brew/opt/readline/lib -lasan
+#CPPFLAGS	= -I/Users/$(USER)/.brew/opt/readline/include
 #LDFLAGS += -fsanitize=address
 
 SRCS = cstm_exit.c exit_minishell.c signal_handler.c builtins.c \

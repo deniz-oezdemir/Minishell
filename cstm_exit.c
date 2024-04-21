@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:16:10 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/21 17:07:34 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 17:49:10 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,26 @@ int	is_only_digits(char *s)
 
 int	cstm_exit(t_cmddat *cmd_data)
 {
-	int exitstatus; //test whether this is necessary although its a global var
-	int arg;
-
 	exitstatus = 0;
-
 	if (get_len_arr(cmd_data->full_command) >= 3 && is_only_digits(cmd_data->full_command[1]))
 	{
 		print_err_msg("exit", "too many arguments");
 		return (1);
 	}
 	ft_putstr_fd("exit\n", cmd_data->outfile);
-	arg = ft_atoi(cmd_data->full_command[1]);
-	if (arg < 0)
-		arg = 256 + arg;
-	if (get_len_arr(cmd_data->full_command) >= 2 && !arg)
+	if (cmd_data->full_command[1])
+	{
+		exitstatus = ft_atoi(cmd_data->full_command[1]);
+		if (exitstatus < 0)
+			exitstatus = 256 + exitstatus;
+	}
+	if (get_len_arr(cmd_data->full_command) >= 2 && !exitstatus)
 	{
 		ft_putstr_fd("ms: exit: ", 2);
 		ft_putstr_fd(cmd_data->full_command[1], 2);
 		ft_putstr_fd(": numeric argument required\n", 2);
-		arg = 2;
+		exitstatus = 2;
 	}
-	if (cmd_data->full_command[1])
-		exitstatus = arg;
 	exit_ms(exitstatus, cmd_data->prompt);
 	return (0);
 }
