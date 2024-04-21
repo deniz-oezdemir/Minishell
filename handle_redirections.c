@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redirections.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 14:49:05 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 20:17:08 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ int	open_file(char **cmds, int i, int *save_fd, int io_flags[2] )
 	}
 	else
 	{
-		printf("open_file\n");
+		//printf("open_file\n");
 		syntax_error(NULL, cmds[i + 1]);
 	}
 	return (0);
@@ -201,6 +201,7 @@ int	open_fd_redir(t_prompt *prompt, t_cmddat *cmd_struct, int i, int type)
 
 	io_flags[0] = get_flags(type, 0);
 	io_flags[1] = get_flags(type, 1);
+	get_rid_quotes(prompt);
 	if (type == 1)
 		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i, &cmd_struct->infile, io_flags);
 	else if (type == 2)

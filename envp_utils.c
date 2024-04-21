@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:45:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 16:11:46 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 20:09:01 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,16 @@ void	free_split(char **strs)
 	while (strs[i])
 		free(strs[i++]);
 	free(strs);
+}
+
+void	add_last_cmd_to_envp(t_prompt *prompt)
+{
+	int	l;
+
+	l = 0;
+	if (!prompt->cmd_list->data->full_command)
+		return ;
+	l = get_len_arr(prompt->cmd_list->data->full_command);
+	if (l)
+		modify_envp(prompt, "_", grbg_strdup(prompt, prompt->cmd_list->data->full_command[l - 1]));
 }

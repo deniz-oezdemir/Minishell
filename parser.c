@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 17:58:22 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 20:15:11 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,8 +178,8 @@ void	parser(t_prompt *prompt, int i, int j)
 		j = 0;
 
 	}
-
 	check_token(prompt); //might lead to double frees with gc, but seems to work @DENIZ DOUBLE FREE if error
+	//get_rid_quotes(prompt);
 	if (prompt->stop == 0)
 		handle_redir(prompt);
 	if (prompt->cmd_list != NULL)
@@ -187,17 +187,3 @@ void	parser(t_prompt *prompt, int i, int j)
 	get_rid_quotes(prompt);
 	//print_cmd_list(prompt->cmd_list);
 }
-
-void	add_last_cmd_to_envp(t_prompt *prompt)
-{
-	int	l;
-
-	l = 0;
-	if (!prompt->cmd_list->data->full_command)
-		return ;
-	l = get_len_arr(prompt->cmd_list->data->full_command);
-	if (l)
-		modify_envp(prompt, "_", grbg_strdup(prompt, prompt->cmd_list->data->full_command[l - 1]));
-}
-
-
