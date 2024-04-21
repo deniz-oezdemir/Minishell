@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 19:33:02 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 23:23:44 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char *argv[], char **envp)
 
 	prompt = NULL;
 
-	(void)argv; //@Leo: can we not just delete argv if we do not use it?
+	(void)argv;
 
 	if (argc == 1)
 	{
@@ -35,8 +35,6 @@ void	launch_minishell(t_prompt *prompt)
 {
 	//signals_interactive(); //@Leo: is this needed here and in the while loop?
 
-	// signal(SIGINT, &sigint_handler);
-	// signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
 		signals_interactive();

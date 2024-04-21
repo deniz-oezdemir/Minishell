@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:39:46 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 15:55:28 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 23:21:35 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ char	*get_trimmed(t_prompt *prompt, char const *s1, int squote, int dquote)
 	count = malloc_len(s1);
 	if (!s1 || count == -1)
 		return (NULL);
-	//trimmed = malloc(sizeof(char) * (ft_strlen(s1) - count + 1));
 	trimmed = get_grbg(prompt, ft_strlen(s1) - count + 1, sizeof(char));
 	if (!trimmed)
 		return (NULL);
@@ -125,33 +124,3 @@ int	malloc_len(char const *str)
 		return (-1);
 	return (count);
 }
-
-/*BACKUP*/
-//free(prompt->commands); //@Leo: to be deleted if below works as intended
-//free_char_array(prompt->commands); //@Leo: this fixed a leak when exit - please double check //@Deniz: should be unnecessary with gc
-
-// void	get_rid_quotes(t_prompt	*prompt)
-// {
-// 	char	**temp;
-// 	char	*trim_cmd;
-// 	int		i;
-// 	int		len_arr;
-// 	if (prompt->commands == NULL)
-// 		return ;
-// 	len_arr = get_len_arr(prompt->commands);
-// 	//temp = malloc(sizeof(char *) * (len_arr + 1));
-// 	temp = get_grbg(len_arr + 1, sizeof(char *));
-// 	if (!temp)
-// 		return ;
-// 	i = 0;
-// 	while (prompt->commands[i])
-// 	{
-// 		trim_cmd = get_trimmed(prompt->commands[i], 0, 0);
-// 		temp[i] = trim_cmd;
-// 		i++;
-// 	}
-// 	temp[i] = NULL;
-// 	//free(prompt->commands); //@Leo: to be deleted if below works as intended
-// 	//free_char_array(prompt->commands); //@Leo: this fixed a leak when exit - please double check //@Deniz: should be unnecessary with gc
-// 	prompt->commands = temp;
-// }

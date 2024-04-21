@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 20:56:32 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 23:39:11 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,55 +29,41 @@
     - 4 if the redirection is an append to outfile ('>>').
     - 0 if no redirection type is detected.
 */
-
 int	get_type(char *str)
 {
 	int	type;
 	int	i;
+	int	q[2];
 
-	//printf("str: %s\n", str);
-	i = 0;
+	i = -1;
 	type = 0;
-	int sgq = 0;
-	int dbq = 0;
-
-	while (str[i])
+	q[0] = 0;
+	q[1] = 0;
+	while (str[++i])
 	{
-		sgq = (sgq + (!dbq && str[i] == '\'')) % 2;
-		dbq = (dbq + (!sgq && str[i] == '\"')) % 2;
-		if (!sgq && !dbq)
+		q[0] = (q[0] + (!q[1] && str[i] == '\'')) % 2;
+		q[1] = (q[1] + (!q[0] && str[i] == '\"')) % 2;
+		if (!q[0] && !q[1])
 		{
 			if (ft_strlen(str) == 1 && str[i] == '<' )
-			{
-				//printf("c1\n");
 				type = 1;
-			}
-
 			if (str[i] == '<' && str[i + 1] && str[i + 1] == '<')
-			{
-				//printf("c2\n");
 				type = 2;
-			}
 			if (type == 0 && str[i] == '>')
-			{
-				//printf("c3\n");
 				type = 3;
-			}
 			if (type == 3 && str[i + 1] && str[i + 1] == '>')
-			{
-				//printf("c4\n");
 				type = 4;
-			}
 		}
-		i++;
 	}
 	return (type);
 }
 
 
 /*
-  Handles redirections within the commands stored in the prompt structure `ptr`.
-  It iterates through the command list and processes each command to identify and handle redirections.
+  Handles redirections within the commands
+  stored in the prompt structure `ptr`.
+  It iterates through the command list
+  and processes each command to identify and handle redirections.
 
   Parameters:
     - ptr: Pointer to the prompt structure containing the command list.
@@ -135,15 +121,11 @@ int	open_file(char **cmds, int i, int *save_fd, int io_flags[2] )
 		{
 			exitstatus = 1;
 			print_err_msg(cmds[i + 1], "No such file or directory");
-			//print_err_msg_lng(cmds[i + 1], "No such file or directory");
-			//printf("%s : No such file or directory\n", cmds[i + 1]);
-
-			return (1); //command not found
+			return (1);
 		}
 	}
 	else
 	{
-		//printf("open_file\n");
 		syntax_error(NULL, cmds[i + 1]);
 	}
 	return (0);

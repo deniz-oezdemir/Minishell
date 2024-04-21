@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:19:36 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 16:28:37 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 23:24:26 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,21 +79,10 @@ void	free_char_array(char **array)
 	i = 0;
 	if (array)
 	{
-		while(array[i])
+		while (array[i])
 			free(array[i++]);
 		free(array[i]);
 	}
 	free(array);
 	return ;
-
-
-	/* @Leo: delete below whenever you do need it anymore as reference
-	if (array == NULL)
-		return ;
-	while (*array != NULL)
-	{
-		free(*array);
-		array++;
-	}
-	//free(array);*/
 }

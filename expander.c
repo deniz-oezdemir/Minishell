@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 18:13:50 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 23:18:51 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,7 @@ char	**expander(t_prompt *prompt, char **str, char **ev)
 
 
 /*
-Check if inside single quote -> meaning does not need expanding
-1) Si le char actuel est ' et que dbq est 0 (pas de guillemets double ouvert)
-alors sgq est mis a 1 (sinon 0)
+
 */
 
 /*
@@ -109,16 +107,13 @@ char *expand_var(t_prompt *prompt, char *str, char **ev)
 			}
 			else
 			{
-				//printf("HERE\n");
 				len = get_len_var(str, i + 1);
 				sub_str = create_sub_var(str, i, ev, len);
 				collect_grbg(prompt, sub_str);
 				if (sub_str == NULL)
 				{
 					str = "";
-					//del_str_from_array(prompt->)
-					//printf("HERE\n");
-					break;
+					break ;
 				}
 			}
 			str = sub_str;

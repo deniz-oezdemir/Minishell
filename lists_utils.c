@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   lists_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 18:15:48 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 14:06:10 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/21 23:22:53 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void add_node_to_list(t_prompt *prompt, t_node **head, t_cmddat *data) {
+void add_node_to_list(t_prompt *prompt, t_node **head, t_cmddat *data)
+{
     t_node *new_node;
     t_node *current;
 
@@ -22,11 +23,15 @@ void add_node_to_list(t_prompt *prompt, t_node **head, t_cmddat *data) {
     new_node->data = data;
     new_node->next = NULL;
 
-    if (*head == NULL) {
+    if (*head == NULL)
+    {
         *head = new_node;
-    } else {
+    }
+    else
+    {
         current = *head;
-        while (current->next != NULL) {
+        while (current->next != NULL)
+        {
             current = current->next;
         }
         current->next = new_node;

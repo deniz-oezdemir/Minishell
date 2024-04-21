@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 16:04:14 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 23:20:24 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,15 +162,15 @@ static int	ft_count_words(const char *str, char *sep)
 	return (count);
 }
 
-/*Create */
+
 static char	**ft_create_substrs(t_prompt *prompt, char **aux, char const *s, char *set)
 {
 	int		s_len;
-	int		i = 0; // Index courant dans la chaîne s
-	int		start_index = 0; // Index de début du mot en cours
-	int		word_index = 0; // Index dans le tableau de mots
-	int		sgq = 0; // sgq pour guillemet simple
-	int		dbq = 0; // dbq pour guillemet double
+	int		i = 0;
+	int		start_index = 0;
+	int		word_index = 0;
+	int		sgq = 0;
+	int		dbq = 0;
 
 	s_len = ft_strlen(s);
 	while (s[i])

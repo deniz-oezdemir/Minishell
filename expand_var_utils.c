@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:43:45 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 17:44:46 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 23:18:36 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,6 @@ ssize_t	get_len_var(char *str, int i)
 	}
 	return (count);
 }
-
-/*
-I need
-str : A pointer to the dollar sign marking the beginning of the variable
-var_len : lenght of the worf to expand
-env : the current env (get it from prompt->envp )
-
-Goes the current env and tries to find the name of the variable
-using ft_strncmp
-If it finds a potential match, it checks if the next char is =
-the returns A POINTER to the expanded variable or empty string if
-no match found
-*/
 
 /*
 Searches for the value of the environment variable
@@ -69,6 +56,7 @@ static char	*get_ptr_var(char *str, size_t var_exp_len, char **env)
 }
 
 
+
 /*
 Creates a substring by expanding the environment
 variable specified by the substring in the string
@@ -85,16 +73,13 @@ variable to be expanded.
   Returns:
     - Pointer to the newly created string with the expanded environment variable.
 */
-
-
-//@Leo: not gc'ed but freed as to many params
 char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len)
 {
-	char *s1; //partie avant $ //part before $
-	char *s2; //value of the variable to expand
-	char *s3; // apres $ //part after $
-	char *expanded_tmp;
-	char *expanded_str; //should be put to NULL?
+	char	*s1;
+	char	*s2;
+	char	*s3;
+	char	*expanded_tmp;
+	char	*expanded_str;
 
 	expanded_tmp = NULL;
 	s1 = ft_substr(str, 0, i);
@@ -102,11 +87,9 @@ char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len)
 	s2 = ft_strdup(get_ptr_var(&str[i + 1], len, ev));
 	if (s2 == NULL)
 	{
-
 		free(s1);
 		free(s3);
-		return NULL;
-		//expanded_str = ft_strjoin(s1, s3);
+		return (NULL);
 	}
 	else
 	{
@@ -122,13 +105,13 @@ char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len)
 	return (expanded_str);
 }
 
-//@Leo: not gc'ed but freed as to many params
+
 char	*create_sub(char *str, size_t i, char *nb, ssize_t len)
 {
-	char *s1; //partie avant $ //part before $
-	char *s3; // apres $ //part after $
-	char *expanded_tmp;
-	char *expanded_str; //should be put to NULL?
+	char	*s1;
+	char	*s3;
+	char	*expanded_tmp;
+	char	*expanded_str;
 
 	s1 = ft_substr(str, 0, i);
 	s3 = ft_substr(str, i + len + 1, ft_strlen(str) - i - len);

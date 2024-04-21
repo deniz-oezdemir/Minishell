@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 22:54:41 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 23:24:55 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 
 	content = NULL;
 	line = NULL;
-	exitstatus = 0; //why?
+	exitstatus = 0; //@deniz why?
 	while (1)
 	{
 		signals_interactive();
@@ -63,12 +63,9 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 int	pipe_heredoc(char *content)
 {
 	int	pip[2];
-	// printf("content : %s\n", content);
-	// printf("end\n");
+
 	if (exitstatus) //@deniz why?
 		return (0);
-
-	//check for meta chars / expand env vars -> @Leo
 	if (!pipe(pip))
 	{
 
