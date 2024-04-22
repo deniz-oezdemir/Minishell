@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:45:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 20:09:01 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:51:41 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,13 @@ void	free_split(char **strs)
 void	add_last_cmd_to_envp(t_prompt *prompt)
 {
 	int	l;
+	t_cmddat *cmd;
 
 	l = 0;
 	if (!prompt->cmd_list->data->full_command)
 		return ;
-	l = get_len_arr(prompt->cmd_list->data->full_command);
+	cmd = cstm_lstlast(prompt->cmd_list)->data;
+	l = get_len_arr(cmd->full_command); //@Leo can full_command ever be NULL? otherwise we do not need this check
 	if (l)
-		modify_envp(prompt, "_", grbg_strdup(prompt, prompt->cmd_list->data->full_command[l - 1]));
+		modify_envp(prompt, "_", grbg_strdup(prompt, cmd->full_command[0]));
 }

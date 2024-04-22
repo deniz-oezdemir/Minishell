@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:08:21 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/21 16:34:24 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:47:36 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ int	cstm_export(t_cmddat *cmd)
 	r = 0;
 	i = 1;
 	id_len = 0;
+	if (cmd->outfile != 1) //if pipe after export
+	{
+		cmd->outfile = 1;
+		return (0);
+	}
 	if (get_len_arr(cmd->full_command) == 1)
 		return (print_export(cmd));
 	if (!cmd->prompt->envp && get_len_arr(cmd->full_command) > 1
