@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 23:18:51 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:59:46 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,18 @@ char	**expander(t_prompt *prompt, char **str, char **ev)
 	}
 	temp[i] = NULL;
 	i = 0;
-	while(temp[i] != NULL)
+	while (temp[i] != NULL)
 	{
 		if (ft_strcmp(temp[i], "") == 0)
 		{
-			del_str_from_array(temp,i,1);
-			i=0;
+			del_str_from_array(temp, i, 1);
+			i = 0;
 		}
 		else
-		i++;
-
+			i++;
 	}
 	return (temp);
 }
-
-
-/*
-
-*/
 
 /*
   Expands environment variables in the string `str` using
@@ -72,7 +66,7 @@ char	**expander(t_prompt *prompt, char **str, char **ev)
   Returns:
     - Pointer to the modified string with expanded environment variables.
 */
-char *expand_var(t_prompt *prompt, char *str, char **ev)
+char	*expand_var(t_prompt *prompt, char *str, char **ev)
 {
 	int		sgq;
 	int		dbq;

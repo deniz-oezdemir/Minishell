@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:22:52 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 23:19:11 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:51:23 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,6 @@ static int	is_only_space(const char *str)
 	}
 	return (1);
 }
-/*take an input sequence of characters and divide them into "tokens*/
-
-/*
-test : echo hello
-Before split : prompt.input_string = "echo hello"
-after split : prompt.commands = [ "echo", "hello", NULL]
-*/
 
 void	lexer(t_prompt *prompt)
 {
@@ -56,5 +49,3 @@ void	lexer(t_prompt *prompt)
 	if (prompt->stop != 1)
 		prompt->commands = expander(prompt, prompt->commands, prompt->envp);
 }
-
-

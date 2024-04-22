@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:31:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 20:46:21 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:57:58 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,10 @@ char	**del_str_from_array(char **array, int pos, int count)
 	int	i;
 	int	buff;
 
-	//printf("enters del\n");
 	i = 0;
 	while (i++ < count)
 	{
 		buff = pos;
-		//free(array[buff]);
 		while (array[++buff])
 			array[buff - 1] = array[buff];
 		array[buff - 1] = NULL;
@@ -65,7 +63,6 @@ char	**add_str_to_arr(t_prompt *prompt, char **arr, char *str)
 	int		l;
 
 	l = get_len_arr(arr);
-	//new = ft_calloc(l + 2, sizeof(char *));
 	new = get_grbg(prompt, l + 2, sizeof(char *));
 	if (!new)
 		return (NULL);
@@ -76,68 +73,6 @@ char	**add_str_to_arr(t_prompt *prompt, char **arr, char *str)
 		new[l] = grbg_strdup(prompt, arr[l]);
 		l--;
 	}
-	//free_char_array(arr);
 	return (new);
 }
 
-// char **del_str_from_array(char **array, int pos, int count)
-// {
-// 	int	new_size;
-// 	int	i;
-// 	int	j;
-// 	char	**temp;
-
-// 	j = 0;
-// 	i = 0;
-// 	new_size = 0;
-// 	new_size = get_len_arr(array) - count;
-// 	temp = (char **)malloc((new_size + 1) * sizeof(char *));
-// 	if (temp == NULL)
-// 		return (NULL);
-// 	while (array[i])
-// 	{
-// 		if (i < pos || i >= pos + count)
-// 		{
-// 			temp[j] = array[i];
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	temp[j] = NULL;
-// 	free(array);
-// 	return (temp);
-// }
-
-void	print_err_msg(char *cmd, char *msg) //replace with below print_err_msg_lng if possible
-{
-	if (!msg)
-		return ;
-	ft_putstr_fd("minishell: ", 2);
-	if (cmd)
-	{
-		ft_putstr_fd(cmd, 2);
-		ft_putstr_fd(": ", 2);
-	}
-	ft_putstr_fd(msg, 2);
-	ft_putstr_fd("\n", 2);
-}
-
-int print_err_msg_lng(char *cmd, char *msg, char *arg) //different -> compare all err msgs with bash
-{
-	//check arg, msg, cmd != NULL necessary?
-	ft_putstr_fd("minishell: ", 2);
-	if (cmd)
-		ft_putstr_fd(cmd, 2);
-	if (arg)
-	{
-		ft_putstr_fd(": ", 2);
-		ft_putstr_fd(arg, 2);
-	}
-	if (msg)
-	{
-		ft_putstr_fd(": ", 2);
-		ft_putstr_fd(msg, 2);
-	}
-	ft_putstr_fd("\n", 2);
-	return (1);
-}
