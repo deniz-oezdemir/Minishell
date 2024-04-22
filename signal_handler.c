@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:55:10 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 14:36:14 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:51:04 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ void	signals_non_interactive(void)
 	signal(SIGQUIT, handle_sig_quit);
 }
 
+void	signals_here_doc(void)
+{
+	signal(SIGINT, handle_sig_int);
+	signal(SIGQUIT, handle_sig_quit);
+}
 /*
  Ctrl+\
  131
@@ -42,11 +47,15 @@ void	handle_sig_quit(int n)
 /* Ctrl+c*/
 void	handle_sig_int(int n)
 {
-	(void)n;
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	write(1, "\n", STDERR_FILENO);
-	rl_redisplay();
+	//(void)n;
+	if (n == SIGINT)
+	{
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		write(1, "\n", STDERR_FILENO);
+		rl_redisplay();
+	}
+
 	// if (n == SIGINT)
 	// 	exitstatus = 130;
 }

@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 14:36:35 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:45:32 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,6 +265,8 @@ char	*grbg_substr(t_prompt *prompt, char const *s, unsigned int start, size_t le
 char	*grbg_itoa(t_prompt *prompt, int n);
 char	*grbg_strjoin(t_prompt *prompt, char const *s1, char const *s2);
 
+
+void	signals_here_doc(void);
 // void	sig_handler_here_doc(int num);
 // void	sig_handler_after_rl(int num);
 // void	sig_handler_rl(int num);

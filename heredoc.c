@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 14:35:51 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:53:12 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 		collect_grbg(prompt, line);
 		//signal(SIGINT, &sig_handler_after_rl);
 		signals_non_interactive();
+
 		if (!line)
 		{
 			print_err_msg("warning", "here-document delimited by end-of-file");
