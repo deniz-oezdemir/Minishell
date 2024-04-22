@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 16:13:52 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:32:52 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct s_cmddat
 	char		*full_path;
 	int			infile;
 	int			outfile;
+	int			lst_pos; //@Deniz: needs init, and function that assigns it
 	t_prompt	*prompt;
 	int			file_open_error;
 }	t_cmddat;
@@ -264,4 +265,9 @@ char	*grbg_substr(t_prompt *prompt, char const *s, unsigned int start, size_t le
 char	*grbg_itoa(t_prompt *prompt, int n);
 char	*grbg_strjoin(t_prompt *prompt, char const *s1, char const *s2);
 
+
+void sig_handler_heredoc(int num);
+void	sig_handler_after_rl(int num);
+
 #endif
+
