@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 13:36:18 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:01:44 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	pipe_infile_outfile(t_node *cmd_lst)
 			close(pip[1]);
 		if (cmd_lst->next->data->infile == 0) //LEO ADDED THIS
 			cmd_lst->next->data->infile = pip[0];
+		else
+			close(pip[0]);
 		cmd_lst=cmd_lst->next;
 		free(pip);
 	}
