@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:45:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 14:17:21 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:01:45 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_path_cmds(t_cmddat *cmd, char **ev)
 		return (NULL);
 	if (!access(cmd->full_command[0], 1))
 		return (ft_strdup(cmd->full_command[0]));
-	path = get_path(cmd->full_command[0], ev);
+	path = get_path(cmd->full_command[0], ev, 0);
 	return (path);
 }
 
@@ -31,14 +31,12 @@ Searches through the PATH variable to find the full path of
 the command (where it is executed),
 returns the full path (including the command) if found, or
 NULL if the command is not in any of the specified paths. */
-char	*get_path(char *cmd, char **ev)
+char	*get_path(char *cmd, char **ev, size_t i)
 {
 	char	**all_paths;
 	char	*path;
 	char	*path_part;
-	size_t	i;
 
-	i = 0;
 	while (ev[i] && ft_strnstr(ev[i], "PATH", 4) == 0)
 		i++;
 	if (i == get_len_arr(ev))
@@ -74,14 +72,14 @@ void	free_split(char **strs)
 	free(strs);
 }
 
-void	add_last_cmd_to_envp(t_prompt *prompt)
+void	add_last_cmd_to_envp(t_prompt *p)
 {
 	int	l;
 
 	l = 0;
-	if (!prompt->cmd_list->data->full_command)
+	if (!p->cmd_list->data->full_command)
 		return ;
-	l = get_len_arr(prompt->cmd_list->data->full_command);
+	l = get_len_arr(p->cmd_list->data->full_command);
 	if (l)
-		modify_envp(prompt, "_", grbg_strdup(prompt, prompt->cmd_list->data->full_command[l - 1]));
+		modify_envp(p, "_", grbg_strdup(p, p->cmd_list->data->full_command[l - 1]));
 }

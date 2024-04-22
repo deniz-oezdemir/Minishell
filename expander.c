@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 13:59:46 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:08:24 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ char	*expand_var(t_prompt *prompt, char *str, char **ev)
 
 	if (ft_strcmp(str, "$") && ft_strlen(str) == 3)
 		return (str);
-
 	while (str[i])
 	{
 		sgq = (sgq + (!dbq && str[i] == '\'')) % 2;

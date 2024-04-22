@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 16:06:34 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:02:09 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ char *add_space(t_prompt *prompt, char *str);
 //void	parser(t_prompt *prompt);
 void	parser(t_prompt *prompt, int i, int j);
 char	**fill_arr(t_prompt *main_prompt, char **prompt, int i, int len);
-void	add_last_cmd_to_envp(t_prompt *prompt);
+void	add_last_cmd_to_envp(t_prompt *p);
 
 /* list_utils */
 void	add_node_to_list(t_prompt *prompt, t_node **head, t_cmddat *data);
@@ -211,7 +211,7 @@ int	ft_listsize(t_node *lst);
 
 /* envp_utils.c*/
 char	*get_path_cmds(t_cmddat *cmd, char **ev);
-char	*get_path(char *cmd, char **ev);
+char	*get_path(char *cmd, char **ev, size_t i);
 void	free_split(char **strs);
 
 
