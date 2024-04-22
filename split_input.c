@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 23:20:24 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/21 23:41:47 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@
 	by a space in the string.
 */
 
-static int special_len(char *str) {
+static int special_len(char *str)
+{
 	size_t i;
 	int count;
 
@@ -56,6 +57,7 @@ static int special_len(char *str) {
 	count++;
 	return (count);
 }
+
 
 
 char *add_space(t_prompt *prompt, char *str)
@@ -162,7 +164,9 @@ static int	ft_count_words(const char *str, char *sep)
 	return (count);
 }
 
+/*
 
+*/
 static char	**ft_create_substrs(t_prompt *prompt, char **aux, char const *s, char *set)
 {
 	int		s_len;

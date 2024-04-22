@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 23:23:44 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:36:18 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	launch_minishell(t_prompt *prompt)
 			add_history(prompt->input_string);
 		if (prompt->stop == 0)
 			parser(prompt, 0, 0);
+		//print_cmd_list(prompt->cmd_list);
 		if (cstm_lstsize(prompt->cmd_list) > 1 && prompt->stop == 0)
 			pipe_infile_outfile(prompt->cmd_list); //@Deniz: not gc'ed within pipe_infile_outfile as does not leak
 		//print_cmd_list(prompt->cmd_list);
@@ -74,7 +75,8 @@ void	pipe_infile_outfile(t_node *cmd_lst)
 			cmd_lst->data->outfile = pip[1];
 		else
 			close(pip[1]);
-		cmd_lst->next->data->infile = pip[0];
+		if (cmd_lst->next->data->infile == 0) //LEO ADDED THIS
+			cmd_lst->next->data->infile = pip[0];
 		cmd_lst=cmd_lst->next;
 		free(pip);
 	}
