@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 20:12:21 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 13:51:43 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:12:49 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,27 @@ int	init_env(t_prompt *prompt, char **env)
 	}
 	prompt->envp[i] = NULL;
 	return (1);
+}
+
+/*
+  Initializes a new structure t_cmddat with default values.
+  Allocates memory for the structure and returns a pointer to it.
+
+  Returns:
+    - Pointer to the newly initialized t_cmddat structure.
+*/
+t_cmddat	*init_struct_cmd(t_prompt *prompt)
+{
+	t_cmddat	*ptr;
+
+	ptr = get_grbg(prompt, 1, sizeof(t_cmddat));
+	if (!ptr)
+		return (NULL);
+	ptr->full_command = NULL;
+	ptr->full_path = NULL;
+	ptr->infile = STDIN_FILENO;
+	ptr->outfile = STDOUT_FILENO;
+	ptr->prompt = prompt;
+	ptr->file_open_error = 0;
+	return (ptr);
 }

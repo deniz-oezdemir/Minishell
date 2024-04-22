@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 16:13:52 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:13:00 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ void	pipe_infile_outfile(t_node *cmd_lst);
 /*	init	*/
 void	init_prompt_struct(t_prompt *prompt, char **envp);
 int	init_env(t_prompt *prompt, char **env);
+t_cmddat	*init_struct_cmd(t_prompt *prompt);
 
 /*	signal_handler	*/
 void	sigint_handler(int signum);
