@@ -6,14 +6,11 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 23:39:11 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:55:09 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-
-/*cat < input.txt | grep "pattern" >> output.txt*/
 
 /*
   Determines the type of redirection for the given string `str`
@@ -131,20 +128,7 @@ int	open_file(char **cmds, int i, int *save_fd, int io_flags[2] )
 	return (0);
 }
 
-int	syntax_error(t_prompt *prompt, char *token)
-{
-	if (prompt)
-		prompt->stop = 1;
-	if (!token)
-		print_err_msg(NULL, "syntax error near unexpected token `newline'");
-	else
-	{
-		ft_putstr_fd("minishell: syntax error near unexpected token `", 2);
-		ft_putstr_fd(token, 2);
-		ft_putstr_fd("'\n", 2);
-	}
-	return (0);
-}
+
 /*
 Indicates that the file should be...
 O_RDONLY: opened in read-only mode.

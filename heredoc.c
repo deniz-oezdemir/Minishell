@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 23:24:55 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:23:22 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i)
 {
 	char	*lim;
-	size_t		j;
+	size_t	j;
 
 	lim = prompt->commands[i + 1];
 	j = 0;
@@ -34,19 +34,23 @@ void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i)
 
 int	get_heredoc(t_prompt *prompt, char *lim)
 {
-	char *content;
-	char *line;
+	char	*content;
+	char	*line;
 
 	content = NULL;
 	line = NULL;
 	exitstatus = 0; //@deniz why?
+	signals_here_doc();
 	while (1)
 	{
-		signals_interactive();
+
+		//signals_interactive();
 		line = readline("> ");
 		collect_grbg(prompt, line);
-		signals_non_interactive();
-		if (!line) //if e.g. Ctrl+D
+
+		//signals_non_interactive();
+
+		if (!line)
 		{
 			print_err_msg("warning", "here-document delimited by end-of-file");
 			break ;
@@ -57,6 +61,7 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 		content = add_to_str(prompt, &content, line);
 		content = add_to_str(prompt, &content, "\n");
 	}
+	signals_non_interactive();
 	return (pipe_heredoc(content));
 }
 

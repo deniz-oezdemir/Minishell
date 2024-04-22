@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 14:01:44 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:10:32 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	launch_minishell(t_prompt *prompt)
 	while (1)
 	{
 		signals_interactive();
+		// signal(SIGINT, &sig_handler_rl);
+		// signal(SIGQUIT, SIG_IGN);
 		prompt->stop = 0;
 		lexer(prompt);
 		if (prompt->commands)

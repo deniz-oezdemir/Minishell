@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 20:12:21 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/20 14:21:28 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:12:49 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	init_env(t_prompt *prompt, char **env)
 	int	i;
 
 	i = 0;
-	//prompt->envp = ft_calloc((get_len_arr(env) +1), sizeof(char *));
 	prompt->envp = get_grbg(prompt, get_len_arr(env) + 1, sizeof(char *));
 	if (!prompt->envp)
 	{
@@ -62,11 +61,9 @@ int	init_env(t_prompt *prompt, char **env)
 	}
 	while (env[i])
 	{
-		//prompt->envp[i] = ft_strdup(env[i]);
 		prompt->envp[i] = grbg_strdup(prompt, env[i]);
 		if (!prompt->envp[i])
 		{
-			//free_char_array(prompt->envp);
 			printf("Error env");
 			return (0);
 		}
@@ -74,4 +71,27 @@ int	init_env(t_prompt *prompt, char **env)
 	}
 	prompt->envp[i] = NULL;
 	return (1);
+}
+
+/*
+  Initializes a new structure t_cmddat with default values.
+  Allocates memory for the structure and returns a pointer to it.
+
+  Returns:
+    - Pointer to the newly initialized t_cmddat structure.
+*/
+t_cmddat	*init_struct_cmd(t_prompt *prompt)
+{
+	t_cmddat	*ptr;
+
+	ptr = get_grbg(prompt, 1, sizeof(t_cmddat));
+	if (!ptr)
+		return (NULL);
+	ptr->full_command = NULL;
+	ptr->full_path = NULL;
+	ptr->infile = STDIN_FILENO;
+	ptr->outfile = STDOUT_FILENO;
+	ptr->prompt = prompt;
+	ptr->file_open_error = 0;
+	return (ptr);
 }

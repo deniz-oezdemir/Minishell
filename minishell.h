@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 16:13:52 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:02:09 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <unistd.h>
 # include <readline/history.h>
 # include <fcntl.h>
+# include <sys/ioctl.h>
+
 
 # include "./libft/libft.h"
 
@@ -127,6 +129,7 @@ void	pipe_infile_outfile(t_node *cmd_lst);
 /*	init	*/
 void	init_prompt_struct(t_prompt *prompt, char **envp);
 int	init_env(t_prompt *prompt, char **env);
+t_cmddat	*init_struct_cmd(t_prompt *prompt);
 
 /*	signal_handler	*/
 void	sigint_handler(int signum);
@@ -199,7 +202,7 @@ char *add_space(t_prompt *prompt, char *str);
 //void	parser(t_prompt *prompt);
 void	parser(t_prompt *prompt, int i, int j);
 char	**fill_arr(t_prompt *main_prompt, char **prompt, int i, int len);
-void	add_last_cmd_to_envp(t_prompt *prompt);
+void	add_last_cmd_to_envp(t_prompt *p);
 
 /* list_utils */
 void	add_node_to_list(t_prompt *prompt, t_node **head, t_cmddat *data);
@@ -208,7 +211,7 @@ int	ft_listsize(t_node *lst);
 
 /* envp_utils.c*/
 char	*get_path_cmds(t_cmddat *cmd, char **ev);
-char	*get_path(char *cmd, char **ev);
+char	*get_path(char *cmd, char **ev, size_t i);
 void	free_split(char **strs);
 
 
@@ -264,4 +267,9 @@ char	*grbg_substr(t_prompt *prompt, char const *s, unsigned int start, size_t le
 char	*grbg_itoa(t_prompt *prompt, int n);
 char	*grbg_strjoin(t_prompt *prompt, char const *s1, char const *s2);
 
+
+void	signals_here_doc(void);
+void	sig_handler_here_doc(int num);
+// void	sig_handler_after_rl(int num);
+// void	sig_handler_rl(int num);
 #endif

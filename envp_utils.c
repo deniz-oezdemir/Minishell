@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:45:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 16:51:41 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:10:43 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,13 @@
 
 char	*get_path_cmds(t_cmddat *cmd, char **ev)
 {
-	//printf("here\n");
 	char	*path;
+
 	if (get_builtin_nbr(cmd) != 0)
 		return (NULL);
 	if (!access(cmd->full_command[0], 1))
 		return (ft_strdup(cmd->full_command[0]));
-	//printf("full")
-	path = get_path(cmd->full_command[0], ev);
+	path = get_path(cmd->full_command[0], ev, 0);
 	return (path);
 }
 
@@ -32,16 +31,13 @@ Searches through the PATH variable to find the full path of
 the command (where it is executed),
 returns the full path (including the command) if found, or
 NULL if the command is not in any of the specified paths. */
-char	*get_path(char *cmd, char **ev)
+char	*get_path(char *cmd, char **ev, size_t i)
 {
 	char	**all_paths;
 	char	*path;
 	char	*path_part;
-	size_t		i;
 
-	i = 0;
-
-	while (ev[i] && ft_strnstr(ev[i], "PATH", 4) == 0) //PATH can not be found if unset PATH
+	while (ev[i] && ft_strnstr(ev[i], "PATH", 4) == 0)
 		i++;
 	if (i == get_len_arr(ev))
 		return (NULL);
@@ -55,7 +51,6 @@ char	*get_path(char *cmd, char **ev)
 		if (access(path, F_OK) == 0)
 		{
 			free_split(all_paths);
-			//print_char_array(path);
 			return (path);
 		}
 		free(path);
@@ -83,7 +78,7 @@ void	add_last_cmd_to_envp(t_prompt *prompt)
 	t_cmddat *cmd;
 
 	l = 0;
-	if (!prompt->cmd_list->data->full_command)
+	if (!p->cmd_list->data->full_command)
 		return ;
 	cmd = cstm_lstlast(prompt->cmd_list)->data;
 	l = get_len_arr(cmd->full_command); //@Leo can full_command ever be NULL? otherwise we do not need this check
