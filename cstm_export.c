@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:08:21 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/22 17:07:01 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/22 17:57:33 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	cstm_export(t_cmddat *cmd)
 	r = 0;
 	i = 1;
 	id_len = 0;
-	if (cmd->outfile != 1) //if pipe after export
+	if (cmd->outfile != 1) //if pipe after export //might've fucked up redicrections although tester does not show difference //@Deniz: instead IDEA (similar for echo): function that iterates through command list and assigns every cmd_struct it's position in the cmd_list -> if echo is not the first cmd, there is a piupe infront of it
 	{
 		close(cmd->outfile);
 		cmd->outfile = 1;
