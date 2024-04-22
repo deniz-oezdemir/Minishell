@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:55:10 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 14:51:04 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:32:09 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	signals_non_interactive(void)
 
 void	signals_here_doc(void)
 {
-	signal(SIGINT, handle_sig_int);
-	signal(SIGQUIT, handle_sig_quit);
+	signal(SIGINT, sig_handler_here_doc);
+	signal(SIGQUIT, SIG_IGN);
 }
 /*
  Ctrl+\
@@ -60,30 +60,22 @@ void	handle_sig_int(int n)
 	// 	exitstatus = 130;
 }
 
-// void	sig_handler_here_doc(int num)
-// {
-// 	if (num == SIGINT)
-// 	{
-// 		exitstatus = 1;
-// 		write(1, "\n", STDERR_FILENO);
-// 		//ioctl(STDIN_FILENO, TIOCSTI, "\n");
-// 		rl_replace_line("", 0);
-// 		rl_on_new_line();
-// 	}
-// }
-// void	sig_handler_after_rl(int num)
-// {
-// 	if (num == SIGINT)
-// 		exitstatus = 130;
-// }
-// void	sig_handler_rl(int num)
-// {
-// 	if (num == SIGINT)
-// 	{
-// 		exitstatus = 1;
-// 		write(1, "\n", STDERR_FILENO);
-// 		//ioctl(STDIN_FILENO, TIOCSTI, "\n");
-// 		rl_replace_line("", 0);
-// 		rl_on_new_line();
-// 	}
-// }
+void	sig_handler_here_doc(int num)
+{
+
+	(void)num;
+	ft_putendl_fd("", STDOUT_FILENO);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+
+	// if (num == SIGINT)
+	// {
+	// 	exitstatus = 1;
+		//write(1, "\n", STDERR_FILENO);
+	//rl_on_new_line();
+	//ioctl(STDIN_FILENO, TIOCSTI, "\n");
+	//rl_redisplay();
+	//rl_replace_line("", 0);
+}
+
