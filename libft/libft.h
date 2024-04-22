@@ -13,10 +13,19 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+# if BUFFER_SIZE < 0
+#  undef BUFFER_SIZE
+#  define BUFFER_SIZE 0
+# endif
+
 # include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
+# include <stddef.h>
 
 typedef struct s_list
 {
@@ -77,5 +86,9 @@ int		print_char(va_list args);
 int		print_int(va_list args);
 int		print_unsigned(va_list args);
 int		check_type(char c, va_list args);
+
+char	*get_next_line(int fd);
+char	*fill_line(int fd, char *line);
+char	*set_left(char *line);
 
 #endif

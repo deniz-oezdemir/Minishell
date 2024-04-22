@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:45:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 18:10:43 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:12:07 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	add_last_cmd_to_envp(t_prompt *prompt)
 	t_cmddat *cmd;
 
 	l = 0;
-	if (!p->cmd_list->data->full_command)
+	if (!prompt->cmd_list->data->full_command)
 		return ;
 	cmd = cstm_lstlast(prompt->cmd_list)->data;
 	l = get_len_arr(cmd->full_command); //@Leo can full_command ever be NULL? otherwise we do not need this check

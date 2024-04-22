@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 16:23:22 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:24:56 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 	while (1)
 	{
 
-		//signals_interactive();
+		signals_interactive();
+		//line = get_next_line(42);
 		line = readline("> ");
 		collect_grbg(prompt, line);
 
-		//signals_non_interactive();
+		signals_non_interactive();
 
 		if (!line)
 		{

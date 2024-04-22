@@ -49,6 +49,9 @@ SRC =	./ft_isalnum.c		\
 	./print_hexa.c 		\
 	./print_pointeur.c 	\
 	./ft_strcmp.c		\
+	./get_next_line.c	\
+
+	
 
 OBJS = $(SRC:.c=.o)
 
