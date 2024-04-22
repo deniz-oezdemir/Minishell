@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:08:21 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/22 16:47:36 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/22 17:07:01 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	cstm_export(t_cmddat *cmd)
 	id_len = 0;
 	if (cmd->outfile != 1) //if pipe after export
 	{
+		close(cmd->outfile);
 		cmd->outfile = 1;
 		return (0);
 	}
