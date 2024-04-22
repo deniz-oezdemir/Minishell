@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:43:45 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 23:18:36 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:16:10 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ static char	*get_ptr_var(char *str, size_t var_exp_len, char **env)
 	}
 	return (NULL);
 }
-
-
 
 /*
 Creates a substring by expanding the environment

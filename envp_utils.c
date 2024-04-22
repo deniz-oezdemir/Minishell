@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:45:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 20:09:01 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:17:21 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,12 @@
 
 char	*get_path_cmds(t_cmddat *cmd, char **ev)
 {
-	//printf("here\n");
 	char	*path;
+
 	if (get_builtin_nbr(cmd) != 0)
 		return (NULL);
 	if (!access(cmd->full_command[0], 1))
 		return (ft_strdup(cmd->full_command[0]));
-	//printf("full")
 	path = get_path(cmd->full_command[0], ev);
 	return (path);
 }
@@ -37,11 +36,10 @@ char	*get_path(char *cmd, char **ev)
 	char	**all_paths;
 	char	*path;
 	char	*path_part;
-	size_t		i;
+	size_t	i;
 
 	i = 0;
-
-	while (ev[i] && ft_strnstr(ev[i], "PATH", 4) == 0) //PATH can not be found if unset PATH
+	while (ev[i] && ft_strnstr(ev[i], "PATH", 4) == 0)
 		i++;
 	if (i == get_len_arr(ev))
 		return (NULL);
@@ -55,7 +53,6 @@ char	*get_path(char *cmd, char **ev)
 		if (access(path, F_OK) == 0)
 		{
 			free_split(all_paths);
-			//print_char_array(path);
 			return (path);
 		}
 		free(path);
