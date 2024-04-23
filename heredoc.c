@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 16:23:22 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/23 17:29:52 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i)
 	char	*lim;
 	size_t	j;
 
-	lim = prompt->commands[i + 1];
+	lim = cmd->full_command[i + 1]; //leo changed this so it's from the right command
+	//printf("lim : %s\n", lim);
 	j = 0;
+
 	while (ft_isalnum(lim[j]))
 		j++;
+	//printf("j : %zu \n", j);
 	if (j != ft_strlen(lim))
 	{
 		ft_putstr_fd("minishell: input error: delimiter must contain only alphanumeric characters\n", 2);
@@ -44,12 +47,10 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 	while (1)
 	{
 
-		//signals_interactive();
+		signals_interactive();
 		line = readline("> ");
 		collect_grbg(prompt, line);
-
-		//signals_non_interactive();
-
+		signals_non_interactive();
 		if (!line)
 		{
 			print_err_msg("warning", "here-document delimited by end-of-file");
@@ -61,7 +62,6 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 		content = add_to_str(prompt, &content, line);
 		content = add_to_str(prompt, &content, "\n");
 	}
-	signals_non_interactive();
 	return (pipe_heredoc(content));
 }
 
@@ -73,7 +73,6 @@ int	pipe_heredoc(char *content)
 		return (0);
 	if (!pipe(pip))
 	{
-
 		ft_putstr_fd(content, pip[1]);
 		close(pip[1]);
 		return (pip[0]);

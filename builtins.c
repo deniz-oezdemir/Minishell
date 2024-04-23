@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 10:34:24 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/21 18:44:16 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/23 17:34:46 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 int	get_builtin_nbr(t_cmddat *cmd)
 {
-	if (cmd->full_command == NULL)
+	//leo modified this
+	if (cmd->full_command == NULL || cmd->full_command[0] == NULL)
 		return (0);
+
+	//printf("cmd->full_command[0] : %s\n", cmd->full_command[0]);
 	else if (!ft_strcmp(cmd->full_command[0], "echo"))
 		return (1);
 	else if (!ft_strcmp(cmd->full_command[0], "cd"))

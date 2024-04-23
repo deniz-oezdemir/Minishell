@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 18:10:32 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/23 16:49:56 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void	launch_minishell(t_prompt *prompt)
 		// signal(SIGQUIT, SIG_IGN);
 		prompt->stop = 0;
 		lexer(prompt);
-		if (prompt->commands)
-			add_history(prompt->input_string);
 		if (prompt->stop == 0)
 			parser(prompt, 0, 0);
 		//print_cmd_list(prompt->cmd_list);

@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:22:52 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 14:36:00 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/23 16:03:49 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	lexer(t_prompt *prompt)
 	prompt->input_string = readline("minishell> ");
 	collect_grbg(prompt, prompt->input_string);
 	signals_non_interactive();
+	add_history(prompt->input_string);
 	//signal(SIGINT, &sig_handler_after_rl);
 	if (prompt->input_string == NULL)
 	{
