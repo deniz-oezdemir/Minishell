@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:55:10 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 16:32:09 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:15:04 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,24 @@ void	handle_sig_int(int n)
 void	sig_handler_here_doc(int num)
 {
 
-	(void)num;
-	ft_putendl_fd("", STDOUT_FILENO);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
+// 	 if (num != SIGINT)
+// 	 	return ;
+// 	//ft_putendl_fd("", STDOUT_FILENO);
+// 	rl_on_new_line();
+// 	ioctl(STDIN_FILENO, TIOCSTI, "\n");
+// 	// rl_replace_line("", 0);
+// 	// rl_redisplay();
 
-	// if (num == SIGINT)
-	// {
-	// 	exitstatus = 1;
+	if (num == SIGINT)
+	{
+		exitstatus = 1;
+	}
 		//write(1, "\n", STDERR_FILENO);
 	//rl_on_new_line();
-	//ioctl(STDIN_FILENO, TIOCSTI, "\n");
-	//rl_redisplay();
-	//rl_replace_line("", 0);
+	ioctl(STDIN_FILENO, TIOCSTI, "\n");
+	rl_redisplay();
+	rl_replace_line("", 0);
+
 }
+
 

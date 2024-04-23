@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/23 17:29:52 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:20:46 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 	content = NULL;
 	line = NULL;
 	exitstatus = 0; //@deniz why?
-	signals_here_doc();
+
 	while (1)
 	{
-
+		//signals_here_doc(); //does not work
 		signals_interactive();
 		line = readline("> ");
 		collect_grbg(prompt, line);
@@ -69,8 +69,13 @@ int	pipe_heredoc(char *content)
 {
 	int	pip[2];
 
-	if (exitstatus) //@deniz why?
-		return (0);
+	if (exitstatus)
+	{
+		//printf("pipe\n");
+		return (0); //@deniz why?
+	}
+
+
 	if (!pipe(pip))
 	{
 		ft_putstr_fd(content, pip[1]);
