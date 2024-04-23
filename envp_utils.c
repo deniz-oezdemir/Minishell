@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:45:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/23 16:51:29 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/23 17:44:54 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,24 @@
 
 /* no garbage collection for any functions in this file as they do not leak */
 
-// char	*get_path_cmds(t_cmddat *cmd, char **ev)
-// {
-// 	char	*path;
-
-// 	if (get_builtin_nbr(cmd) != 0)
-// 		return (NULL);
-// 	if (!access(cmd->full_command[0], 1))
-// 		return (ft_strdup(cmd->full_command[0]));
-// 	path = get_path(cmd->full_command[0], ev, 0);
-// 	return (path);
-// }
-
-
 char	*get_path_cmds(t_cmddat *cmd, char **ev)
 {
 	char	*path;
+	int		i;
 
+	i = 0;
 	if (get_builtin_nbr(cmd) != 0)
 		return (NULL);
 	if (!access(cmd->full_command[0], 1))
 		return (ft_strdup(cmd->full_command[0]));
-	path = get_path(cmd->full_command[0], ev, 0);
+	while (cmd->full_command[i])
+	{
+		path = get_path(cmd->full_command[i], ev, 0);
+		if (path)
+			break;
+		i++;
+	}
+
 	return (path);
 }
 
