@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 20:48:07 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 20:48:31 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 20:50:45 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ static void	add_spaces_double(char *str, char **new_str, int *j, size_t *i)
 	}
 	return ;
 }
+
 static	void	add_spaces(char *str, char **new_str, int *j, size_t *i)
 {
 	if ((str[(*i)] == '>' && str[(*i) + 1] == '>')
@@ -122,12 +123,10 @@ char	*handle_spaces(t_prompt *prompt, char *str, size_t i, int j)
 	new_str = allocate_mem(prompt, str);
 	while (str[i])
 	{
-
 		sgq = (sgq + (!dbq && str[i] == '\'')) % 2;
 		dbq = (dbq + (!sgq && str[i] == '\"')) % 2;
 		if (!sgq && !dbq)
 		{
-
 			add_spaces(str, &new_str, &j, &i);
 		}
 		else
