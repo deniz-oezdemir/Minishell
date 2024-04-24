@@ -6,12 +6,11 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:43:45 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 14:16:10 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:07:17 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 /*
 Gets the lenght of the var to expand, starting from after the$
@@ -83,26 +82,22 @@ char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len)
 	s1 = ft_substr(str, 0, i);
 	s3 = ft_substr(str, i + len + 1, ft_strlen(str) - i - len);
 	s2 = ft_strdup(get_ptr_var(&str[i + 1], len, ev));
-	if (s2 == NULL)
-	{
-		free(s1);
-		free(s3);
-		return (NULL);
-	}
-	else
+	if (s2 != NULL )
 	{
 		expanded_tmp = ft_strjoin(s1, s2);
 		expanded_str = ft_strjoin(expanded_tmp, s3);
 	}
-	if (expanded_tmp)
-		free(expanded_tmp);
-	if (s2)
-		free(s2);
 	free(s1);
 	free(s3);
+	if (s2 == NULL)
+		return (NULL);
+	else
+	{
+		free(s2);
+		free(expanded_tmp);
+	}
 	return (expanded_str);
 }
-
 
 char	*create_sub(char *str, size_t i, char *nb, ssize_t len)
 {
@@ -120,4 +115,3 @@ char	*create_sub(char *str, size_t i, char *nb, ssize_t len)
 	free(s3);
 	return (expanded_str);
 }
-

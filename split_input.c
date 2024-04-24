@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 23:41:47 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/23 19:06:03 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int special_len(char *str)
 				count++;
 			if (str[i + 1] && str[i + 1] != ' ')
 				count++;
-		i++;
+			i++;
 		}
 		i++;
 	}
@@ -58,6 +58,82 @@ static int special_len(char *str)
 	return (count);
 }
 
+// void	add_spaces(char *str, char *new_str, int sgq, int dbq)
+// {
+// 	size_t	i;
+// 	int j;
+
+// 	i = 0;
+// 	j = 0;
+// 	while (str[i])
+// 	{
+// 		sgq = (sgq + (!dbq && str[i] == '\'')) % 2;
+// 		dbq = (dbq + (!sgq && str[i] == '\"')) % 2;
+// 		if (!sgq && !dbq)
+// 		{
+
+// 		}
+// 	}
+
+// }
+
+
+// char *add_space(t_prompt *prompt, char *str)
+// {
+
+// 	int len_str;
+// 	char *new_str;
+
+// 	len_str = ft_strlen(str) + special_len(str) + 1;
+// 	new_str = (char *)get_grbg(prompt, len_str, sizeof(char));
+// 	if (!new_str)
+// 		return (NULL);
+
+// 		if (!sgq && !dbq)
+// 		{
+// 			if ((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<'))
+// 			{
+// 				if (str[i + 2] != ' ' && i + 2 < ft_strlen(str))
+// 				{
+// 					new_str[j++] = str[i++];
+// 					new_str[j++] = str[i++];
+// 					new_str[j++] = ' ';
+// 				}
+// 				else if (i == 0 || str[i - 1] != ' ')
+// 				{
+// 					new_str[j++] = ' ';
+// 					new_str[j++] = str[i++];
+// 					new_str[j++] = str[i++];
+// 				}
+// 				else
+// 				{
+// 					new_str[j++] = str[i++];
+// 					new_str[j++] = str[i++];
+// 				}
+// 			}
+// 			else if (i != 0 && (str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i - 1] != ' ')
+// 			{
+// 				new_str[j++] = ' ';
+// 				new_str[j++] = str[i++];
+// 			}
+// 			else if ((str[i] == '>' || str[i] == '<' || str[i] == '|') && str[i + 1] != ' ')
+// 			{
+// 				new_str[j++] = str[i++];
+// 				new_str[j++] = ' ';
+// 			}
+// 			else
+// 			{
+// 			new_str[j++] = str[i++];
+// 			}
+// 		}
+// 		else
+// 		{
+// 			new_str[j++] = str[i++];
+// 		}
+// 	}
+// 	new_str[j] = '\0';
+// 	return (new_str);
+// }
 
 
 char *add_space(t_prompt *prompt, char *str)
@@ -70,7 +146,6 @@ char *add_space(t_prompt *prompt, char *str)
 	j = 0;
 
 	len_str = ft_strlen(str) + special_len(str) + 1;
-	//new_str = (char *)malloc(sizeof(char) * len_str);
 	new_str = (char *)get_grbg(prompt, len_str, sizeof(char));
 	if (!new_str)
 		return (NULL);
