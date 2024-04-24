@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 18:08:24 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:01:56 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ char	**expander(t_prompt *prompt, char **str, char **ev)
 	i = 0;
 	while (str[i])
 	{
-		temp[i] = expand_var(prompt, str[i], ev);
+		//temp[i] = expand_var(prompt, str[i], ev);
+		temp[i] = expand_var(prompt, str[i], ev, 0);
 		i++;
 	}
 	temp[i] = NULL;
@@ -66,42 +67,118 @@ char	**expander(t_prompt *prompt, char **str, char **ev)
   Returns:
     - Pointer to the modified string with expanded environment variables.
 */
-char	*expand_var(t_prompt *prompt, char *str, char **ev)
+// char	*expand_var(t_prompt *prompt, char *str, char **ev)
+// {
+// 	int		sgq;
+// 	int		dbq;
+// 	int		i;
+// 	int		len;
+// 	char	*nb;
+// 	char	*sub_str;
+
+// 	nb = 0;
+// 	sub_str = NULL;
+// 	sgq = 0;
+// 	dbq = 0;
+// 	i = 0;
+
+// 	if (ft_strcmp(str, "$") && ft_strlen(str) == 3)
+// 		return (str);
+// 	while (str[i])
+// 	{
+// 		sgq = (sgq + (!dbq && str[i] == '\'')) % 2;
+// 		dbq = (dbq + (!sgq && str[i] == '\"')) % 2;
+// 		if (!sgq && str[i] == '$' && str[i + 1] && str[i + 1] != ' ')
+// 		{
+// 			if (str[i + 1] == '?')
+// 			{
+// 				nb = grbg_itoa(prompt, exitstatus);
+// 				if (!nb)
+// 					return (NULL);
+// 				len = ft_strlen(nb);
+// 				sub_str = create_sub(str, i, nb, len);
+// 				collect_grbg(prompt, sub_str);
+// 			}
+// 			else
+// 			{
+// 				len = get_len_var(str, i + 1);
+// 				sub_str = create_sub_var(str, i, ev, len);
+// 				collect_grbg(prompt, sub_str);
+// 				if (sub_str == NULL)
+// 				{
+// 					str = "";
+// 					break ;
+// 				}
+// 			}
+// 			str = sub_str;
+// 		}
+// 		i++;
+// 	}
+// 	if (sub_str)
+// 		return (sub_str);
+// 	else
+// 		return (str);
+// }
+
+char	*expand_var(t_prompt *prompt, char *str, char **ev, int i)
 {
-	int		sgq;
-	int		dbq;
-	int		i;
-	int		len;
-	char	*nb;
+	int		q[4];
 	char	*sub_str;
 
-	nb = 0;
+	(void)ev;
 	sub_str = NULL;
-	sgq = 0;
-	dbq = 0;
-	i = 0;
-
+	q[0] = 0;
+	q[1] = 0;
+	q[2] = i;
+	q[3] = 0;
 	if (ft_strcmp(str, "$") && ft_strlen(str) == 3)
 		return (str);
-	while (str[i])
+
+	sub_str = handle_expansion(prompt, str, q, sub_str);
+	if (sub_str)
+		return (sub_str);
+	else
+		return (str);
+}
+
+char	*handle_exitstatus(t_prompt *prompt, int i, char *str, char *sub_str)
+{
+	char	*nb;
+	int		len;
+
+	len = 0;
+	nb = 0;
+	if (str[i + 1] == '?')
 	{
-		sgq = (sgq + (!dbq && str[i] == '\'')) % 2;
-		dbq = (dbq + (!sgq && str[i] == '\"')) % 2;
-		if (!sgq && str[i] == '$' && str[i + 1] && str[i + 1] != ' ')
+		nb = grbg_itoa(prompt, exitstatus);
+		if (!nb)
+			return (NULL);
+		len = ft_strlen(nb);
+		sub_str = create_sub(str, i, nb, len);
+		collect_grbg(prompt, sub_str);
+	}
+	return (sub_str);
+}
+
+/*
+q[2] // i
+q[3] //len
+q[4] //
+*/
+char	*handle_expansion(t_prompt *prompt, char *str, int q[4], char *sub_str)
+{
+	while (str[q[2]])
+	{
+		q[0] = (q[0] + (!q[1] && str[q[2]] == '\'')) % 2;
+		q[1] = (q[1] + (!q[0] && str[q[2]] == '\"')) % 2;
+		if (!q[0] && str[q[2]] == '$' && str[q[2] + 1] && str[q[2] + 1] != ' ')
 		{
-			if (str[i + 1] == '?')
-			{
-				nb = grbg_itoa(prompt, exitstatus);
-				if (!nb)
-					return (NULL);
-				len = ft_strlen(nb);
-				sub_str = create_sub(str, i, nb, len);
-				collect_grbg(prompt, sub_str);
-			}
+			if (str[q[2] + 1] == '?')
+				sub_str = handle_exitstatus(prompt, q[2], str, sub_str);
 			else
 			{
-				len = get_len_var(str, i + 1);
-				sub_str = create_sub_var(str, i, ev, len);
+				q[3] = get_len_var(str, q[2] + 1);
+				sub_str = create_sub_var(str, q[2], prompt->envp, q[3]);
 				collect_grbg(prompt, sub_str);
 				if (sub_str == NULL)
 				{
@@ -111,10 +188,7 @@ char	*expand_var(t_prompt *prompt, char *str, char **ev)
 			}
 			str = sub_str;
 		}
-		i++;
+		q[2]++;
 	}
-	if (sub_str)
-		return (sub_str);
-	else
-		return (str);
+	return (sub_str);
 }

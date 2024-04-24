@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/23 18:09:18 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:02:12 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,14 +217,16 @@ void	free_split(char **strs);
 
 /* expander.c */
 char	**expander(t_prompt *prompt, char **str, char **ev);
+char	*handle_exitstatus(t_prompt *prompt, int i, char *str, char *sub_str);
 /*expand_var_utils.c */
 
 char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len );
 ssize_t	get_len_var(char *str, int i);
 char	*create_sub(char *str, size_t i, char *nb, ssize_t len );
 //static char *get_substr_var(char *str, int len, char **env);
-char *expand_var(t_prompt *prompt, char *str, char **ev);
-
+//char *expand_var(t_prompt *prompt, char *str, char **ev);
+char *expand_var(t_prompt *prompt, char *str, char **ev, int i);
+char	*handle_expansion(t_prompt *prompt, char *str, int q[4], char *sub_str);
 /* handle_redirections.c */
 
 int	get_type(char *str);

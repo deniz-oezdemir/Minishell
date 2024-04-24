@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/23 18:20:46 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:26:35 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 		}
 		if (!ft_strncmp(line, lim, ft_strlen(line)) && ft_strlen(line) == ft_strlen(lim)) //different: left out prompt->prompt->prompt->prompt->prompt->exitstatus as prompt->exitstatus can not be 1 here anyways?
 			break ;
-		line = expand_var(prompt, line, prompt->envp);
+		line = expand_var(prompt, line, prompt->envp, 0);
+		//line = expand_var(prompt, line, prompt->envp);
 		content = add_to_str(prompt, &content, line);
 		content = add_to_str(prompt, &content, "\n");
 	}
