@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 14:02:12 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:00:32 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ size_t	get_len_arr(char **array);
 void	print_err_msg(char *cmd, char *msg);
 int print_err_msg_lng(char *cmd, char *msg, char *arg);
 int	ft_isspace(int c);
-char	**del_str_from_array(char **array, int pos, int count);
+char	**del_str(char **array, int pos, int count);
 char	**add_str_to_arr(t_prompt *prompt, char **arr, char *str);
 
 /*	builtins.c	*/
@@ -230,7 +230,7 @@ char	*handle_expansion(t_prompt *prompt, char *str, int q[4], char *sub_str);
 /* handle_redirections.c */
 
 int	get_type(char *str);
-void	handle_redir(t_prompt *ptr);
+void	handle_redir(t_prompt *ptr, int type);
 int open_file(char **cmds, int i, int *save_fd, int io_flags[2]);
 int	get_flags(int type, int file_access_type);
 int	open_fd_redir(t_prompt *prompt, t_cmddat *cmd_struct, int i, int type);

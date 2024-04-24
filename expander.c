@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 14:28:26 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:00:54 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	**expander(t_prompt *prompt, char **str, char **ev)
 	{
 		if (ft_strcmp(temp[i], "") == 0)
 		{
-			del_str_from_array(temp, i, 1);
+			del_str(temp, i, 1);
 			i = 0;
 		}
 		else

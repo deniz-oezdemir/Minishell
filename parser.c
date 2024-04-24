@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 14:15:43 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:40:18 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,9 +125,12 @@ but seems to work @DENIZ DOUBLE FREE if error
 @deniz is this comment still accurate (22/04)*/
 void static	parse_remaining(t_prompt *prompt)
 {
+	int	type;
+
+	type = 0;
 	check_token(prompt);
 	if (prompt->stop == 0)
-		handle_redir(prompt);
+		handle_redir(prompt, type);
 	if (prompt->cmd_list != NULL)
 		add_last_cmd_to_envp(prompt);
 	get_rid_quotes(prompt);

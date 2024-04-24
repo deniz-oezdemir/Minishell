@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cstm_unset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:25:12 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/09 18:24:52 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:00:53 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	cstm_unset(t_cmddat *cmd_data)
 		{
 			if (!ft_strncmp(cmd_data->prompt->envp[i], cmd_data->full_command[j], get_len_env(cmd_data->prompt->envp[i])) &&
 					get_len_env(cmd_data->prompt->envp[i]) == ft_strlen(cmd_data->full_command[j]))
-				del_str_from_array(cmd_data->prompt->envp, i, 1);
+				del_str(cmd_data->prompt->envp, i, 1);
 			j++;
 		}
 		i++;

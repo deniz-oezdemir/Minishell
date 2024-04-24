@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 13:55:09 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:59:55 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	get_type(char *str)
 	return (type);
 }
 
-
 /*
   Handles redirections within the commands
   stored in the prompt structure `ptr`.
@@ -67,10 +66,9 @@ int	get_type(char *str)
 
   Returns: None
 */
-void	handle_redir(t_prompt *ptr)
+void	handle_redir(t_prompt *ptr, int type)
 {
 	int			i;
-	int			type;
 	t_node		*current_node;
 	t_cmddat	*cmd_data;
 
@@ -87,7 +85,7 @@ void	handle_redir(t_prompt *ptr)
 				if (type < 5 && type > 0)
 				{
 					open_fd_redir(ptr, cmd_data, i, type);
-					cmd_data->full_command = del_str_from_array(cmd_data->full_command, i, 2);
+					cmd_data->full_command = del_str(cmd_data->full_command, i, 2);
 					i -= 1;
 				}
 				i++;
@@ -128,7 +126,6 @@ int	open_file(char **cmds, int i, int *save_fd, int io_flags[2] )
 	return (0);
 }
 
-
 /*
 Indicates that the file should be...
 O_RDONLY: opened in read-only mode.
@@ -163,7 +160,6 @@ int	get_flags(int type, int file_access_type)
 	return (0);
 }
 
-
 int	open_fd_redir(t_prompt *prompt, t_cmddat *cmd_struct, int i, int type)
 {
 	int	io_flags[2];
@@ -174,7 +170,7 @@ int	open_fd_redir(t_prompt *prompt, t_cmddat *cmd_struct, int i, int type)
 	if (type == 1)
 		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i, &cmd_struct->infile, io_flags);
 	else if (type == 2)
-		launch_heredoc(prompt, cmd_struct, i); //i is the position of << in full_command
+		launch_heredoc(prompt, cmd_struct, i);
 	else if (type == 3)
 		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i, &cmd_struct->outfile, io_flags);
 	else

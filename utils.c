@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:31:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 13:57:58 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:59:24 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ pos : position of the first str to del
 count : how many str to delete
 */
 
-char	**del_str_from_array(char **array, int pos, int count)
+char	**del_str(char **array, int pos, int count)
 {
 	int	i;
 	int	buff;
