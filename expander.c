@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:41:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 15:00:54 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 21:05:09 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	*expand_var(t_prompt *prompt, char *str, char **ev, int i)
 		return (str);
 }
 
-char	*handle_exitstatus(t_prompt *prompt, int i, char *str, char *sub_str)
+char	*handle_g_exitstatus(t_prompt *prompt, int i, char *str, char *sub_str)
 {
 	char	*nb;
 	int		len;
@@ -95,7 +95,7 @@ char	*handle_exitstatus(t_prompt *prompt, int i, char *str, char *sub_str)
 	nb = 0;
 	if (str[i + 1] == '?')
 	{
-		nb = grbg_itoa(prompt, exitstatus);
+		nb = grbg_itoa(prompt, g_exitstatus);
 		if (!nb)
 			return (NULL);
 		len = ft_strlen(nb);
@@ -119,7 +119,7 @@ char	*handle_expansion(t_prompt *prompt, char *str, int q[4], char *sub_str)
 		if (!q[0] && str[q[2]] == '$' && str[q[2] + 1] && str[q[2] + 1] != ' ')
 		{
 			if (str[q[2] + 1] == '?')
-				sub_str = handle_exitstatus(prompt, q[2], str, sub_str);
+				sub_str = handle_g_exitstatus(prompt, q[2], str, sub_str);
 			else
 			{
 				q[3] = get_len_var(str, q[2] + 1);

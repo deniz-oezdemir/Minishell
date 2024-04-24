@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:50:33 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/21 14:48:24 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/24 21:05:09 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	*get_grbg(t_prompt *prompt, size_t nmemb, size_t size)
 	if (!new)
 	{
 		ft_putstr_fd("memory allocation error\n", 2);
-		//set exitstatus, free stuff
-		exitstatus = 1;
+		//set g_exitstatus, free stuff
+		g_exitstatus = 1;
 		return (NULL);
 	}
 	//printf("allocated new: %x\n", new);
@@ -42,8 +42,8 @@ void	collect_grbg(t_prompt *prompt, void *new)
 	if (!node)
 	{
 		ft_putstr_fd("memory allocation error\n", 2);
-		//set exitstatus, free stuff, exit
-		exitstatus = 1;
+		//set g_exitstatus, free stuff, exit
+		g_exitstatus = 1;
 		return ;
 	}
 	//printf("allocated node: %x\n", node);

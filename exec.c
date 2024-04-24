@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/24 15:07:44 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 21:08:00 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@ int	is_executable(t_cmddat *cmd_data)
 	builtin = get_builtin_nbr(cmd_data);
 	if (cmd_data->file_open > 0) //different
 	{
-		exitstatus = cmd_data->file_open;
+		g_exitstatus = cmd_data->file_open;
 		return (0);
 	}
 	if (!builtin && !cmd_data->full_path) //different
 	{
 		if (cmd_data->full_cmd[0]) //understand why only for this case print
 			print_err_msg_lng(cmd_data->full_cmd[0], "command not found", NULL); //different
-		exitstatus = 127;
+		g_exitstatus = 127;
 		return (0);
 	}
 	else if (!builtin && cmd_data->full_path && (!access(cmd_data->full_path, F_OK) && access(cmd_data->full_path, X_OK) == -1))
 	{
 		if(cmd_data->full_cmd[0]) //different
 			print_err_msg_lng(cmd_data->full_cmd[0], "permission denied", NULL);
-		exitstatus = 126;
+		g_exitstatus = 126;
 		return (0);
 	}
 	return (1);
@@ -52,7 +52,7 @@ void wait_update_exitstatus(t_prompt *prompt)
 	while(waitpid(-1, &child_status, 0) != -1) //wait for any child processes to terminate
 		continue ; //continue until all child processes are terminated
 	if (tmp_exitstatus != -1) //if exitstatus changed during wait
-		exitstatus = tmp_exitstatus;
+		g_exitstatus = tmp_exitstatus;
 
 	//@Leo: Can we delete below as we are handling the printing of \n and Quit\n somewhere else?
 	/* LEO commented this */
@@ -62,11 +62,11 @@ void wait_update_exitstatus(t_prompt *prompt)
 	// 	ft_putstr_fd("Quit\n", 2);
 
 	if (last->file_open != 0)
-		exitstatus = last->file_open;
+		g_exitstatus = last->file_open;
 	else if (!last->full_path && !get_builtin_nbr(last))
-		exitstatus = 127;
+		g_exitstatus = 127;
 	else if (last->full_path && !get_builtin_nbr(last) && (!access(last->full_path, F_OK) && access(last->full_path, X_OK < 0))) //F_OK checks that file exists, X_OK checks that file executable
-		exitstatus = 126;
+		g_exitstatus = 126;
 	return ;
 }
 
@@ -120,7 +120,7 @@ int	execute_cmds(t_prompt *prompt)
 	cmd_data = prompt->cmd_list->data; //@deniz SEGV when enter $empty ->fixed
 	if(cstm_lstsize(prompt->cmd_list) == 1 && get_builtin_nbr(cmd_data))
 	{
-		exitstatus = execute_builtin(cmd_data, get_builtin_nbr(cmd_data), 0);
+		g_exitstatus = execute_builtin(cmd_data, get_builtin_nbr(cmd_data), 0);
 		cstm_lstiter(prompt->cmd_list, cls_fds);
 	}
 	else

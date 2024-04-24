@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:55:10 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/23 18:15:04 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 21:05:59 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@ void	signals_non_interactive(void)
 	signal(SIGQUIT, handle_sig_quit);
 }
 
-void	signals_here_doc(void)
-{
-	signal(SIGINT, sig_handler_here_doc);
-	signal(SIGQUIT, SIG_IGN);
-}
 /*
  Ctrl+\
  131
@@ -37,7 +32,7 @@ void	handle_sig_quit(int n)
 {
 	if (n == SIGQUIT)
 	{
-		//exitstatus = 131;
+		//g_exitstatus = 131;
 		ft_printf("Quit (core dumped)");
 	}
 	write(1, "\n", STDERR_FILENO);
@@ -57,7 +52,7 @@ void	handle_sig_int(int n)
 	}
 
 	// if (n == SIGINT)
-	// 	exitstatus = 130;
+	// 	g_exitstatus = 130;
 }
 
 void	sig_handler_here_doc(int num)
@@ -73,7 +68,7 @@ void	sig_handler_here_doc(int num)
 
 	if (num == SIGINT)
 	{
-		exitstatus = 1;
+		g_exitstatus = 1;
 	}
 		//write(1, "\n", STDERR_FILENO);
 	//rl_on_new_line();

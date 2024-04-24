@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:19:36 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 15:05:42 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 21:05:09 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "minishell.h"
 
 /*free and exit*/
-void	exit_ms(int exitstatus, t_prompt *prompt)
+void	exit_ms(int g_exitstatus, t_prompt *prompt)
 {
 	free_all(prompt);
-	exit(exitstatus);
+	exit(g_exitstatus);
 }
 
 void	free_all(t_prompt	*prompt)

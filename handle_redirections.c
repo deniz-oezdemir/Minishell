@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 15:09:39 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 21:05:09 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	open_file(char **cmds, int i, int *save_fd, int io_flags[2] )
 			*save_fd = open(cmds[i + 1], io_flags[0]);
 		if (*save_fd == -1)
 		{
-			exitstatus = 1;
+			g_exitstatus = 1;
 			print_err_msg(cmds[i + 1], "No such file or directory");
 			return (1);
 		}

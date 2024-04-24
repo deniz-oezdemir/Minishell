@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 15:21:54 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 21:05:42 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i)
 		return ;
 	}
 	cmd->infile = get_heredoc(prompt, lim);
-	if (exitstatus == 1)
+	if (g_exitstatus == 1)
 		prompt->stop = 1; // @deniz why?
 }
 
@@ -40,7 +40,7 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 
 	content = NULL;
 	line = NULL;
-	exitstatus = 0; //@deniz why?
+	g_exitstatus = 0; //@deniz why?
 
 	while (1)
 	{
@@ -53,7 +53,7 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 			print_err_msg("warning", "here-document delimited by end-of-file");
 			break ;
 		}
-		if (!ft_strncmp(line, lim, ft_strlen(line)) && ft_strlen(line) == ft_strlen(lim)) //different: left out prompt->prompt->prompt->prompt->prompt->exitstatus as prompt->exitstatus can not be 1 here anyways?
+		if (!ft_strncmp(line, lim, ft_strlen(line)) && ft_strlen(line) == ft_strlen(lim)) //different: left out prompt->prompt->prompt->prompt->prompt->g_exitstatus as prompt->g_exitstatus can not be 1 here anyways?
 			break ;
 		line = expand_var(prompt, line, prompt->envp, 0);
 		content = add_to_str(prompt, &content, line);
@@ -66,13 +66,10 @@ int	pipe_heredoc(char *content)
 {
 	int	pip[2];
 
-	if (exitstatus)
+	if (g_exitstatus)
 	{
-		//printf("pipe\n");
 		return (0); //@deniz why?
 	}
-
-
 	if (!pipe(pip))
 	{
 		ft_putstr_fd(content, pip[1]);

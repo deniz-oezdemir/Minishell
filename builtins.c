@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 10:34:24 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/24 15:05:42 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 21:05:09 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	get_builtin_nbr(t_cmddat *cmd)
 		return (7);
 	return (0);
 }
-/* exitstatus 127 when command to execute could not be found */
+/* g_exitstatus 127 when command to execute could not be found */
 int	execute_builtin(t_cmddat *cmd, int n, int forked)
 {
 	int	r;
@@ -59,9 +59,7 @@ int	execute_builtin(t_cmddat *cmd, int n, int forked)
 	if (forked)
 	{
 		cstm_lstiter(cmd->prompt->cmd_list, cls_fds);
-		//printf("execute_builtin forked: r = %i\n", r);
 		exit_ms(r, cmd->prompt);
 	}
-	//printf("execute_builtin: r = %i\n", r);
 	return (r);
 }
