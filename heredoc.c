@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 15:05:42 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:21:54 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,10 @@ void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i)
 	size_t	j;
 
 	lim = cmd->full_cmd[i + 1]; //leo changed this so it's from the right command
-	//printf("lim : %s\n", lim);
 	j = 0;
 
 	while (ft_isalnum(lim[j]))
 		j++;
-	//printf("j : %zu \n", j);
 	if (j != ft_strlen(lim))
 	{
 		ft_putstr_fd("minishell: input error: delimiter must contain only alphanumeric characters\n", 2);
@@ -32,7 +30,7 @@ void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i)
 	}
 	cmd->infile = get_heredoc(prompt, lim);
 	if (exitstatus == 1)
-		prompt->stop = 1; //why?
+		prompt->stop = 1; // @deniz why?
 }
 
 int	get_heredoc(t_prompt *prompt, char *lim)
@@ -46,7 +44,6 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 
 	while (1)
 	{
-		//signals_here_doc(); //does not work
 		signals_interactive();
 		line = readline("> ");
 		collect_grbg(prompt, line);
@@ -59,7 +56,6 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 		if (!ft_strncmp(line, lim, ft_strlen(line)) && ft_strlen(line) == ft_strlen(lim)) //different: left out prompt->prompt->prompt->prompt->prompt->exitstatus as prompt->exitstatus can not be 1 here anyways?
 			break ;
 		line = expand_var(prompt, line, prompt->envp, 0);
-		//line = expand_var(prompt, line, prompt->envp);
 		content = add_to_str(prompt, &content, line);
 		content = add_to_str(prompt, &content, "\n");
 	}
