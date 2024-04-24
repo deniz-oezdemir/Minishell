@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 14:40:18 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:05:42 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,12 @@ static void	check_token(t_prompt *prompt)
 	while (current_node != NULL)
 	{
 		cmd_data = current_node->data;
-		len_arr = get_len_arr(cmd_data->full_command) - 1 ;
-		last_char = cmd_data->full_command[len_arr][0];
+		len_arr = get_len_arr(cmd_data->full_cmd) - 1 ;
+		last_char = cmd_data->full_cmd[len_arr][0];
 		if (last_char == '|' || last_char == '<' || last_char == '>' )
 		{
 			prompt->stop = 1;
-			syntax_error(prompt, cmd_data->full_command[len_arr]);
+			syntax_error(prompt, cmd_data->full_cmd[len_arr]);
 			free_node_list(prompt->cmd_list);
 			prompt->cmd_list = NULL;
 			break ;
@@ -154,7 +154,7 @@ void	parser(t_prompt *prompt, int i, int j)
 			i++;
 			j++;
 		}
-		ptr->full_command = fill_arr(prompt, prompt->commands, i - j, j);
+		ptr->full_cmd = fill_arr(prompt, prompt->commands, i - j, j);
 		ptr->full_path = get_path_cmds(ptr, prompt->envp);
 		collect_grbg(prompt, ptr->full_path);
 		if (prompt->commands[i] == NULL)

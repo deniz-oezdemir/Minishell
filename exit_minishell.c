@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:19:36 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 13:57:21 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:05:42 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	clear_cmmdat_lst(void *content)
 	cmd_struct = (t_cmddat *)content;
 	if (cmd_struct->full_path)
 		free(cmd_struct->full_path);
-	if (cmd_struct->full_command)
-		free_char_array(cmd_struct->full_command);
+	if (cmd_struct->full_cmd)
+		free_char_array(cmd_struct->full_cmd);
 	free(cmd_struct);
 }
 
@@ -60,8 +60,8 @@ void	free_node_list(t_node *head)
 		current = current->next;
 		if (temp && temp->data)
 		{
-			if (temp->data->full_command)
-				free(temp->data->full_command);
+			if (temp->data->full_cmd)
+				free(temp->data->full_cmd);
 			if (temp->data->full_path)
 				free(temp->data->full_path);
 			free(temp->data);

@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 20:12:21 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 14:12:49 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:07:44 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,11 @@ t_cmddat	*init_struct_cmd(t_prompt *prompt)
 	ptr = get_grbg(prompt, 1, sizeof(t_cmddat));
 	if (!ptr)
 		return (NULL);
-	ptr->full_command = NULL;
+	ptr->full_cmd = NULL;
 	ptr->full_path = NULL;
 	ptr->infile = STDIN_FILENO;
 	ptr->outfile = STDOUT_FILENO;
 	ptr->prompt = prompt;
-	ptr->file_open_error = 0;
+	ptr->file_open = 0;
 	return (ptr);
 }

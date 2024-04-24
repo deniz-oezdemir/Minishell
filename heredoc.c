@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 13:26:35 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:05:42 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i)
 	char	*lim;
 	size_t	j;
 
-	lim = cmd->full_command[i + 1]; //leo changed this so it's from the right command
+	lim = cmd->full_cmd[i + 1]; //leo changed this so it's from the right command
 	//printf("lim : %s\n", lim);
 	j = 0;
 

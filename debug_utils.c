@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:54:02 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 21:19:33 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:07:44 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void print_command_list(t_node *head) {
     while (current != NULL) {
         t_cmddat *data = current->data;
 
-        if (data != NULL && data->full_command != NULL) {
+        if (data != NULL && data->full_cmd != NULL) {
             printf("Command sequence:\n");
-            for (int i = 0; data->full_command[i] != NULL; i++) {
-                printf("  %s\n", data->full_command[i]);
+            for (int i = 0; data->full_cmd[i] != NULL; i++) {
+                printf("  %s\n", data->full_cmd[i]);
             }
         } else {
             printf("Empty command sequence\n");
@@ -49,10 +49,10 @@ void print_command_list(t_node *head) {
     }
 }
 void print_cmddat(const t_cmddat *cmd) {
-    printf("full_command:\n");
-    if (cmd->full_command != NULL) {
-        for (int i = 0; cmd->full_command[i] != NULL; i++) {
-            printf("  \"%s\"\n", cmd->full_command[i]);
+    printf("full_cmd:\n");
+    if (cmd->full_cmd != NULL) {
+        for (int i = 0; cmd->full_cmd[i] != NULL; i++) {
+            printf("  \"%s\"\n", cmd->full_cmd[i]);
         }
     } else {
         printf(" (empty)\n");
@@ -67,7 +67,7 @@ void print_cmddat(const t_cmddat *cmd) {
     printf("infile: %d\n", cmd->infile);
     printf("outfile: %d\n", cmd->outfile);
     //printf("*prompt: %p\n", cmd->prompt);
-   //printf("file_open_error: %d\n", cmd->file_open_error);
+   //printf("file_open: %d\n", cmd->file_open);
     // Additional fields can be printed similarly
 }
 

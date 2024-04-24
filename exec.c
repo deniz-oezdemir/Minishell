@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/21 21:14:17 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:07:44 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@ int	is_executable(t_cmddat *cmd_data)
 	int builtin;
 
 	builtin = get_builtin_nbr(cmd_data);
-	if (cmd_data->file_open_error > 0) //different
+	if (cmd_data->file_open > 0) //different
 	{
-		exitstatus = cmd_data->file_open_error;
+		exitstatus = cmd_data->file_open;
 		return (0);
 	}
 	if (!builtin && !cmd_data->full_path) //different
 	{
-		if (cmd_data->full_command[0]) //understand why only for this case print
-			print_err_msg_lng(cmd_data->full_command[0], "command not found", NULL); //different
+		if (cmd_data->full_cmd[0]) //understand why only for this case print
+			print_err_msg_lng(cmd_data->full_cmd[0], "command not found", NULL); //different
 		exitstatus = 127;
 		return (0);
 	}
 	else if (!builtin && cmd_data->full_path && (!access(cmd_data->full_path, F_OK) && access(cmd_data->full_path, X_OK) == -1))
 	{
-		if(cmd_data->full_command[0]) //different
-			print_err_msg_lng(cmd_data->full_command[0], "permission denied", NULL);
+		if(cmd_data->full_cmd[0]) //different
+			print_err_msg_lng(cmd_data->full_cmd[0], "permission denied", NULL);
 		exitstatus = 126;
 		return (0);
 	}
@@ -61,8 +61,8 @@ void wait_update_exitstatus(t_prompt *prompt)
 	// if (exitstatus == 131) //if program was terminated by a SIGQUIT signal -> maybe use SIGQUIT instead f 131
 	// 	ft_putstr_fd("Quit\n", 2);
 
-	if (last->file_open_error != 0)
-		exitstatus = last->file_open_error;
+	if (last->file_open != 0)
+		exitstatus = last->file_open;
 	else if (!last->full_path && !get_builtin_nbr(last))
 		exitstatus = 127;
 	else if (last->full_path && !get_builtin_nbr(last) && (!access(last->full_path, F_OK) && access(last->full_path, X_OK < 0))) //F_OK checks that file exists, X_OK checks that file executable
@@ -102,7 +102,7 @@ void	run_cmd(void *content)
 		dup2(cmd_data->outfile, 1);
 		cstm_lstiter(cmd_data->prompt->cmd_list, cls_fds);
 		//if (cmd_data->full_path) //can be NULL if unset PATH
-		execve(cmd_data->full_path, cmd_data->full_command, cmd_data->prompt->envp);
+		execve(cmd_data->full_path, cmd_data->full_cmd, cmd_data->prompt->envp);
 		close(0);
 		close(1);
 		exit_ms(2, cmd_data->prompt);
@@ -115,7 +115,7 @@ int	execute_cmds(t_prompt *prompt)
 	t_cmddat	*cmd_data;
 
 	//@leo had to change a bit here
-	if (!prompt->cmd_list || !prompt->cmd_list->data->full_command[0])
+	if (!prompt->cmd_list || !prompt->cmd_list->data->full_cmd[0])
 		return (0);
 	cmd_data = prompt->cmd_list->data; //@deniz SEGV when enter $empty ->fixed
 	if(cstm_lstsize(prompt->cmd_list) == 1 && get_builtin_nbr(cmd_data))

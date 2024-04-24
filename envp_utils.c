@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:45:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/23 17:44:54 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:05:42 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ char	*get_path_cmds(t_cmddat *cmd, char **ev)
 	i = 0;
 	if (get_builtin_nbr(cmd) != 0)
 		return (NULL);
-	if (!access(cmd->full_command[0], 1))
-		return (ft_strdup(cmd->full_command[0]));
-	while (cmd->full_command[i])
+	if (!access(cmd->full_cmd[0], 1))
+		return (ft_strdup(cmd->full_cmd[0]));
+	while (cmd->full_cmd[i])
 	{
-		path = get_path(cmd->full_command[i], ev, 0);
+		path = get_path(cmd->full_cmd[i], ev, 0);
 		if (path)
 			break;
 		i++;
@@ -87,10 +87,10 @@ void	add_last_cmd_to_envp(t_prompt *prompt)
 	t_cmddat *cmd;
 
 	l = 0;
-	if (!prompt->cmd_list->data->full_command)
+	if (!prompt->cmd_list->data->full_cmd)
 		return ;
 	cmd = cstm_lstlast(prompt->cmd_list)->data;
-	l = get_len_arr(cmd->full_command); //@Leo can full_command ever be NULL? otherwise we do not need this check
+	l = get_len_arr(cmd->full_cmd); //@Leo can full_cmd ever be NULL? otherwise we do not need this check
 	if (l)
-		modify_envp(prompt, "_", grbg_strdup(prompt, cmd->full_command[0]));
+		modify_envp(prompt, "_", grbg_strdup(prompt, cmd->full_cmd[0]));
 }

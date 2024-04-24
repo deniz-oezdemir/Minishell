@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cstm_export.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:08:21 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/22 16:47:36 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:05:42 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ int	cstm_export(t_cmddat *cmd)
 		cmd->outfile = 1;
 		return (0);
 	}
-	if (get_len_arr(cmd->full_command) == 1)
+	if (get_len_arr(cmd->full_cmd) == 1)
 		return (print_export(cmd));
-	if (!cmd->prompt->envp && get_len_arr(cmd->full_command) > 1
-		&& get_len_id(cmd->prompt, cmd->full_command[i], 0)) // uninitiaized envp - @Leo: is this even possible? @deniz is this comment still valid? 10/04 @Leo: yes
+	if (!cmd->prompt->envp && get_len_arr(cmd->full_cmd) > 1
+		&& get_len_id(cmd->prompt, cmd->full_cmd[i], 0)) // uninitiaized envp - @Leo: is this even possible? @deniz is this comment still valid? 10/04 @Leo: yes
 		cmd->prompt->envp = add_str_to_arr(cmd->prompt, cmd->prompt->envp,
-				cmd->full_command[i++]);
-	while (cmd->full_command[i])
+				cmd->full_cmd[i++]);
+	while (cmd->full_cmd[i])
 	{
-		id_len = get_len_id(cmd->prompt, cmd->full_command[i], 1);
+		id_len = get_len_id(cmd->prompt, cmd->full_cmd[i], 1);
 		if (id_len)
-			scan_envp(cmd, cmd->full_command[i], id_len);
+			scan_envp(cmd, cmd->full_cmd[i], id_len);
 		else
 			r = 1;
 		i++;

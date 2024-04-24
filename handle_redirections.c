@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:37:35 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 14:59:55 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:09:39 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ void	handle_redir(t_prompt *ptr, int type)
 		if (cmd_data)
 		{
 			i = 0;
-			while (cmd_data->full_command[i])
+			while (cmd_data->full_cmd[i])
 			{
-				type = get_type(cmd_data->full_command[i]);
+				type = get_type(cmd_data->full_cmd[i]);
 				if (type < 5 && type > 0)
 				{
 					open_fd_redir(ptr, cmd_data, i, type);
-					cmd_data->full_command = del_str(cmd_data->full_command, i, 2);
+					cmd_data->full_cmd = del_str(cmd_data->full_cmd, i, 2);
 					i -= 1;
 				}
 				i++;
@@ -168,12 +168,15 @@ int	open_fd_redir(t_prompt *prompt, t_cmddat *cmd_struct, int i, int type)
 	io_flags[1] = get_flags(type, 1);
 	get_rid_quotes(prompt);
 	if (type == 1)
-		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i, &cmd_struct->infile, io_flags);
+		cmd_struct->file_open = open_file(cmd_struct->full_cmd,
+				i, &cmd_struct->infile, io_flags);
 	else if (type == 2)
 		launch_heredoc(prompt, cmd_struct, i);
 	else if (type == 3)
-		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i, &cmd_struct->outfile, io_flags);
+		cmd_struct->file_open = open_file(cmd_struct->full_cmd,
+				i, &cmd_struct->outfile, io_flags);
 	else
-		cmd_struct->file_open_error = open_file(cmd_struct->full_command, i, &cmd_struct->outfile, io_flags);
+		cmd_struct->file_open = open_file(cmd_struct->full_cmd,
+				i, &cmd_struct->outfile, io_flags);
 	return (0);
 }

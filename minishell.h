@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 15:00:32 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:07:44 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct s_node
 }	t_node;
 
 /*
-	**full_command;
+	**full_cmd;
 		Array containing command's parts
 
 	*full_path;
@@ -90,15 +90,15 @@ typedef struct s_node
 */
 
 //@Leo: we need broken, and i think it should be initialized to 0
-//@deniz changed broken for file_open_error
+//@deniz changed broken for file_open
 typedef struct s_cmddat
 {
-	char		**full_command;
+	char		**full_cmd;
 	char		*full_path;
 	int			infile;
 	int			outfile;
 	t_prompt	*prompt;
-	int			file_open_error;
+	int			file_open;
 }	t_cmddat;
 
 /* struct for garbage collector */

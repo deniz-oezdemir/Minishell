@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 10:34:24 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/23 17:34:46 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:05:42 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,23 @@
 int	get_builtin_nbr(t_cmddat *cmd)
 {
 	//leo modified this
-	if (cmd->full_command == NULL || cmd->full_command[0] == NULL)
+	if (cmd->full_cmd == NULL || cmd->full_cmd[0] == NULL)
 		return (0);
 
-	//printf("cmd->full_command[0] : %s\n", cmd->full_command[0]);
-	else if (!ft_strcmp(cmd->full_command[0], "echo"))
+	//printf("cmd->full_cmd[0] : %s\n", cmd->full_cmd[0]);
+	else if (!ft_strcmp(cmd->full_cmd[0], "echo"))
 		return (1);
-	else if (!ft_strcmp(cmd->full_command[0], "cd"))
+	else if (!ft_strcmp(cmd->full_cmd[0], "cd"))
 		return (2);
-	if (!ft_strcmp(cmd->full_command[0], "pwd"))
+	if (!ft_strcmp(cmd->full_cmd[0], "pwd"))
 		return (3);
-	else if (!ft_strcmp(cmd->full_command[0], "export"))
+	else if (!ft_strcmp(cmd->full_cmd[0], "export"))
 		return (4);
-	else if (!ft_strcmp(cmd->full_command[0], "unset"))
+	else if (!ft_strcmp(cmd->full_cmd[0], "unset"))
 		return (5);
-	else if (!ft_strcmp(cmd->full_command[0], "env"))
+	else if (!ft_strcmp(cmd->full_cmd[0], "env"))
 		return (6);
-	else if (!ft_strcmp(cmd->full_command[0], "exit"))
+	else if (!ft_strcmp(cmd->full_cmd[0], "exit"))
 		return (7);
 	return (0);
 }
