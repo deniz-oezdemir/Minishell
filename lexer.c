@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:22:52 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 15:10:50 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 20:47:02 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	lexer(t_prompt *prompt)
 		prompt->stop = 1;
 		return ;
 	}
-	prompt->input_string = add_space(prompt, prompt->input_string);
+	prompt->input_string = handle_spaces(prompt, prompt->input_string, 0, 0);
 	prompt->commands = split_input(prompt->input_string, prompt);
 	if (prompt->commands == NULL)
 	{
@@ -49,4 +49,5 @@ void	lexer(t_prompt *prompt)
 	}
 	if (prompt->stop != 1)
 		prompt->commands = expander(prompt, prompt->commands, prompt->envp);
+	//print_str_array(prompt->commands);
 }

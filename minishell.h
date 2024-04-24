@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 16:41:44 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 19:53:30 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,7 @@ void	lexer(t_prompt *prompt);
 /* split*/
 char	**split_input(char *str, t_prompt *prompt);
 char	**ft_split(char const *s, char c);
-char *add_space(t_prompt *prompt, char *str);
+char	*handle_spaces(t_prompt *prompt, char *str, size_t i, int j);
 char	**ft_create_substrs(t_prompt *p, char **aux, char const *s, char *set);
 
 /*	parser*/
