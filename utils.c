@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:31:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 14:59:24 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:16:28 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,3 @@ char	**add_str_to_arr(t_prompt *prompt, char **arr, char *str)
 	}
 	return (new);
 }
-

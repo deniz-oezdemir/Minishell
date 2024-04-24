@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:08:23 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/20 18:40:00 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:11:11 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,3 @@ void	cstm_lstdelone(t_node *lst, void (*del)(void *))
 	del(lst->data);
 	free(lst);
 }
-
-

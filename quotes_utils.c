@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:39:46 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 15:05:42 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:15:52 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void	get_rid_quotes(t_prompt	*prompt)
 {
 	char		**temp;
 	char		*trim_cmd;
-	int			i;
-	int			len_arr;
+	int			i[2];
 	t_node		*current_node;
 	t_cmddat	*cmd_data;
 
@@ -36,16 +35,16 @@ void	get_rid_quotes(t_prompt	*prompt)
 	while (current_node != NULL)
 	{
 		cmd_data = current_node->data;
-		i = 0;
-		len_arr = get_len_arr(cmd_data->full_cmd);
-		temp = get_grbg(prompt, len_arr + 1, sizeof(char *));
+		i[0] = 0;
+		i[1] = get_len_arr(cmd_data->full_cmd);
+		temp = get_grbg(prompt, i[1] + 1, sizeof(char *));
 		if (!temp)
 			return ;
-		while (cmd_data->full_cmd[i])
+		while (cmd_data->full_cmd[i[0]])
 		{
-			trim_cmd = get_trimmed(prompt, cmd_data->full_cmd[i], 0, 0);
-			temp[i] = trim_cmd;
-			i++;
+			trim_cmd = get_trimmed(prompt, cmd_data->full_cmd[i[0]], 0, 0);
+			temp[i[0]] = trim_cmd;
+			i[0]++;
 		}
 		cmd_data->full_cmd = temp;
 		current_node = current_node->next;
