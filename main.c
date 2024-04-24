@@ -6,13 +6,13 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 15:22:13 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:23:25 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	exitstatus = 0; //somehow definition here needed, otherwise compile error-> read up on global variables
+int	exitstatus = 0;
 
 int	main(int argc, char *argv[], char **envp)
 {
