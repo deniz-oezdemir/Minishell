@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   garbage_lib.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/24 21:10:07 by ecarlier          #+#    #+#             */
+/*   Updated: 2024/04/24 21:10:31 by ecarlier         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 /* create custom libft functions with get_grbg instead of malloc / ft_calloc*/
-
 char	*grbg_strdup(t_prompt *prompt, const char *s)
 {
 	size_t	len;
@@ -10,7 +21,6 @@ char	*grbg_strdup(t_prompt *prompt, const char *s)
 
 	i = 0;
 	len = ft_strlen(s) + 1;
-	//dest = malloc(sizeof(char) * len);
 	dest = get_grbg(prompt, len, sizeof(char));
 	if (dest == NULL)
 		return (NULL);
@@ -33,7 +43,6 @@ char	*grbg_substr(t_prompt *prompt, char const *s, unsigned int start, size_t le
 		return (grbg_strdup(prompt, ""));
 	if (ft_strlen(s + start) < len)
 		len = ft_strlen(s + start);
-	//dest = malloc(sizeof(char) * (len + 1));
 	dest = get_grbg(prompt, len + 1, sizeof(char));
 	if (!dest)
 		return (NULL);
