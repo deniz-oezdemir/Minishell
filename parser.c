@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 15:05:42 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/25 11:52:43 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,36 @@ If a pipe is found, add a new node to the list of commands
 In all other cases add whatever words are found
  to the argument list (argv) we call full_cmd
 */
+
+/*
+prompt->commands
+["ls", "-l", "|", "grep", "'file.txt'", ]
+*/
+
+
+/*
+  Initializes a new structure t_cmddat with default values.
+  Allocates memory for the structure and returns a pointer to it.
+
+  Returns:
+    - Pointer to the newly initialized t_cmddat structure.
+*/
+static t_cmddat	*init_struct_cmd(t_prompt *prompt)
+{
+	t_cmddat	*ptr;
+
+	ptr = get_grbg(prompt, 1, sizeof(t_cmddat));
+	if (!ptr)
+		return (NULL);
+	ptr->full_command = NULL;
+	ptr->full_path = NULL;
+	ptr->infile = STDIN_FILENO;
+	ptr->outfile = STDOUT_FILENO;
+	ptr->lst_pos = -1;
+	ptr->prompt = prompt;
+	ptr->file_open_error = 0;
+	return (ptr);
+}
 
 /*
   Creates and fills a new array of strings from the `prompt` array.
