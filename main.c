@@ -3,28 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 21:05:09 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:02:45 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	g_exitstatus = 0;
+int		g_exitstatus = 0;
 
 int	main(int argc, char *argv[], char **envp)
 {
 	t_prompt	*prompt;
 
 	prompt = NULL;
-
 	(void)argv;
-
 	if (argc == 1)
 	{
-		prompt = ft_calloc(1, sizeof(t_prompt)); //gc not possible here as gc needs gc_list to be allocated -> prompt needs seperate free at exit
+		prompt = ft_calloc(1, sizeof(t_prompt));
 		init_prompt_struct(prompt, envp);
 	}
 	launch_minishell(prompt);
@@ -33,8 +31,7 @@ int	main(int argc, char *argv[], char **envp)
 
 void	launch_minishell(t_prompt *prompt)
 {
-	//signals_interactive(); //@Leo: is this needed here and in the while loop?
-
+	// signals_interactive(); //@Leo: is this needed here and in the while loop?
 	while (1)
 	{
 		signals_interactive();
@@ -42,13 +39,11 @@ void	launch_minishell(t_prompt *prompt)
 		lexer(prompt);
 		if (prompt->stop == 0)
 			parser(prompt, 0, 0);
-		//print_cmd_list(prompt->cmd_list);
 		if (cstm_lstsize(prompt->cmd_list) > 1 && prompt->stop == 0)
-			pipe_infile_outfile(prompt->cmd_list); //@Deniz: not gc'ed within pipe_infile_outfile as does not leak
-		//print_cmd_list(prompt->cmd_list);
+			pipe_infile_outfile(prompt->cmd_list);
 		if (!prompt->stop)
 			execute_cmds(prompt);
-		prompt->cmd_list = NULL; //this works but why @Leo
+		prompt->cmd_list = NULL; // this works but why @Leo
 	}
 }
 
@@ -73,13 +68,12 @@ void	pipe_infile_outfile(t_node *cmd_lst)
 			cmd_lst->data->outfile = pip[1];
 		else
 			close(pip[1]);
-		if (cmd_lst->next->data->infile == 0) //LEO ADDED THIS
+		if (cmd_lst->next->data->infile == 0)
 			cmd_lst->next->data->infile = pip[0];
 		else
 			close(pip[0]);
-		cmd_lst=cmd_lst->next;
+		cmd_lst = cmd_lst->next;
 		free(pip);
 	}
 	return ;
 }
-

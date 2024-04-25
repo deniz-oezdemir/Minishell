@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 21:05:42 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:59:44 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i)
 	char	*lim;
 	size_t	j;
 
-	lim = cmd->full_cmd[i + 1]; //leo changed this so it's from the right command
+	lim = cmd->full_cmd[i + 1];
 	j = 0;
-
 	while (ft_isalnum(lim[j]))
 		j++;
 	if (j != ft_strlen(lim))
 	{
-		ft_putstr_fd("minishell: input error: delimiter must contain only alphanumeric characters\n", 2);
+		ft_putstr_fd("minishell: input error: delimiter must ", 2);
+		ft_putstr_fd("contain only alphanumeric characters\n", 2);
 		prompt->stop = 1;
 		return ;
 	}
@@ -41,7 +41,6 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 	content = NULL;
 	line = NULL;
 	g_exitstatus = 0; //@deniz why?
-
 	while (1)
 	{
 		signals_interactive();
@@ -53,7 +52,8 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 			print_err_msg("warning", "here-document delimited by end-of-file");
 			break ;
 		}
-		if (!ft_strncmp(line, lim, ft_strlen(line)) && ft_strlen(line) == ft_strlen(lim)) //different: left out prompt->prompt->prompt->prompt->prompt->g_exitstatus as prompt->g_exitstatus can not be 1 here anyways?
+		if (!ft_strncmp(line, lim, ft_strlen(line))
+			&& ft_strlen(line) == ft_strlen(lim))
 			break ;
 		line = expand_var(prompt, line, prompt->envp, 0);
 		content = add_to_str(prompt, &content, line);
@@ -67,9 +67,7 @@ int	pipe_heredoc(char *content)
 	int	pip[2];
 
 	if (g_exitstatus)
-	{
 		return (0); //@deniz why?
-	}
 	if (!pipe(pip))
 	{
 		ft_putstr_fd(content, pip[1]);
