@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:50:33 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/24 21:05:09 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:48:54 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,9 @@ void	*get_grbg(t_prompt *prompt, size_t nmemb, size_t size)
 	if (!new)
 	{
 		ft_putstr_fd("memory allocation error\n", 2);
-		//set g_exitstatus, free stuff
 		g_exitstatus = 1;
 		return (NULL);
 	}
-	//printf("allocated new: %x\n", new);
 	collect_grbg(prompt, new);
 	return (new);
 }
@@ -33,59 +31,50 @@ void	*get_grbg(t_prompt *prompt, size_t nmemb, size_t size)
 /*	can also be used without get_grbg to collect malloc'ed space */
 void	collect_grbg(t_prompt *prompt, void *new)
 {
-	t_grbg *node;
-	t_grbg *tmp;
-	t_grbg **head;
+	t_grbg	*node;
+	t_grbg	*tmp;
+	t_grbg	**head;
 
 	head = &(prompt->grbg_lst);
 	node = ft_calloc(1, sizeof(t_grbg));
 	if (!node)
 	{
 		ft_putstr_fd("memory allocation error\n", 2);
-		//set g_exitstatus, free stuff, exit
 		g_exitstatus = 1;
 		return ;
 	}
-	//printf("allocated node: %x\n", node);
 	node->ptr = new;
-	//printf("check: node->ptr: %x is equal to allocated new above?\n", node->ptr);
 	node->next = NULL;
-	if (!(*head)) //list is empty
+	if (!(*head))
 	{
 		*head = node;
 		return ;
 	}
 	tmp = *head;
-	while (tmp->next) //list is not empty
-		tmp = tmp->next; //go to last node
-	tmp->next = node; //add new at end
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = node;
 	return ;
 }
 
 void	free_grbg(t_grbg *head)
 {
-	t_grbg *curr;
-	t_grbg *prev;
+	t_grbg	*curr;
+	t_grbg	*prev;
 
-	//printf("head before free: %x\n", head);
 	curr = head;
 	while (curr)
 	{
-		if(curr->ptr)
-		{
-			//printf("curr->ptr before free: %x\n", curr->ptr);
+		if (curr->ptr)
 			free(curr->ptr);
-		}
 		prev = curr;
 		if (curr->next)
 			curr = curr->next;
 		else
 		{
-			//printf("curr before free: %x\n", curr);
 			free(curr);
 			return ;
 		}
-		//printf("prev=curr before free: %x\n", prev);
 		free(prev);
 	}
 }

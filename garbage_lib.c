@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_lib.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 21:10:07 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 21:10:31 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:52:15 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* create custom libft functions with get_grbg instead of malloc / ft_calloc*/
+/* custom libft functions with get_grbg instead of malloc or ft_calloc*/
+
 char	*grbg_strdup(t_prompt *prompt, const char *s)
 {
 	size_t	len;
@@ -33,7 +34,8 @@ char	*grbg_strdup(t_prompt *prompt, const char *s)
 	return (dest);
 }
 
-char	*grbg_substr(t_prompt *prompt, char const *s, unsigned int start, size_t len)
+char	*grbg_substr(t_prompt *prompt, char const *s, unsigned int start,
+		size_t len)
 {
 	size_t	i;
 	char	*dest;
@@ -55,72 +57,12 @@ char	*grbg_substr(t_prompt *prompt, char const *s, unsigned int start, size_t le
 	return (dest);
 }
 
-static int	get_len(long n)
-{
-	size_t	len;
-
-	len = 0;
-	if (n < 0)
-	{
-		len += 1;
-		n = -n;
-	}
-	while (n != 0)
-	{
-		n /= 10;
-		len++;
-	}
-	return (len);
-}
-
-static	char	*fill_the_array(int len, char *dest, int n )
-{
-	int	i;
-
-	i = 0;
-	if (n < 0)
-	{
-		dest[0] = '-';
-		n = n * (-1);
-		i = 1;
-	}
-	dest[len] = '\0';
-	len -= 1;
-	while (len >= i)
-	{
-		dest[len] = (n % 10) + '0';
-		n /= 10;
-		len--;
-	}
-	return (dest);
-}
-
-char	*grbg_itoa(t_prompt *prompt, int n)
-{
-	char	*dest;
-	size_t	len;
-	long	num;
-
-	if (n == -2147483648)
-		return (dest = grbg_strdup(prompt, "-2147483648"));
-	if (n == 0)
-		return (dest = grbg_strdup(prompt, "0"));
-	num = n;
-	len = get_len(num);
-	dest = get_grbg(prompt, len + 1, sizeof(char));
-	if (!dest)
-		return (NULL);
-	dest = fill_the_array(len, dest, num);
-	return (dest);
-}
-
 char	*grbg_strjoin(t_prompt *prompt, char const *s1, char const *s2)
 {
 	size_t	len;
 	char	*dest;
 
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
-	//dest = malloc(sizeof(char) * len);
 	dest = get_grbg(prompt, sizeof(char), len);
 	if (!dest)
 		return (NULL);
