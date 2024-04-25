@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 21:05:11 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/25 14:44:04 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ int		malloc_len(char const *str);
 void	parser(t_prompt *prompt, int i, int j);
 char	**fill_arr(t_prompt *main_prompt, char **prompt, int i, int len);
 void	add_last_cmd_to_envp(t_prompt *p);
+int		check_double_pipes(t_prompt *prompt);
 
 /* handle_redirections.c */
 int		get_type(char *str);
@@ -139,6 +140,7 @@ int		syntax_error(t_prompt *prompt, char *token);
 void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i);
 int		get_heredoc(t_prompt *prompt, char *lim);
 int		pipe_heredoc(char *content);
+
 /*	builtins.c	*/
 int		get_builtin_nbr(t_cmddat *cmd);
 int		execute_builtin(t_cmddat *cmd, int n, int forked);

@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 15:05:42 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/25 14:40:44 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,11 @@ static void	check_last_char(t_prompt *prompt)
 	int		len_ar;
 	char	last_char;
 
+	if (check_double_pipes(prompt) == 1)
+	{
+		prompt->stop = 1;
+		return ;
+	}
 	len_ar = get_len_arr(prompt->commands) - 1;
 	if (len_ar < 0 || prompt->commands[len_ar] == NULL
 		|| prompt->commands[len_ar][0] == '\0')

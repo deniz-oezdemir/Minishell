@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:54:59 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/25 14:24:11 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/25 14:35:44 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	syntax_error(t_prompt *prompt, char *token)
 {
-	g_exitstatus = 1;
 	if (prompt)
 		prompt->stop = 1;
 	if (!token)

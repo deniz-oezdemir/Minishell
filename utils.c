@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:31:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 15:17:47 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/25 14:43:21 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,19 @@ char	**add_str_to_arr(t_prompt *prompt, char **arr, char *str)
 		l--;
 	}
 	return (new);
+}
+
+int	check_double_pipes(t_prompt *prompt)
+{
+	int	i;
+
+	i = 0;
+	while (prompt->commands[i])
+	{
+		if (prompt->commands[i][0] == '|' && prompt->commands[i + 1] && prompt->commands[i + 1][0] == '|')
+			return (1);
+		i++;
+	}
+	return (0);
+
 }
