@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/25 16:20:33 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:23:51 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void					parser(t_prompt *prompt, int i, int j);
 char					**fill_arr(t_prompt *main_prompt, char **prompt, int i,
 							int len);
 void					add_last_cmd_to_envp(t_prompt *p);
-int		check_double_pipes(t_prompt *prompt);
+int						check_double_pipes(t_prompt *prompt);
 
 /* handle_redirections.c */
 int						get_type(char *str);

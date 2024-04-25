@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:31:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/25 14:43:21 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:24:18 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ delete a str from a string array
 pos : position of the first str to del
 count : how many str to delete
 */
-
 char	**del_str(char **array, int pos, int count)
 {
 	int	i;
@@ -82,10 +81,10 @@ int	check_double_pipes(t_prompt *prompt)
 	i = 0;
 	while (prompt->commands[i])
 	{
-		if (prompt->commands[i][0] == '|' && prompt->commands[i + 1] && prompt->commands[i + 1][0] == '|')
+		if (prompt->commands[i][0] == '|' && prompt->commands[i + 1]
+			&& prompt->commands[i + 1][0] == '|')
 			return (1);
 		i++;
 	}
 	return (0);
-
 }
