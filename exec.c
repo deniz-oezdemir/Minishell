@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:44:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/25 15:44:00 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:11:53 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void	run_cmd(void *content)
 		dup2(cmd_data->infile, 0);
 		dup2(cmd_data->outfile, 1);
 		cstm_lstiter(cmd_data->prompt->cmd_list, cls_fds);
-		// if (cmd_data->full_path) //can be NULL if unset PATH
 		execve(cmd_data->full_path, cmd_data->full_cmd, cmd_data->prompt->envp);
 		close(0);
 		close(1);

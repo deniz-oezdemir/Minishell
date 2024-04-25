@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:19:36 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/25 15:45:58 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:12:24 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	free_all(t_prompt *prompt)
 {
 	free_grbg(prompt->grbg_lst);
 	rl_clear_history();
-	if (prompt) // keep after free_grbg
+	if (prompt)
 		free(prompt);
 }
 

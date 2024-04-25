@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:08:21 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/25 15:30:57 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:09:21 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	cstm_export(t_cmddat *cmd)
 	if (get_len_arr(cmd->full_cmd) == 1)
 		return (print_export(cmd));
 	if (!cmd->prompt->envp && get_len_arr(cmd->full_cmd) > 1
-		&& get_len_id(cmd->prompt, cmd->full_cmd[i], 0)) // uninitiaized envp - @Leo: is this even possible? @deniz is this comment still valid? 10/04 @Leo: yes
+		&& get_len_id(cmd->prompt, cmd->full_cmd[i], 0))
 		cmd->prompt->envp = add_str_to_arr(cmd->prompt, cmd->prompt->envp,
 				cmd->full_cmd[i++]);
 	while (cmd->full_cmd[i])

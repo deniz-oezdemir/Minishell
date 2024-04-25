@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:27 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/25 15:59:44 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:14:48 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	launch_heredoc(t_prompt *prompt, t_cmddat *cmd, int i)
 	}
 	cmd->infile = get_heredoc(prompt, lim);
 	if (g_exitstatus == 1)
-		prompt->stop = 1; // @deniz why?
+		prompt->stop = 1;
 }
 
 int	get_heredoc(t_prompt *prompt, char *lim)
@@ -40,7 +40,7 @@ int	get_heredoc(t_prompt *prompt, char *lim)
 
 	content = NULL;
 	line = NULL;
-	g_exitstatus = 0; //@deniz why?
+	g_exitstatus = 0;
 	while (1)
 	{
 		signals_interactive();
@@ -67,7 +67,7 @@ int	pipe_heredoc(char *content)
 	int	pip[2];
 
 	if (g_exitstatus)
-		return (0); //@deniz why?
+		return (0);
 	if (!pipe(pip))
 	{
 		ft_putstr_fd(content, pip[1]);

@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/25 16:02:45 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:15:59 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	main(int argc, char *argv[], char **envp)
 
 void	launch_minishell(t_prompt *prompt)
 {
-	// signals_interactive(); //@Leo: is this needed here and in the while loop?
 	while (1)
 	{
 		signals_interactive();
@@ -43,7 +42,7 @@ void	launch_minishell(t_prompt *prompt)
 			pipe_infile_outfile(prompt->cmd_list);
 		if (!prompt->stop)
 			execute_cmds(prompt);
-		prompt->cmd_list = NULL; // this works but why @Leo
+		prompt->cmd_list = NULL;
 	}
 }
 

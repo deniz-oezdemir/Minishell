@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:45:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/25 15:38:53 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:10:05 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	add_last_cmd_to_envp(t_prompt *prompt)
 	if (!prompt->cmd_list->data->full_cmd)
 		return ;
 	cmd = cstm_lstlast(prompt->cmd_list)->data;
-	l = get_len_arr(cmd->full_cmd); //@Leo can full_cmd ever be NULL? otherwise we do not need this check
+	l = get_len_arr(cmd->full_cmd);
 	if (l)
 		modify_envp(prompt, "_", grbg_strdup(prompt, cmd->full_cmd[0]));
 }
