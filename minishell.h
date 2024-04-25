@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/25 11:52:16 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/24 21:05:11 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct s_prompt
 	pid_t		pid;
 	int			stop;
 	t_grbg		*grbg_lst;
-	int			nbr_cmds;
 }	t_prompt;
 
 typedef struct s_node
@@ -75,7 +74,6 @@ typedef struct s_cmddat
 	char		*full_path;
 	int			infile;
 	int			outfile;
-	int			lst_pos; //@Deniz: needs init, and function that assigns it
 	t_prompt	*prompt;
 	int			file_open;
 }	t_cmddat;
@@ -202,5 +200,38 @@ char	*grbg_substr(t_prompt *prompt, char const *s, unsigned int start, size_t le
 char	*grbg_itoa(t_prompt *prompt, int n);
 char	*grbg_strjoin(t_prompt *prompt, char const *s1, char const *s2);
 
-#endif
+/*	list_functions.c */
+void	cstm_lstiter(t_node *lst, void (*f)(void *));
+t_node	*cstm_lstlast(t_node *lst);
+int		cstm_lstsize(t_node*lst);
+void	cstm_lstclear(t_node **lst, void (*del)(void *));
+void	cstm_lstdelone(t_node *lst, void (*del)(void *));
 
+/*	utils.c	*/
+size_t	get_len_arr(char **array);
+void	print_err_msg(char *cmd, char *msg);
+int		print_err_msg_lng(char *cmd, char *msg, char *arg);
+int		ft_isspace(int c);
+char	**del_str(char **array, int pos, int count);
+char	**add_str_to_arr(t_prompt *prompt, char **arr, char *str);
+
+/* list_utils */
+void	add_node_to_list(t_prompt *prompt, t_node **head, t_cmddat *data);
+int		ft_listsize(t_node *lst);
+
+/* envp_utils.c*/
+char	*get_path_cmds(t_cmddat *cmd, char **ev);
+char	*get_path(char *cmd, char **ev, size_t i);
+void	free_split(char **strs);
+
+/* expander.c */
+char	**expander(t_prompt *prompt, char **str, char **ev);
+char	*handle_g_exitstatus(t_prompt *prompt, int i, char *str, char *sub_str);
+
+/*expand_var_utils.c */
+char	*create_sub_var(char *str, size_t i, char **ev, ssize_t len );
+ssize_t	get_len_var(char *str, int i);
+char	*create_sub(char *str, size_t i, char *nb, ssize_t len );
+char	*expand_var(t_prompt *prompt, char *str, char **ev, int i);
+char	*handle_expansion(t_prompt *prompt, char *str, int q[4], char *sub_str);
+#endif

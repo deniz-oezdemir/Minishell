@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cstm_export.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:08:21 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/25 11:46:30 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:05:42 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,12 @@ int	cstm_export(t_cmddat *cmd)
 	r = 0;
 	i = 1;
 	id_len = 0;
-	if (cmd->lst_pos + 1 < cmd->prompt->nbr_cmds) //export is not the last cmd, therefore a pipe comes after it
+	if (cmd->outfile != 1) //if pipe after export
 	{
-		close(cmd->outfile);
 		cmd->outfile = 1;
 		return (0);
 	}
-	/*if (cmd->outfile != 1) //if pipe after export //might've fucked up redicrections although tester does not show difference //@Deniz: instead IDEA (similar for echo): function that iterates through command list and assigns every cmd_struct it's position in the cmd_list -> if echo is not the first cmd, there is a piupe infront of it
-	{
-		close(cmd->outfile);
-		cmd->outfile = 1;
-		return (0);
-	}*/
-	if (get_len_arr(cmd->full_command) == 1)
+	if (get_len_arr(cmd->full_cmd) == 1)
 		return (print_export(cmd));
 	if (!cmd->prompt->envp && get_len_arr(cmd->full_cmd) > 1
 		&& get_len_id(cmd->prompt, cmd->full_cmd[i], 0)) // uninitiaized envp - @Leo: is this even possible? @deniz is this comment still valid? 10/04 @Leo: yes
