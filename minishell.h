@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/25 16:30:33 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:33:26 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,6 @@ int						print_export(t_cmddat *cmd);
 void					print_line_export(t_cmddat *cmd, int i);
 int						get_len_id(t_prompt *prompt, char *str, int msg);
 int						scan_envp(t_cmddat *cmd, char *str, int id_len);
-char					*add_to_str(t_prompt *prompt, char **str, char *add);
 
 /*	exec.c	*/
 int						execute_cmds(t_prompt *prompt);
@@ -196,6 +195,7 @@ int						ft_isspace(int c);
 char					**del_str(char **array, int pos, int count);
 char					**add_str_to_arr(t_prompt *prompt, char **arr,
 							char *str);
+char					*add_to_str(t_prompt *prompt, char **str, char *add);
 
 /* list_utils */
 void					add_node_to_list(t_prompt *prompt, t_node **head,
