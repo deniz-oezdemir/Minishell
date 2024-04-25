@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/25 16:23:51 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:30:33 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,9 @@ typedef struct s_grbg
 }						t_grbg;
 
 /* exit_minishell*/
-void					free_char_array(char **array);
 void					free_node_list(t_node *head);
 void					free_all(t_prompt *prompt);
 void					exit_ms(int g_exitstatus, t_prompt *prompt);
-void					clear_cmmdat_lst(void *content);
 
 /*	main	*/
 void					launch_minishell(t_prompt *prompt);

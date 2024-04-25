@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:19:36 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/25 16:12:24 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:30:14 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,6 @@ void	free_all(t_prompt *prompt)
 	rl_clear_history();
 	if (prompt)
 		free(prompt);
-}
-
-void	clear_cmmdat_lst(void *content)
-{
-	t_cmddat	*cmd_struct;
-
-	cmd_struct = (t_cmddat *)content;
-	if (cmd_struct->full_path)
-		free(cmd_struct->full_path);
-	if (cmd_struct->full_cmd)
-		free_char_array(cmd_struct->full_cmd);
-	free(cmd_struct);
 }
 
 void	free_node_list(t_node *head)
@@ -61,17 +49,3 @@ void	free_node_list(t_node *head)
 	}
 }
 
-void	free_char_array(char **array)
-{
-	int	i;
-
-	i = 0;
-	if (array)
-	{
-		while (array[i])
-			free(array[i++]);
-		free(array[i]);
-	}
-	free(array);
-	return ;
-}
