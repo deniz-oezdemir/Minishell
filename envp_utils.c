@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:45:17 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 15:05:42 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:38:53 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@ char	*get_path_cmds(t_cmddat *cmd, char **ev)
 	{
 		path = get_path(cmd->full_cmd[i], ev, 0);
 		if (path)
-			break;
+			break ;
 		i++;
 	}
-
 	return (path);
 }
 
@@ -83,8 +82,8 @@ void	free_split(char **strs)
 
 void	add_last_cmd_to_envp(t_prompt *prompt)
 {
-	int	l;
-	t_cmddat *cmd;
+	int			l;
+	t_cmddat	*cmd;
 
 	l = 0;
 	if (!prompt->cmd_list->data->full_cmd)

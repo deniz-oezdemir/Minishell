@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   exit_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:19:36 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 21:05:09 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:45:58 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 
@@ -20,18 +19,11 @@ void	exit_ms(int g_exitstatus, t_prompt *prompt)
 	exit(g_exitstatus);
 }
 
-void	free_all(t_prompt	*prompt)
+void	free_all(t_prompt *prompt)
 {
-	/*if (prompt->input_string)
-		free(prompt->input_string);
-	if (prompt->commands)
-		free_char_array(prompt->commands);
-	if (prompt->envp)
-		free_char_array(prompt->envp);
-	free_node_list(prompt->cmd_list);*/
 	free_grbg(prompt->grbg_lst);
 	rl_clear_history();
-	if (prompt) //keep after free_grbg
+	if (prompt) // keep after free_grbg
 		free(prompt);
 }
 
@@ -46,7 +38,6 @@ void	clear_cmmdat_lst(void *content)
 		free_char_array(cmd_struct->full_cmd);
 	free(cmd_struct);
 }
-
 
 void	free_node_list(t_node *head)
 {
@@ -70,10 +61,8 @@ void	free_node_list(t_node *head)
 	}
 }
 
-
 void	free_char_array(char **array)
 {
-	//@Leo: below fixed the leak in ft_calloc when ctrl+d and another one when exit
 	int	i;
 
 	i = 0;
@@ -86,4 +75,3 @@ void	free_char_array(char **array)
 	free(array);
 	return ;
 }
-
