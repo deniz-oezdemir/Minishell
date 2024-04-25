@@ -6,7 +6,7 @@
 #    By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 20:35:04 by denizozd          #+#    #+#              #
-#    Updated: 2024/04/25 16:28:32 by ecarlier         ###   ########.fr        #
+#    Updated: 2024/04/25 17:24:22 by denizozd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,3 +75,5 @@ fclean: clean
 	@echo $(G)"Removed		library"$(X)
 
 re: fclean all
+
+.PHONY: all clean fclean re
