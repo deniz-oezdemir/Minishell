@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
+#    By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 20:35:04 by denizozd          #+#    #+#              #
-#    Updated: 2024/04/25 15:51:52 by denizozd         ###   ########.fr        #
+#    Updated: 2024/04/25 16:26:13 by ecarlier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ CPPFLAGS	= -I/Users/$(USER)/.brew/opt/readline/include
 SRCS = cstm_exit.c exit_minishell.c signal_handler.c builtins.c \
 		cstm_pwd.c exec.c lists_utils.c split_input.c \
 		cstm_echo.c cstm_unset.c init.c main.c parser.c \
-		cstm_env.c debug_utils.c lexer.c utils.c \
+		cstm_env.c lexer.c utils.c \
 		cstm_cd.c cstm_export.c envp_utils.c utils2.c handle_spaces.c \
 		expand_var_utils.c expander.c handle_redirections.c \
 		quotes_utils.c list_functions.c heredoc.c garbage_collector.c garbage_lib.c \

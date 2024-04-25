@@ -66,14 +66,6 @@ typedef struct s_grbg
 	struct s_grbg		*next;
 }						t_grbg;
 
-/* debug utils*/
-/*NEED TO DELETE THIS*/
-void					print_char_array(const char arr[]);
-void					print_str_array(char **arr);
-void					print_command_list(t_node *head);
-void					print_cmd_list(const t_node *head);
-void					print_cmddat(const t_cmddat *cmd);
-
 /* exit_minishell*/
 void					free_char_array(char **array);
 void					free_node_list(t_node *head);
