@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cstm_echo.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:50:56 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/24 21:56:22 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:20:52 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	cstm_echo(t_cmddat *cmd_data)
 		return (1);
 	if (cmd_data->full_cmd[1] == NULL)
 		return (ft_putstr_fd("\n", cmd_data->outfile), 1);
-	if (!ft_strcmp(cmd_data->full_cmd[1], "-n")) //different
+	if (!ft_strcmp(cmd_data->full_cmd[1], "-n"))
 	{
 		nl = 0;
 		i += 1;
