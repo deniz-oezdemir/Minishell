@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/25 14:43:09 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:35:21 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ int		cstm_exit(t_cmddat *cmd_data);
 int		is_only_digits(char *s);
 
 /*	cstm_unset	*/
-int		cstm_unset(t_cmddat *cmd_data);
+int		cstm_unset(t_cmddat *cmd);
 size_t	get_len_env(const char *s);
 
 /*	cstm_cd	*/

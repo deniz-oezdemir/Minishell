@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:32:03 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/20 14:09:50 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:31:34 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	cstm_pwd(t_cmddat *cmd_data)
 {
-	char *cwd;
+	char	*cwd;
 
 	cwd = getcwd(NULL, 0);
 	collect_grbg(cmd_data->prompt, cwd);
