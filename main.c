@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:56:55 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 14:01:44 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/25 10:18:09 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,12 @@ void	launch_minishell(t_prompt *prompt)
 			add_history(prompt->input_string);
 		if (prompt->stop == 0)
 			parser(prompt, 0, 0);
+		index_cmd_nodes(prompt);
 		//print_cmd_list(prompt->cmd_list);
 		if (cstm_lstsize(prompt->cmd_list) > 1 && prompt->stop == 0)
 			pipe_infile_outfile(prompt->cmd_list); //@Deniz: not gc'ed within pipe_infile_outfile as does not leak
 		//print_cmd_list(prompt->cmd_list);
+		//printf("nbr_cmds: %d\n\n", prompt->nbr_cmds);
 		if (!prompt->stop)
 			execute_cmds(prompt);
 		prompt->cmd_list = NULL; //this works but why @Leo

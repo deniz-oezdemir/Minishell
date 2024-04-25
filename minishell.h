@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:26:53 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/22 18:32:52 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/04/25 10:06:59 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_prompt
 	pid_t		pid;
 	int			stop;
 	t_grbg		*grbg_lst;
+	int			nbr_cmds;
 }	t_prompt;
 
 typedef struct s_node
@@ -144,6 +145,7 @@ int print_err_msg_lng(char *cmd, char *msg, char *arg);
 int	ft_isspace(int c);
 char	**del_str_from_array(char **array, int pos, int count);
 char	**add_str_to_arr(t_prompt *prompt, char **arr, char *str);
+void	index_cmd_nodes(t_prompt *prompt);
 
 /*	builtins.c	*/
 int	get_builtin_nbr(t_cmddat *cmd);

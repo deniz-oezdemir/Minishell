@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:31:31 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 20:46:21 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/25 10:09:39 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,4 +140,25 @@ int print_err_msg_lng(char *cmd, char *msg, char *arg) //different -> compare al
 	}
 	ft_putstr_fd("\n", 2);
 	return (1);
+}
+
+void	index_cmd_nodes(t_prompt *prompt)
+{
+	int	i;
+	t_node *tmp;
+
+	i = 0;
+	tmp = prompt->cmd_list;
+	if (!tmp)
+		return ;
+	while (tmp)
+	{
+		tmp->data->lst_pos = i;
+		i++;
+		if (tmp->next)
+			tmp = tmp->next;
+		else
+			break ;
+	}
+	prompt->nbr_cmds = i;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:54:02 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/21 21:19:33 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/25 10:01:45 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void print_cmddat(const t_cmddat *cmd) {
 
     printf("infile: %d\n", cmd->infile);
     printf("outfile: %d\n", cmd->outfile);
+    printf("lst_pos: %d\n", cmd->lst_pos);
     //printf("*prompt: %p\n", cmd->prompt);
    //printf("file_open_error: %d\n", cmd->file_open_error);
     // Additional fields can be printed similarly
