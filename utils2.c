@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:54:59 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/25 14:35:44 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:20:53 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,22 @@ int	print_err_msg_lng(char *cmd, char *msg, char *arg)
 	}
 	ft_putstr_fd("\n", 2);
 	return (1);
+}
+
+char	*add_to_str(t_prompt *prompt, char **str, char *add)
+{
+	char	*new;
+
+	if (!add)
+	{
+		new = grbg_strdup(prompt, *str);
+		return (new);
+	}
+	if (!str || !*str)
+	{
+		new = grbg_strdup(prompt, add);
+		return (new);
+	}
+	new = grbg_strjoin(prompt, *str, add);
+	return (new);
 }

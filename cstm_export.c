@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cstm_export.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:08:21 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/24 15:05:42 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:09:21 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,10 @@ int	cstm_export(t_cmddat *cmd)
 	r = 0;
 	i = 1;
 	id_len = 0;
-	if (cmd->outfile != 1) //if pipe after export
-	{
-		cmd->outfile = 1;
-		return (0);
-	}
 	if (get_len_arr(cmd->full_cmd) == 1)
 		return (print_export(cmd));
 	if (!cmd->prompt->envp && get_len_arr(cmd->full_cmd) > 1
-		&& get_len_id(cmd->prompt, cmd->full_cmd[i], 0)) // uninitiaized envp - @Leo: is this even possible? @deniz is this comment still valid? 10/04 @Leo: yes
+		&& get_len_id(cmd->prompt, cmd->full_cmd[i], 0))
 		cmd->prompt->envp = add_str_to_arr(cmd->prompt, cmd->prompt->envp,
 				cmd->full_cmd[i++]);
 	while (cmd->full_cmd[i])
@@ -60,7 +55,7 @@ int	print_export(t_cmddat *cmd)
 
 /*	if			e.g. "TEST=hello"
 	else if		e.g., "export test"
-	else (l=0)	because of error or rmpty command */
+	else (l=0)	because of error or empty command */
 void	print_line_export(t_cmddat *cmd, int i)
 {
 	size_t	l;
@@ -104,8 +99,6 @@ int	get_len_id(t_prompt *prompt, char *str, int msg)
 			tmp = grbg_strjoin(prompt, "`", str);
 			tmp = add_to_str(prompt, &tmp, "'");
 			print_err_msg_lng("export", "not a valid identifier", tmp);
-			//if (tmp)
-				//free(tmp);
 		}
 		i = 0;
 	}
@@ -117,44 +110,28 @@ int	get_len_id(t_prompt *prompt, char *str, int msg)
 int	scan_envp(t_cmddat *cmd, char *str, int id_len)
 {
 	size_t	i;
-	int	envp_id_len;
+	int		envp_id_len;
 
 	i = 0;
 	while (cmd->prompt->envp[i])
 	{
 		envp_id_len = get_len_id(cmd->prompt, cmd->prompt->envp[i], 0);
-		if (envp_id_len == id_len && !ft_strncmp(cmd->prompt->envp[i], str, id_len))
+		if (envp_id_len == id_len && !ft_strncmp(cmd->prompt->envp[i], str,
+				id_len))
 		{
 			if (ft_strchr(str, '='))
-				modify_envp(cmd->prompt, grbg_substr(cmd->prompt, cmd->prompt->envp[i], 0,
-						envp_id_len), grbg_strdup(cmd->prompt, str + envp_id_len + 1));
+				modify_envp(cmd->prompt, grbg_substr(cmd->prompt,
+						cmd->prompt->envp[i], 0, envp_id_len),
+					grbg_strdup(cmd->prompt, str + envp_id_len + 1));
 			break ;
 		}
 		else if (i == get_len_arr(cmd->prompt->envp) - 1)
 		{
-			cmd->prompt->envp = add_str_to_arr(cmd->prompt, cmd->prompt->envp, str);
+			cmd->prompt->envp = add_str_to_arr(cmd->prompt, cmd->prompt->envp,
+					str);
 			break ;
 		}
 		i++;
 	}
 	return (0);
-}
-
-char	*add_to_str(t_prompt *prompt, char **str, char *add)
-{
-	char	*new;
-
-	if (!add)
-	{
-		new = grbg_strdup(prompt, *str);
-		return (new);
-	}
-	if (!str || !*str)
-	{
-		new = grbg_strdup(prompt, add);
-		return (new);
-	}
-	new = grbg_strjoin(prompt, *str, add);
-	//free(*str);
-	return (new);
 }
