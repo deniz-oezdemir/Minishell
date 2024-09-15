@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:41 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/25 14:40:44 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/09/15 15:25:02 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ static void	check_token(t_prompt *prompt)
 /*might lead to double frees with gc,
 but seems to work @DENIZ DOUBLE FREE if error
 @deniz is this comment still accurate (22/04)*/
-void static	parse_remaining(t_prompt *prompt)
+static void	parse_remaining(t_prompt *prompt)
 {
 	int	type;
 

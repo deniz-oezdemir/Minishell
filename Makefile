@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+         #
+#    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 20:35:04 by denizozd          #+#    #+#              #
-#    Updated: 2024/04/25 17:24:22 by denizozd         ###   ########.fr        #
+#    Updated: 2024/09/15 15:50:36 by denizozd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NAME = minishell
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 LIBFTPATH = ./libft
-LIBFT = ./libft/libft.a
+LIBFT = $(LIBFTPATH)/libft.a
 CPPFLAGS	= -I/Users/$(USER)/.brew/opt/readline/include
 
 SRCS = cstm_exit.c exit_minishell.c signal_handler.c builtins.c \
@@ -36,8 +36,7 @@ SRCS = cstm_exit.c exit_minishell.c signal_handler.c builtins.c \
 OBJDIR = obj
 OBJS =  $(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
 
-all: $(NAME)
-
+all: $(LIBFT) $(NAME)
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
@@ -49,8 +48,13 @@ $(OBJDIR)/%.o: %.c | $(OBJDIR)
 
 
 $(LIBFT):
-	@echo $(Y)"Compiling	[libft]"$(X)
-	@make -C $(LIBFTPATH) > /dev/null
+	@if [ ! -d $(LIBFTPATH) ]; then \
+		git submodule update --init --recursive; \
+	fi
+
+	@if [ ! -f $(LIBFTPATH)/libft.a ]; then \
+		make -s -C $(LIBFTPATH); \
+	fi
 	@echo $(G)"Created		[libft]"$(X)
 
 $(NAME): $(LIBFT) $(OBJS)
@@ -63,7 +67,6 @@ $(NAME): $(LIBFT) $(OBJS)
 clean:
 	@echo $(B)"Removing	objectfiles"$(X)
 	@rm -rf $(OBJDIR)
-	@cd $(LIBFTPATH) && make clean > /dev/null
 	@echo $(G)"Removed		objectfiles"$(X)
 
 fclean: clean

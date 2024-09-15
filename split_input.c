@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:39:22 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/24 20:48:35 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/09/15 15:23:59 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ It handles cases where words might be enclosed within single or double quotes,
 ensuring they are not counted separately.
 If there's a mismatch in quotes, it returns -1 to indicate an error.
 */
-static int	ft_count_words(const char *str, char *sep, int count, int i)
+static int	ft_count_words_ms(const char *str, char *sep, int count, int i)
 {
 	int	q[2];
 
@@ -94,7 +94,7 @@ char	**split_input(char *str, t_prompt *prompt)
 		return (NULL);
 	if (ft_isspace(*str))
 		str++;
-	word_count = ft_count_words(str, " ", 0, 0);
+	word_count = ft_count_words_ms(str, " ", 0, 0);
 	if (word_count == -1)
 	{
 		printf("Syntax error: unclosed quote in argument\n");
