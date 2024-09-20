@@ -12,7 +12,7 @@ Minishell is a simple shell implementation written in C.
 - [Sources](#sources)
 
 ## About
-This program was developed together with [Eleonore](https://github.com/elecarlier). Taking [bash](https://www.gnu.org/software/bash/) as a reference, it aims to replicate the basic functionalities of a Unix shell. In general, a shell is a an interface that acts as an intermediary between the user and the operating system kernel. It serves as a command interpreter, allowing users to interact with the system through a text-based interface.
+This program was developed together with [Eleonore](https://github.com/elecarlier). Taking [bash](https://www.gnu.org/software/bash/) as a reference, it aims to replicate the basic functionalities of a Unix shell. In general, a shell is an interface that acts as an intermediary between the user and the operating system kernel. It serves as a command interpreter, allowing users to interact with the system through a text-based interface.
 
 ## Demo
 
