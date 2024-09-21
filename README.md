@@ -20,6 +20,11 @@ Below is a quick demonstration of this program showcasing the processing of some
 
 TODO: add demo video
 
+
+https://github.com/user-attachments/assets/beb8e8de-5191-4bf3-a878-d87dd816a1d0
+
+
+
 ## Features
 
 ### Interactive CLI
